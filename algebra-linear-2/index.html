@@ -9,7 +9,7 @@
 <meta property="og:description" content="P3 de Álgebra Linear II (MAT3458 / MAT2458) transcritas e resolvidas: 3 provas, 42 questões, guia do que cai, tendências, checklist e simulado.">
 <meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0F2347">
+<meta name="theme-color" content="#F1ECE2">
 <link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,23 +19,13 @@
 :root{
   --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
   --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
-  --band:#0F2347; --band-fg:#FFFFFF; --band-muted:#C9CEDA; --faixa-azul:#0F2347;
+  --band:#F1ECE2; --band-fg:#0F2347; --band-muted:#4A5468; --faixa-azul:#0F2347;
   --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
   --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
   --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
-  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
-  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
-  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark } }
-:root[data-theme="dark"]{
-  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
-  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
-  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
-  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
 a{color:inherit}
@@ -50,13 +40,13 @@ h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
 .band{background:var(--band);color:var(--band-fg)}
 .band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
 .band svg{width:64px;height:auto}
-.band .eyebrow{color:var(--amarelo);font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band .eyebrow{color:#C2410C;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
 .band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
 .band .sub{color:var(--band-muted);margin-top:6px}
 .band .sub b{color:var(--band-fg);font-weight:500}
 .docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.docs a{font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
-.docs a:hover,.docs a:focus-visible{background:rgba(255,255,255,.1);outline:none}
+.docs a{font-size:.82rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{border-color:var(--laranja);outline:none}
 nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
@@ -205,7 +195,7 @@ footer a{color:inherit}
 <body>
 <header class="band">
   <div class="wrap">
-    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#3A5590"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
     <div style="min-width:0">
       <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
       <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
