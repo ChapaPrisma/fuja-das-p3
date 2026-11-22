@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<script>(function(){try{if(localStorage.getItem("fuja-p3-tema")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}})();</script>
 <style>
 /* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
 :root{
@@ -140,6 +141,20 @@ select{background:var(--card);color:var(--fg);border:1px solid var(--line);borde
 footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 @media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F; --ok-fg:#FFE39A;
+  --link:#FF9A75; --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+:root[data-theme="dark"] .band .eyebrow,:root[data-theme="dark"] .contador b{color:var(--amarelo)}
+:root[data-theme="dark"] .hero{background:var(--band)}
+:root[data-theme="dark"] .docs a{background:transparent;border-color:rgba(255,255,255,.28);color:var(--band-fg)}
+:root[data-theme="dark"] .docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347}
+:root[data-theme="dark"] .cta-hero a.sec{border-color:rgba(255,255,255,.3)}
+.band{position:relative}
+.tema{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));z-index:6;display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--f-body);color:var(--band-fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+:root[data-theme="dark"] .tema{border-color:rgba(255,255,255,.3)}
+.tema:hover,.tema:focus-visible{border-color:var(--laranja);outline:none}
 /* ---------- novo na P3 ---------- */
 .volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
 .volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
@@ -194,6 +209,7 @@ footer a{color:inherit}
 </head>
 <body>
 <header class="band">
+  <button class="tema" id="tema" type="button" aria-label="Alternar modo escuro">☾ Modo escuro</button>
   <div class="wrap">
     <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
     <div style="min-width:0">
@@ -481,5 +497,8 @@ document.getElementById('study').innerHTML = ordem.map(t=>{
 if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
 })();
 </script>
+<script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
+function rot(){var d=r.getAttribute("data-theme")==="dark";b.textContent=d?"☀ Modo claro":"☾ Modo escuro";b.setAttribute("aria-pressed",d?"true":"false")}
+b.addEventListener("click",function(){var d=r.getAttribute("data-theme")!=="dark";if(d)r.setAttribute("data-theme","dark");else r.removeAttribute("data-theme");try{localStorage.setItem("fuja-p3-tema",d?"dark":"light")}catch(e){}rot()});rot()})();</script>
 </body>
 </html>
