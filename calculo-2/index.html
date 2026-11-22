@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cálculo II · Fuja das P3</title>
+<meta name="description" content="P3 de Cálculo II (MAT2454) transcritas e resolvidas: 3 provas, 25 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Cálculo II · Fuja das P3">
+<meta property="og:description" content="P3 de Cálculo II (MAT2454) transcritas e resolvidas: 3 provas, 25 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0F2347">
+<link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#0F2347; --band-fg:#FFFFFF; --band-muted:#C9CEDA; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
+  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
+  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:var(--amarelo);font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{background:rgba(255,255,255,.1);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#3A5590"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
+  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+    <ol class="roteiro" id="gRoteiro"></ol>
+
+    <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+    <div class="tend" id="gTend"></div>
+
+    <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+      <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+    <div class="check" id="gCheck"></div>
+
+    <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+    <div class="pegas" id="gPegas"></div>
+
+    <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+    <ul class="dicas" id="gDicas"></ul>
+
+    <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+    <div class="form" id="gForm"></div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "A P3 cobre o fim do programa: máximos e mínimos livres, extremos em compactos e multiplicadores de Lagrange, com uma revisão de gradiente como vetor normal (plano e reta tangentes) que volta em toda prova. Os nomes seguem o Fuja das P2 (P-PLANO, P-INTERSEC, P-CRITICOS, P-LAGRANGE, P-AFIRMACOES). Como na P2, a divisão do conteúdo entre as provas pode variar por turma: confira o programa da sua.", "topicos": [{"slug": "plano-tangente", "nome": "Plano tangente a superfície de nível", "grupo": "Gradiente e geometria", "ref": null, "material": null}, {"slug": "reta-intersecao", "nome": "Reta tangente à interseção de superfícies", "grupo": "Gradiente e geometria", "ref": null, "material": null}, {"slug": "tvm-gradiente", "nome": "Valor médio e gradiente nulo", "grupo": "Gradiente e geometria", "ref": null, "material": null}, {"slug": "extremos", "nome": "Pontos críticos e Hessiana", "grupo": "Máximos e mínimos", "ref": null, "material": null}, {"slug": "extremos-parametro", "nome": "Pontos críticos com parâmetro", "grupo": "Máximos e mínimos", "ref": null, "material": null}, {"slug": "hessiana-degenerada", "nome": "Hessiana nula: análise por caminhos", "grupo": "Máximos e mínimos", "ref": null, "material": null}, {"slug": "teoria-extremos", "nome": "Teoria de extremos (V ou F)", "grupo": "Máximos e mínimos", "ref": null, "material": null}, {"slug": "taylor", "nome": "Fórmula de Taylor e resto", "grupo": "Máximos e mínimos", "ref": null, "material": null}, {"slug": "extremos-compacto", "nome": "Máximo e mínimo em região compacta", "grupo": "Extremos com vínculo", "ref": null, "material": null}, {"slug": "lagrange", "nome": "Multiplicadores de Lagrange (um vínculo)", "grupo": "Extremos com vínculo", "ref": null, "material": null}, {"slug": "lagrange-2", "nome": "Lagrange com dois vínculos", "grupo": "Extremos com vínculo", "ref": null, "material": null}, {"slug": "distancia", "nome": "Distância mínima ou máxima à origem", "grupo": "Extremos com vínculo", "ref": null, "material": null}, {"slug": "otimizacao-aplicada", "nome": "Otimização com enunciado em palavras", "grupo": "Extremos com vínculo", "ref": null, "material": null}], "padroes": [{"id": "P-PLANO", "nome": "Plano tangente a superfície de nível", "reconhecer": "Superfície dada por F(x, y, z) = c e um ponto; pedem o plano tangente, ou em que ponto um plano dado tangencia a superfície.", "metodo": "Normal = ∇F(P). Plano: ∇F(P)·(X − P) = 0. Tangência com plano dado: ∇F = λ·(normal do plano) e o ponto nas duas superfícies."}, {"id": "P-INTERSEC", "nome": "Tangente a uma interseção", "reconhecer": "Curva na interseção de duas superfícies (ou de uma superfície com o gráfico de f); pedem a reta tangente ou um vetor paralelo a γ'.", "metodo": "v = ∇g(P) × ∇h(P). Para o gráfico de f, a normal é (fx, fy, −1). Confira v·∇g = v·∇h = 0."}, {"id": "P-TVM", "nome": "Valor médio e gradiente nulo", "reconhecer": "Afirmações com g(t) = f(Q + t(P − Q)), ou ∇f = 0 ⇒ f constante, ou ∇f = ∇g ⇒ f − g constante.", "metodo": "Regra da cadeia em g e TFC (ou TVM) de uma variável no segmento. ∇f = 0 só dá constante se o segmento couber no domínio (convexo; em geral, conexo)."}, {"id": "P-CRITICOS", "nome": "Pontos críticos e Hessiana", "reconhecer": "Pedem pontos críticos e sua natureza, ou quantos máximos, mínimos e selas f tem.", "metodo": "Fatore ∇f = 0 e trate caso a caso (não divida por variável). Hessiana: det < 0 sela; det > 0 e fxx > 0 mínimo; det > 0 e fxx < 0 máximo; det = 0 não decide."}, {"id": "P-PARAM", "nome": "Pontos críticos com parâmetro", "reconhecer": "f com constante a, b ou k e afirmações do tipo \"se a > 0, então…\".", "metodo": "Resolva ∇f = 0 com o parâmetro literal. Separe a > 0, a = 0, a < 0 (o número de raízes muda). Classifique cada caso; a = 0 costuma ser degenerado."}, {"id": "P-DEGEN", "nome": "Hessiana inconclusiva", "reconhecer": "Ponto crítico com det H = 0, ou pergunta sobre (0, 0) de um polinômio de grau alto.", "metodo": "Olhe f(t, 0), f(0, t), f(t, t) ou o sinal de f perto do ponto. Sinais opostos ⇒ sela; f ≥ f(P) perto ⇒ mínimo; f ≤ f(P) perto ⇒ máximo."}, {"id": "P-AFIRMACOES", "nome": "Verdadeiro ou falso teórico", "reconhecer": "Afirmações I, II, III sobre Hessiana, Schwarz, Weierstrass ou Lagrange.", "metodo": "Teste cada uma com um teorema ou um contraexemplo padrão: x² + y² (mínimo), x² − y² (sela), x⁴ + y⁴ e −x⁴ − y⁴ (det H = 0 com extremo), x² + y³ (det H = 0 sem extremo)."}, {"id": "P-COMPACTO", "nome": "Extremos em região compacta", "reconhecer": "Pedem máximo e mínimo (ou M + m) num disco, meio disco, quarto de disco, retângulo ou bola.", "metodo": "Weierstrass garante que existem. Candidatos: críticos no interior + fronteira (Lagrange ou parametrização, mais as quinas). Compare todos os valores."}, {"id": "P-LAGRANGE", "nome": "Extremos com um vínculo", "reconhecer": "Máximo ou mínimo de f sobre uma curva ou superfície g = c (elipse, esfera, elipsoide).", "metodo": "Confira ∇g ≠ 0 no vínculo. Resolva ∇f = λ∇g e g = c (multiplique e subtraia para eliminar λ, sem perder casos). Compare f nos candidatos."}, {"id": "P-LAGRANGE2", "nome": "Extremos com dois vínculos", "reconhecer": "f sobre a interseção de duas superfícies (plano ∩ esfera, cilindro ∩ plano, cone ∩ superfície).", "metodo": "∇f = λ∇g + μ∇h, ou det[∇f; ∇g; ∇h] = 0, junto com os dois vínculos. Se um vínculo é um plano, isole uma variável e caia em um vínculo só."}, {"id": "P-DIST", "nome": "Distância à origem", "reconhecer": "Ponto mais próximo ou mais distante da origem num conjunto.", "metodo": "Minimize d² = x² + y² + z² (sem raiz). Use o vínculo para simplificar d² antes de Lagrange. Se o conjunto não é limitado, justifique o mínimo por desigualdade."}, {"id": "P-MODELAR", "nome": "Otimização com enunciado em palavras", "reconhecer": "Produto de números com soma fixa, volume de caixa ou de tetraedro.", "metodo": "Escreva f e o vínculo, ache o domínio (variáveis ≥ 0), aplique Lagrange no interior e veja a borda (onde o produto costuma valer 0)."}, {"id": "P-TAYLOR", "nome": "Taylor com resto", "reconhecer": "Polinômio de Taylor de ordem 1 ou 2, valor aproximado ou estimativa do erro.", "metodo": "P₁ = f(P) + ∇f(P)·h. Resto de Lagrange: ½·hᵀ H(ξ) h com ξ no segmento; limite as derivadas segundas no conjunto."}], "blocos": [{"id": "geometria", "nome": "Gradiente, planos e retas tangentes", "questoes": ["MAT2454-2023-P3-Q1", "MAT2454-2024-P3-Q2", "MAT2454-2024-P3-Q4", "MAT2454-2024-P3-Q6", "MAT2454-2025-P3-Q1", "MAT2454-2025-P3-Q5"]}, {"id": "extremos-livres", "nome": "Pontos críticos e Hessiana", "questoes": ["MAT2454-2023-P3-Q2", "MAT2454-2024-P3-Q8", "MAT2454-2024-P3-Q9", "MAT2454-2024-P3-Q10", "MAT2454-2025-P3-Q7", "MAT2454-2025-P3-Q8", "MAT2454-2025-P3-Q10"]}, {"id": "vinculos", "nome": "Compactos e multiplicadores de Lagrange", "questoes": ["MAT2454-2023-P3-Q3", "MAT2454-2023-P3-Q4", "MAT2454-2024-P3-Q1", "MAT2454-2024-P3-Q3", "MAT2454-2024-P3-Q5", "MAT2454-2024-P3-Q7", "MAT2454-2024-P3-Q11", "MAT2454-2025-P3-Q2", "MAT2454-2025-P3-Q3", "MAT2454-2025-P3-Q4", "MAT2454-2025-P3-Q6", "MAT2454-2025-P3-Q9"]}], "codigo": "MAT2454", "materia": "Cálculo II"}, "provas": [{"id": "MAT2454-2023-P3", "codigo": "MAT2454", "materia": "Cálculo II", "prova": "P3", "ano": 2023, "rotulo": "2023", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 1, "id": "MAT2454-2023-P3-Q1", "pontos": null, "topicos": ["reta-intersecao"], "padrao": "P-INTERSEC", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Curva na interseção de z³ + x³ + yz + xy³ = 0 com o gráfico de f, ∇f(1, 0) = (3, 1): reta tangente em (1, 0, −1).", "armadilhas": ["Esquecer o −1 na normal ao gráfico, (fx, fy, −1)"], "armadilhas_tag": ["reta-intersecao"], "gabarito": null, "respostas": ["(x, y, z) = (1, 0, −1) + λ(−1, 6, 3), λ ∈ ℝ"]}, {"n": 2, "id": "MAT2454-2023-P3-Q2", "pontos": null, "topicos": ["extremos", "hessiana-degenerada"], "padrao": "P-CRITICOS", "padroes_secundarios": ["P-DEGEN"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "f = x²y(x − 2)(y − 4): pontos críticos (uma reta inteira), Hessiana e o caso degenerado (0, 0).", "armadilhas": ["Dividir por x e perder a reta de pontos críticos (0, y)", "Usar o critério da Hessiana com det H = 0"], "armadilhas_tag": ["extremos", "hessiana-degenerada"], "gabarito": null, "respostas": ["(a) (0, y) para todo y ∈ ℝ, (4/3, 2), (2, 0) e (2, 4)", "(b) (4/3, 2) máximo local; (2, 0) e (2, 4) selas", "(c) (0, 0) não é máximo nem mínimo local"]}, {"n": 3, "id": "MAT2454-2023-P3-Q3", "pontos": null, "topicos": ["extremos-compacto", "lagrange"], "padrao": "P-COMPACTO", "padroes_secundarios": ["P-LAGRANGE"], "dificuldade": 3, "pagina_enunciado": 1, "pagina_resolucao": 3, "resumo": "Maior e menor valor de xy·e^(−x²−y²) no quarto de disco x² + y² ≤ 2, x ≥ 0, y ≤ 0.", "armadilhas": ["Esquecer o ponto crítico interior e procurar o mínimo só na fronteira", "Responder um ponto só para o máximo, que vale em segmentos inteiros"], "armadilhas_tag": ["extremos-compacto", "extremos-compacto"], "gabarito": null, "respostas": ["Existem por Weierstrass (D compacto, f contínua)", "Maior valor 0, em todos os pontos de D sobre os eixos", "Menor valor −1/(2e), em (√2/2, −√2/2)"]}, {"n": 4, "id": "MAT2454-2023-P3-Q4", "pontos": null, "topicos": ["lagrange"], "padrao": "P-LAGRANGE", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 3, "resumo": "Ponto do elipsoide x² + y² + 3z² = 21 com soma das coordenadas máxima.", "armadilhas": ["Supor x = y = z por simetria quando os coeficientes são diferentes"], "armadilhas_tag": ["lagrange"], "gabarito": null, "respostas": ["Existe por Weierstrass (elipsoide compacto)", "(3, 3, 1), com soma 7"]}]}, {"id": "MAT2454-2024-P3", "codigo": "MAT2454", "materia": "Cálculo II", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 120, "questoes": [{"n": 1, "id": "MAT2454-2024-P3-Q1", "pontos": null, "topicos": ["lagrange"], "padrao": "P-LAGRANGE", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Máximo + mínimo de x² + y² na elipse 5x² + 2xy + 5y² = 72.", "armadilhas": ["Perder um dos casos y = x ou y = −x ao eliminar λ"], "armadilhas_tag": ["lagrange"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 2, "id": "MAT2454-2024-P3-Q2", "pontos": null, "topicos": ["reta-intersecao"], "padrao": "P-INTERSEC", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Vetor paralelo a γ'(0) para a curva em x² − e^y + z² = 0 ∩ x + 2y + z = 1, em (0, 0, 1).", "armadilhas": ["Confundir o vetor normal com o vetor tangente"], "armadilhas_tag": ["reta-intersecao"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 3, "id": "MAT2454-2024-P3-Q3", "pontos": null, "topicos": ["extremos-compacto"], "padrao": "P-COMPACTO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Máximo de y⁴e^(−x²−y²) no meio disco x² + y² ≤ 4, y ≥ 0, e no arco da borda.", "armadilhas": ["Supor que o máximo no disco está na borda"], "armadilhas_tag": ["extremos-compacto"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 4, "id": "MAT2454-2024-P3-Q4", "pontos": null, "topicos": ["tvm-gradiente"], "padrao": "P-TVM", "padroes_secundarios": ["P-AFIRMACOES"], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "f(P) − f(Q) como integral do gradiente no segmento, e ∇f ≡ 0 ⇒ f constante.", "armadilhas": ["Achar que ∇f = 0 ⇒ constante não decorre da fórmula integral"], "armadilhas_tag": ["tvm-gradiente"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 5, "id": "MAT2454-2024-P3-Q5", "pontos": null, "topicos": ["otimizacao-aplicada", "lagrange"], "padrao": "P-MODELAR", "padroes_secundarios": ["P-LAGRANGE"], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Maior produto de três reais não negativos com soma 60.", "armadilhas": ["Esquecer a borda (alguma variável nula) ao justificar o máximo"], "armadilhas_tag": ["otimizacao-aplicada"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 6, "id": "MAT2454-2024-P3-Q6", "pontos": null, "topicos": ["plano-tangente"], "padrao": "P-PLANO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Plano tangente a x² + xy + y² − z² + 6z = 0 em (2, 1, −1).", "armadilhas": ["Trocar as derivadas em x e y ou errar o termo independente"], "armadilhas_tag": ["plano-tangente"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 7, "id": "MAT2454-2024-P3-Q7", "pontos": null, "topicos": ["teoria-extremos", "extremos-compacto", "lagrange"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "Elipsoide cheio: existência de extremos, gradiente normal na borda e nulo no interior.", "armadilhas": ["Achar que extremo no conjunto cheio não satisfaz Lagrange na borda"], "armadilhas_tag": ["teoria-extremos"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 8, "id": "MAT2454-2024-P3-Q8", "pontos": null, "topicos": ["extremos-parametro", "extremos"], "padrao": "P-PARAM", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "f = ax⁴/4 + y²/2 − bxy com b = 1: número e tipo dos pontos críticos conforme o sinal de a.", "armadilhas": ["Não separar os casos a > 0, a = 0 e a < 0"], "armadilhas_tag": ["extremos-parametro"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 9, "id": "MAT2454-2024-P3-Q9", "pontos": null, "topicos": ["extremos-parametro", "hessiana-degenerada"], "padrao": "P-DEGEN", "padroes_secundarios": ["P-PARAM"], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "Mesma f com b = 0: (0, 0) com Hessiana degenerada para a > 0, a = 0 e a < 0.", "armadilhas": ["Concluir algo pelo critério da Hessiana com det H = 0"], "armadilhas_tag": ["hessiana-degenerada"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 10, "id": "MAT2454-2024-P3-Q10", "pontos": null, "topicos": ["teoria-extremos"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "Hessiana num ponto crítico: simetria, det > 0 e det = 0 com máximo.", "armadilhas": ["Trocar o sinal do determinante no critério da sela"], "armadilhas_tag": ["teoria-extremos"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 11, "id": "MAT2454-2024-P3-Q11", "pontos": null, "topicos": ["lagrange-2"], "padrao": "P-LAGRANGE2", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 8, "resumo": "Máximo de z na circunferência x + y + 2z = 0 ∩ x² + y² + z² = 1.", "armadilhas": ["Usar só um dos dois vínculos"], "armadilhas_tag": ["lagrange-2"], "gabarito": "a", "respostas": ["(a)"]}]}, {"id": "MAT2454-2025-P3", "codigo": "MAT2454", "materia": "Cálculo II", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": null, "questoes": [{"n": 1, "id": "MAT2454-2025-P3-Q1", "pontos": 1.0, "topicos": ["plano-tangente"], "padrao": "P-PLANO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Ponto em que o plano x + y + z = 1 tangencia o hiperboloide x² + 2y² − z² = 2.", "armadilhas": ["Checar só a pertinência às duas superfícies, sem testar normais paralelas"], "armadilhas_tag": ["plano-tangente"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 2, "id": "MAT2454-2025-P3-Q2", "pontos": 1.0, "topicos": ["lagrange"], "padrao": "P-LAGRANGE", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Máximo de xy + z no elipsoide 4x² + y² + z² = 36.", "armadilhas": ["Dividir por y e perder o caso y = 0"], "armadilhas_tag": ["lagrange"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 3, "id": "MAT2454-2025-P3-Q3", "pontos": 1.0, "topicos": ["extremos-compacto", "lagrange"], "padrao": "P-COMPACTO", "padroes_secundarios": ["P-LAGRANGE"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "x² − 2x + y² − 2y + z² − 4z: máximo na esfera de raio √24 e mínimo na bola.", "armadilhas": ["Esquecer o ponto crítico interior ao minimizar na bola"], "armadilhas_tag": ["extremos-compacto"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 4, "id": "MAT2454-2025-P3-Q4", "pontos": 1.0, "topicos": ["lagrange-2"], "padrao": "P-LAGRANGE2", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 3, "resumo": "Máximo de 2x + 4y + z no cilindro x² + y² = 5 ∩ plano x + 2y − z = 0.", "armadilhas": ["Usar só um dos vínculos"], "armadilhas_tag": ["lagrange-2"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 5, "id": "MAT2454-2025-P3-Q5", "pontos": 1.0, "topicos": ["reta-intersecao"], "padrao": "P-INTERSEC", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Vetor diretor da tangente a y² + z² = 2 ∩ z = x² em (−1, 1, 1).", "armadilhas": ["Errar o sinal da derivada em x = −1"], "armadilhas_tag": ["reta-intersecao"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 6, "id": "MAT2454-2025-P3-Q6", "pontos": 1.0, "topicos": ["extremos-compacto"], "padrao": "P-COMPACTO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "M + m de x² + y² − 4x na elipse cheia x² + 2y² ≤ 16.", "armadilhas": ["Esquecer o ponto crítico interior"], "armadilhas_tag": ["extremos-compacto"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 7, "id": "MAT2454-2025-P3-Q7", "pontos": 1.0, "topicos": ["extremos-parametro", "hessiana-degenerada"], "padrao": "P-PARAM", "padroes_secundarios": ["P-DEGEN"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "x³ + y³ − 3axy: número de críticos, sela em (0, 0) para todo a, e (a, a).", "armadilhas": ["Travar no caso a = 0, em que a Hessiana é nula"], "armadilhas_tag": ["hessiana-degenerada"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 8, "id": "MAT2454-2025-P3-Q8", "pontos": 1.0, "topicos": ["teoria-extremos", "hessiana-degenerada"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "f de classe C² com ∇f(0, 0) = 0: o que fxx·fyy < 0, fxx > 0 e det H = 0 garantem.", "armadilhas": ["Concluir mínimo com det H = 0"], "armadilhas_tag": ["hessiana-degenerada"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 9, "id": "MAT2454-2025-P3-Q9", "pontos": 1.0, "topicos": ["lagrange-2", "distancia"], "padrao": "P-DIST", "padroes_secundarios": ["P-LAGRANGE2"], "dificuldade": 3, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Distância mínima à origem no cone x² + y² = z² ∩ xz = 2 (conjunto não limitado).", "armadilhas": ["Invocar Weierstrass num conjunto que não é limitado", "Esquecer de usar o vínculo para simplificar d²"], "armadilhas_tag": ["lagrange-2", "distancia"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 10, "id": "MAT2454-2025-P3-Q10", "pontos": 1.0, "topicos": ["extremos"], "padrao": "P-CRITICOS", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "f = x²y + 2xy − 2y²: três pontos críticos, duas selas e um máximo.", "armadilhas": ["Dividir por y e perder os críticos com y = 0"], "armadilhas_tag": ["extremos"], "gabarito": "a", "respostas": ["(a)"]}]}], "atualizado": "22/11/2026", "blocos": [{"id": "MAT2454-P3-bloco-geometria", "nome": "Gradiente, planos e retas tangentes", "questoes": ["MAT2454-2023-P3-Q1", "MAT2454-2024-P3-Q2", "MAT2454-2024-P3-Q4", "MAT2454-2024-P3-Q6", "MAT2454-2025-P3-Q1", "MAT2454-2025-P3-Q5"]}, {"id": "MAT2454-P3-bloco-extremos-livres", "nome": "Pontos críticos e Hessiana", "questoes": ["MAT2454-2023-P3-Q2", "MAT2454-2024-P3-Q8", "MAT2454-2024-P3-Q9", "MAT2454-2024-P3-Q10", "MAT2454-2025-P3-Q7", "MAT2454-2025-P3-Q8", "MAT2454-2025-P3-Q10"]}, {"id": "MAT2454-P3-bloco-vinculos", "nome": "Compactos e multiplicadores de Lagrange", "questoes": ["MAT2454-2023-P3-Q3", "MAT2454-2023-P3-Q4", "MAT2454-2024-P3-Q1", "MAT2454-2024-P3-Q3", "MAT2454-2024-P3-Q5", "MAT2454-2024-P3-Q7", "MAT2454-2024-P3-Q11", "MAT2454-2025-P3-Q2", "MAT2454-2025-P3-Q3", "MAT2454-2025-P3-Q4", "MAT2454-2025-P3-Q6", "MAT2454-2025-P3-Q9"]}], "guia": {"escopo": "A P3 de Cálculo II fecha o programa: pontos críticos e Hessiana (inclusive o caso det H = 0), máximos e mínimos em conjuntos compactos e multiplicadores de Lagrange com um e dois vínculos. Toda P3 recente também revisa gradiente como vetor normal: plano tangente a superfície de nível e reta tangente à interseção de duas superfícies. O Teorema do Valor Médio só apareceu como afirmação teórica (2024 Q4), e a Fórmula de Taylor, que está no programa, não cai desde 2017. Em 2024 e 2025 a prova foi só de testes (11 e 10); a de 2023 que temos é discursiva. A divisão do programa entre P2 e P3 pode variar por turma: confira com o seu professor.", "programa": ["Máximos e mínimos: pontos críticos, matriz Hessiana e classificação", "Máximos e mínimos em conjuntos compactos (Weierstrass)", "Multiplicadores de Lagrange (um e dois vínculos)", "Fórmula de Taylor", "Teorema do Valor Médio", "Gradiente como vetor normal: plano tangente e reta tangente (volta na P3 como revisão)"], "roteiro": [{"etapa": "1. Gradiente como normal", "texto": "Refaça 2024 Q6 e 2025 T1 (plano tangente a superfície de nível) e 2023 Q1, 2024 Q2 e 2025 T5 (reta tangente à interseção, por produto vetorial). São pontos rápidos: no máximo 5 minutos cada."}, {"etapa": "2. Pontos críticos e Hessiana", "texto": "2025 T10 e 2023 Q2 (a) e (b): fatorar ∇f = 0 sem dividir por variável e montar a Hessiana em cada ponto."}, {"etapa": "3. Parâmetro e Hessiana nula", "texto": "2024 Q8 e Q9, 2025 T7 e 2023 Q2 (c). Treine decidir por caminhos (eixos, reta y = x) quando det H = 0, e separar a > 0, a = 0, a < 0."}, {"etapa": "4. Teoria em V ou F", "texto": "2024 Q4, Q7 e Q10 e 2025 T8. Saiba de cor: Schwarz, det H < 0 é sela, det H = 0 não decide, Weierstrass precisa de compacto, extremo no interior zera o gradiente."}, {"etapa": "5. Compactos", "texto": "2023 Q3, 2024 Q3, 2025 T3 e T6: pontos críticos do interior + fronteira (Lagrange ou parametrização) e comparar os valores. Nos quatro, o interior importa."}, {"etapa": "6. Lagrange", "texto": "Um vínculo: 2024 Q1, 2025 T2, 2023 Q4. Dois vínculos: 2024 Q11, 2025 T4 e T9. Fechando: faça a prova de 2024 inteira (11 testes) em 2 h e só depois abra a resolução."}], "tendencias": [{"titulo": "Compactos e Lagrange são metade da prova", "texto": "Extremos em compacto ou com vínculo somam 12 das 25 questões de 2023–2025 (2023: 2 de 4; 2024: 5 de 11; 2025: 5 de 10) e caíram nas 3 P3 recentes e nas 4 de 2016–2019."}, {"titulo": "Hessiana nula subiu", "texto": "Ponto crítico com det H = 0, decidido por caminhos ou pelo sinal de f, caiu em 3 das 3 P3 recentes (2023 Q2c, 2024 Q9, 2025 T7 e T8) contra 1 das 4 de 2016–2019 (2019, x²y³)."}, {"titulo": "Reta tangente à interseção é ponto garantido", "texto": "Caiu em 3 das 3 recentes (2023 Q1, 2024 Q2, 2025 T5) e em 3 das 4 antigas (2017, 2018, 2019). Plano tangente a superfície de nível: 2 das 3 recentes (2024 Q6, 2025 T1)."}, {"titulo": "Distância à origem perdeu espaço", "texto": "Era o enunciado preferido de Lagrange em 2016–2019 (4 de 4 provas, quase sempre com dois vínculos). Nas recentes, só 2025 T9. Lagrange com dois vínculos continua (2024 Q11, 2025 T4 e T9), agora maximizando funções lineares."}, {"titulo": "Parâmetro nas afirmações", "texto": "Famílias de funções com parâmetro (a, b, k) aparecem em 2016, 2017, 2018, 2024 (Q8 e Q9) e 2025 (T7): é o jeito de a prova cobrar classificação em formato de teste."}, {"titulo": "Formato: só testes, sem Taylor", "texto": "2024 e 2025 foram 100% testes (11 e 10 questões; 2024 com 2 h). 2016 foi toda discursiva; 2017 e 2018 misturavam testes e discursivas; 2019 já foi só testes. Taylor caiu só em 2017 (Q1 discursiva) e não voltou."}], "checklist": ["Escrever a normal a uma superfície F = c como ∇F(P) e montar o plano ∇F(P)·(X − P) = 0.", "Achar a direção da tangente à interseção por ∇g × ∇h e conferir com dois produtos escalares.", "Usar (fx, fy, −1) como normal ao gráfico de z = f(x, y) (2023 Q1).", "Achar onde um plano dado tangencia uma superfície: ∇F paralelo à normal do plano e o ponto nas duas (2025 T1).", "Resolver ∇f = 0 fatorando, caso a caso, sem dividir por x ou y (2023 Q2, 2025 T10).", "Classificar pela Hessiana: det H < 0 sela; det H > 0 com fxx > 0 mínimo e fxx < 0 máximo.", "Com det H = 0, decidir olhando f(t, 0), f(0, t), f(t, t) ou o sinal de f (2024 Q9, 2025 T7).", "Discutir os pontos críticos de uma família com parâmetro, incluindo o caso a = 0 (2024 Q8).", "Justificar existência por Weierstrass: conjunto fechado e limitado e função contínua.", "Em região compacta, listar críticos do interior, extremos na fronteira e quinas, e comparar todos os valores.", "Montar Lagrange com um vínculo, conferindo ∇g ≠ 0 no vínculo e eliminando λ sem perder casos.", "Montar Lagrange com dois vínculos (∇f = λ∇g + μ∇h) ou isolar uma variável quando um vínculo é plano (2025 T4).", "Minimizar d² em vez de d e simplificar d² com o vínculo (2025 T9).", "Completar quadrados para ver f como distância a um ponto (2025 T3).", "Conferir máximos de funções lineares em esferas e elipses por Cauchy–Schwarz (2023 Q4, 2025 T4).", "Usar Schwarz (fxy = fyx se f é C²) e saber que a Hessiana é simétrica (2024 Q10).", "Provar que ∇f = 0 em ℝⁿ implica f constante, via g(t) = f(Q + t(P − Q)) (2024 Q4).", "Escrever o polinômio de Taylor de ordem 1 e 2 e limitar o resto (está no programa; caiu em 2017)."], "pegadinhas": [{"titulo": "Todas as alternativas estão nas duas superfícies", "texto": "2025 T1: os cinco pontos estão no plano e no hiperboloide. Só o paralelismo dos gradientes decide qual é a tangência."}, {"titulo": "Uma reta inteira de pontos críticos", "texto": "2023 Q2: f = x²y(x − 2)(y − 4) tem toda a reta x = 0 de pontos críticos. Quem divide por x perde todos."}, {"titulo": "det H = 0 ainda pede resposta", "texto": "2023 Q2c, 2024 Q9 e 2025 T7 cobram a natureza do ponto mesmo com Hessiana nula. Responder \"inconclusivo\" não pontua: olhe a função ao longo de caminhos."}, {"titulo": "O mínimo está dentro", "texto": "2023 Q3, 2025 T3 e 2025 T6: o mínimo é um ponto crítico interior. Quem faz só Lagrange na fronteira cai na alternativa errada que a prova deixou pronta."}, {"titulo": "O máximo também pode estar dentro", "texto": "2024 Q3: y⁴e^(−x²−y²) tem máximo em (0, √2), no interior do meio disco, e não na borda onde y = 2."}, {"titulo": "det H > 0 não é sela", "texto": "2024 Q10 II: sela é det H < 0. Com det H > 0 o ponto é máximo ou mínimo."}, {"titulo": "Conjunto que não é compacto", "texto": "2025 T9: cone ∩ {xz = 2} vai ao infinito. Só existe distância mínima, e a justificativa é d² = 2z² ≥ 4, não Weierstrass."}, {"titulo": "Simetria falsa", "texto": "2023 Q4: no elipsoide x² + y² + 3z² = 21 o ponto de soma máxima não tem x = y = z; é x = y = 3z, ponto (3, 3, 1)."}, {"titulo": "Normal ou tangente?", "texto": "2024 Q2: as alternativas (C) e (E) são as próprias normais (0, −1, 2) e (1, 2, 1). O vetor tangente é perpendicular às duas."}, {"titulo": "Teste sem resposta certa", "texto": "Na P3 de 2017 o Teste 2 do caderno (y² + z² = 2 com x² + y² + z³ = 3) não tem alternativa correta: a direção é (1, 2, −2). Se nada bate, refaça a conta uma vez e siga em frente."}], "dicas_prova": ["São 10 ou 11 testes: em 2 h (duração de 2024), dá uns 10 minutos por teste. Comece pelos de plano e reta tangente, que saem em 3 minutos.", "Em afirmações I, II, III, decida cada uma sozinha antes de olhar as letras. Uma afirmação certamente falsa costuma eliminar três alternativas.", "Tenha prontos os exemplos: x² + y² (mínimo), x² − y² (sela), −x⁴ − y⁴ (máximo com det H = 0), x² + y³ (det H = 0 sem extremo).", "Em Lagrange, confira o candidato no vínculo antes de marcar: se não satisfaz, a conta está errada.", "Use as alternativas para checar: substitua o ponto no plano, faça o produto escalar do vetor com as normais, calcule f no candidato.", "O caderno tem dezenas de tipos com as mesmas questões em ordens diferentes (63 em 2024). Confira se o tipo é o mesmo em todas as folhas e na folha de respostas, como pede a instrução.", "Não há tempo extra para passar as alternativas para a folha de respostas (instrução de 2024): marque à medida que resolve.", "As provas que temos não trazem formulário: o critério da Hessiana e o sistema de Lagrange com dois vínculos têm de estar de cabeça.", "Em discursiva (como em 2023), escreva a justificativa de existência (Weierstrass ou desigualdade) antes das contas: é parte da nota."], "formulario": [{"nome": "Plano tangente a F = c", "typst": "$nabla F(P) dot (X - P) = 0$", "txt": "∇F(P)·(X − P) = 0"}, {"nome": "Normal ao gráfico de z = f(x, y)", "typst": "$arrow(n) = (f_x, f_y, -1)$", "txt": "n = (fx, fy, −1)"}, {"nome": "Tangente à interseção de g = a e h = b", "typst": "$arrow(v) = nabla g(P) times nabla h(P)$", "txt": "v = ∇g(P) × ∇h(P)"}, {"nome": "Determinante da Hessiana", "typst": "$det H = f_(x x) f_(y y) - f_(x y)^2$", "txt": "det H = fxx·fyy − fxy²"}, {"nome": "Classificação", "typst": "$det H < 0$: sela; $det H > 0$ e $f_(x x) > 0$: mínimo; $det H > 0$ e $f_(x x) < 0$: máximo; $det H = 0$: não decide", "txt": "det H < 0: sela; det H > 0 e fxx > 0: mínimo; det H > 0 e fxx < 0: máximo; det H = 0: não decide"}, {"nome": "Schwarz", "typst": "$f in C^2 => f_(x y) = f_(y x)$", "txt": "f de classe C² ⇒ fxy = fyx"}, {"nome": "Weierstrass", "typst": "$K$ fechado e limitado, $f$ contínua $=>$ $f$ tem máximo e mínimo em $K$", "txt": "K fechado e limitado e f contínua ⇒ f tem máximo e mínimo em K"}, {"nome": "Lagrange, um vínculo", "typst": "$nabla f = lambda nabla g, quad g = c, quad nabla g != arrow(0)$", "txt": "∇f = λ∇g, g = c (com ∇g ≠ 0)"}, {"nome": "Lagrange, dois vínculos", "typst": "$nabla f = lambda nabla g + mu nabla h, quad g = c_1, quad h = c_2$", "txt": "∇f = λ∇g + μ∇h, g = c₁, h = c₂"}, {"nome": "Dois vínculos, forma de determinante", "typst": "$det mat(f_x, f_y, f_z; g_x, g_y, g_z; h_x, h_y, h_z) = 0$", "txt": "det[∇f; ∇g; ∇h] = 0"}, {"nome": "Valor médio", "typst": "$f(P) - f(Q) = chevron.l nabla f(Q + c(P - Q)), P - Q chevron.r$, para algum $c in (0, 1)$", "txt": "f(P) − f(Q) = ⟨∇f(Q + c(P − Q)), P − Q⟩ para algum c ∈ (0, 1)"}, {"nome": "Taylor de ordem 2", "typst": "$f(P + h) approx f(P) + nabla f(P) dot h + 1/2 h^T H(P) h$", "txt": "f(P + h) ≈ f(P) + ∇f(P)·h + ½·hᵀH(P)h"}, {"nome": "Cauchy–Schwarz (para conferir)", "typst": "$|a x + b y + c z| <= sqrt(a^2 + b^2 + c^2) dot sqrt(x^2 + y^2 + z^2)$", "txt": "|ax + by + cz| ≤ √(a² + b² + c²)·√(x² + y² + z²)"}]}, "historico": [{"ano": 2016, "rotulo": "P3 2016 (28/11/2016)", "fonte": "fontes/2016-antiga-dDgx", "questoes": [{"resumo": "Q1a: pontos da esfera x² + y² + z² = 1 com plano tangente paralelo a 2x + y − 3z = 2.", "topicos": ["plano-tangente"]}, {"resumo": "Q1b: máximo e mínimo de 2x² + 3y² − 4x − 5 no disco x² + y² ≤ 16.", "topicos": ["extremos-compacto", "lagrange"]}, {"resumo": "Q2: kx³ + x² + 2y² − 4x − 4y: valores de k com exatamente dois pontos críticos e sua classificação.", "topicos": ["extremos-parametro", "extremos"]}, {"resumo": "Q3a: pontos de xyz = 1 ∩ z = 3 − x² − y² (1º octante) mais próximos e mais distantes da origem.", "topicos": ["lagrange-2", "distancia"]}, {"resumo": "Q3b: o mesmo na região z ≤ 3 − x² − y² (interior e borda).", "topicos": ["distancia", "lagrange", "extremos-compacto"]}]}, {"ano": 2017, "rotulo": "P3 2017 (04/12/2017)", "fonte": "fontes/2017-antiga-NO99", "questoes": [{"resumo": "Testes 1/2: reta tangente à interseção de x² + y² = 2 (ou y² + z² = 2) com x² + y² + z³ = 3. O Teste 2 está errado: a direção certa é (1, 2, −2), que não está nas alternativas.", "topicos": ["reta-intersecao"]}, {"resumo": "Testes 3/4: (k/3)x² − y²/2 + xy + x: afirmações sobre pontos críticos conforme k.", "topicos": ["extremos-parametro"]}, {"resumo": "Teste 5: ∇f = ∇g implica f − g constante? Papel da convexidade do domínio.", "topicos": ["tvm-gradiente"]}, {"resumo": "Testes 6/7: distâncias máxima e mínima à origem em 2x − z = 0 ∩ cilindro elíptico.", "topicos": ["lagrange-2", "distancia"]}, {"resumo": "Q1 (discursiva): Taylor de ordem 1 de e^(x+5y), estimativa do resto e e^0,06 com duas casas.", "topicos": ["taylor"]}, {"resumo": "Q2 (discursiva): tetraedro de volume mínimo cortado por um plano tangente ao elipsoide.", "topicos": ["otimizacao-aplicada", "plano-tangente", "lagrange"]}]}, {"ano": 2018, "rotulo": "P3 2018 (26/11/2018)", "fonte": "fontes/2018-antiga-7Ywa", "questoes": [{"resumo": "Teste 1: V ou F (extremo local único é global? sela por duas curvas no gráfico; contínua em limitado é limitada?).", "topicos": ["teoria-extremos"]}, {"resumo": "Testes 2–5: x³y² + ax² + bx: a e b para (±1, 0) ser mínimo, máximo ou sela.", "topicos": ["extremos-parametro"]}, {"resumo": "Testes 6–9: ponto de z² − xy = k (z > 0) mais próximo da origem.", "topicos": ["lagrange", "distancia"]}, {"resumo": "Testes 10–13: plano tangente ao gráfico de f contido no elipsoide x² + 2y² + 3z² = 1.", "topicos": ["plano-tangente"]}, {"resumo": "Testes 14/15: ponto em que a tangente à interseção de duas quádricas é paralela a um eixo.", "topicos": ["reta-intersecao"]}, {"resumo": "Q1/Q2 (discursivas): pontos de xyz = 1 ∩ x² + y² = 4 mais próximos da origem.", "topicos": ["lagrange-2", "distancia"]}, {"resumo": "Q3/Q4 (discursivas): máximo e mínimo de x³/3 − xy + y³/3 no quadrado [0, 2] × [0, 2].", "topicos": ["extremos-compacto"]}]}, {"ano": 2019, "rotulo": "P3 2019 (25/11/2019)", "fonte": "fontes/2019-antiga-mr1Q", "questoes": [{"resumo": "Testes 1/2: reta tangente à interseção de x² + y + z = 1 e x³ + y³ + z² = 1.", "topicos": ["reta-intersecao"]}, {"resumo": "Testes 3/4: pontos de uma superfície cujos planos tangentes contêm dois pontos dados.", "topicos": ["plano-tangente"]}, {"resumo": "Testes 5/7: afirmações sobre os pontos críticos de y((ln y)² − x²).", "topicos": ["extremos"]}, {"resumo": "Testes 6/8: máximo + mínimo da mesma função num compacto limitado por y = e^(−x).", "topicos": ["extremos-compacto"]}, {"resumo": "Testes 9–12: classificar críticos de x²y³ e x³y² (Hessiana nula, análise por sinais).", "topicos": ["hessiana-degenerada"]}, {"resumo": "Testes 13/14: ponto de soma máxima das coordenadas no elipsoide x² + y² − xy + z² = 20.", "topicos": ["lagrange"]}, {"resumo": "Testes 15/17: máximo de (y² − 1)e^(−x²) numa circunferência.", "topicos": ["lagrange"]}, {"resumo": "Testes 16/18: m + M da mesma função no disco.", "topicos": ["extremos-compacto"]}, {"resumo": "Testes 19/20: f(x, g(x)) = 0 e pontos críticos (V ou F).", "topicos": ["teoria-extremos"]}, {"resumo": "Testes 21/22: ponto do cone z² = x² + y² ∩ plano x − 2z = 3 mais próximo ou mais distante da origem.", "topicos": ["lagrange-2", "distancia"]}]}], "extra": {}, "codigos": ["MAT2454"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, PROVAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+PROVAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de 2016–2020 para a tendência`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  PROVAS.map(p=>`<a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">${esc(p.rotulo||p.ano)} · prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">${esc(p.rotulo||p.ano)} · resolução</a>`).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+const av = [];
+if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
+if (PROVAS.some(p=>p.status!=='revisada')) av.push('<b>Resoluções em revisão.</b> Ainda não foram conferidas por um segundo revisor. Achou algo? Avise em @prisma.poli.');
+if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
+else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
+document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: 2016–2020 x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de 2016–2020 contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>2016–2020</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, PROVAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(Q.length / Math.max(1,n)));
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false;
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+document.getElementById('simdur').textContent = durs.length ? `Duração sugerida: ${durPadrao} min, a das P3 analisadas. Ajuste ao tempo da sua turma.` : 'A duração não consta nas provas analisadas; ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  timer=setInterval(()=>{ restante=Math.max(0,restante-1); clock.textContent=fmt(restante); if(!restante){ encerrar(); } },1000);
+});
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>

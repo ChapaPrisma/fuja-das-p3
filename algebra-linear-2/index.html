@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Álgebra Linear II · Fuja das P3</title>
+<meta name="description" content="P3 de Álgebra Linear II (MAT3458 / MAT2458) transcritas e resolvidas: 3 provas, 42 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Álgebra Linear II · Fuja das P3">
+<meta property="og:description" content="P3 de Álgebra Linear II (MAT3458 / MAT2458) transcritas e resolvidas: 3 provas, 42 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0F2347">
+<link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#0F2347; --band-fg:#FFFFFF; --band-muted:#C9CEDA; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
+  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
+  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:var(--amarelo);font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{background:rgba(255,255,255,.1);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#3A5590"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
+  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+    <ol class="roteiro" id="gRoteiro"></ol>
+
+    <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+    <div class="tend" id="gTend"></div>
+
+    <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+      <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+    <div class="check" id="gCheck"></div>
+
+    <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+    <div class="pegas" id="gPegas"></div>
+
+    <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+    <ul class="dicas" id="gDicas"></ul>
+
+    <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+    <div class="form" id="gForm"></div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "A P3 de Álgebra Linear II cobre o que vem depois da P2 (produto interno e TL básicas). Nas P3 de 2023 a 2025 isso foi matriz de TL em bases e mudança de base, autovalores e diagonalização, potências de matriz e, em 2025, sistemas de EDOs. Operadores simétricos, cônicas, quádricas e espaços complexos só aparecem nas P3 de 2016 a 2019.", "topicos": [{"slug": "matriz-tl", "nome": "Matriz de uma TL em bases", "grupo": "Transformações lineares e bases", "ref": null, "material": null}, {"slug": "mudanca-base", "nome": "Mudança de base", "grupo": "Transformações lineares e bases", "ref": null, "material": null}, {"slug": "composta-inversa", "nome": "Composta e inversa em bases", "grupo": "Transformações lineares e bases", "ref": null, "material": null}, {"slug": "nucleo-imagem", "nome": "Núcleo, imagem e posto", "grupo": "Transformações lineares e bases", "ref": null, "material": null}, {"slug": "polinomio-caracteristico", "nome": "Polinômio característico e autovalores", "grupo": "Autovalores e diagonalização", "ref": null, "material": null}, {"slug": "traco-det", "nome": "Traço e determinante (soma e produto dos autovalores)", "grupo": "Autovalores e diagonalização", "ref": null, "material": null}, {"slug": "autovetores", "nome": "Autovetores e autoespaços", "grupo": "Autovalores e diagonalização", "ref": null, "material": null}, {"slug": "diagonalizacao", "nome": "Critério de diagonalização (MG = MA)", "grupo": "Autovalores e diagonalização", "ref": null, "material": null}, {"slug": "potencia-matriz", "nome": "Potências de matriz", "grupo": "Aplicações", "ref": null, "material": null}, {"slug": "edo-sistemas", "nome": "Sistemas de EDOs X' = AX", "grupo": "Aplicações", "ref": null, "material": null}, {"slug": "operadores-simetricos", "nome": "Operadores simétricos e bases ortonormais", "grupo": "Só nas P3 até 2019", "ref": null, "material": null}, {"slug": "conicas-quadricas", "nome": "Cônicas e quádricas", "grupo": "Só nas P3 até 2019", "ref": null, "material": null}, {"slug": "espacos-complexos", "nome": "Espaços sobre C e autovalores complexos", "grupo": "Só nas P3 até 2019", "ref": null, "material": null}, {"slug": "projecao", "nome": "Produto interno e projeção (revisão)", "grupo": "Só nas P3 até 2019", "ref": null, "material": null}], "padroes": [{"id": "P-MATRIZ-TL", "nome": "Montar [T]_BC", "reconhecer": "T dada por fórmula (polinômios, derivada, matrizes 2×2) e duas bases; pedem uma entrada, a soma de uma linha, o traço ou o determinante de [T]_BC.", "metodo": "Aplique T em cada vetor de B, escreva o resultado em coordenadas de C (pequeno sistema) e ponha como COLUNA. Se só pedem uma linha, calcule só aquela coordenada."}, {"id": "P-MUDBASE", "nome": "Trocar de base", "reconhecer": "Aparecem duas bases, [I]_BC, ou a matriz de T numa base e pedem em outra (ou pedem um vetor da base).", "metodo": "Colunas de [I]_BC = vetores de B escritos em C. Encadeie: [T]_B'C' = [I]_CC'·[T]_BC·[I]_B'B (o índice de dentro cancela). [I]_CB = [I]_BC⁻¹."}, {"id": "P-COMPOSTA", "nome": "Composta, inversa e determinante", "reconhecer": "Pedem [S∘T], [T∘T], [S⁻¹∘T] ou se T³ é bijetora, com matrizes em bases diferentes.", "metodo": "[S∘T]_BD = [S]_CD·[T]_BC: a base do meio tem de coincidir; se não coincide, ponha um [I] no meio. [T⁻¹]_CB = ([T]_BC)⁻¹. Se só pedem det, multiplique os determinantes."}, {"id": "P-NUCLEO", "nome": "Núcleo e imagem pela matriz", "reconhecer": "[T]_BC dada (às vezes com parâmetro); pedem base do núcleo, dim Ker, ou quando um vetor está na imagem.", "metodo": "Escalone a matriz. Núcleo: as soluções são coordenadas em B; volte para o vetor. Imagem: gerada pelas colunas (em C); dim Im = posto, dim Ker = dim V − posto."}, {"id": "P-AUTOVAL", "nome": "Autovalores pelo traço e determinante", "reconhecer": "Pedem soma ou produto dos autovalores, ou quais são, com T dada por [T]_BC ou [T]_can,B.", "metodo": "Soma = traço e produto = det de [T]_B, com a MESMA base na saída e na chegada. Se a matriz dada mistura bases, converta antes: [T]_B = [I]_CB·[T]_BC."}, {"id": "P-TL-AUTOVET", "nome": "T a partir de autovetores", "reconhecer": "Dão autovetores com seus autovalores (ou vetores do núcleo) e pedem T(v), [T]_can ou um parâmetro.", "metodo": "Escreva v como combinação dos autovetores e multiplique cada parcela pelo seu autovalor (núcleo = autovalor 0). Para achar parâmetros: imponha [T]·v = λ·v."}, {"id": "P-DIAG-PARAM", "nome": "Diagonalizável se e só se (parâmetro)", "reconhecer": "Matriz (quase sempre triangular) com parâmetros a, b; 'é diagonalizável se, e somente se'.", "metodo": "Autovalores na diagonal. Para o autovalor repetido λ com MA = m, imponha posto(A − λI) = n − m (linhas proporcionais). Os simples não dão condição."}, {"id": "P-DIAG-TEORIA", "nome": "Diagonalizável? (matrizes e polinômios)", "reconhecer": "Várias matrizes, ou o polinômio característico e dimensões de autoespaços; pedem qual é diagonalizável, dim Im T ou qual polinômio é impossível.", "metodo": "Fatore p(t). Raiz complexa: não diagonaliza sobre R. Para cada λ: 1 ≤ dim Ker(T − λI) ≤ MA(λ); diagonaliza sse todas as igualdades valem. dim Ker T = MG(0), dim Im T = n − MG(0)."}, {"id": "P-POTENCIA", "nome": "Potência Aⁿ", "reconhecer": "Aⁿ com n grande (100, 2023, 2025) e pedido de uma soma de entradas.", "metodo": "Diagonalize: Aⁿ = P·Dⁿ·P⁻¹. Atalho: soma de uma linha = A·(1,…,1); escreva o vetor da conta na base de autovetores e use λⁿ."}, {"id": "P-EDO", "nome": "Sistema X' = AX", "reconhecer": "X'(t) = AX(t) com A diagonalizável (ou A = PDP⁻¹ dada) e condição inicial.", "metodo": "X(t) = Σ cᵢ e^(λᵢt) vᵢ; as constantes saem de P·c = X(0). Autovalor 0 dá parcela constante. Confira X(0) na resposta."}, {"id": "P-AFIRMACOES", "nome": "Verdadeiro ou falso teórico", "reconhecer": "Afirmações (I), (II), (III) sobre autovalores, diagonalização, operadores ou soluções de EDO.", "metodo": "Para cada uma: definição (T v = λ v, v ≠ 0) ou contraexemplo 2×2: Jordan [[1,1],[0,1]], rotação [[0,−1],[1,0]], diag(1,2). 'Raízes reais' não basta: confira MG."}, {"id": "P-SIM", "nome": "Operador simétrico (até 2019)", "reconhecer": "Operador simétrico com alguns autovetores ou autoespaços dados; pedem T(v) ou [T]_can.", "metodo": "Autoespaços de autovalores distintos são ortogonais: o que falta é o complemento ortogonal do que foi dado. Monte a base ortonormal e use [T]_can = P·D·Pᵀ."}, {"id": "P-CONICA", "nome": "Cônica ou quádrica (até 2019)", "reconhecer": "Equação do 2º grau em x, y (ou x, y, z) com termo cruzado; pedem o tipo, a equação reduzida ou um parâmetro.", "metodo": "Autovalores da matriz da forma quadrática: mesmos sinais = elipse (ou elipsoide), sinais opostos = hipérbole, um zero = parábola. Gire com a base ortonormal de autovetores e complete quadrados."}, {"id": "P-COMPLEXO", "nome": "Autovalor complexo (até 2019)", "reconhecer": "Matriz real com autovalor a + bi e autovetor complexo dado; pedem solução real de X' = AX ou Aⁿ.", "metodo": "Os autovalores vêm em pares conjugados. Solução real: parte real e parte imaginária de e^((a+bi)t)·v. Para Aⁿ, use λⁿ na forma polar."}], "blocos": [{"id": "tl-bases", "nome": "Matrizes de TL, mudança de base e núcleo", "questoes": ["MAT3458-2023-P3-Q1", "MAT3458-2023-P3-Q5", "MAT3458-2023-P3-Q3", "MAT3458-2023-P3-Q14", "MAT3458-2023-P3-Q4", "MAT3458-2023-P3-Q13", "MAT3458-2023-P3-Q2", "MAT3458-2024-P3-Q9", "MAT3458-2024-P3-Q8", "MAT3458-2024-P3-Q4", "MAT3458-2024-P3-Q7", "MAT3458-2024-P3-Q10", "MAT3458-2024-P3-Q2", "MAT3458-2025-P3-Q1"]}, {"id": "autovalores", "nome": "Autovalores, autovetores e diagonalização", "questoes": ["MAT3458-2023-P3-Q6", "MAT3458-2023-P3-Q11", "MAT3458-2023-P3-Q12", "MAT3458-2023-P3-Q9", "MAT3458-2023-P3-Q8", "MAT3458-2023-P3-Q10", "MAT3458-2024-P3-Q14", "MAT3458-2024-P3-Q11", "MAT3458-2024-P3-Q12", "MAT3458-2024-P3-Q3", "MAT3458-2024-P3-Q5", "MAT3458-2024-P3-Q6", "MAT3458-2024-P3-Q13", "MAT3458-2025-P3-Q11", "MAT3458-2025-P3-Q3", "MAT3458-2025-P3-Q12", "MAT3458-2025-P3-Q10", "MAT3458-2025-P3-Q4", "MAT3458-2025-P3-Q7", "MAT3458-2025-P3-Q8", "MAT3458-2025-P3-Q13", "MAT3458-2025-P3-Q14", "MAT3458-2025-P3-Q6"]}, {"id": "potencias-edo", "nome": "Potências de matriz e sistemas de EDOs", "questoes": ["MAT3458-2023-P3-Q7", "MAT3458-2024-P3-Q1", "MAT3458-2025-P3-Q9", "MAT3458-2025-P3-Q5", "MAT3458-2025-P3-Q2"]}], "codigo": "MAT3458", "materia": "Álgebra Linear II"}, "provas": [{"id": "MAT3458-2023-P3", "codigo": "MAT3458", "materia": "Álgebra Linear II", "prova": "P3", "ano": 2023, "rotulo": "2023", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": null, "questoes": [{"n": 1, "id": "MAT3458-2023-P3-Q1", "pontos": 0.71, "topicos": ["matriz-tl"], "padrao": "P-MATRIZ-TL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "T(p) = (p(0), p'(1)) de P₂(R) em R²: soma da 1ª linha de [T]_BC.", "armadilhas": ["Deixar T(b) na base canônica em vez de escrever na base C"], "armadilhas_tag": ["matriz-tl"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 2, "id": "MAT3458-2023-P3-Q2", "pontos": 0.71, "topicos": ["composta-inversa", "mudanca-base"], "padrao": "P-COMPOSTA", "padroes_secundarios": ["P-MUDBASE"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Bases B e C relacionadas; [T]_BC dada: traço de [T∘T]_BC.", "armadilhas": ["Elevar [T]_BC ao quadrado sem a mudança de base no meio"], "armadilhas_tag": ["composta-inversa"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 3, "id": "MAT3458-2023-P3-Q3", "pontos": 0.71, "topicos": ["nucleo-imagem", "matriz-tl"], "padrao": "P-NUCLEO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "[T]_BC 3×3 com B = {t²+1, t−1, t+2}: base do núcleo.", "armadilhas": ["Ler as coordenadas do núcleo como coeficientes do polinômio"], "armadilhas_tag": ["nucleo-imagem"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 4, "id": "MAT3458-2023-P3-Q4", "pontos": 0.71, "topicos": ["mudanca-base", "composta-inversa"], "padrao": "P-MUDBASE", "padroes_secundarios": ["P-COMPOSTA"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "[T]_CD e [T]_BD dadas: achar x₁, 1ª coordenada do 1º vetor de B.", "armadilhas": ["Inverter do lado errado ao isolar [I]_BC"], "armadilhas_tag": ["mudanca-base"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 5, "id": "MAT3458-2023-P3-Q5", "pontos": 0.71, "topicos": ["matriz-tl", "traco-det"], "padrao": "P-MATRIZ-TL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Derivada em V = [sen t, cos t, e^(2t)]: det [T]_B.", "armadilhas": ["Errar o sinal da derivada do cosseno"], "armadilhas_tag": ["matriz-tl"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 6, "id": "MAT3458-2023-P3-Q6", "pontos": 0.71, "topicos": ["autovetores"], "padrao": "P-TL-AUTOVET", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "Autovetores (1,1,1), (1,1,0), (1,0,0) com autovalores 2, 3, 4: T(1,2,3).", "armadilhas": ["Trocar a ordem P D P⁻¹ ao montar a matriz"], "armadilhas_tag": ["autovetores"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 7, "id": "MAT3458-2023-P3-Q7", "pontos": 0.71, "topicos": ["potencia-matriz", "diagonalizacao"], "padrao": "P-POTENCIA", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "A = [[2,1],[1,2]]: soma da 1ª coluna de A^2023.", "armadilhas": ["Esquecer o fator 1/2 de P⁻¹"], "armadilhas_tag": ["potencia-matriz"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 8, "id": "MAT3458-2023-P3-Q8", "pontos": 0.71, "topicos": ["diagonalizacao"], "padrao": "P-DIAG-PARAM", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Matriz triangular com parâmetro a: diagonalizável se e só se a = −6.", "armadilhas": ["Errar o sinal ao escalonar com parâmetro"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 9, "id": "MAT3458-2023-P3-Q9", "pontos": 0.71, "topicos": ["polinomio-caracteristico", "diagonalizacao"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "Afirmações: 0 autovalor ⇔ det = 0; autovalor de A⁻¹; 3 autovalores distintos.", "armadilhas": ["Usar det(tI − A) em vez de det(A − tI) e errar o sinal do polinômio"], "armadilhas_tag": ["polinomio-caracteristico"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 10, "id": "MAT3458-2023-P3-Q10", "pontos": 0.71, "topicos": ["diagonalizacao"], "padrao": "P-AFIRMACOES", "padroes_secundarios": ["P-DIAG-TEORIA"], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 8, "resumo": "Afirmações: det < 0 em 2×2; diagonalizáveis são semelhantes?; p(t) = −(t−1)²(t−2).", "armadilhas": ["Achar que polinômio com raízes reais garante diagonalização"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 11, "id": "MAT3458-2023-P3-Q11", "pontos": 0.71, "topicos": ["autovetores", "diagonalizacao"], "padrao": "P-TL-AUTOVET", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "P⁻¹AP = D com P parcialmente desconhecida: a + b + c + d.", "armadilhas": ["Tomar as linhas de P como autovetores"], "armadilhas_tag": ["autovetores"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 12, "id": "MAT3458-2023-P3-Q12", "pontos": 0.71, "topicos": ["traco-det", "mudanca-base"], "padrao": "P-AUTOVAL", "padroes_secundarios": ["P-MUDBASE"], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "[T]_can,B dada: produto dos autovalores (det de [T]_B, não da matriz dada).", "armadilhas": ["Tirar o determinante da matriz que mistura duas bases"], "armadilhas_tag": ["traco-det"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 13, "id": "MAT3458-2023-P3-Q13", "pontos": 0.71, "topicos": ["mudanca-base", "composta-inversa"], "padrao": "P-MUDBASE", "padroes_secundarios": ["P-COMPOSTA"], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 10, "resumo": "[T]_BC e [I]_B'B dadas: traço de [T]_B'C.", "armadilhas": ["Multiplicar [I] e [T] na ordem errada"], "armadilhas_tag": ["mudanca-base"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 14, "id": "MAT3458-2023-P3-Q14", "pontos": 0.71, "topicos": ["nucleo-imagem", "matriz-tl"], "padrao": "P-NUCLEO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 11, "resumo": "T: R³ → M₂(R) com [T]_BC dada: quando [[10, a],[7, 8]] está na imagem.", "armadilhas": ["Ler as colunas de [T]_BC como entradas da matriz, sem converter da base C"], "armadilhas_tag": ["nucleo-imagem"], "gabarito": "d", "respostas": ["(d)"]}]}, {"id": "MAT3458-2024-P3", "codigo": "MAT3458", "materia": "Álgebra Linear II", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 120, "questoes": [{"n": 1, "id": "MAT3458-2024-P3-Q1", "pontos": 0.71, "topicos": ["potencia-matriz", "autovetores"], "padrao": "P-POTENCIA", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "A = [[2,1],[1,2]]: soma da 1ª linha de A¹⁰⁰.", "armadilhas": ["Somar os autovalores elevados a n em vez de calcular a linha"], "armadilhas_tag": ["potencia-matriz"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 2, "id": "MAT3458-2024-P3-Q2", "pontos": 0.71, "topicos": ["composta-inversa", "mudanca-base", "traco-det"], "padrao": "P-COMPOSTA", "padroes_secundarios": ["P-MUDBASE"], "dificuldade": 3, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "det de [S⁻¹∘T]_C,can com T e S em bases diferentes.", "armadilhas": ["Esquecer a matriz de mudança de base entre T e S⁻¹"], "armadilhas_tag": ["composta-inversa"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 3, "id": "MAT3458-2024-P3-Q3", "pontos": 0.71, "topicos": ["diagonalizacao"], "padrao": "P-DIAG-PARAM", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Triangular com a, b: diagonalizável se e só se a = b.", "armadilhas": ["Marcar uma condição suficiente quando pedem se e somente se"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 4, "id": "MAT3458-2024-P3-Q4", "pontos": 0.71, "topicos": ["matriz-tl", "nucleo-imagem"], "padrao": "P-NUCLEO", "padroes_secundarios": ["P-MATRIZ-TL"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "S + T de P₂(R) em R², com T dada na base {t, t², 1}: dim Im e núcleo.", "armadilhas": ["Montar a matriz de S na ordem 1, t, t² quando a base é {t, t², 1}"], "armadilhas_tag": ["matriz-tl"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 5, "id": "MAT3458-2024-P3-Q5", "pontos": 0.71, "topicos": ["diagonalizacao", "polinomio-caracteristico"], "padrao": "P-DIAG-TEORIA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Três matrizes (2×2, 3×3, 4×4): quais são diagonalizáveis.", "armadilhas": ["Concluir diagonalizável só porque as raízes são reais"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 6, "id": "MAT3458-2024-P3-Q6", "pontos": 0.71, "topicos": ["diagonalizacao", "polinomio-caracteristico"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "p(t) = t²(t−1)³(t+1)(t²+bt+c) em dimensão 8: três afirmações.", "armadilhas": ["Esquecer que as raízes do fator quadrático podem repetir autovalores já existentes"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 7, "id": "MAT3458-2024-P3-Q7", "pontos": 0.71, "topicos": ["nucleo-imagem"], "padrao": "P-NUCLEO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "[T]_BC 3×4 com parâmetros a, b: dim Ker = 2 se e só se a = b = 0.", "armadilhas": ["Tentar zerar a linha errada no escalonamento com parâmetro"], "armadilhas_tag": ["nucleo-imagem"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 8, "id": "MAT3458-2024-P3-Q8", "pontos": 0.71, "topicos": ["matriz-tl"], "padrao": "P-MATRIZ-TL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "T: P₂(R) → M₂(R) por valores e derivadas; base C não canônica: soma da 1ª linha de [T]_BC.", "armadilhas": ["Ler a entrada da matriz como coordenada sem resolver na base C"], "armadilhas_tag": ["matriz-tl"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 9, "id": "MAT3458-2024-P3-Q9", "pontos": 0.71, "topicos": ["matriz-tl"], "padrao": "P-MATRIZ-TL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "[T]_B dada com p₁'(0) = 4: q = T(2p₂ − p₃) e q'(0).", "armadilhas": ["Usar linhas em vez de colunas de [T]_B"], "armadilhas_tag": ["matriz-tl"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 10, "id": "MAT3458-2024-P3-Q10", "pontos": 0.71, "topicos": ["mudanca-base"], "padrao": "P-MUDBASE", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "[T]_can e [T]_can,B dadas: achar v₁ = (a, b).", "armadilhas": ["Multiplicar pela inversa do lado errado"], "armadilhas_tag": ["mudanca-base"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 11, "id": "MAT3458-2024-P3-Q11", "pontos": 0.71, "topicos": ["autovetores"], "padrao": "P-TL-AUTOVET", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "[T]_B = [[2, a],[−1, b]] com autovetores (1,1)_B e (2,1)_B: a + b.", "armadilhas": ["Esquecer o fator de proporcionalidade ao impor autovetor"], "armadilhas_tag": ["autovetores"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 12, "id": "MAT3458-2024-P3-Q12", "pontos": 0.71, "topicos": ["traco-det", "mudanca-base", "polinomio-caracteristico"], "padrao": "P-AUTOVAL", "padroes_secundarios": ["P-MUDBASE"], "dificuldade": 3, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "[T]_BC com C = permutação de B: quantos autovalores e qual a soma.", "armadilhas": ["Usar o traço de [T]_BC com B ≠ C como soma dos autovalores"], "armadilhas_tag": ["traco-det"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 13, "id": "MAT3458-2024-P3-Q13", "pontos": 0.71, "topicos": ["diagonalizacao", "mudanca-base"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 4, "pagina_resolucao": 10, "resumo": "Afirmações: [T]_BC invertível ⇒ T³ bijetora; p(t) dado ⇒ diagonalizável?; [T]_BC diagonalizável ⇒ T diagonalizável?", "armadilhas": ["Julgar diagonalização por uma matriz [T]_BC com bases diferentes"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 14, "id": "MAT3458-2024-P3-Q14", "pontos": 0.71, "topicos": ["autovetores"], "padrao": "P-TL-AUTOVET", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 5, "pagina_resolucao": 11, "resumo": "p(t) = t² − 2t, (1,1) ∈ Ker T e (1,3) autovetor: T(5, 11).", "armadilhas": ["Atribuir o autovalor errado ao segundo autovetor"], "armadilhas_tag": ["autovetores"], "gabarito": "b", "respostas": ["(b)"]}]}, {"id": "MAT3458-2025-P3", "codigo": "MAT3458", "materia": "Álgebra Linear II", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": null, "questoes": [{"n": 1, "id": "MAT3458-2025-P3-Q1", "pontos": 0.71, "topicos": ["mudanca-base"], "padrao": "P-MUDBASE", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "[v]_C = A[v]_B com B canônica: soma da 1ª coluna de A.", "armadilhas": ["Usar [I]_CB (vetores de C nas colunas) no lugar de [I]_BC"], "armadilhas_tag": ["mudanca-base"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 2, "id": "MAT3458-2025-P3-Q2", "pontos": 0.71, "topicos": ["edo-sistemas"], "padrao": "P-AFIRMACOES", "padroes_secundarios": ["P-EDO"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Y' = AY com A diagonalizável: limites e constância de y₁(t) conforme os autovalores.", "armadilhas": ["Esquecer que os coeficientes da solução podem ser negativos ou nulos"], "armadilhas_tag": ["edo-sistemas"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 3, "id": "MAT3458-2025-P3-Q3", "pontos": 0.71, "topicos": ["traco-det", "mudanca-base"], "padrao": "P-AUTOVAL", "padroes_secundarios": ["P-MUDBASE"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "[T]_BC em P₂(R) com C = {x, 1+x, 1−x²}: soma dos autovalores.", "armadilhas": ["Usar o traço de [T]_BC com B ≠ C como soma dos autovalores"], "armadilhas_tag": ["traco-det"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 4, "id": "MAT3458-2025-P3-Q4", "pontos": 0.71, "topicos": ["polinomio-caracteristico", "autovetores", "nucleo-imagem"], "padrao": "P-DIAG-TEORIA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "p(t) = −t(t²−1)² em R⁵: qual afirmação é falsa (dimensões de autoespaços e imagens).", "armadilhas": ["Errar as multiplicidades ao fatorar (t² − 1)²"], "armadilhas_tag": ["polinomio-caracteristico"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 5, "id": "MAT3458-2025-P3-Q5", "pontos": 0.71, "topicos": ["edo-sistemas"], "padrao": "P-EDO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "X' = AX com A = PDP⁻¹ dada (autovalores −1, −1, 0) e X(0) = (0,0,7): X(ln 2).", "armadilhas": ["Esquecer a parcela constante do autovalor 0"], "armadilhas_tag": ["edo-sistemas"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 6, "id": "MAT3458-2025-P3-Q6", "pontos": 0.71, "topicos": ["diagonalizacao", "autovetores"], "padrao": "P-DIAG-TEORIA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "Matriz 3×3 não simétrica: diagonalizável? quantos autovalores? autovetores ortogonais?", "armadilhas": ["Concluir ortogonalidade testando um único par de autovetores"], "armadilhas_tag": ["autovetores"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 7, "id": "MAT3458-2025-P3-Q7", "pontos": 0.71, "topicos": ["diagonalizacao", "nucleo-imagem"], "padrao": "P-DIAG-TEORIA", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "p(t) = −t²(t−1)(t²−4) em dimensão 5: diagonalizável se e só se dim Im T = 3.", "armadilhas": ["Confundir dim Ker T com dim Im T"], "armadilhas_tag": ["nucleo-imagem"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 8, "id": "MAT3458-2025-P3-Q8", "pontos": 0.71, "topicos": ["diagonalizacao"], "padrao": "P-DIAG-PARAM", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Triangular com a, b: diagonalizável se e só se ab = −8.", "armadilhas": ["Errar o sinal do produto cruzado ao impor proporcionalidade"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 9, "id": "MAT3458-2025-P3-Q9", "pontos": 0.71, "topicos": ["potencia-matriz"], "padrao": "P-POTENCIA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "[[−2,1],[−6,5]]^2025 = [[a,b],[c,d]]: 5(a − b + c − d).", "armadilhas": ["Esquecer o sinal de (−1)ⁿ com n ímpar"], "armadilhas_tag": ["potencia-matriz"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 10, "id": "MAT3458-2025-P3-Q10", "pontos": 0.71, "topicos": ["autovetores"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "v autovetor de T: S(v) autovetor se ST = TS; v ∈ Ker S; S∘T = I.", "armadilhas": ["Achar que autovalor 0 não conta"], "armadilhas_tag": ["autovetores"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 11, "id": "MAT3458-2025-P3-Q11", "pontos": 0.71, "topicos": ["autovetores"], "padrao": "P-TL-AUTOVET", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Dois autovetores do autovalor 2 e (1,0,0) no núcleo: T(4, −1, 5).", "armadilhas": ["Multiplicar pelo autovalor a parcela que está no núcleo"], "armadilhas_tag": ["autovetores"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 12, "id": "MAT3458-2025-P3-Q12", "pontos": 0.71, "topicos": ["polinomio-caracteristico"], "padrao": "P-AFIRMACOES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "Afirmações sobre p(t): n raízes reais? p(0) = 0 ⇒ não injetor? mesmo p(t) ⇒ mesmo operador?", "armadilhas": ["Esquecer que o polinômio pode ter raízes complexas"], "armadilhas_tag": ["polinomio-caracteristico"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 13, "id": "MAT3458-2025-P3-Q13", "pontos": 0.71, "topicos": ["diagonalizacao", "autovetores"], "padrao": "P-DIAG-TEORIA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "Autoespaços dados por geradores com α, β em P₂(R): diagonalizável se e só se αβ ≠ 2.", "armadilhas": ["Trocar a condição de independência (≠) pela de dependência (=)"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 14, "id": "MAT3458-2025-P3-Q14", "pontos": 0.71, "topicos": ["diagonalizacao", "polinomio-caracteristico"], "padrao": "P-DIAG-TEORIA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 10, "resumo": "dim Ker(T − 2I) = 3 e dim Ker(T + 2I) = 1 em dimensão 6: qual polinômio é impossível.", "armadilhas": ["Trocar os autovalores ao comparar MG com MA"], "armadilhas_tag": ["diagonalizacao"], "gabarito": "c", "respostas": ["(c)"]}]}], "atualizado": "22/11/2026", "blocos": [{"id": "MAT3458-P3-bloco-tl-bases", "nome": "Matrizes de TL, mudança de base e núcleo", "questoes": ["MAT3458-2023-P3-Q1", "MAT3458-2023-P3-Q5", "MAT3458-2023-P3-Q3", "MAT3458-2023-P3-Q14", "MAT3458-2023-P3-Q4", "MAT3458-2023-P3-Q13", "MAT3458-2023-P3-Q2", "MAT3458-2024-P3-Q9", "MAT3458-2024-P3-Q8", "MAT3458-2024-P3-Q4", "MAT3458-2024-P3-Q7", "MAT3458-2024-P3-Q10", "MAT3458-2024-P3-Q2", "MAT3458-2025-P3-Q1"]}, {"id": "MAT3458-P3-bloco-autovalores", "nome": "Autovalores, autovetores e diagonalização", "questoes": ["MAT3458-2023-P3-Q6", "MAT3458-2023-P3-Q11", "MAT3458-2023-P3-Q12", "MAT3458-2023-P3-Q9", "MAT3458-2023-P3-Q8", "MAT3458-2023-P3-Q10", "MAT3458-2024-P3-Q14", "MAT3458-2024-P3-Q11", "MAT3458-2024-P3-Q12", "MAT3458-2024-P3-Q3", "MAT3458-2024-P3-Q5", "MAT3458-2024-P3-Q6", "MAT3458-2024-P3-Q13", "MAT3458-2025-P3-Q11", "MAT3458-2025-P3-Q3", "MAT3458-2025-P3-Q12", "MAT3458-2025-P3-Q10", "MAT3458-2025-P3-Q4", "MAT3458-2025-P3-Q7", "MAT3458-2025-P3-Q8", "MAT3458-2025-P3-Q13", "MAT3458-2025-P3-Q14", "MAT3458-2025-P3-Q6"]}, {"id": "MAT3458-P3-bloco-potencias-edo", "nome": "Potências de matriz e sistemas de EDOs", "questoes": ["MAT3458-2023-P3-Q7", "MAT3458-2024-P3-Q1", "MAT3458-2025-P3-Q9", "MAT3458-2025-P3-Q5", "MAT3458-2025-P3-Q2"]}], "guia": {"escopo": "A P3 vem depois da P2, que cobriu produto interno e o básico de transformações lineares. Pelo programa, ficam para o fim do curso: autovalores e diagonalização, operadores simétricos com cônicas e quádricas, espaços sobre C e sistemas de EDOs. Na prática, as três P3 recentes que temos (2023, 2024, 2025) cobraram matriz de TL em bases e mudança de base (metade da prova em 2023 e 2024), autovalores e diagonalização (todas) e potências de matriz (todas). EDOs voltaram em 2025, com 2 testes. Operadores simétricos, cônicas, quádricas e espaços complexos dominavam as P3 de 2016 a 2019 e não apareceram em nenhuma P3 de 2023 a 2025. A divisão do conteúdo entre as provas muda de turma para turma: confira no programa da sua turma se a sua P3 inclui esses temas.", "programa": ["Matriz de transformação linear, composta e mudança de base (item 2)", "Autovalores e autovetores; diagonalização (item 3)", "Sistemas de EDOs lineares de 1ª ordem com coeficientes constantes (item 6), em 2025", "Operadores simétricos, cônicas e quádricas (item 4), só até 2019", "Espaços vetoriais sobre C (item 5), só até 2019"], "roteiro": [{"etapa": "Montar [T]_BC", "texto": "Refaça 2023 Q1 e Q5 e 2024 Q8 e Q9. Regra única: T de cada vetor de B, escrito em C, vira coluna. Treine escrever um vetor numa base não canônica (polinômios e matrizes 2×2)."}, {"etapa": "Mudança de base e composta", "texto": "2023 Q2, Q4 e Q13; 2024 Q2 e Q10; 2025 Q1. Antes de multiplicar, escreva de que base sai e em que base chega cada matriz; o índice do meio tem de cancelar."}, {"etapa": "Núcleo e imagem pela matriz", "texto": "2023 Q3 e Q14; 2024 Q4 e Q7. O núcleo sai em coordenadas: volte para o polinômio ou a matriz. Com parâmetro, escalone e imponha o posto."}, {"etapa": "Autovalores numa base só", "texto": "2023 Q12, 2024 Q12 e 2025 Q3: o traço e o det da matriz dada são armadilha. Converta para [T]_B antes de somar ou multiplicar autovalores."}, {"etapa": "Diagonalização", "texto": "2023 Q8, Q10 e Q11; 2024 Q3, Q5, Q6 e Q13; 2025 Q4, Q6, Q7, Q8, Q13 e Q14. Para cada autovalor repetido, calcule o posto de A − λI. Monte os contraexemplos 2×2 de cabeça."}, {"etapa": "T(v) por autovetores, potências e EDOs", "texto": "2023 Q6 e Q7; 2024 Q1, Q11 e Q14; 2025 Q2, Q5, Q9 e Q11. Mesma ideia nos três: escreva o vetor na base de autovetores e aplique λ, λⁿ ou e^(λt)."}, {"etapa": "Simulado", "texto": "Faça a P3 2025 limpa em 2 horas e corrija pela resolução. Se a sua turma cobrar simétricos e cônicas, treine também nas P3 de 2016 a 2019 do Polishare."}], "tendencias": [{"titulo": "Mudança de base cresceu e depois encolheu", "texto": "Matriz de TL em bases, mudança de base, composta e núcleo: 7 de 14 testes em 2023, 6 de 14 em 2024 e 1 de 14 em 2025 (mais a 2025 Q3, que exige a conversão). De 2016 a 2019, só 3 questões de 64 tocaram mudança de base, sempre com bases ortonormais."}, {"titulo": "Diagonalização em todas", "texto": "Autovalores e diagonalização caíram nas 3 P3 recentes: 6 testes em 2023, 7 em 2024 e 10 em 2025. O formato preferido é 'diagonalizável se, e somente se' com parâmetro (2023 Q8, 2024 Q3, 2025 Q8) e afirmações (I), (II), (III)."}, {"titulo": "Potência de matriz é presença fixa", "texto": "Aⁿ com n grande caiu nas 3 P3 recentes (2023 Q7, 2024 Q1, 2025 Q9) e nas 4 antigas (2016 a 2019). A de 2023 e a de 2024 usam a mesma matriz [[2,1],[1,2]]."}, {"titulo": "Simétricos, cônicas e complexos sumiram", "texto": "Nas 4 P3 de 2016 a 2019, cônicas e quádricas renderam 3 ou 4 testes por prova, e operadores simétricos e espaços complexos também caíram em todas. Nenhum desses temas apareceu nas P3 de 2023, 2024 e 2025."}, {"titulo": "EDOs voltaram em 2025", "texto": "Sistemas X' = AX caíram nas 4 P3 antigas (de 2 a 4 testes cada), em nenhuma de 2023 e 2024, e em 2 testes de 2025 (Q2 e Q5), só com autovalores reais."}, {"titulo": "Formato estável", "texto": "Só testes de 5 alternativas, sem discursiva. São 14 testes nas P3 de 2023 a 2025; em 2019 eram 16. A prova de 2024 durou 2 horas, como a de 2019."}], "checklist": ["Montar [T]_BC: aplicar T em cada vetor de B, escrever o resultado na base C e pôr como coluna.", "Escrever um polinômio ou uma matriz 2×2 em coordenadas de uma base não canônica.", "Escrever [I]_BC (colunas = vetores de B em coordenadas de C) e inverter para obter [I]_CB.", "Encadear [T]_B'C' = [I]_CC'·[T]_BC·[I]_B'B sem trocar a ordem.", "Calcular [S∘T] e [S⁻¹∘T] em bases diferentes, com a mudança de base no meio, e usar det(XY) = det X · det Y.", "Achar o núcleo pela matriz e voltar das coordenadas para o vetor.", "Decidir com parâmetro quando dim Ker = k ou quando um vetor está na imagem.", "Calcular p(t) = det(A − tI) de matrizes 2×2, 3×3 e triangulares.", "Usar soma dos autovalores = traço e produto = det só numa matriz [T]_B, com a mesma base dos dois lados.", "Achar uma base de Ker(A − λI) e sua dimensão.", "Decidir se é diagonalizável: raízes reais e MG = MA para cada autovalor repetido.", "Resolver 'diagonalizável se e só se' impondo posto(A − λI) = n − MA(λ).", "Tirar dim Ker T = MG(0) e dim Im T = n − MG(0) do polinômio característico.", "Calcular T(v) decompondo v na base de autovetores (núcleo = autovalor 0).", "Calcular Aⁿ = P·Dⁿ·P⁻¹ e somas de linha ou coluna sem montar a matriz toda.", "Resolver X' = AX com X(0): X(t) = Σ cᵢ e^(λᵢt) vᵢ e P·c = X(0).", "Ter prontos os contraexemplos 2×2: [[1,1],[0,1]], [[0,−1],[1,0]] e diag(1,2)."], "pegadinhas": [{"titulo": "Traço da matriz errada", "texto": "2024 Q12 e 2025 Q3: a alternativa errada é exatamente o traço da matriz dada, [T]_BC com B ≠ C (7 e 1). A soma dos autovalores é o traço de [T]_B."}, {"titulo": "Determinante que mistura bases", "texto": "2023 Q12: det [T]_can,B = −6 está nas alternativas. O produto dos autovalores é det [T]_B = −12."}, {"titulo": "[T]_BC ao quadrado", "texto": "2023 Q2: elevar [T]_BC ao quadrado dá traço 5, que está nas alternativas. O certo é [T]_CC·[T]_BC, com traço 20."}, {"titulo": "Coordenadas lidas como coeficientes", "texto": "2023 Q3: o vetor (1, −1, 1) na base B é t² + 4, não t² − t + 1, que também está nas alternativas."}, {"titulo": "Ordem da base", "texto": "2024 Q4: a base é C = {t, t², 1}. Quem monta [S] na ordem 1, t, t² soma colunas que não se correspondem."}, {"titulo": "Raízes reais não bastam", "texto": "2024 Q5 (matriz B) e 2023 Q10 (III): o autovalor duplo tem autoespaço de dimensão 1. Sempre calcule o posto de A − λI."}, {"titulo": "Suficiente não é 'se e somente se'", "texto": "2024 Q3: a = 0 e b = 0 faz a matriz diagonalizar, mas a resposta é a = b."}, {"titulo": "Sinal no escalonamento com parâmetro", "texto": "2023 Q8 (a = −6; a própria resolução oficial escreveu 6) e 2025 Q8 (ab = −8, não 8)."}, {"titulo": "Colunas, não linhas", "texto": "2023 Q11: em P⁻¹AP = D, os autovetores são as colunas de P. O mesmo vale em [I]_BC e em [T]_BC."}, {"titulo": "Autovalor 0", "texto": "2025 Q5: o autovalor 0 dá parcela constante na EDO. 2025 Q11: a parcela no núcleo some. 2025 Q10: autovalor 0 vale, quem não pode ser nulo é o vetor."}, {"titulo": "Coeficiente negativo", "texto": "2025 Q2 (II): todos os autovalores positivos não garantem y₁ → +∞, porque os coeficientes podem ser negativos."}], "dicas_prova": ["São 14 testes em 2 horas (2024): pouco mais de 8 minutos por teste. Faça primeiro os de conta direta (T(v) por autovetores, potência, traço) e deixe as afirmações (I), (II), (III) para o fim.", "É só teste: não há ponto parcial. Confira por substituição sempre que der (T(v) de volta, X(0) na solução, autovetor na matriz).", "Em toda questão com duas bases, anote no rascunho de onde sai e aonde chega cada matriz antes de multiplicar.", "Para soma de linha ou de coluna, multiplique por (1, 1, …) em vez de calcular a matriz inteira.", "Matriz triangular: os autovalores estão na diagonal. Não expanda o determinante.", "Nas afirmações, procure um contraexemplo 2×2 antes de tentar provar.", "As instruções de 2019 e 2024 só permitem lápis, borracha, caneta e documento na carteira: não há formulário. Leve as regras de mudança de base de cabeça.", "Na EDO, as constantes saem de P·c = X(0). Lembre que e^(−ln 2) = 1/2."], "formulario": [{"nome": "Matriz em bases", "typst": "$[T(v)]_C = [T]_(B C) [v]_B$", "txt": "[T(v)]_C = [T]_BC · [v]_B"}, {"nome": "Mudança de base", "typst": "$[T]_(B' C') = [I]_(C C') [T]_(B C) [I]_(B' B)$", "txt": "[T]_B'C' = [I]_CC' · [T]_BC · [I]_B'B"}, {"nome": "Inversa da mudança", "typst": "$[I]_(C B) = [I]_(B C)^(-1)$", "txt": "[I]_CB = [I]_BC⁻¹"}, {"nome": "Composta", "typst": "$[S compose T]_(B D) = [S]_(C D) [T]_(B C)$", "txt": "[S∘T]_BD = [S]_CD · [T]_BC"}, {"nome": "Inversa de T", "typst": "$[T^(-1)]_(C B) = ([T]_(B C))^(-1)$", "txt": "[T⁻¹]_CB = ([T]_BC)⁻¹"}, {"nome": "Polinômio característico", "typst": "$p_T (t) = det([T]_B - t I)$", "txt": "p_T (t) = det([T]_B − tI)"}, {"nome": "Traço e determinante", "typst": "$sum lambda_i = tr [T]_B, quad product lambda_i = det [T]_B$", "txt": "soma dos λ = tr [T]_B; produto dos λ = det [T]_B"}, {"nome": "Caso 2×2", "typst": "$p(t) = t^2 - (tr A) t + det A$", "txt": "p(t) = t² − (tr A)t + det A"}, {"nome": "Núcleo e imagem", "typst": "$dim Ker T + dim Im T = dim V$", "txt": "dim Ker T + dim Im T = dim V"}, {"nome": "Multiplicidades", "typst": "$1 <= dim Ker(T - lambda I) <= \"MA\"(lambda)$", "txt": "1 ≤ dim Ker(T − λI) ≤ MA(λ)"}, {"nome": "Critério de diagonalização", "typst": "$sum_lambda dim Ker(T - lambda I) = dim V$", "txt": "soma das dimensões dos autoespaços = dim V"}, {"nome": "Potência", "typst": "$A = P D P^(-1) => A^n = P D^n P^(-1)$", "txt": "A = PDP⁻¹ ⇒ Aⁿ = PDⁿP⁻¹"}, {"nome": "Sistema de EDOs", "typst": "$X(t) = sum c_i e^(lambda_i t) v_i, quad P c = X(0)$", "txt": "X(t) = Σ cᵢ e^(λᵢt) vᵢ, com P·c = X(0)"}, {"nome": "Inversa 2×2", "typst": "$mat(a, b; c, d)^(-1) = 1/(a d - b c) mat(d, -b; -c, a)$", "txt": "[[a,b],[c,d]]⁻¹ = (1/(ad − bc))·[[d,−b],[−c,a]]"}, {"nome": "Autovalor zero", "typst": "$0 \"é autovalor\" <=> det A = 0 <=> T \"não é injetor\"$", "txt": "0 é autovalor ⇔ det A = 0 ⇔ T não é injetor"}]}, "historico": [{"ano": 2016, "rotulo": "P3 2016", "fonte": "fontes/2016-antiga-1OxN", "questoes": [{"resumo": "Matriz de mudança entre bases ortonormais: Mᵀ = M⁻¹.", "topicos": ["mudanca-base", "operadores-simetricos"]}, {"resumo": "Solução geral real de X' = AX com autovalor complexo e autovetor dados.", "topicos": ["edo-sistemas", "espacos-complexos"]}, {"resumo": "A³⁸ para A real 2×2 com autovalor −i.", "topicos": ["espacos-complexos", "potencia-matriz"]}, {"resumo": "p(t) com fator t² + t + 1: diagonalizável sobre R ou sobre C?", "topicos": ["diagonalizacao", "espacos-complexos"]}, {"resumo": "Afirmações: conjugado de autovalor, diagonalizar sobre C × sobre R.", "topicos": ["espacos-complexos", "diagonalizacao"]}, {"resumo": "Equação reduzida de uma quádrica (achar k).", "topicos": ["conicas-quadricas"]}, {"resumo": "Quando uma equação do 2º grau é hipérbole (parâmetro k).", "topicos": ["conicas-quadricas"]}, {"resumo": "Equação reduzida de elipse com autovalores 2 e 4.", "topicos": ["conicas-quadricas"]}, {"resumo": "Operador simétrico em R⁴ com autoespaços parciais: T(2, 0, −2, 0).", "topicos": ["operadores-simetricos", "autovetores"]}, {"resumo": "[T]_B simétrica numa base qualquer: afirmações.", "topicos": ["operadores-simetricos", "diagonalizacao"]}, {"resumo": "Operador num espaço complexo: afirmações.", "topicos": ["espacos-complexos"]}, {"resumo": "Simétrico com Ker(T + 2I) dado: T(2, 1, 0).", "topicos": ["operadores-simetricos", "autovetores"]}, {"resumo": "X' = AX 3×3 com X(0) dado.", "topicos": ["edo-sistemas"]}, {"resumo": "Subespaço x + y + z = 0 invariante (parâmetros a, b).", "topicos": ["autovetores"]}, {"resumo": "Eixos de simetria de um elipsoide.", "topicos": ["conicas-quadricas", "operadores-simetricos"]}, {"resumo": "Traço de A²⁰⁰ com bloco de autovalores complexos.", "topicos": ["potencia-matriz", "espacos-complexos"]}]}, {"ano": 2017, "rotulo": "P3 2017", "fonte": "fontes/2017-antiga-OaQj", "questoes": [{"resumo": "Valores de a para x² − 2axy + 5y² = 10 ser elipse.", "topicos": ["conicas-quadricas"]}, {"resumo": "Projeção ortogonal num subespaço (base ortonormal dada).", "topicos": ["projecao"]}, {"resumo": "Sistema 2×2 de EDOs com condição inicial.", "topicos": ["edo-sistemas"]}, {"resumo": "Matriz complexa: autovalores, diagonalização e A⁹⁰.", "topicos": ["espacos-complexos", "potencia-matriz"]}, {"resumo": "Afirmações: projeção, dimensão do espaço de soluções, troca de coordenadas.", "topicos": ["projecao", "edo-sistemas", "conicas-quadricas"]}, {"resumo": "Matriz simétrica com autoespaços dados: uma solução de X' = AX.", "topicos": ["operadores-simetricos", "edo-sistemas"]}, {"resumo": "Bases ortonormais e [I]_BC: afirmações.", "topicos": ["mudanca-base", "operadores-simetricos"]}, {"resumo": "[T]_B simétrica com B não ortonormal: simétrico? diagonalizável?", "topicos": ["operadores-simetricos", "diagonalizacao"]}, {"resumo": "S = T² + I num espaço complexo: afirmação não necessária.", "topicos": ["espacos-complexos", "polinomio-caracteristico"]}, {"resumo": "Classificar uma cônica com autovetores dados.", "topicos": ["conicas-quadricas"]}, {"resumo": "A ∈ M₄(R) com raízes i e 1 − 2i: afirmação falsa.", "topicos": ["espacos-complexos", "diagonalizacao"]}, {"resumo": "S simétrico se e só se (condição nos autovalores).", "topicos": ["operadores-simetricos"]}, {"resumo": "Decomposição v = w + w', com w ∈ S e w' ∈ S⊥.", "topicos": ["projecao"]}, {"resumo": "Base ortonormal com produto interno ∫f'g'.", "topicos": ["projecao"]}, {"resumo": "Base de soluções reais de X' = AX com autovalor i.", "topicos": ["edo-sistemas", "espacos-complexos"]}, {"resumo": "Três matrizes: diagonalizáveis sobre R ou sobre C.", "topicos": ["diagonalizacao", "espacos-complexos"]}]}, {"ano": 2018, "rotulo": "P3 2018", "fonte": "fontes/2018-antiga-DqyX", "questoes": [{"resumo": "Simétrico: ‖T(v − w)‖ com v e w em autoespaços diferentes.", "topicos": ["operadores-simetricos"]}, {"resumo": "Simétrico 2×2 com autovalor 5 e T(1,2) = (3,6): [T]_can.", "topicos": ["operadores-simetricos", "autovetores"]}, {"resumo": "2xy + 3x − y + a = 0 é par de retas concorrentes (achar a).", "topicos": ["conicas-quadricas"]}, {"resumo": "Simétrica com núcleo dado e autovalor 4: X(t) com X(0).", "topicos": ["operadores-simetricos", "edo-sistemas"]}, {"resumo": "det A a partir de uma solução de X' = AX.", "topicos": ["edo-sistemas", "traco-det"]}, {"resumo": "Afirmações: diagonalizar sobre C e sobre R.", "topicos": ["espacos-complexos", "diagonalizacao"]}, {"resumo": "Quais de três matrizes (real simétrica, complexas) diagonalizam.", "topicos": ["diagonalizacao", "espacos-complexos"]}, {"resumo": "A⁴⁰⁰ de matriz complexa com Q diagonalizante dada.", "topicos": ["potencia-matriz", "espacos-complexos"]}, {"resumo": "Matriz real em C³: qual vetor não é autovetor.", "topicos": ["espacos-complexos", "autovetores"]}, {"resumo": "Base de soluções reais com autovalor −2 + i.", "topicos": ["edo-sistemas", "espacos-complexos"]}, {"resumo": "Simétrico: afirmações sobre autoespaços.", "topicos": ["operadores-simetricos"]}, {"resumo": "R⁴: T simétrico? autoespaço que falta.", "topicos": ["operadores-simetricos"]}, {"resumo": "Classificar 2x² − 2xy + 5y² = 1.", "topicos": ["conicas-quadricas"]}, {"resumo": "−6x² + ay² − 6z² + 2xz = b: afirmações.", "topicos": ["conicas-quadricas"]}, {"resumo": "Dimensão de um subespaço de C⁵.", "topicos": ["espacos-complexos"]}, {"resumo": "Afirmações sobre diagonalização em Cⁿ.", "topicos": ["espacos-complexos", "diagonalizacao"]}]}, {"ano": 2019, "rotulo": "P3 2019", "fonte": "fontes/2019-antiga-3Kdb", "questoes": [{"resumo": "A¹⁰⁰ de matriz com entrada i.", "topicos": ["potencia-matriz", "espacos-complexos"]}, {"resumo": "p(t) = (t − 5)³q(t) e dim Ker(T − 5I) = 2: T não é simétrico.", "topicos": ["operadores-simetricos", "diagonalizacao"]}, {"resumo": "X' = AX com autovalores complexos e X(0).", "topicos": ["edo-sistemas", "espacos-complexos"]}, {"resumo": "Afirmações: diagonalizar sobre R e sobre C.", "topicos": ["diagonalizacao", "espacos-complexos"]}, {"resumo": "Simétrico 2×2: T(1, k) = 5(1, k).", "topicos": ["operadores-simetricos"]}, {"resumo": "X(π/2) com autovetor complexo dado.", "topicos": ["edo-sistemas", "espacos-complexos"]}, {"resumo": "Cônica degenerada x² + 6xy + 9y² + ….", "topicos": ["conicas-quadricas"]}, {"resumo": "Simétrico com T(1,1,1) = 2(1,1,1) e dim Ker T = 2.", "topicos": ["operadores-simetricos", "autovetores"]}, {"resumo": "ax² + ay² + 6xy = 10 é elipse (achar a).", "topicos": ["conicas-quadricas"]}, {"resumo": "Bases ortonormais, [I]_BC e simétricos: afirmações.", "topicos": ["mudanca-base", "operadores-simetricos"]}, {"resumo": "Parábola: condição em a e b.", "topicos": ["conicas-quadricas"]}, {"resumo": "Duas soluções de X' = AX dadas: T(0, 3).", "topicos": ["edo-sistemas", "autovetores"]}, {"resumo": "T real em C³ com autovetor complexo: T(1, 3 − i, 4).", "topicos": ["espacos-complexos", "autovetores"]}, {"resumo": "Sistema 2×2 com X(0): x(t) + y(t).", "topicos": ["edo-sistemas"]}, {"resumo": "Semelhança de matrizes complexas: afirmações.", "topicos": ["espacos-complexos", "diagonalizacao"]}, {"resumo": "Equação reduzida de uma quádrica.", "topicos": ["conicas-quadricas"]}]}], "extra": {}, "codigos": ["MAT3458", "MAT2458"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, PROVAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+PROVAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de 2016–2020 para a tendência`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  PROVAS.map(p=>`<a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">${esc(p.rotulo||p.ano)} · prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">${esc(p.rotulo||p.ano)} · resolução</a>`).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+const av = [];
+if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
+if (PROVAS.some(p=>p.status!=='revisada')) av.push('<b>Resoluções em revisão.</b> Ainda não foram conferidas por um segundo revisor. Achou algo? Avise em @prisma.poli.');
+if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
+else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
+document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: 2016–2020 x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de 2016–2020 contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>2016–2020</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, PROVAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(Q.length / Math.max(1,n)));
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false;
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+document.getElementById('simdur').textContent = durs.length ? `Duração sugerida: ${durPadrao} min, a das P3 analisadas. Ajuste ao tempo da sua turma.` : 'A duração não consta nas provas analisadas; ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  timer=setInterval(()=>{ restante=Math.max(0,restante-1); clock.textContent=fmt(restante); if(!restante){ encerrar(); } },1000);
+});
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Algoritmos e Estruturas de Dados · Fuja das P3</title>
+<meta name="description" content="P3 de Algoritmos e Estruturas de Dados (PCS3110) transcritas e resolvidas: 3 provas, 30 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Algoritmos e Estruturas de Dados · Fuja das P3">
+<meta property="og:description" content="P3 de Algoritmos e Estruturas de Dados (PCS3110) transcritas e resolvidas: 3 provas, 30 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0F2347">
+<link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#0F2347; --band-fg:#FFFFFF; --band-muted:#C9CEDA; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
+  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F;
+  --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:var(--amarelo);font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{background:rgba(255,255,255,.1);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#3A5590"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
+  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+    <ol class="roteiro" id="gRoteiro"></ol>
+
+    <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+    <div class="tend" id="gTend"></div>
+
+    <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+      <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+    <div class="check" id="gCheck"></div>
+
+    <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+    <div class="pegas" id="gPegas"></div>
+
+    <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+    <ul class="dicas" id="gDicas"></ul>
+
+    <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+    <div class="form" id="gForm"></div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "Nas P3 de 2023 a 2025, a prova cobre o fim do programa: grafos (buscas, ciclos, ordenação topológica, árvore geradora mínima, Dijkstra), árvores binárias e Huffman. Os tópicos de ordenação, heap, complexidade e programação dinâmica só aparecem nas P3 de 2016 e 2017 e ficam no mapa para mostrar essa mudança.", "topicos": [{"slug": "representacao", "nome": "Representação e propriedades de grafos", "grupo": "Grafos: fundamentos", "ref": null, "material": null}, {"slug": "modelagem", "nome": "Modelar um problema como grafo", "grupo": "Grafos: fundamentos", "ref": null, "material": null}, {"slug": "bfs", "nome": "Busca em largura (BFS)", "grupo": "Grafos: buscas", "ref": null, "material": null}, {"slug": "dfs", "nome": "Busca em profundidade (DFS) e cores", "grupo": "Grafos: buscas", "ref": null, "material": null}, {"slug": "ciclo-topologica", "nome": "Ciclos e ordenação topológica", "grupo": "Grafos: buscas", "ref": null, "material": null}, {"slug": "mst", "nome": "Árvore geradora mínima (Prim e Kruskal)", "grupo": "Grafos: otimização", "ref": null, "material": null}, {"slug": "dijkstra", "nome": "Caminho mínimo (Dijkstra)", "grupo": "Grafos: otimização", "ref": null, "material": null}, {"slug": "abb", "nome": "Árvore binária de busca (ABB)", "grupo": "Árvores", "ref": null, "material": null}, {"slug": "percursos", "nome": "Percursos em árvore (pré, simétrica, pós)", "grupo": "Árvores", "ref": null, "material": null}, {"slug": "huffman", "nome": "Código de Huffman", "grupo": "Árvores", "ref": null, "material": null}, {"slug": "pilha-fila", "nome": "Pilhas e filas dentro de algoritmos", "grupo": "Estruturas e métodos", "ref": null, "material": null}, {"slug": "heap", "nome": "Heap e fila de prioridade", "grupo": "Estruturas e métodos", "ref": null, "material": null}, {"slug": "ordenacao", "nome": "Algoritmos de ordenação", "grupo": "Estruturas e métodos", "ref": null, "material": null}, {"slug": "complexidade", "nome": "Complexidade e recorrências", "grupo": "Estruturas e métodos", "ref": null, "material": null}, {"slug": "prog-dinamica", "nome": "Programação dinâmica", "grupo": "Estruturas e métodos", "ref": null, "material": null}, {"slug": "metodos", "nome": "Métodos de projeto (guloso, dividir e conquistar)", "grupo": "Estruturas e métodos", "ref": null, "material": null}], "padroes": [{"id": "P-BFS", "nome": "Simular BFS", "reconhecer": "Pedem pred de um vértice, altura da árvore BFS, distância em saltos ou a ordem em que os vértices ficam pretos.", "metodo": "Liste as adjacências na ordem pedida (numérica ou alfabética). Fila: tira o primeiro, descobre os vizinhos BRANCOS (pred = u, dist = dist(u) + 1), pinta u de PRETO. Num dígrafo, siga só o sentido das setas; quem não é descoberto fica com pred = NIL."}, {"id": "P-DFS", "nome": "Simular DFS com cores", "reconhecer": "Pedem a altura da árvore DFS, a ordem dos pretos ou as cores num instante (por exemplo, no return True).", "metodo": "Recursão: pinta u de CINZA, desce no menor vizinho BRANCO, só pinta de PRETO quando acaba a lista. Anote a pilha de recursão: os CINZA no instante pedido são exatamente os que estão nela."}, {"id": "P-TOPO", "nome": "Ciclos e ordenação topológica", "reconhecer": "Perguntam se uma sequência é ordenação topológica, ou que operação deixa um dígrafo sem ciclo.", "metodo": "Liste as arestas u → v. Uma ordem é válida se u vem antes de v em todas. Existe ordenação topológica se e só se não há ciclo: ache os ciclos e veja se a operação quebra todos."}, {"id": "P-MST", "nome": "Árvore geradora mínima", "reconhecer": "Pedem custo da MST, a ordem de inserção das arestas no conjunto A, a primeira aresta rejeitada ou o peso do que ficou fora.", "metodo": "Kruskal: ordene por peso (empate pela ordem pedida) e aceite a aresta se não fechar ciclo, até ter |V| − 1. Prim: extraia sempre a menor chave e grave (menor, menor.adjacente). Confira: o peso é o mesmo pelos dois."}, {"id": "P-DIJK", "nome": "Rodar Dijkstra", "reconhecer": "Pedem distâncias mínimas, predecessores ou o caminho reconstruído a partir de pred.", "metodo": "Tabela com caminho e predecessor de cada vértice. Extraia a menor distância, relaxe os vizinhos (atualize se peso + caminho(menor) for menor). Para o caminho, siga pred do destino até a origem."}, {"id": "P-ABB", "nome": "Montar uma ABB por inserção", "reconhecer": "Dão uma sequência de chaves e pedem altura, nível, folhas, nós com um filho, ou qual vetor gera certa forma.", "metodo": "Insira na ordem: menor à esquerda, maior à direita. Desenhe a árvore inteira antes de responder. Altura em arestas, raiz no nível 0. A ordem simétrica sai sempre crescente."}, {"id": "P-PERC", "nome": "Percursos de árvore", "reconhecer": "Pedem o k-ésimo elemento de um percurso, ou quais palavras preenchem nós para um percurso ler um texto.", "metodo": "Pré: raiz, esquerda, direita. Simétrica: esquerda, raiz, direita. Pós: esquerda, direita, raiz. Escreva a sequência inteira, numere e confira com os nós já preenchidos."}, {"id": "P-HUFF", "nome": "Árvore de Huffman", "reconhecer": "Dão frequências (ou um texto, ou uma regra) e pedem códigos, número de bits ou a decodificação de uma sequência.", "metodo": "Calcule as frequências. Junte sempre as duas menores (empate: a regra do enunciado). Rotule pela convenção dada (1 para a esquerda ou 1 para o mais frequente). Decodifique lendo da esquerda: o código é livre de prefixo."}, {"id": "P-TRACE", "nome": "Rastrear um pseudocódigo novo", "reconhecer": "Aparece um algoritmo modificado (com pilha, com tmp, com variante de Dijkstra) e perguntam o estado de uma variável.", "metodo": "Monte uma tabela com as variáveis e uma linha por iteração. Siga as condições ao pé da letra, inclusive os else e os testes de finalizado. Não assuma que o algoritmo está correto."}, {"id": "P-LACUNA", "nome": "Completar pseudocódigo", "reconhecer": "O pseudocódigo tem lacunas (cores, True/False, chamadas recursivas) e pedem o que vai em cada uma.", "metodo": "Lembre o algoritmo da folha e o papel de cada cor. Teste a versão completada num exemplo mínimo (um triângulo dirigido e um DAG de 3 vértices)."}, {"id": "P-VF", "nome": "Afirmações sobre grafos", "reconhecer": "Lista de afirmações ou V/F sobre propriedades (graus, árvores, Euler, bipartido, completos, alcançabilidade).", "metodo": "Para cada \"todo\" ou \"sempre\", procure contraexemplo pequeno (K4, triângulo, caminho). Use |E| = |V| − 1 em árvores e soma dos graus = 2|E|. Cuidado com a penalidade por alternativa errada."}, {"id": "P-MODEL", "nome": "Escolher a modelagem", "reconhecer": "Um problema do mundo real (gasodutos, metrô, arestas paralelas) e pedem custo ou qual modelagem resolve.", "metodo": "Traduza o objetivo: menor número de saltos = BFS; menor soma de pesos entre dois pontos = Dijkstra (pesos não negativos); ligar tudo ao menor custo = MST. Descarte DFS para distância e pesos negativos com Dijkstra."}], "blocos": [{"id": "buscas", "nome": "Buscas em grafos, ciclos e ordenação topológica", "questoes": ["PCS3110-2023-P3-Q2", "PCS3110-2023-P3-Q4", "PCS3110-2023-P3-Q7", "PCS3110-2024-P3-Q2", "PCS3110-2024-P3-Q5", "PCS3110-2024-P3-Q9", "PCS3110-2025-P3-Q3", "PCS3110-2025-P3-Q5", "PCS3110-2025-P3-Q8"]}, {"id": "caminhos-mst", "nome": "Árvore geradora mínima, Dijkstra e propriedades de grafos", "questoes": ["PCS3110-2023-P3-Q1", "PCS3110-2023-P3-Q3", "PCS3110-2023-P3-Q8", "PCS3110-2024-P3-Q1", "PCS3110-2024-P3-Q3", "PCS3110-2024-P3-Q4", "PCS3110-2024-P3-Q6", "PCS3110-2024-P3-Q8", "PCS3110-2025-P3-Q1", "PCS3110-2025-P3-Q4", "PCS3110-2025-P3-Q6", "PCS3110-2025-P3-Q7"]}, {"id": "arvores-huffman", "nome": "Árvores binárias, percursos e Huffman", "questoes": ["PCS3110-2023-P3-Q5", "PCS3110-2023-P3-Q6", "PCS3110-2023-P3-Q9", "PCS3110-2023-P3-Q10", "PCS3110-2024-P3-Q7", "PCS3110-2024-P3-Q10", "PCS3110-2025-P3-Q2", "PCS3110-2025-P3-Q9", "PCS3110-2025-P3-Q10"]}], "codigo": "PCS3110", "materia": "Algoritmos e Estruturas de Dados"}, "provas": [{"id": "PCS3110-2023-P3", "codigo": "PCS3110", "materia": "Algoritmos e Estruturas de Dados", "prova": "P3", "ano": 2023, "rotulo": "2023", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 100, "questoes": [{"n": 1, "id": "PCS3110-2023-P3-Q1", "pontos": 1.0, "topicos": ["dijkstra", "pilha-fila"], "padrao": "P-DIJK", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Dijkstra num dígrafo e os predecessores lidos pelo laço que reconstrói o caminho até 6 e até 7.", "armadilhas": ["Confundir predecessores lidos com vértices empilhados", "Esquecer a última leitura, que devolve a origem"], "armadilhas_tag": ["pilha-fila", "dijkstra"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 2, "id": "PCS3110-2023-P3-Q2", "pontos": 1.0, "topicos": ["dfs", "representacao"], "padrao": "P-DFS", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 2, "resumo": "DFS no K3,3 em ordem numérica: altura da árvore e ordem em que os vértices ficam pretos.", "armadilhas": ["Contar altura em vértices, não em arestas", "Dar a ordem de descoberta em vez da de término"], "armadilhas_tag": ["dfs", "dfs"], "gabarito": null, "respostas": ["(a) C: 5", "(b) E: 635241"]}, {"n": 3, "id": "PCS3110-2023-P3-Q3", "pontos": 1.0, "topicos": ["mst", "representacao"], "padrao": "P-MST", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Kruskal numa matriz de pesos 5×5 e ciclo de Euler na árvore com arestas duplicadas.", "armadilhas": ["Aceitar aresta que fecha ciclo no Kruskal", "Desempatar pela ordem alfabética antes de olhar o peso"], "armadilhas_tag": ["mst", "mst"], "gabarito": null, "respostas": ["(a) A: 6", "(b) E: ACABAEDEA"]}, {"n": 4, "id": "PCS3110-2023-P3-Q4", "pontos": 1.0, "topicos": ["ciclo-topologica"], "padrao": "P-TOPO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Qual sequência não é ordenação topológica de um DAG com 8 vértices.", "armadilhas": ["Marcar uma ordem válida quando o enunciado pede a inválida"], "armadilhas_tag": ["ciclo-topologica"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 5, "id": "PCS3110-2023-P3-Q5", "pontos": 1.0, "topicos": ["abb"], "padrao": "P-ABB", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "ABB com 15 inserções: altura, folhas e nós com um filho só.", "armadilhas": ["Contar folhas como nós com filho-esquerda NIL", "Contar a altura em níveis (7) em vez de arestas"], "armadilhas_tag": ["abb", "abb"], "gabarito": null, "respostas": ["(a) D: 6", "(b) D: 6", "(c) D: 2", "(d) D: 2"]}, {"n": 6, "id": "PCS3110-2023-P3-Q6", "pontos": 1.0, "topicos": ["percursos"], "padrao": "P-PERC", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Preencher árvores com as palavras do soneto para que a ordem simétrica e a pós-ordem leiam o texto.", "armadilhas": ["Parar na ordem simétrica quando duas alternativas coincidem", "Colocar a raiz no começo da pós-ordem"], "armadilhas_tag": ["percursos", "percursos"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 7, "id": "PCS3110-2023-P3-Q7", "pontos": 1.0, "topicos": ["bfs"], "padrao": "P-BFS", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 7, "resumo": "BFS num dígrafo a partir de 0: predecessor de um vértice inalcançável, altura e distância.", "armadilhas": ["Ignorar o sentido das arestas num dígrafo"], "armadilhas_tag": ["bfs"], "gabarito": null, "respostas": ["(a) A: NIL", "(b) B: 3", "(c) D: 3"]}, {"n": 8, "id": "PCS3110-2023-P3-Q8", "pontos": 1.0, "topicos": ["mst"], "padrao": "P-MST", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 9, "resumo": "Prim a partir de A numa matriz de pesos: ordem de inserção das arestas no conjunto A e custo.", "armadilhas": ["Ignorar a ordem de inserção pedida", "Escrever (A,B) quando o algoritmo grava (menor, menor.adjacente)"], "armadilhas_tag": ["mst", "mst"], "gabarito": null, "respostas": ["(a) A: nenhuma (a ordem certa é (B,A), (C,B), (E,B), (D,A))", "(b) D: 16"]}, {"n": 9, "id": "PCS3110-2023-P3-Q9", "pontos": 1.0, "topicos": ["huffman"], "padrao": "P-HUFF", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 6, "pagina_resolucao": 10, "resumo": "Huffman de FALA ARARA LOURA com árvore de altura máxima: código de FLOR e tamanho do código de O.", "armadilhas": ["Inverter a convenção 1 = esquerda", "Desempatar sem respeitar a altura máxima pedida"], "armadilhas_tag": ["huffman", "huffman"], "gabarito": null, "respostas": ["(a) E: 000010010000001", "(b) D: 5 bits"]}, {"n": 10, "id": "PCS3110-2023-P3-Q10", "pontos": 1.0, "topicos": ["pilha-fila", "percursos"], "padrao": "P-TRACE", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 6, "pagina_resolucao": 11, "resumo": "Rastrear um algoritmo com duas pilhas que devolve a altura de uma árvore binária.", "armadilhas": ["Contar níveis em vez de arestas"], "armadilhas_tag": ["percursos"], "gabarito": null, "respostas": ["(a) B: 2", "(b) E: 4"]}]}, {"id": "PCS3110-2024-P3", "codigo": "PCS3110", "materia": "Algoritmos e Estruturas de Dados", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 100, "questoes": [{"n": 1, "id": "PCS3110-2024-P3-Q1", "pontos": 1.0, "topicos": ["mst", "bfs", "modelagem"], "padrao": "P-MODEL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Gasodutos: custo de todas as arestas, da árvore geradora mínima e da árvore BFS a partir de E.", "armadilhas": ["Achar que o vértice inicial muda o peso da árvore geradora mínima", "Usar pesos para escolher na BFS"], "armadilhas_tag": ["mst", "bfs"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 2, "id": "PCS3110-2024-P3-Q2", "pontos": 1.0, "topicos": ["dfs", "ciclo-topologica"], "padrao": "P-LACUNA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 2, "resumo": "Completar a DFS que detecta ciclo em dígrafo: cores nas lacunas e valores devolvidos.", "armadilhas": ["Usar PRETO para detectar ciclo em dígrafo"], "armadilhas_tag": ["dfs"], "gabarito": null, "respostas": ["(a) C: BRANCO, BRANCO, CINZA", "(b) B: False, True, False"]}, {"n": 3, "id": "PCS3110-2024-P3-Q3", "pontos": 1.0, "topicos": ["dijkstra", "pilha-fila"], "padrao": "P-TRACE", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Variante de Dijkstra que empilha as distâncias candidatas não aproveitadas: soma, tamanho da pilha e caminho mínimo.", "armadilhas": ["Empilhar vizinho já finalizado", "Ignorar o desempate lexicográfico na fila"], "armadilhas_tag": ["pilha-fila", "dijkstra"], "gabarito": null, "respostas": ["(a) D: 10", "(b) E: 4", "(c) A: 2", "(d) D: d"]}, {"n": 4, "id": "PCS3110-2024-P3-Q4", "pontos": 1.0, "topicos": ["representacao"], "padrao": "P-VF", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Ler um grafo de uma matriz de incidência e julgar ciclos, adjacência, bipartição e graus.", "armadilhas": ["Ler matriz de incidência como se fosse de adjacência"], "armadilhas_tag": ["representacao"], "gabarito": null, "respostas": ["B, C e E"]}, {"n": 5, "id": "PCS3110-2024-P3-Q5", "pontos": 1.0, "topicos": ["bfs", "abb"], "padrao": "P-BFS", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 6, "resumo": "BFS a partir de 7 que insere cada vértice terminado numa ABB: ordem simétrica, distância até 2 e vértice mais distante.", "armadilhas": ["Achar que a ordem simétrica depende da ordem de inserção", "Medir distância na ABB em vez da árvore BFS"], "armadilhas_tag": ["abb", "bfs"], "gabarito": null, "respostas": ["(a) D: 2, 3, 7, 12, 15, 16, 17", "(b) B: 3 (o gabarito oficial deu A, 2; ver N. do T.)", "(c) C: 16"]}, {"n": 6, "id": "PCS3110-2024-P3-Q6", "pontos": 1.0, "topicos": ["representacao"], "padrao": "P-VF", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 8, "resumo": "Seis afirmações sobre grafos completos, bipartidos, regulares, ciclo de Euler e árvores.", "armadilhas": ["Esquecer que árvore tem exatamente |V| − 1 arestas", "Achar que todo grafo regular tem ciclo de Euler"], "armadilhas_tag": ["representacao", "representacao"], "gabarito": null, "respostas": ["B e E"]}, {"n": 7, "id": "PCS3110-2024-P3-Q7", "pontos": 1.0, "topicos": ["abb", "percursos"], "padrao": "P-ABB", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 5, "pagina_resolucao": 8, "resumo": "ABB com 8 inserções: altura, nível de um elemento, pós-ordem, pré-ordem e folhas.", "armadilhas": ["Trocar pai e filho na pré-ordem"], "armadilhas_tag": ["percursos"], "gabarito": null, "respostas": ["(a) C: 3", "(b) A: 2", "(c) C", "(d) E", "(e) A: 3"]}, {"n": 8, "id": "PCS3110-2024-P3-Q8", "pontos": 1.0, "topicos": ["mst"], "padrao": "P-MST", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 9, "resumo": "Kruskal num grafo de 6 vértices: soma das 4 primeiras arestas, primeira rejeitada e peso do que ficou fora.", "armadilhas": ["Dar o peso da árvore quando pedem o das arestas descartadas"], "armadilhas_tag": ["mst"], "gabarito": null, "respostas": ["(a) C: 8", "(b) C: 3", "(c) A: 33"]}, {"n": 9, "id": "PCS3110-2024-P3-Q9", "pontos": 1.0, "topicos": ["modelagem", "bfs", "dijkstra"], "padrao": "P-MODEL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 6, "pagina_resolucao": 11, "resumo": "Menor número de baldeações no metrô: qual modelagem com grafos resolve.", "armadilhas": ["Usar Dijkstra com pesos negativos", "Achar que a árvore DFS dá distâncias mínimas"], "armadilhas_tag": ["dijkstra", "bfs"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 10, "id": "PCS3110-2024-P3-Q10", "pontos": 1.0, "topicos": ["huffman"], "padrao": "P-HUFF", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 7, "pagina_resolucao": 12, "resumo": "Huffman com 5 letras em que cada frequência é o dobro da anterior: códigos e decodificação.", "armadilhas": ["Trocar 0 e 1 entre os dois menos frequentes"], "armadilhas_tag": ["huffman"], "gabarito": null, "respostas": ["(a) B: 0000", "(b) C: 1", "(c) E: 0001", "(d) A: VAPOR"]}]}, {"id": "PCS3110-2025-P3", "codigo": "PCS3110", "materia": "Algoritmos e Estruturas de Dados", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 100, "questoes": [{"n": 1, "id": "PCS3110-2025-P3-Q1", "pontos": 1.0, "topicos": ["representacao", "dijkstra", "mst", "huffman"], "padrao": "P-VF", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Quatro V ou F: grau em árvore binária, Dijkstra sem pesos, arestas da MST e Huffman sem frequências.", "armadilhas": ["Achar que Dijkstra é sempre a melhor escolha para caminho mínimo", "Confundir grau do vértice com número de filhos"], "armadilhas_tag": ["dijkstra", "representacao"], "gabarito": null, "respostas": ["(a) Falso", "(b) Falso", "(c) Verdadeiro", "(d) Verdadeiro"]}, {"n": 2, "id": "PCS3110-2025-P3-Q2", "pontos": 1.0, "topicos": ["abb"], "padrao": "P-ABB", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "ABB: qual vetor gera a forma desenhada e qual vetor gera a ABB mais alta.", "armadilhas": ["Achar que mais elementos significam árvore mais alta"], "armadilhas_tag": ["abb"], "gabarito": null, "respostas": ["(a) C: 6, 7, 1, 4, 3, 5, 2", "(b) B: 15, 14, 12, 7, 4, 1, 13"]}, {"n": 3, "id": "PCS3110-2025-P3-Q3", "pontos": 1.0, "topicos": ["representacao", "bfs"], "padrao": "P-VF", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Num dígrafo, quais vértices não são alcançáveis a partir de nenhum outro.", "armadilhas": ["Confundir vértice em ciclo com vértice não alcançável"], "armadilhas_tag": ["representacao"], "gabarito": null, "respostas": ["C (W) e G (K)"]}, {"n": 4, "id": "PCS3110-2025-P3-Q4", "pontos": 1.0, "topicos": ["mst", "modelagem"], "padrao": "P-MST", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Árvore geradora mínima com arestas paralelas: mantendo as menores, as maiores, e o que não muda.", "armadilhas": ["Achar que Prim e Kruskal podem dar pesos de MST diferentes"], "armadilhas_tag": ["mst"], "gabarito": null, "respostas": ["(a) B: 12", "(b) C: 22", "(c) A"]}, {"n": 5, "id": "PCS3110-2025-P3-Q5", "pontos": 1.0, "topicos": ["ciclo-topologica"], "padrao": "P-TOPO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Quais operações num dígrafo com ciclos o deixam com ordenação topológica.", "armadilhas": ["Achar que remover qualquer aresta de um ciclo resolve todos os ciclos", "Ler só a fórmula de uma alternativa inconsistente"], "armadilhas_tag": ["ciclo-topologica", "ciclo-topologica"], "gabarito": null, "respostas": ["B, E e F"]}, {"n": 6, "id": "PCS3110-2025-P3-Q6", "pontos": 1.0, "topicos": ["representacao"], "padrao": "P-VF", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 6, "resumo": "Número máximo de arestas de um grafo simples com 7 vértices sem ciclo.", "armadilhas": ["Usar n(n − 1)/2 quando o grafo não pode ter ciclo"], "armadilhas_tag": ["representacao"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 7, "id": "PCS3110-2025-P3-Q7", "pontos": 1.0, "topicos": ["dijkstra"], "padrao": "P-DIJK", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 7, "resumo": "O mesmo grafo com pesos u·v, u + v e (u·v)²: diferenças de caminhos mínimos e de número de arestas.", "armadilhas": ["Supor que a aresta direta é sempre o caminho mais curto"], "armadilhas_tag": ["dijkstra"], "gabarito": null, "respostas": ["(a) D: 11", "(b) C: 6", "(c) B: 18", "(d) A: 1 e 1"]}, {"n": 8, "id": "PCS3110-2025-P3-Q8", "pontos": 1.0, "topicos": ["dfs", "ciclo-topologica"], "padrao": "P-DFS", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "DFS que detecta ciclo: cores de cada vértice no momento em que o algoritmo devolve True.", "armadilhas": ["Pintar de preto os vértices da pilha quando a recursão volta com True"], "armadilhas_tag": ["dfs"], "gabarito": null, "respostas": ["(a) B: 4", "(b) A, E e H: 2, 3 e 1", "(c) A, G e H: 6, 5 e 0"]}, {"n": 9, "id": "PCS3110-2025-P3-Q9", "pontos": 1.0, "topicos": ["percursos"], "padrao": "P-PERC", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 5, "pagina_resolucao": 9, "resumo": "Árvore binária cheia com 15 letras: 12º da pré-ordem, 14º da simétrica, penúltimo da pós-ordem.", "armadilhas": ["Errar a contagem dentro da sequência"], "armadilhas_tag": ["percursos"], "gabarito": null, "respostas": ["(a) F ou L: Z", "(b) A: M", "(c) G: A"]}, {"n": 10, "id": "PCS3110-2025-P3-Q10", "pontos": 1.0, "topicos": ["huffman"], "padrao": "P-HUFF", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 6, "pagina_resolucao": 10, "resumo": "Huffman com frequências dadas por uma recursão F(i): códigos de três caracteres e decodificação.", "armadilhas": ["Calcular errado a frequência pela recursão", "Confundir o caractere com a frequência"], "armadilhas_tag": ["huffman", "huffman"], "gabarito": null, "respostas": ["(a) E: 1111", "(b) E: 10", "(c) D: 110", "(d) A: 15331"]}]}], "atualizado": "22/11/2026", "blocos": [{"id": "PCS3110-P3-bloco-buscas", "nome": "Buscas em grafos, ciclos e ordenação topológica", "questoes": ["PCS3110-2023-P3-Q2", "PCS3110-2023-P3-Q4", "PCS3110-2023-P3-Q7", "PCS3110-2024-P3-Q2", "PCS3110-2024-P3-Q5", "PCS3110-2024-P3-Q9", "PCS3110-2025-P3-Q3", "PCS3110-2025-P3-Q5", "PCS3110-2025-P3-Q8"]}, {"id": "PCS3110-P3-bloco-caminhos-mst", "nome": "Árvore geradora mínima, Dijkstra e propriedades de grafos", "questoes": ["PCS3110-2023-P3-Q1", "PCS3110-2023-P3-Q3", "PCS3110-2023-P3-Q8", "PCS3110-2024-P3-Q1", "PCS3110-2024-P3-Q3", "PCS3110-2024-P3-Q4", "PCS3110-2024-P3-Q6", "PCS3110-2024-P3-Q8", "PCS3110-2025-P3-Q1", "PCS3110-2025-P3-Q4", "PCS3110-2025-P3-Q6", "PCS3110-2025-P3-Q7"]}, {"id": "PCS3110-P3-bloco-arvores-huffman", "nome": "Árvores binárias, percursos e Huffman", "questoes": ["PCS3110-2023-P3-Q5", "PCS3110-2023-P3-Q6", "PCS3110-2023-P3-Q9", "PCS3110-2023-P3-Q10", "PCS3110-2024-P3-Q7", "PCS3110-2024-P3-Q10", "PCS3110-2025-P3-Q2", "PCS3110-2025-P3-Q9", "PCS3110-2025-P3-Q10"]}], "guia": {"escopo": "Nas três P3 recentes (2023, 2024 e 2025), a prova teve 10 testes em 100 minutos, sem consulta, mas com uma folha de pseudocódigo (BFS, DFS, Prim, Kruskal, Dijkstra, Huffman e percursos de árvore). O conteúdo é o fim do programa: grafos (representação, BFS, DFS, ciclos e ordenação topológica, árvore geradora mínima, Dijkstra), árvores binárias de busca e percursos, e o código de Huffman. A prova é a mesma para as três turmas. Ordenação, heap, complexidade e programação dinâmica dominaram as P3 de 2016 e 2017, mas não apareceram em nenhuma P3 recente; hash não caiu em nenhuma das cinco.", "programa": ["Árvores: árvore binária de busca e percursos", "Método guloso (código de Huffman)", "Grafos: busca em largura (BFS)", "Grafos: busca em profundidade (DFS)", "Grafos: árvore geradora mínima (Prim e Kruskal)", "Grafos: caminho mínimo (Dijkstra)", "Grafos: ordenação topológica", "Pilhas e filas (usadas dentro dos algoritmos)"], "roteiro": [{"etapa": "Leia a folha de pseudocódigo", "texto": "Ela vem na prova: BFS, DFS, Prim, Kruskal, Dijkstra, Huffman e percursos. Saiba o que cada linha faz, porque as questões citam linhas (\"passo 15 da BFS\", \"linha 8 do Kruskal\", \"linha 11 do Prim\"). Refaça 2023 Q8 e 2024 Q8."}, {"etapa": "Buscas", "texto": "Simule BFS e DFS à mão com a tabela de cores, pred e distância. Refaça 2023 Q2 e Q7, 2024 Q5 e 2025 Q3."}, {"etapa": "Ciclos e ordenação topológica", "texto": "Aresta para vértice CINZA = ciclo. Refaça 2023 Q4, 2024 Q2, 2025 Q5 e 2025 Q8 (cores no instante do return True)."}, {"etapa": "Árvore geradora mínima", "texto": "Kruskal e Prim, com a ordem de inserção e as arestas rejeitadas. Refaça 2023 Q3, 2024 Q1 e 2025 Q4."}, {"etapa": "Dijkstra e variantes", "texto": "Tabela de caminho e predecessor, e rastreio de algoritmos modificados com pilha. Refaça 2023 Q1, 2024 Q3 e 2025 Q7."}, {"etapa": "Árvores e Huffman", "texto": "ABB por inserção, percursos e Huffman com a convenção de rótulos. Refaça 2023 Q5, Q6, Q9 e Q10, 2024 Q7 e Q10, 2025 Q2, Q9 e Q10."}, {"etapa": "Simulado", "texto": "Faça a P3 de 2025 inteira em 100 minutos, sem olhar a resolução, e depois as afirmações de teoria (2024 Q4, Q6 e Q9; 2025 Q1 e Q6)."}], "tendencias": [{"titulo": "Grafos tomaram a prova", "texto": "21 dos 30 testes de 2023 a 2025 são de grafos (6 em 2023, 8 em 2024, 7 em 2025). Nas P3 de 2016 e 2017, só 1 das 20 questões era de grafo (Dijkstra com heap, 2017)."}, {"titulo": "MST e Huffman em todas", "texto": "Árvore geradora mínima caiu nas 3 P3 recentes (5 testes: 2023 Q3 e Q8, 2024 Q1 e Q8, 2025 Q4). Huffman também, sempre como teste de código e decodificação (2023 Q9, 2024 Q10, 2025 Q10)."}, {"titulo": "ABB e percursos todo ano", "texto": "Árvore binária de busca ou percurso apareceu nas 3 P3 recentes, em 7 testes (2023 Q5, Q6 e Q10; 2024 Q5 e Q7; 2025 Q2 e Q9)."}, {"titulo": "Ordenação, heap, complexidade e PD sumiram", "texto": "Eram as 20 questões de 2016 e 2017 (counting sort, heapsort, quicksort, Θ, recorrências, LIS, corte de hastes). Nenhuma das 30 de 2023 a 2025 cobra isso."}, {"titulo": "Formato: 10 testes com vários itens", "texto": "Em 2016 e 2017 eram 2 dissertativas e 8 testes. Desde 2023 são 10 testes, quase todos com 2 a 5 itens, e alguns \"assinale todas\" (2024 Q4, Q6 e Q9; 2025 Q3, Q5 e Q8). Em 2024 Q6, cada alternativa errada marcada tirava 0,2."}], "checklist": ["Simular BFS num dígrafo e dar pred, distância e altura da árvore, inclusive pred = NIL para vértice não alcançado.", "Simular DFS em ordem numérica e dar a ordem em que os vértices ficam PRETOS.", "Dizer as cores de todos os vértices no instante em que a DFS de detecção de ciclo devolve True.", "Completar as lacunas da DFS que detecta ciclo (BRANCO para visitar, CINZA para ciclo, e os return).", "Verificar se uma sequência é ordenação topológica checando cada aresta u → v.", "Dizer quais remoções de vértice ou aresta deixam um dígrafo sem ciclo.", "Rodar Kruskal com desempate alfabético e dar a soma parcial, a primeira aresta rejeitada e o peso das arestas fora da árvore.", "Rodar Prim e listar as arestas (menor, menor.adjacente) na ordem de inserção.", "Rodar Dijkstra, reconstruir o caminho pelos predecessores e rastrear variantes com pilha.", "Escolher BFS, Dijkstra ou MST conforme o objetivo do problema (saltos, soma de pesos, ligar tudo).", "Ler um grafo de matriz de adjacência e de matriz de incidência, com graus e laços.", "Julgar afirmações sobre Kₙ, K(m,n), grafo regular, ciclo de Euler, árvore (|V| − 1 arestas) e floresta.", "Montar uma ABB por inserção e dar altura, nível, folhas e nós com um só filho.", "Dizer qual vetor de inserção gera uma forma de ABB dada.", "Escrever pré-ordem, ordem simétrica e pós-ordem e achar o k-ésimo elemento.", "Montar a árvore de Huffman com a convenção de rótulos pedida, codificar e decodificar uma sequência."], "pegadinhas": [{"titulo": "Dígrafo tratado como não dirigido", "texto": "Em 2023 Q7, o vértice 5 só tem seta saindo para 6: a BFS a partir de 0 nunca o alcança (pred = NIL). Quem ignora o sentido marca 6."}, {"titulo": "Ordem de inserção no Prim", "texto": "Em 2023 Q8, a alternativa D tem as arestas certas na ordem errada. O Prim grava na ordem de extração, e E (chave 5) sai antes de D (chave 6). A resposta é \"nenhuma\"."}, {"titulo": "Altura em arestas", "texto": "Altura conta arestas e a raiz está no nível 0. Em 2023 Q2 a DFS do K3,3 tem 6 vértices em fila e altura 5; em 2023 Q10 a árvore C tem 5 nós e altura 4."}, {"titulo": "MST não depende do vértice inicial", "texto": "Em 2024 Q1, o projeto que \"começa em E\" custa 23 como qualquer MST; a árvore BFS custa 34. Como 23 não está em nenhuma alternativa, a resposta é \"nenhuma das demais\"."}, {"titulo": "Árvore BFS não é a ABB", "texto": "Em 2024 Q5, a distância de 7 até 2 na árvore BFS é 3. O gabarito oficial deu 2, que é a profundidade do 2 na ABB. Leia de que árvore a pergunta fala."}, {"titulo": "CINZA, não PRETO, indica ciclo", "texto": "Em 2024 Q2 e 2025 Q8, ciclo é aresta para vértice CINZA (na pilha de recursão). E quando a função devolve True, os vértices da pilha continuam CINZA."}, {"titulo": "Convenção do Huffman muda de ano para ano", "texto": "Em 2023 era 1 para o filho esquerdo e árvore de altura máxima nos empates; em 2024 e 2025 era 1 para o mais frequente. Leia a convenção antes de rotular."}, {"titulo": "Frequência por recursão", "texto": "Em 2025 Q10, F(5) usa a regra F(i − 1) − 2 e dá 9. E o caractere 6 tem frequência 6: não confunda caractere com frequência."}, {"titulo": "Remover duas arestas de um ciclo", "texto": "Em 2024 Q6 (F), o grafo tem 9 vértices e 9 arestas; removendo 2, sobram 7, e uma árvore precisa de 8. O grafo fica desconexo."}, {"titulo": "Alternativas repetidas e inconsistentes", "texto": "2023 Q2 tem duas alternativas iguais; 2025 Q9 tem duas com Z; 2025 Q5 (C) diz uma aresta no texto e outra na fórmula. Não se assuste: resolva e marque pelo conteúdo."}], "dicas_prova": ["São 10 testes em 100 minutos: 10 minutos por teste. Comece pelos de percurso, ABB e V/F, que levam 3 a 5 minutos, e deixe as variantes de Dijkstra com pilha (2024 Q3) para o fim.", "A folha de pseudocódigo vem na prova: quando a questão citar uma linha (\"passo 15\", \"linha 11\"), abra a folha e siga a linha, não a sua memória.", "Em toda simulação, monte a tabela (vértice, cor, pred, distância ou chave) antes de olhar as alternativas.", "Os itens de um mesmo teste usam o mesmo grafo: desenhe uma vez, limpo, e reaproveite.", "Em \"assinale todas\", só marque o que conferiu: em 2024 Q6 cada marcação errada tirava 0,2.", "Antes de rotular uma árvore de Huffman, escreva no canto a convenção (1 = esquerda ou 1 = mais frequente) e a regra de desempate.", "Confira com contas rápidas: MST com |V| − 1 arestas, soma dos graus = 2|E|, folhas = nós com dois filhos + 1, ordem simétrica crescente.", "Preencha a folha de respostas teste a teste; a correção é automática e ignora o que não está marcado na caixa."], "formulario": [{"nome": "BFS e DFS", "typst": "$O(|V| + |E|)$ com listas de adjacência", "txt": "BFS e DFS: O(|V| + |E|) com listas de adjacência"}, {"nome": "Kruskal", "typst": "$O(|E| log |E|)$ (ordenação das arestas)", "txt": "Kruskal: O(|E| log |E|)"}, {"nome": "Prim e Dijkstra com heap", "typst": "$O((|V| + |E|) log |V|)$", "txt": "Prim e Dijkstra com heap: O((|V| + |E|) log |V|)"}, {"nome": "Relaxamento (Dijkstra)", "typst": "se $c(v) > c(u) + w(u, v)$: $c(v) <- c(u) + w(u, v)$ e $pi(v) <- u$", "txt": "se v.caminho > peso(u, v) + u.caminho: atualiza v.caminho e v.predecessor = u"}, {"nome": "Árvore e floresta", "typst": "$|E| = |V| - 1$; floresta com $c$ componentes: $|E| = |V| - c$", "txt": "Árvore: |E| = |V| − 1; floresta com c componentes: |E| = |V| − c"}, {"nome": "Grafo simples", "typst": "$|E| <= n(n - 1) \\/ 2$, com igualdade em $K_n$", "txt": "Grafo simples: |E| ≤ n(n − 1)/2 (igual no Kn)"}, {"nome": "Soma dos graus", "typst": "$sum_v deg(v) = 2 |E|$", "txt": "Soma dos graus = 2|E|"}, {"nome": "Bipartido completo", "typst": "$K_(m,n)$: $m n$ arestas, distância máxima 2", "txt": "K(m,n): m·n arestas, distância máxima 2"}, {"nome": "Ciclo de Euler", "typst": "existe $<=>$ conexo e todo $deg(v)$ par", "txt": "Ciclo de Euler existe ⇔ conexo e todos os graus pares"}, {"nome": "Ordenação topológica", "typst": "existe $<=>$ dígrafo sem ciclo; $forall (u, v) in E$: $u$ antes de $v$", "txt": "Existe ⇔ dígrafo sem ciclo; para toda aresta u → v, u vem antes de v"}, {"nome": "Ciclo na DFS (dígrafo)", "typst": "aresta para vértice CINZA $=>$ ciclo", "txt": "Aresta para vértice CINZA ⇒ ciclo"}, {"nome": "Árvore binária", "typst": "$n_0 = n_2 + 1$ (folhas = nós com dois filhos + 1)", "txt": "Folhas = nós com dois filhos + 1"}, {"nome": "Altura da ABB com n nós", "typst": "$floor(log_2 n) <= h <= n - 1$", "txt": "⌊log₂ n⌋ ≤ h ≤ n − 1"}, {"nome": "Percursos", "typst": "pré: R E D; simétrica: E R D; pós: E D R", "txt": "Pré: raiz, esq., dir.; simétrica: esq., raiz, dir.; pós: esq., dir., raiz"}, {"nome": "Huffman", "typst": "$n - 1$ junções das duas menores; custo $= sum_c f(c) dot \"prof\"(c)$", "txt": "n − 1 junções das duas menores; custo = Σ f(c)·profundidade(c)"}]}, "historico": [{"ano": 2016, "rotulo": "P3 2016", "fonte": "fontes/2016-antiga-Xpm1", "questoes": [{"resumo": "Dissertativa: ordenação por contagem; rastrear os vetores C e B, estabilidade e adaptar para aceitar o zero.", "topicos": ["ordenacao"]}, {"resumo": "Dissertativa: maior subsequência crescente (LIS) por programação dinâmica; preencher a tabela e recuperar a subsequência.", "topicos": ["prog-dinamica"]}, {"resumo": "Insertion sort contra mergesort para achar repetidos: complexidade de melhor e pior caso.", "topicos": ["ordenacao", "complexidade"]}, {"resumo": "Afirmações sobre Θ, O e Ω.", "topicos": ["complexidade"]}, {"resumo": "Θ de um algoritmo recursivo com laço: T(n) = T(n − 2) + Θ(n).", "topicos": ["complexidade"]}, {"resumo": "Completar o Partition com pivô no início do vetor.", "topicos": ["ordenacao"]}, {"resumo": "Estado do vetor durante o heapsort.", "topicos": ["heap", "ordenacao"]}, {"resumo": "Fila de prioridade com max-heap contra fila comum após uma sequência de operações.", "topicos": ["heap", "pilha-fila"]}, {"resumo": "Paralelizar heapsort, mergesort e quicksort: afirmação incorreta.", "topicos": ["ordenacao", "metodos"]}, {"resumo": "Mergesort: complexidade e dividir para conquistar.", "topicos": ["ordenacao", "metodos", "complexidade"]}]}, {"ano": 2017, "rotulo": "P3 2017", "fonte": "fontes/2017-antiga-7zER", "questoes": [{"resumo": "Dissertativa: heap a partir do número USP; min/max-heap, Max-Heapify e primeira troca do heapsort.", "topicos": ["heap"]}, {"resumo": "Dissertativa: ordenar números USP; quicksort/Partition, mediana em Θ(n) e ordenação linear com vetor auxiliar.", "topicos": ["ordenacao", "complexidade"]}, {"resumo": "Insertion sort recursivo: recorrência e custo da recursão.", "topicos": ["ordenacao", "complexidade"]}, {"resumo": "Bubblesort: vetor após duas passadas.", "topicos": ["ordenacao"]}, {"resumo": "IntroSort: completar as chamadas recursivas (quicksort, heapsort, insertion).", "topicos": ["ordenacao"]}, {"resumo": "Θ de três laços aninhados (n · n · n²).", "topicos": ["complexidade"]}, {"resumo": "Afirmações sobre guloso (Huffman), dividir e conquistar, programação dinâmica e notação assintótica.", "topicos": ["metodos", "prog-dinamica", "complexidade", "huffman"]}, {"resumo": "Recorrência da busca binária: Θ(lg n).", "topicos": ["complexidade"]}, {"resumo": "Dijkstra com min-heap: estado da fila de prioridade após iterações.", "topicos": ["dijkstra", "heap"]}, {"resumo": "Corte de hastes por programação dinâmica bottom-up: completar a linha do max.", "topicos": ["prog-dinamica"]}]}], "extra": {}, "codigos": ["PCS3110"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, PROVAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+PROVAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de 2016–2020 para a tendência`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  PROVAS.map(p=>`<a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">${esc(p.rotulo||p.ano)} · prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">${esc(p.rotulo||p.ano)} · resolução</a>`).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+const av = [];
+if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
+if (PROVAS.some(p=>p.status!=='revisada')) av.push('<b>Resoluções em revisão.</b> Ainda não foram conferidas por um segundo revisor. Achou algo? Avise em @prisma.poli.');
+if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
+else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
+document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: 2016–2020 x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de 2016–2020 contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>2016–2020</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, PROVAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(Q.length / Math.max(1,n)));
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false;
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+document.getElementById('simdur').textContent = durs.length ? `Duração sugerida: ${durPadrao} min, a das P3 analisadas. Ajuste ao tempo da sua turma.` : 'A duração não consta nas provas analisadas; ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  timer=setInterval(()=>{ restante=Math.max(0,restante-1); clock.textContent=fmt(restante); if(!restante){ encerrar(); } },1000);
+});
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>
