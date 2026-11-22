@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fuja das P3</title>
-<meta name="description" content="Provas antigas de P3 do 2º semestre da Poli, transcritas e resolvidas questão por questão, com o guia do que cai e de como gabaritar. Uma iniciativa da chapa Prisma.">
+<meta name="description" content="Provas antigas de P3 do 2º e do 4º semestre da Poli, transcritas e resolvidas questão por questão, com o guia do que cai e de como gabaritar. Uma iniciativa da chapa Prisma.">
 <meta property="og:title" content="Fuja das P3">
 <meta property="og:description" content="P3 antigas da Poli transcritas e resolvidas, com guia do que cai, tendências, checklist e simulado.">
 <meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
@@ -81,6 +81,9 @@ footer b{color:var(--band-fg);font-weight:500}
 .passo p{margin:0;color:var(--muted);font-size:.95rem}
 .area{display:flex;flex-direction:column;gap:12px}
 .area + .area{margin-top:28px}
+.semestre{font-size:1.25rem;font-weight:800;letter-spacing:-.01em;margin:44px 0 18px;padding-top:18px;border-top:3px solid var(--laranja);display:flex;align-items:baseline;gap:12px}
+.semestre:first-of-type{margin-top:8px}
+.semestre span{font-family:var(--f-mono);font-size:.78rem;font-weight:500;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 .area > h3{font-family:var(--f-mono);font-size:.78rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
 .area > h3::after{content:"";flex:1;height:1px;background:var(--line)}
 .grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -117,7 +120,7 @@ footer b{color:var(--band-fg);font-weight:500}
     <div style="min-width:0">
       <div class="eyebrow">Chapa Prisma · Poli-USP</div>
       <h1>Fuja das <span class="p3">P3</span>.</h1>
-      <p class="lead">As P3 do 2º semestre da Poli, <b>transcritas e resolvidas questão por questão</b>, com um <b>guia do que cai e de como gabaritar</b> cada matéria. Comece pelo guia e treine com a prova limpa no tempo real.</p>
+      <p class="lead">As P3 do 2º e do 4º semestre da Poli, <b>transcritas e resolvidas questão por questão</b>, com um <b>guia do que cai e de como gabaritar</b> cada matéria. Comece pelo guia e treine com a prova limpa no tempo real.</p>
       <div class="contador"><span><b>8</b>matérias</span><span><b>24</b>provas</span><span><b>185</b>questões</span><span><b>2016–2026</b></span></div>
       <div class="cta-hero"><a class="pri" href="#materias">Escolher minha matéria</a><a class="sec" href="https://chapaprisma.github.io/fuja-das-p2/">Fuja das P2 →</a></div>
     </div>
@@ -129,7 +132,7 @@ footer b{color:var(--band-fg);font-weight:500}
 <section id="materias">
   <div class="sec-head"><span class="lbl">Matérias</span><h2>Escolha a matéria da sua próxima P3</h2>
   <p>Cada matéria tem o Guia da P3 (o que entra, o que tem caído mais, checklist, pegadinhas e formulário), o Raio-X das provas, as provas por ano e por assunto, e um simulado com cronômetro.</p></div>
-  <div class="area"><h3>Matemática</h3><div class="grade"><a class="mat" href="algebra-linear-2/">
+  <h3 class="semestre" id="sem2">2º semestre <span>8 matérias</span></h3><div class="area"><h3>Comum a quase todas as engenharias</h3><div class="grade"><a class="mat" href="algebra-linear-2/">
   <div class="top"><span class="cod">MAT3458 / MAT2458</span></div>
   <h4>Álgebra Linear II</h4>
   <div class="num"><b>3</b> provas · <b>42</b> questões · P3 de 2023, 2024, 2025</div>
@@ -141,19 +144,19 @@ footer b{color:var(--band-fg);font-weight:500}
   <div class="num"><b>3</b> provas · <b>25</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
   <span class="abrir">abrir →</span>
-</a></div></div><div class="area"><h3>Física</h3><div class="grade"><a class="mat" href="fisica-2/">
+</a><a class="mat" href="fisica-2/">
   <div class="top"><span class="cod">4323102</span></div>
   <h4>Física II</h4>
   <div class="num"><b>3</b> provas · <b>32</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
   <span class="abrir">abrir →</span>
-</a></div></div><div class="area"><h3>Mecânica</h3><div class="grade"><a class="mat" href="mecanica-1/">
+</a><a class="mat" href="mecanica-1/">
   <div class="top"><span class="cod">PME3100</span></div>
   <h4>Mecânica I</h4>
   <div class="num"><b>5</b> provas · <b>15</b> questões · P3 de 2022 reof, 2023, 2024 reof, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
   <span class="abrir">abrir →</span>
-</a></div></div><div class="area"><h3>Computação e Elétrica</h3><div class="grade"><a class="mat" href="algoritmos-ed/">
+</a></div></div><div class="area"><h3>Elétrica e Computação</h3><div class="grade"><a class="mat" href="algoritmos-ed/">
   <div class="top"><span class="cod">PCS3110</span></div>
   <h4>Algoritmos e Estruturas de Dados</h4>
   <div class="num"><b>3</b> provas · <b>30</b> questões · P3 de 2023, 2024, 2025</div>
@@ -171,7 +174,7 @@ footer b{color:var(--band-fg);font-weight:500}
   <div class="num"><b>4</b> provas · <b>12</b> questões · P3 de 2022, 2024, 2025, 2026</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
   <span class="abrir">abrir →</span>
-</a></div></div><div class="area"><h3>Materiais</h3><div class="grade"><a class="mat" href="materiais/">
+</a></div></div><div class="area"><h3>Materiais, Metalúrgica, Química, Minas e Petróleo</h3><div class="grade"><a class="mat" href="materiais/">
   <div class="top"><span class="cod">PMT3100</span></div>
   <h4>Fundamentos de Ciência e Engenharia dos Materiais</h4>
   <div class="num"><b>1</b> prova · <b>11</b> questões · P3 de questões antigas</div>
@@ -201,7 +204,7 @@ footer b{color:var(--band-fg);font-weight:500}
 <section id="falta">
   <div class="falta">
     <div><span class="lbl">Ainda falta</span><h2 style="font-size:1.55rem;margin-top:6px">Tem P3 antiga destas matérias?</h2>
-    <p style="color:var(--muted);margin:6px 0 0;max-width:52ch">Não achamos P3 recentes destas matérias do 2º semestre. Se você tiver uma, mande pra gente: ela entra aqui, transcrita e resolvida.</p></div>
+    <p style="color:var(--muted);margin:6px 0 0;max-width:52ch">Não achamos P3 destas matérias do 2º e do 4º semestre no acervo. Se você tiver uma, mande pra gente: ela entra aqui, transcrita e resolvida.</p></div>
     <ul><li>Introdução à Economia (PRO3206)</li><li>Introdução ao Projeto na Engenharia (0313102)</li><li>Introdução à Engenharia Elétrica (0323100)</li><li>Conservação de Massa e Energia</li></ul>
   </div>
 </section>
