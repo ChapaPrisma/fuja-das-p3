@@ -73,6 +73,40 @@ footer b{color:var(--band-fg);font-weight:500}
 .passo p{margin:0;color:var(--muted);font-size:.95rem}
 .area{display:flex;flex-direction:column;gap:12px}
 .area + .area{margin-top:28px}
+/* ---------- movimento dos botões (home e matérias) ----------
+   Sobe ao passar o mouse, afunda ao apertar, setas apontam para onde o botão leva.
+   Tudo some com prefers-reduced-motion. */
+:root{--ease:cubic-bezier(.2,.8,.2,1);--mola:cubic-bezier(.34,1.56,.64,1);--sombra:rgba(15,35,71,.32)}
+:root[data-theme="dark"]{--sombra:rgba(0,0,0,.55)}
+.ar{display:inline-block;font-style:normal}
+@media (prefers-reduced-motion: no-preference){
+  .docs a,.btn,.tema,nav.toc a,.cell,.links a,.qlink,.cta-hero a,.atalhos-sem a,.cta,.mat,.qcard,.volta,.ar,.chk input,.check input{
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease),background-color .15s,border-color .15s,color .15s}
+  @media (hover: hover){
+    .docs a:hover,.btn:not([disabled]):hover,.tema:hover,.cta-hero a:hover,.atalhos-sem a:hover,.cta:hover,nav.toc a.toc-home:hover{
+      transform:translateY(-2px);box-shadow:0 8px 16px -8px var(--sombra)}
+    nav.toc .toc-scroll a:hover{transform:translateY(-1px)}
+    .cell:not([data-n="0"]):hover{transform:scale(1.07);box-shadow:0 6px 12px -6px var(--sombra)}
+    .mat:hover{transform:translateY(-4px);box-shadow:0 16px 28px -16px var(--sombra)}
+    .qcard:hover{border-color:var(--h2)}
+    .links a:hover,.qlink:hover{transform:translateY(-1px)}
+    a:hover .ar-r{transform:translateX(5px)}
+    a:hover .ar-l{transform:translateX(-5px)}
+    a:hover .ar-d{animation:quica .8s var(--ease) infinite}
+  }
+  .docs a:active,.btn:not([disabled]):active,.tema:active,nav.toc a:active,.cta-hero a:active,.atalhos-sem a:active,.cta:active,.cell:not([data-n="0"]):active,.links a:active,.qlink:active{
+    transform:scale(.95);box-shadow:none;transition-duration:.07s}
+  .mat:active{transform:translateY(-1px) scale(.985);box-shadow:none;transition-duration:.07s}
+  nav.toc .toc-scroll a.ativo{animation:pop .34s var(--mola)}
+  .cell.sel{animation:pop .3s var(--mola)}
+  .chk input:checked,.check input:checked{animation:pop .28s var(--mola)}
+  .qcard{animation:entra .28s var(--ease) both}
+  .prog-bar .fill{transition:width .45s var(--mola)}
+  @keyframes pop{0%{transform:scale(.86)}100%{transform:scale(1)}}
+  @keyframes quica{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  @keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+
 .atalhos-sem{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 8px}
 .atalhos-sem a{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--azul);color:#fff;border-radius:6px;padding:14px 16px;font-weight:700;font-size:1.1rem}
 .atalhos-sem a span{font:500 .74rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
@@ -88,7 +122,7 @@ footer b{color:var(--band-fg);font-weight:500}
 .grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:640px){.grade{grid-template-columns:1fr}}
 .mat{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;min-width:0;text-decoration:none}
-.mat:hover,.mat:focus-visible{border-color:var(--laranja);transform:translateY(-1px);outline:none}
+.mat:hover,.mat:focus-visible{border-color:var(--laranja);outline:none}
 .mat .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .mat .cod{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.06em;color:var(--muted)}
 .mat h4{margin:0;font-size:1.35rem;font-weight:700;letter-spacing:-.01em;line-height:1.15}
@@ -136,7 +170,7 @@ footer b{color:var(--band-fg);font-weight:500}
       <h1>Fuja das <span class="p3">P3</span>.</h1>
       <p class="lead"><b>Guias de matérias do 2º e do 4º semestre</b>, com as P3 da Poli transcritas e resolvidas questão por questão e o que cai, o que tem caído mais e como gabaritar cada matéria. Comece pelo guia e treine com a prova limpa no tempo real.</p>
       <div class="contador"><span><b>16</b>matérias</span><span><b>315</b>questões</span><span><b>2016–2026</b></span></div>
-      <div class="cta-hero"><a class="pri" href="#materias">Escolher minha matéria</a></div>
+      <div class="cta-hero"><a class="pri" href="#materias">Escolher minha matéria <span class="ar ar-d">↓</span></a></div>
     </div>
     <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#3A5590"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
   </div>
@@ -146,108 +180,108 @@ footer b{color:var(--band-fg);font-weight:500}
 <section id="materias">
   <div class="sec-head"><span class="lbl">Matérias</span><h2>Escolha a matéria da sua próxima P3</h2>
   <p>Cada matéria tem o Guia da P3 (o que entra, o que tem caído mais, checklist, pegadinhas e formulário), o Raio-X das provas, as provas por ano e por assunto, e um simulado com cronômetro.</p></div>
-  <nav class="atalhos-sem" aria-label="Ir direto para o semestre"><a href="#sem2">2º semestre <span>8 matérias</span></a><a href="#sem4">4º semestre <span>8 matérias</span></a></nav><h3 class="semestre" id="sem2">2º semestre <span>8 matérias</span></h3><div class="area"><h3>Comum a quase todas as engenharias</h3><div class="grade"><a class="mat" href="algebra-linear-2/">
+  <nav class="atalhos-sem" aria-label="Ir direto para o semestre"><a href="#sem2"><b>2º semestre <i class="ar ar-d">↓</i></b><span>8 matérias</span></a><a href="#sem4"><b>4º semestre <i class="ar ar-d">↓</i></b><span>8 matérias</span></a></nav><h3 class="semestre" id="sem2">2º semestre <span>8 matérias</span></h3><div class="area"><h3>Comum a quase todas as engenharias</h3><div class="grade"><a class="mat" href="algebra-linear-2/">
   <div class="top"><span class="cod">MAT3458 / MAT2458</span></div>
   <h4>Álgebra Linear II</h4>
   <div class="num"><b>42</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="calculo-2/">
   <div class="top"><span class="cod">MAT2454</span></div>
   <h4>Cálculo II</h4>
   <div class="num"><b>25</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="fisica-2/">
   <div class="top"><span class="cod">4323102</span></div>
   <h4>Física II</h4>
   <div class="num"><b>32</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="mecanica-1/">
   <div class="top"><span class="cod">PME3100</span></div>
   <h4>Mecânica I</h4>
   <div class="num"><b>15</b> questões · P3 de 2022 reof, 2023, 2024 reof, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><div class="area"><h3>Elétrica e Computação</h3><div class="grade"><a class="mat" href="algoritmos-ed/">
   <div class="top"><span class="cod">PCS3110</span></div>
   <h4>Algoritmos e Estruturas de Dados</h4>
   <div class="num"><b>30</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="lab-poo/">
   <div class="top"><span class="cod">PCS3111</span></div>
   <h4>Laboratório de POO</h4>
   <div class="num"><b>18</b> questões · P3 de 2016</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">só provas antigas</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">+ material complementar</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="sistemas-digitais-1/">
   <div class="top"><span class="cod">PCS3115</span></div>
   <h4>Sistemas Digitais I</h4>
   <div class="num"><b>12</b> questões · P3 de 2022, 2024, 2025, 2026</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><div class="area"><h3>Materiais, Metalúrgica, Química, Minas e Petróleo</h3><div class="grade"><a class="mat" href="materiais/">
   <div class="top"><span class="cod">PMT3100</span></div>
   <h4>Fundamentos de Ciência e Engenharia dos Materiais</h4>
   <div class="num"><b>11</b> questões · coletânea de questões antigas, sem data</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">4 blocos por assunto</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">só provas antigas</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><h3 class="semestre" id="sem4">4º semestre <span>8 matérias</span></h3><div class="area"><h3>Comum a quase todas as engenharias</h3><div class="grade"><a class="mat" href="calculo-4/">
   <div class="top"><span class="cod">MAT2456</span></div>
   <h4>Cálculo IV</h4>
   <div class="num"><b>33</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">1 de 3 provas parciais</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="estatistica/">
   <div class="top"><span class="cod">PRO3200</span></div>
   <h4>Estatística</h4>
   <div class="num"><b>30</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">2 reconstruções de alunos</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="fisica-4/">
   <div class="top"><span class="cod">4323204</span></div>
   <h4>Física IV</h4>
   <div class="num"><b>9</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><div class="area"><h3>Elétrica e Computação</h3><div class="grade"><a class="mat" href="circuitos-2/">
   <div class="top"><span class="cod">PSI3213</span></div>
   <h4>Circuitos Elétricos II</h4>
   <div class="num"><b>20</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">4 blocos por assunto</span><span class="chip">tendência desde 2016</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">1 de 3 provas parciais</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="eletromagnetismo/">
   <div class="top"><span class="cod">PTC3213</span></div>
   <h4>Eletromagnetismo</h4>
   <div class="num"><b>10</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a><a class="mat" href="sistemas-digitais-2/">
   <div class="top"><span class="cod">PCS3225</span></div>
   <h4>Sistemas Digitais II</h4>
   <div class="num"><b>9</b> questões · P3 de 2023, 2024, 2025</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><div class="area"><h3>Civil e Ambiental</h3><div class="grade"><a class="mat" href="resistencia-materiais-1/">
   <div class="top"><span class="cod">PEF3201</span></div>
   <h4>Resistência dos Materiais I</h4>
   <div class="num"><b>10</b> questões · P3 de 2023/2, 2024/1, 2024/2, 2025/2, 2026/1</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span><span class="chip" style="background:var(--warn-bg);color:var(--warn-fg)">3 de 5 provas parciais</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><div class="area"><h3>Mecânica, Mecatrônica e Naval</h3><div class="grade"><a class="mat" href="mecanica-fluidos-1/">
   <div class="top"><span class="cod">PME3230</span></div>
   <h4>Mecânica dos Fluidos I</h4>
   <div class="num"><b>9</b> questões · P3 de 2023, 2024, 2025</div><div class="cursos">Mecânica, Mecatrônica, Naval e Produção</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div><div class="area"><h3>Produção</h3><div class="grade"><a class="mat" href="mecanica-fluidos-1/">
   <div class="top"><span class="cod">PME3230</span></div>
   <h4>Mecânica dos Fluidos I</h4>
   <div class="num"><b>9</b> questões · P3 de 2023, 2024, 2025</div><div class="cursos">Mecânica, Mecatrônica, Naval e Produção</div>
   <div class="chips"><span class="chip g">Guia da P3</span><span class="chip">Raio-X</span><span class="chip">3 blocos por assunto</span><span class="chip">tendência desde 2016</span></div>
-  <span class="abrir">abrir →</span>
+  <span class="abrir">abrir <span class="ar ar-r">→</span></span>
 </a></div></div>
 </section>
 <section id="como">
@@ -280,7 +314,7 @@ footer b{color:var(--band-fg);font-weight:500}
   <div class="erro">
     <div><span class="lbl">Correções</span><h2 style="font-size:1.55rem;margin-top:6px">Achou um erro? Avise a gente.</h2>
     <p>Mande a matéria, o ano e o número da questão. A gente corrige e atualiza o PDF.</p></div>
-    <a class="cta" href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli →</a>
+    <a class="cta" href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli <span class="ar ar-r">→</span></a>
   </div>
 </section>
 </main>

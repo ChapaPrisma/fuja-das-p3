@@ -203,6 +203,40 @@ table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
 footer a{color:inherit}
 .filters label{min-width:0;max-width:100%}
 .filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+/* ---------- movimento dos botões (home e matérias) ----------
+   Sobe ao passar o mouse, afunda ao apertar, setas apontam para onde o botão leva.
+   Tudo some com prefers-reduced-motion. */
+:root{--ease:cubic-bezier(.2,.8,.2,1);--mola:cubic-bezier(.34,1.56,.64,1);--sombra:rgba(15,35,71,.32)}
+:root[data-theme="dark"]{--sombra:rgba(0,0,0,.55)}
+.ar{display:inline-block;font-style:normal}
+@media (prefers-reduced-motion: no-preference){
+  .docs a,.btn,.tema,nav.toc a,.cell,.links a,.qlink,.cta-hero a,.atalhos-sem a,.cta,.mat,.qcard,.volta,.ar,.chk input,.check input{
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease),background-color .15s,border-color .15s,color .15s}
+  @media (hover: hover){
+    .docs a:hover,.btn:not([disabled]):hover,.tema:hover,.cta-hero a:hover,.atalhos-sem a:hover,.cta:hover,nav.toc a.toc-home:hover{
+      transform:translateY(-2px);box-shadow:0 8px 16px -8px var(--sombra)}
+    nav.toc .toc-scroll a:hover{transform:translateY(-1px)}
+    .cell:not([data-n="0"]):hover{transform:scale(1.07);box-shadow:0 6px 12px -6px var(--sombra)}
+    .mat:hover{transform:translateY(-4px);box-shadow:0 16px 28px -16px var(--sombra)}
+    .qcard:hover{border-color:var(--h2)}
+    .links a:hover,.qlink:hover{transform:translateY(-1px)}
+    a:hover .ar-r{transform:translateX(5px)}
+    a:hover .ar-l{transform:translateX(-5px)}
+    a:hover .ar-d{animation:quica .8s var(--ease) infinite}
+  }
+  .docs a:active,.btn:not([disabled]):active,.tema:active,nav.toc a:active,.cta-hero a:active,.atalhos-sem a:active,.cta:active,.cell:not([data-n="0"]):active,.links a:active,.qlink:active{
+    transform:scale(.95);box-shadow:none;transition-duration:.07s}
+  .mat:active{transform:translateY(-1px) scale(.985);box-shadow:none;transition-duration:.07s}
+  nav.toc .toc-scroll a.ativo{animation:pop .34s var(--mola)}
+  .cell.sel{animation:pop .3s var(--mola)}
+  .chk input:checked,.check input:checked{animation:pop .28s var(--mola)}
+  .qcard{animation:entra .28s var(--ease) both}
+  .prog-bar .fill{transition:width .45s var(--mola)}
+  @keyframes pop{0%{transform:scale(.86)}100%{transform:scale(1)}}
+  @keyframes quica{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  @keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+
 /* tipo de material junto aos PDFs */
 .docs .revnota{width:100%;margin:2px 0 4px;font-size:.84rem;color:var(--warn-fg);background:var(--warn-bg);border-left:3px solid var(--laranja);padding:7px 11px;border-radius:2px;max-width:72ch}
 .docs .pvl{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
@@ -218,10 +252,10 @@ footer a{color:inherit}
 /* barra de navegação */
 nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--azul);border-bottom:0;box-shadow:0 3px 12px rgba(15,35,71,.22)}
 :root[data-theme="dark"] nav.toc{background:#08122A;box-shadow:0 1px 0 var(--line),0 3px 12px rgba(0,0,0,.35)}
-nav.toc .wrap.toc-in{max-width:1260px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding-block:9px}
+nav.toc .wrap.toc-in{max-width:1260px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding-block:6px}
 nav.toc a.toc-home{flex:none;font-size:.84rem;font-weight:500;color:#fff;text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.4);white-space:nowrap}
 nav.toc a.toc-home:hover,nav.toc a.toc-home:focus-visible{border-color:var(--amarelo);color:var(--amarelo);outline:none;text-decoration:none}
-.toc-scroll{display:flex;align-items:center;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+.toc-scroll{display:flex;align-items:center;gap:4px;overflow-x:auto;padding-block:3px;flex:1;min-width:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
 .toc-scroll.fim{-webkit-mask-image:none;mask-image:none}
 .toc-scroll::-webkit-scrollbar{display:none}
 nav.toc .toc-scroll a{flex:none;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap;transition:background-color .15s,color .15s}
@@ -243,7 +277,7 @@ main section{scroll-margin-top:70px}
   <div class="wrap">
     <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
     <div style="min-width:0">
-      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <a class="volta" href="../"><span class="ar ar-l">←</span> Fuja das P3 · todas as matérias</a>
       <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
       <h1 id="titulo"></h1>
       <div class="sub" id="sub"></div>
@@ -253,7 +287,7 @@ main section{scroll-margin-top:70px}
   <div class="faixa"><i></i><i></i><i></i><i></i></div>
 </header>
 <nav class="toc" aria-label="Seções desta matéria"><div class="wrap toc-in">
-  <a class="toc-home" href="../" aria-label="Voltar para todas as matérias">← Matérias</a>
+  <a class="toc-home" href="../" aria-label="Voltar para todas as matérias"><span class="ar ar-l">←</span> Matérias</a>
   <div class="toc-scroll" id="toc">
     <span class="toc-grp">Entender</span><a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a>
     <span class="toc-grp">Praticar</span><a href="#banco">Banco de questões</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
@@ -384,7 +418,7 @@ document.getElementById('titulo').textContent = T.materia;
 document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de ${faixaH} para a tendência`:''}${COMP.length?` · material complementar, fora das contas: ${COMP.map(p=>esc((p.rotulo||p.ano).replace(' (complementar)',''))+(p.tipo_det?` (${esc(p.tipo_det)})`:'')).join(', ')}`:''} · atualizado em ${esc(D.atualizado)}`;
 const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
 document.getElementById('docs').innerHTML =
-  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF <span class="ar ar-d">↓</span></a>` +
   `<span class="grp">Provas: treinar e resolução</span>` +
   (TODAS.some(p=>p.status!=='revisada') ? `<p class="revnota"><b>Resoluções em revisão.</b> Feitas por alunos da Prisma e ainda não conferidas por um segundo revisor. Não são gabarito oficial. Achou erro? Avise em @prisma.poli.</p>` : '') +
   TODAS.map(p=>{ const t=tipoDe(p); return `<div class="pvl"><span class="pva">${esc((p.rotulo||p.ano).replace(' (complementar)',''))}</span><span class="tipo t-${t}">${TIPO[t]}${p.tipo_det?`<i> · ${esc(p.tipo_det)}</i>`:''}</span><a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">resolução</a></div>`; }).join('') +
