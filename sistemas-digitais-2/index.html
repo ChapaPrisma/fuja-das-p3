@@ -203,6 +203,24 @@ table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
 footer a{color:inherit}
 .filters label{min-width:0;max-width:100%}
 .filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+/* barra de navegação */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--azul);border-bottom:0;box-shadow:0 3px 12px rgba(15,35,71,.22)}
+:root[data-theme="dark"] nav.toc{background:#08122A;box-shadow:0 1px 0 var(--line),0 3px 12px rgba(0,0,0,.35)}
+nav.toc .wrap.toc-in{max-width:1260px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding-block:9px}
+nav.toc a.toc-home{flex:none;font-size:.84rem;font-weight:500;color:#fff;text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.4);white-space:nowrap}
+nav.toc a.toc-home:hover,nav.toc a.toc-home:focus-visible{border-color:var(--amarelo);color:var(--amarelo);outline:none;text-decoration:none}
+.toc-scroll{display:flex;align-items:center;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+.toc-scroll.fim{-webkit-mask-image:none;mask-image:none}
+.toc-scroll::-webkit-scrollbar{display:none}
+nav.toc .toc-scroll a{flex:none;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap;transition:background-color .15s,color .15s}
+nav.toc .toc-scroll a:hover{background:rgba(255,255,255,.13);color:#fff;text-decoration:none}
+nav.toc .toc-scroll a:focus-visible{outline:2px solid var(--amarelo);outline-offset:1px;text-decoration:none}
+nav.toc .toc-scroll a.ativo{background:var(--laranja);color:#0F2347}
+.toc-grp{flex:none;font-size:.64rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:0 2px 0 12px}
+.toc-grp:first-child{padding-left:2px}
+main section{scroll-margin-top:70px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (max-width:560px){.toc-grp{display:none}nav.toc .wrap.toc-in{gap:8px}nav.toc .toc-scroll a{padding:7px 11px}}
 @media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
 </style>
 <script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -222,8 +240,12 @@ footer a{color:inherit}
   </div>
   <div class="faixa"><i></i><i></i><i></i><i></i></div>
 </header>
-<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
-  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+<nav class="toc" aria-label="Seções desta matéria"><div class="wrap toc-in">
+  <a class="toc-home" href="../" aria-label="Voltar para todas as matérias">← Matérias</a>
+  <div class="toc-scroll" id="toc">
+    <span class="toc-grp">Entender</span><a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a>
+    <span class="toc-grp">Praticar</span><a href="#banco">Banco de questões</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+  </div>
 </div></nav>
 
 <main class="wrap">
@@ -497,6 +519,30 @@ document.getElementById('study').innerHTML = ordem.map(t=>{
   const qs = Q.filter(q=>q.topicos.includes(t.slug));
   return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
 
+
+// barra de navegação: destaca a seção atual e mantém o botão dela visível
+(function(){
+  const box = document.getElementById('toc');
+  const links = [...box.querySelectorAll('a')];
+  const secs = links.map(a=>document.getElementById(a.getAttribute('href').slice(1)));
+  let ultimo = null, pend = false;
+  const fimBox = () => box.classList.toggle('fim', box.scrollLeft + box.clientWidth >= box.scrollWidth - 4);
+  function marca(){
+    pend = false;
+    const lim = 90; let atual = -1;
+    secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top <= lim) atual = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) atual = secs.length - 1;
+    links.forEach((a,i)=>{ const on = i===atual; a.classList.toggle('ativo', on); if(on) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current'); });
+    const a = links[atual] || null;
+    if (a && a !== ultimo) { ultimo = a; const alvo = a.offsetLeft - box.offsetLeft - (box.clientWidth - a.offsetWidth)/2; box.scrollTo({left: Math.max(0, alvo), behavior: 'smooth'}); }
+    if (!a) ultimo = null;
+  }
+  window.addEventListener('scroll', ()=>{ if(!pend){ pend = true; requestAnimationFrame(marca); } }, {passive:true});
+  window.addEventListener('resize', ()=>{ fimBox(); marca(); });
+  box.addEventListener('scroll', fimBox, {passive:true});
+  links.forEach(a=>a.addEventListener('click', ()=>ga('nav-' + a.getAttribute('href').slice(1))));
+  fimBox(); marca();
+})();
 
 if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
 })();
