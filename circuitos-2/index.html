@@ -237,6 +237,10 @@ footer a{color:inherit}
   @keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 }
 
+/* abertura da página (no lugar dos avisos) */
+.abre{padding-block:30px 6px;display:flex;flex-direction:column;gap:8px}
+.abre-txt{font-size:1.12rem;line-height:1.6;max-width:72ch;margin:0;text-wrap:pretty}
+.abre-base{color:var(--muted);font-size:.9rem;max-width:72ch;margin:0;padding-left:12px;border-left:3px solid var(--lilas)}
 /* tipo de material junto aos PDFs */
 .docs .revnota a{display:inline;background:none;border:0;padding:0;border-radius:0;color:inherit;font-size:inherit;font-weight:500;text-decoration:underline;text-underline-offset:2px;box-shadow:none!important;transform:none!important}
 .docs .revnota{width:100%;margin:2px 0 4px;font-size:.84rem;color:var(--warn-fg);background:var(--warn-bg);border-left:3px solid var(--laranja);padding:7px 11px;border-radius:2px;max-width:72ch}
@@ -425,11 +429,13 @@ document.getElementById('docs').innerHTML =
   TODAS.map(p=>{ const t=tipoDe(p); return `<div class="pvl"><span class="pva">${esc((p.rotulo||p.ano).replace(' (complementar)',''))}</span><span class="tipo t-${t}">${TIPO[t]}${p.tipo_det?`<i> · ${esc(p.tipo_det)}</i>`:''}</span><a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">resolução</a></div>`; }).join('') +
   ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
 document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
-const av = [];
-if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
-if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
-else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
-document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+// abertura: como a P3 se organiza e em que provas o raio-X se baseia
+const listaE = a => a.length<2 ? a.join('') : a.slice(0,-1).join(', ') + ' e ' + a[a.length-1];
+const base = `Tudo nesta página sai ${n===1?'da P3':`das ${n} P3`} de ${listaE(PROVAS.map(p=>esc(p.rotulo||p.ano)))}` +
+  (H.length ? `, comparada${n===1?'':'s'} com ${H.length} P3 de ${faixaH}` : '') +
+  `. Mostra o que já caiu, não o que vai cair` + (n < 4 ? `: com ${n===1?'uma prova só':`só ${n} provas`}, uma diferença pequena pode ser acaso.` : '.');
+document.getElementById('avisos').innerHTML = `<div class="abre"><span class="lbl">Em resumo</span>` +
+  (T.nota_organizacao ? `<p class="abre-txt">${esc(T.nota_organizacao)}</p>` : '') + `<p class="abre-base">${base}</p></div>`;
 
 // guia
 document.getElementById('gEscopo').textContent = G.escopo || '';
