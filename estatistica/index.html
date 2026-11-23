@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estatística · Fuja das P3</title>
+<meta name="description" content="P3 de Estatística (PRO3200) transcritas e resolvidas: 3 provas, 30 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Estatística · Fuja das P3">
+<meta property="og:description" content="P3 de Estatística (PRO3200) transcritas e resolvidas: 3 provas, 30 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1ECE2">
+<link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<script>(function(){try{if(localStorage.getItem("fuja-p3-tema")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}})();</script>
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#F1ECE2; --band-fg:#0F2347; --band-muted:#4A5468; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:#C2410C;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{border-color:var(--laranja);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F; --ok-fg:#FFE39A;
+  --link:#FF9A75; --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+:root[data-theme="dark"] .band .eyebrow,:root[data-theme="dark"] .contador b{color:var(--amarelo)}
+:root[data-theme="dark"] .hero{background:var(--band)}
+:root[data-theme="dark"] .docs a{background:transparent;border-color:rgba(255,255,255,.28);color:var(--band-fg)}
+:root[data-theme="dark"] .docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347}
+:root[data-theme="dark"] .cta-hero a.sec{border-color:rgba(255,255,255,.3)}
+.band{position:relative}
+.tema{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));z-index:6;display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--f-body);color:var(--band-fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+:root[data-theme="dark"] .tema{border-color:rgba(255,255,255,.3)}
+.tema:hover,.tema:focus-visible{border-color:var(--laranja);outline:none}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="band">
+  <button class="tema" id="tema" type="button" aria-label="Alternar modo escuro">☾ Modo escuro</button>
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
+  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+    <ol class="roteiro" id="gRoteiro"></ol>
+
+    <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+    <div class="tend" id="gTend"></div>
+
+    <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+      <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+    <div class="check" id="gCheck"></div>
+
+    <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+    <div class="pegas" id="gPegas"></div>
+
+    <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+    <ul class="dicas" id="gDicas"></ul>
+
+    <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+    <div class="form" id="gForm"></div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "A P3 de Estatística cobre o fim do programa: ANOVA (um e dois fatores) e regressão (simples, transformada e múltipla). O qui-quadrado caía na P3 até 2019 e hoje está na P2; os tópicos de aderência só aparecem no histórico.", "topicos": [{"slug": "anova-1f", "nome": "ANOVA de um fator", "grupo": "ANOVA", "ref": null, "material": null}, {"slug": "anova-2f-sem-rep", "nome": "Dois fatores sem repetição (modelo aditivo)", "grupo": "ANOVA", "ref": null, "material": null}, {"slug": "anova-2f-com-rep", "nome": "Dois fatores com repetição e interação", "grupo": "ANOVA", "ref": null, "material": null}, {"slug": "anova-gl-critico", "nome": "Graus de liberdade, F crítico e valor-p", "grupo": "ANOVA", "ref": null, "material": null}, {"slug": "reg-estimacao", "nome": "Mínimos quadrados por somatórios", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-correlacao", "nome": "Correlação e R²", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-inferencia", "nome": "Testes e IC para β0 e β1", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-previsao", "nome": "IC da média e intervalo de previsão", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-residuos", "nome": "Resíduos (soma, SQRes, σ̂, padronizado)", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-transformacao", "nome": "Modelos linearizáveis (exponencial)", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-comparar", "nome": "Comparar duas retas", "grupo": "Regressão simples", "ref": null, "material": null}, {"slug": "reg-mult-interp", "nome": "Regressão múltipla: coeficientes e F global", "grupo": "Regressão múltipla", "ref": null, "material": null}, {"slug": "reg-mult-f-parcial", "nome": "Seleção de modelos: R² e F parcial", "grupo": "Regressão múltipla", "ref": null, "material": null}, {"slug": "qui-quadrado", "nome": "Qui-quadrado (aderência e independência)", "grupo": "Aderência", "ref": null, "material": null}, {"slug": "ks-normalidade", "nome": "Kolmogorov-Smirnov e normalidade", "grupo": "Aderência", "ref": null, "material": null}], "padroes": [{"id": "P-ANOVA-RESUMO", "nome": "ANOVA a partir de médias e desvios", "reconhecer": "Dão médias, desvios ou variâncias por grupo (às vezes com um valor ilegível e a média geral) e pedem SQT, QMD ou F.", "metodo": "Recupere o valor que falta pela média geral (ou média dos desvios). SQE = n·Σ(ȳi − ȳ)², SQD = (n − 1)·Σsi², gl k − 1 e N − k. Com n igual, QMD = média das variâncias."}, {"id": "P-ANOVA-LACUNA", "nome": "Completar tabela ANOVA", "reconhecer": "Tabela com buracos (café derramado, SQ na coluna errada) e assertivas sobre QM, F e decisão.", "metodo": "Escreva primeiro todos os gl a partir do desenho do experimento; SQ que falta = total − soma das outras; QM = SQ/gl; F = QM/QMRes; compare com F(α; gl efeito; gl resíduo)."}, {"id": "P-ANOVA-2F", "nome": "ANOVA de dois fatores", "reconhecer": "Dois fatores (tensão × jogador, ângulo × velocidade), com ou sem réplica.", "metodo": "Sem réplica: gl a − 1, b − 1 e (a − 1)(b − 1) no resíduo, e não há interação. Com n réplicas: interação (a − 1)(b − 1) e resíduo ab(n − 1). Um F e um crítico por efeito."}, {"id": "P-ANOVA-EFEITOS", "nome": "SQ pelos efeitos estimados", "reconhecer": "Dão μ̂, α̂i, β̂j (e talvez alguns resíduos) de um modelo aditivo e apagaram os dados.", "metodo": "Complete α̂ e β̂ pela soma zero. SQA = b·Σα̂i², SQB = a·Σβ̂j². Resíduos somam zero por linha e coluna: complete a tabela e some os quadrados, ou use SQRes = SQT − SQA − SQB, com (a − 1)(b − 1) gl."}, {"id": "P-LIMIAR-SQ", "nome": "Qual SQ faz rejeitar", "reconhecer": "Pergunta 'para que H0 seja rejeitada, SQA deve ser…' ou 'para p > 0,05, SQ deve ser…'.", "metodo": "Rejeita ⇔ F > Fc ⇔ SQ > gl·QMRes·Fc. p-valor grande ⇔ SQ abaixo do limiar. Acerte os gl do resíduo do desenho."}, {"id": "P-REG-SOMAS", "nome": "Reta a partir de somatórios", "reconhecer": "Dão n, ΣX, ΣY, ΣX², ΣY², ΣXY (ou médias, desvios e r).", "metodo": "Sxx = ΣX² − n·X̄², Sxy = ΣXY − n·X̄·Ȳ, Syy = ΣY² − n·Ȳ². b1 = Sxy/Sxx (= r·Sy/Sx), b0 = Ȳ − b1·X̄, SQReg = b1·Sxy, SQRes = Syy − SQReg, σ̂² = SQRes/(n − 2)."}, {"id": "P-REG-TESTE", "nome": "Teste t e IC de β1", "reconhecer": "Testar β1 = c (às vezes c ≠ 0, unilateral) ou dar o IC de β1.", "metodo": "t = (b1 − c)/√(σ̂²/Sxx), n − 2 gl. Unilateral: todo o α numa cauda. IC: b1 ± t(α/2)·ep. Para β1 = 0, F = t²."}, {"id": "P-IP", "nome": "Intervalo de previsão × IC da média", "reconhecer": "Pedido individual (reembolso, futura observação) ou troca de nível (95% → 90%).", "metodo": "IC da média: Ŷ ± t·σ̂·√(1/n + (x0 − X̄)²/Sxx). IP: soma 1 dentro da raiz (ou σ̂² + σ̂Ŷ²). Trocar nível: mesmo centro, meia-largura × t novo/t antigo. gl = n − p − 1."}, {"id": "P-RESIDUO", "nome": "Propriedades dos resíduos", "reconhecer": "Resíduos num gráfico ou tabela; perguntam soma, SQRes, σ̂, Ȳ ou resíduo padronizado/studentizado.", "metodo": "Σe = 0 (logo Ȳ = Ŷ(X̄)). SQRes = Σe², σ̂ = √(SQRes/(n − 2)). z = e/σ̂; studentizado r = e/(σ̂√(1 − h)), h = 1/n + (x − X̄)²/Sxx."}, {"id": "P-LOG", "nome": "Linearizar modelo exponencial", "reconhecer": "Modelo Y = β0·exp(β1X) e uma lista de somas com ln.", "metodo": "Regrida ln Y em X. A inclinação é β1; o intercepto é ln β0: exponencie para β0 e para o IC de β0. O F testa β1 = 0 com (1; n − 2) gl. Ignore somas de Y e de ln X."}, {"id": "P-MULT-INTERP", "nome": "Interpretar regressão múltipla", "reconhecer": "Equação com dois preditores e frases sobre 'aumento de 100 km' e sobre H0/H1.", "metodo": "βj = variação média de Y por unidade de Xj, fixadas as outras. F global: H0: β1 = β2 = 0; H1: pelo menos um βi ≠ 0. Frase sem 'fixado' ou com H1 'todos ≠ 0' está errada."}, {"id": "P-F-PARCIAL", "nome": "Comparar modelos aninhados pelo R²", "reconhecer": "Tabela de modelos com R² (M1, M2, M3) e n.", "metodo": "F parcial = ((R²c − R²r)/q)/((1 − R²c)/(n − p − 1)), com (q; n − p − 1) gl. F de um modelo: (R²/p)/((1 − R²)/(n − p − 1)). Nunca escolha só pelo maior R²."}, {"id": "P-2RETAS", "nome": "Comparar inclinações de duas retas", "reconhecer": "Duas amostras, duas retas, H0: β1 = γ1, com SQRes e SQT de cada uma.", "metodo": "Sxx de cada reta = (SQT − SQRes)/b². σ̂² = (SQRes1 + SQRes2)/(n1 + n2 − 4). T = (b1 − g1)/(σ̂·√(1/Sxx1 + 1/Sxx2)), compare com t(n1 + n2 − 4)."}, {"id": "P-CONCEITO", "nome": "Decisão e significado das hipóteses", "reconhecer": "Pergunta conceitual: o que significa β = 0, ou qual decisão tomar dado F ou valor-p.", "metodo": "H0 é sempre 'sem efeito' (β = 0: média de Y não muda com X). Rejeita se p < α ou F > Fc. Se o crítico depende de n, compare com o pior caso."}], "blocos": [{"id": "anova", "nome": "ANOVA (um e dois fatores)", "questoes": ["PRO3200-2023-P3-Q1", "PRO3200-2023-P3-Q7", "PRO3200-2023-P3-Q8", "PRO3200-2024-P3-Q4", "PRO3200-2024-P3-Q5", "PRO3200-2024-P3-Q9", "PRO3200-2024-P3-Q10", "PRO3200-2025-P3-Q1", "PRO3200-2025-P3-Q2", "PRO3200-2025-P3-Q3", "PRO3200-2025-P3-Q7"]}, {"id": "regressao-simples", "nome": "Regressão linear simples", "questoes": ["PRO3200-2023-P3-Q2", "PRO3200-2023-P3-Q3", "PRO3200-2023-P3-Q5", "PRO3200-2023-P3-Q6", "PRO3200-2023-P3-Q9", "PRO3200-2024-P3-Q2", "PRO3200-2024-P3-Q3", "PRO3200-2024-P3-Q6", "PRO3200-2025-P3-Q4", "PRO3200-2025-P3-Q6", "PRO3200-2025-P3-Q10"]}, {"id": "regressao-multipla", "nome": "Regressão múltipla e seleção de modelos", "questoes": ["PRO3200-2023-P3-Q4", "PRO3200-2023-P3-Q10", "PRO3200-2024-P3-Q1", "PRO3200-2024-P3-Q7", "PRO3200-2024-P3-Q8", "PRO3200-2025-P3-Q5", "PRO3200-2025-P3-Q8", "PRO3200-2025-P3-Q9"]}], "codigo": "PRO3200", "materia": "Estatística"}, "provas": [{"id": "PRO3200-2023-P3", "codigo": "PRO3200", "materia": "Estatística", "prova": "P3", "ano": 2023, "rotulo": "2023", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "misto", "duracao_min": null, "questoes": [{"n": 1, "id": "PRO3200-2023-P3-Q1", "pontos": 1.0, "topicos": ["anova-1f", "anova-gl-critico"], "padrao": "P-ANOVA-RESUMO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Caixas: ANOVA de 1 fator a partir de médias e desvios, com a média do tipo 3 ilegível.", "armadilhas": ["Graus de liberdade dentro = k(n−1), não k·n nem (k−1)·n", "SQD soma variâncias (s²), não desvios padrão"], "armadilhas_tag": ["anova-gl-critico", "anova-1f"], "gabarito": null, "respostas": ["Corretas: 2 e 5", "SQT = 160355; QMD = 1671,25; F = 25,32 > 4,94 (rejeita H0)"]}, {"n": 2, "id": "PRO3200-2023-P3-Q2", "pontos": 1.0, "topicos": ["reg-previsao"], "padrao": "P-IP", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Reembolso de viagem (n = 102): intervalo de previsão para 7 e 8 dias.", "armadilhas": ["Julgar valor individual com o IC da média em vez do intervalo de previsão"], "armadilhas_tag": ["reg-previsao"], "gabarito": null, "respostas": ["Corretas: 2 e 3", "IP(7) = [2100,38; 2499,62]; IP(8) = [2400,08; 2799,92]"]}, {"n": 3, "id": "PRO3200-2023-P3-Q3", "pontos": 1.0, "topicos": ["reg-correlacao", "reg-estimacao"], "padrao": "P-REG-SOMAS", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Fertilizante × produtividade: reta e R² a partir de médias, desvios e r = 0,92.", "armadilhas": ["Tomar R² = r (o certo é R² = r²)", "Trocar H0 e H1: H0 é 'β1 = 0', sem efeito"], "armadilhas_tag": ["reg-correlacao", "reg-inferencia"], "gabarito": null, "respostas": ["Corretas: 5 (e 3 com S_y de n − 1)", "b1 = 0,059; b0 = 36,42; R² = 0,8464"]}, {"n": 4, "id": "PRO3200-2023-P3-Q4", "pontos": 1.0, "topicos": ["reg-mult-interp"], "padrao": "P-MULT-INTERP", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Tempo de percurso × distância e entregas: interpretar coeficientes e hipóteses do F global.", "armadilhas": ["Ler o coeficiente sem a condição 'fixadas as outras variáveis'", "Escrever H1 do F global como 'todos os β diferentes de zero'"], "armadilhas_tag": ["reg-mult-interp", "reg-mult-interp"], "gabarito": null, "respostas": ["Correta: 3"]}, {"n": 5, "id": "PRO3200-2023-P3-Q5", "pontos": 1.0, "topicos": ["reg-transformacao", "reg-inferencia"], "padrao": "P-LOG", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Custo × unidades: modelo exponencial linearizado por ln; teste F e IC de β0.", "armadilhas": ["Dar ln β0 (≈ 4,02) como estimativa de β0; é preciso exponenciar", "Usar o F da reta sem transformação"], "armadilhas_tag": ["reg-transformacao", "reg-transformacao"], "gabarito": null, "respostas": ["Corretas: 3 e 6", "ln β0 ≈ 4,02; β0 ≈ 55,9; β1 ≈ 0,0071; F ≫ F(0,05; 1; 5) = 6,61"]}, {"n": 6, "id": "PRO3200-2023-P3-Q6", "pontos": 1.0, "topicos": ["reg-inferencia", "reg-estimacao"], "padrao": "P-REG-TESTE", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Despesa × duração (n = 102): reta por somatórios, teste t unilateral de β1 = 13 e IC.", "armadilhas": ["Usar o valor crítico bilateral num teste unilateral"], "armadilhas_tag": ["reg-inferencia"], "gabarito": null, "respostas": ["Corretas: 2 e 4", "t = −4 < −1,66: rejeita H0 (houve redução)"]}, {"n": 7, "id": "PRO3200-2023-P3-Q7", "pontos": 1.0, "topicos": ["anova-2f-sem-rep", "anova-gl-critico"], "padrao": "P-ANOVA-2F", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "Tensão da corda × jogador, uma medida por casela: completar a ANOVA e decidir os efeitos.", "armadilhas": ["Tentar testar interação num experimento sem repetição"], "armadilhas_tag": ["anova-2f-sem-rep"], "gabarito": null, "respostas": ["Correta: 2", "F tensão = 3,5 > 3,29; F jogador = 4,7 > 2,90"]}, {"n": 8, "id": "PRO3200-2023-P3-Q8", "pontos": 1.0, "topicos": ["anova-2f-com-rep", "anova-gl-critico"], "padrao": "P-ANOVA-LACUNA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Equipamento de corte, 3 velocidades × 3 ângulos × 2 réplicas: completar a ANOVA.", "armadilhas": ["Dar à interação gl = 2 em vez de (a−1)(b−1) = 4", "Usar o F crítico de outro par de gl"], "armadilhas_tag": ["anova-2f-com-rep", "anova-gl-critico"], "gabarito": null, "respostas": ["Nenhuma assertiva inteiramente certa; há efeito do ângulo (F = 7,30 > 4,26)", "F ângulo = 7,30; F velocidade = 7,00; F interação = 9,20"]}, {"n": 9, "id": "PRO3200-2023-P3-Q9", "pontos": 1.0, "topicos": ["reg-residuos", "reg-inferencia"], "padrao": "P-RESIDUO", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 5, "pagina_resolucao": 9, "resumo": "Prazo de prateleira (n = 6): reconstruir Y em X = 15 pelos ICs e calcular os resíduos padronizado e studentizado.", "armadilhas": ["Esquecer o fator (1 − v) no resíduo studentizado", "Dividir a SQRes por n em vez de n − 2"], "armadilhas_tag": ["reg-residuos", "reg-residuos"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 10, "id": "PRO3200-2023-P3-Q10", "pontos": 1.0, "topicos": ["reg-mult-f-parcial"], "padrao": "P-F-PARCIAL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 10, "resumo": "Três modelos por R² (n = 30): F parcial de X1 dado X2 e F de M1.", "armadilhas": ["Escolher o modelo só pelo maior R²", "Escrever hipótese nula com ≠"], "armadilhas_tag": ["reg-mult-f-parcial", "reg-mult-f-parcial"], "gabarito": null, "respostas": ["Correta: 4", "F parcial = 6,94 > F(0,05; 1; 27) = 4,21"]}]}, {"id": "PRO3200-2024-P3", "codigo": "PRO3200", "materia": "Estatística", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": null, "questoes": [{"n": 1, "id": "PRO3200-2024-P3-Q1", "pontos": 1.0, "topicos": ["reg-mult-interp"], "padrao": "P-MULT-INTERP", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Tempo de percurso × distância e entregas: interpretar coeficientes e hipóteses do F global.", "armadilhas": ["Ler o coeficiente sem a condição 'fixadas as outras variáveis'", "Escrever H1 do F global como 'todos os β diferentes de zero'"], "armadilhas_tag": ["reg-mult-interp", "reg-mult-interp"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 2, "id": "PRO3200-2024-P3-Q2", "pontos": 1.0, "topicos": ["reg-transformacao", "reg-inferencia"], "padrao": "P-LOG", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Custo × unidades: modelo exponencial linearizado; teste F e estimativas de β0 e β1.", "armadilhas": ["Dar ln β0 (≈ 4,02) como estimativa de β0; é preciso exponenciar", "Usar o F da reta sem transformação"], "armadilhas_tag": ["reg-transformacao", "reg-transformacao"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 3, "id": "PRO3200-2024-P3-Q3", "pontos": 1.0, "topicos": ["reg-residuos"], "padrao": "P-RESIDUO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Resíduos lidos num gráfico: SQRes, Ȳ e σ̂.", "armadilhas": ["Achar que sem os Y observados não dá para obter Ȳ (os resíduos somam zero)", "Dividir SQRes por n em vez de n − 2"], "armadilhas_tag": ["reg-residuos", "reg-residuos"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 4, "id": "PRO3200-2024-P3-Q4", "pontos": 1.0, "topicos": ["anova-2f-com-rep", "anova-gl-critico"], "padrao": "P-LIMIAR-SQ", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Cimento, 3 tempos × 4 misturas × 3 réplicas: qual SQ de cada efeito dá p > 0,05 ou < 0,05.", "armadilhas": ["Inverter o sentido: p-valor alto corresponde a SQ pequena"], "armadilhas_tag": ["anova-gl-critico"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 5, "id": "PRO3200-2024-P3-Q5", "pontos": 1.0, "topicos": ["anova-2f-sem-rep", "anova-gl-critico"], "padrao": "P-LIMIAR-SQ", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Pneus, 5 carros × 4 marcas (aditivo): SQA mínima para rejeitar H0 a 5%.", "armadilhas": ["Usar os gl do resíduo de ANOVA de 1 fator num modelo aditivo de 2 fatores"], "armadilhas_tag": ["anova-2f-sem-rep"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 6, "id": "PRO3200-2024-P3-Q6", "pontos": 1.0, "topicos": ["reg-inferencia"], "padrao": "P-CONCEITO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Significado de H0: β = 0 na regressão simples.", "armadilhas": ["Confundir β = 0 (sem relação) com α = 0 (reta pela origem)"], "armadilhas_tag": ["reg-inferencia"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 7, "id": "PRO3200-2024-P3-Q7", "pontos": 1.0, "topicos": ["reg-mult-f-parcial", "reg-mult-interp", "reg-previsao"], "padrao": "P-F-PARCIAL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "M1 e M2 com n = 12: F parcial pelo R², previsão pontual e IC com t (não z).", "armadilhas": ["Usar z = 1,96 em intervalo de regressão com amostra pequena", "Achar que qualquer aumento de R² é significativo"], "armadilhas_tag": ["reg-previsao", "reg-mult-f-parcial"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 8, "id": "PRO3200-2024-P3-Q8", "pontos": 1.0, "topicos": ["reg-previsao"], "padrao": "P-IP", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 7, "resumo": "Intervalo de previsão a 95% (n = 12, 2 preditores) convertido para 90%.", "armadilhas": ["Mudar o centro ou usar z ao trocar o nível do intervalo"], "armadilhas_tag": ["reg-previsao"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 9, "id": "PRO3200-2024-P3-Q9", "pontos": 1.0, "topicos": ["anova-2f-sem-rep"], "padrao": "P-ANOVA-EFEITOS", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Tintas × rolos (aditivo, 4 × 3): SQ pelos efeitos estimados e pelos resíduos guardados.", "armadilhas": ["Esquecer o fator b em SQA = b·Σα²", "Usar o F crítico do outro fator"], "armadilhas_tag": ["anova-2f-sem-rep", "anova-gl-critico"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 10, "id": "PRO3200-2024-P3-Q10", "pontos": 1.0, "topicos": ["anova-1f", "anova-gl-critico"], "padrao": "P-ANOVA-RESUMO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "DNA × 5 carboidratos (6 réplicas): SQEntre pelas médias e SQDentro = 2,01·SQEntre.", "armadilhas": ["Rejeitar a 5% não implica valor-p < 1%", "Inverter a decisão: F > Fc significa que há efeito"], "armadilhas_tag": ["anova-gl-critico", "anova-1f"], "gabarito": "a", "respostas": ["(a)"]}]}, {"id": "PRO3200-2025-P3", "codigo": "PRO3200", "materia": "Estatística", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 120, "questoes": [{"n": 1, "id": "PRO3200-2025-P3-Q1", "pontos": 1.0, "topicos": ["anova-1f"], "padrao": "P-ANOVA-RESUMO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Bocais (4 tipos, n = 6): SQT a partir de F = 3,68 e da média das variâncias = 3.", "armadilhas": ["A média das variâncias amostrais (n igual) já é o QMD"], "armadilhas_tag": ["anova-1f"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 2, "id": "PRO3200-2025-P3-Q2", "pontos": 1.0, "topicos": ["anova-2f-sem-rep"], "padrao": "P-ANOVA-EFEITOS", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Tintas × rolos (aditivo, 4 × 3) com SQT dado: F das tintas e partição da SQ.", "armadilhas": ["Esquecer o fator b em SQA = b·Σα²", "Usar o F e o crítico do outro fator"], "armadilhas_tag": ["anova-2f-sem-rep", "anova-gl-critico"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 3, "id": "PRO3200-2025-P3-Q3", "pontos": 1.0, "topicos": ["anova-1f", "anova-gl-critico"], "padrao": "P-ANOVA-LACUNA", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Fornecedores (4 × 31 peças): completar a ANOVA manchada de café e decidir.", "armadilhas": ["Achar que F < 1 é erro de conta"], "armadilhas_tag": ["anova-1f"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 4, "id": "PRO3200-2025-P3-Q4", "pontos": 1.0, "topicos": ["reg-inferencia", "anova-gl-critico"], "padrao": "P-CONCEITO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Regressão simples com n > 15 e F > 13: decisão sobre β1 = 0.", "armadilhas": ["Inverter a regra do valor-p: rejeita quando p < α"], "armadilhas_tag": ["reg-inferencia"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 5, "id": "PRO3200-2025-P3-Q5", "pontos": 1.0, "topicos": ["reg-mult-interp"], "padrao": "P-MULT-INTERP", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Tempo de percurso × distância e entregas (repete 2024 Q1).", "armadilhas": ["Ler o coeficiente sem a condição 'fixadas as outras variáveis'", "Escrever H1 do F global como 'todos os β diferentes de zero'"], "armadilhas_tag": ["reg-mult-interp", "reg-mult-interp"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 6, "id": "PRO3200-2025-P3-Q6", "pontos": 1.0, "topicos": ["reg-residuos"], "padrao": "P-RESIDUO", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Dois conjuntos com retas ajustadas: soma dos resíduos sem os dados.", "armadilhas": ["Confundir soma dos resíduos (zero) com SQRes"], "armadilhas_tag": ["reg-residuos"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 7, "id": "PRO3200-2025-P3-Q7", "pontos": 1.0, "topicos": ["anova-1f", "anova-gl-critico"], "padrao": "P-ANOVA-RESUMO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Caixas (repete 2023 Q1): média e desvio do tipo 3 ilegíveis, dados a média geral e s̄.", "armadilhas": ["Graus de liberdade dentro = k(n−1), não k·n nem (k−1)·n", "SQD soma variâncias (s²), não desvios padrão"], "armadilhas_tag": ["anova-gl-critico", "anova-1f"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 8, "id": "PRO3200-2025-P3-Q8", "pontos": 1.0, "topicos": ["reg-previsao"], "padrao": "P-IP", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 7, "resumo": "Do IC da média a 95% ao intervalo de previsão (n = 12, SQRes = 144).", "armadilhas": ["Somar desvios padrão em vez de variâncias no intervalo de previsão"], "armadilhas_tag": ["reg-previsao"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 9, "id": "PRO3200-2025-P3-Q9", "pontos": 1.0, "topicos": ["reg-mult-f-parcial"], "padrao": "P-F-PARCIAL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Três modelos por R² (repete 2023 Q10): hipóteses e F parcial.", "armadilhas": ["Escolher o modelo só pelo maior R²", "Escrever H1 do F global como 'todos os β diferentes de zero'"], "armadilhas_tag": ["reg-mult-f-parcial", "reg-mult-interp"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 10, "id": "PRO3200-2025-P3-Q10", "pontos": 1.0, "topicos": ["reg-comparar", "reg-inferencia"], "padrao": "P-2RETAS", "padroes_secundarios": [], "dificuldade": 3, "pagina_enunciado": 5, "pagina_resolucao": 9, "resumo": "Desgaste abrasivo em dois abrasivos: Sxx de cada reta pelo SQReg e teste t de inclinações iguais.", "armadilhas": ["Não perceber que Sxx sai de SQReg = b1²·Sxx"], "armadilhas_tag": ["reg-comparar"], "gabarito": "a", "respostas": ["(a)"]}]}], "atualizado": "22/11/2026", "blocos": [{"id": "PRO3200-P3-bloco-anova", "nome": "ANOVA (um e dois fatores)", "questoes": ["PRO3200-2023-P3-Q1", "PRO3200-2023-P3-Q7", "PRO3200-2023-P3-Q8", "PRO3200-2024-P3-Q4", "PRO3200-2024-P3-Q5", "PRO3200-2024-P3-Q9", "PRO3200-2024-P3-Q10", "PRO3200-2025-P3-Q1", "PRO3200-2025-P3-Q2", "PRO3200-2025-P3-Q3", "PRO3200-2025-P3-Q7"]}, {"id": "PRO3200-P3-bloco-regressao-simples", "nome": "Regressão linear simples", "questoes": ["PRO3200-2023-P3-Q2", "PRO3200-2023-P3-Q3", "PRO3200-2023-P3-Q5", "PRO3200-2023-P3-Q6", "PRO3200-2023-P3-Q9", "PRO3200-2024-P3-Q2", "PRO3200-2024-P3-Q3", "PRO3200-2024-P3-Q6", "PRO3200-2025-P3-Q4", "PRO3200-2025-P3-Q6", "PRO3200-2025-P3-Q10"]}, {"id": "PRO3200-P3-bloco-regressao-multipla", "nome": "Regressão múltipla e seleção de modelos", "questoes": ["PRO3200-2023-P3-Q4", "PRO3200-2023-P3-Q10", "PRO3200-2024-P3-Q1", "PRO3200-2024-P3-Q7", "PRO3200-2024-P3-Q8", "PRO3200-2025-P3-Q5", "PRO3200-2025-P3-Q8", "PRO3200-2025-P3-Q9"]}], "guia": {"escopo": "A P3 de PRO3200 cobre o fim do programa: análise de variância (um fator, dois fatores com e sem repetição) e regressão (simples, por transformação, múltipla e seleção de modelos). Testes de hipóteses de médias, proporções e variâncias e o qui-quadrado ficaram na P2 (as P2 de 2023 e 2024 do Fuja das P2 têm qui-quadrado de aderência e de independência). Nas três P3 recentes, 11 das 30 questões são de ANOVA e 19 de regressão. Não vimos diferença por turma nas fontes; as provas de 2023 e 2024 são reconstruções de alunos, então o formato exato pode ter variado.", "programa": ["Análise de variância com um fator", "Análise de variância com dois fatores (com e sem repetição, interação)", "Regressão linear simples: estimação, testes, intervalos de confiança e de previsão", "Correlação e coeficiente de determinação", "Análise de resíduos e modelos linearizáveis", "Regressão linear múltipla e comparação de modelos"], "roteiro": [{"etapa": "ANOVA de um fator", "texto": "Monte a tabela a partir de médias e desvios: 2023 Q1 (= 2025 Q7), 2025 Q1 e 2024 Q10. Depois complete a tabela manchada de 2025 Q3."}, {"etapa": "ANOVA de dois fatores", "texto": "Sem repetição: 2023 Q7 e 2024 Q5. Pelos efeitos estimados: 2025 Q2 e depois 2024 Q9 (que pede completar os resíduos). Com repetição: 2023 Q8 e o limiar de SQ de 2024 Q4."}, {"etapa": "Reta por somatórios e testes", "texto": "2023 Q6 (b0, b1, t unilateral e IC) e 2023 Q3 (reta por r, Sx e Sy). Feche com a pergunta conceitual 2024 Q6 e a decisão de 2025 Q4."}, {"etapa": "Intervalos e resíduos", "texto": "Previsão × média: 2023 Q2, 2024 Q8 e 2025 Q8. Resíduos: 2024 Q3, 2025 Q6 e o studentizado de 2023 Q9."}, {"etapa": "Transformação e comparação de retas", "texto": "Modelo exponencial: 2024 Q2 (a mesma de 2023 Q5). Duas inclinações: 2025 Q10."}, {"etapa": "Regressão múltipla", "texto": "Interpretação e hipóteses: 2024 Q1 (repetida em 2023 Q4 e 2025 Q5). R² e F parcial: 2023 Q10 (= 2025 Q9) e 2024 Q7. Depois faça a 2025 inteira em 120 minutos."}], "tendencias": [{"titulo": "Questões repetidas", "texto": "Pelo menos 6 questões voltaram quase iguais: caminhões (2023 Q4, 2024 Q1, 2025 Q5), caixas (2023 Q1 e 2025 Q7), modelos por R² (2023 Q10 e 2025 Q9), custo exponencial (2023 Q5 e 2024 Q2), tintas × rolos (2024 Q9 e 2025 Q2) e fornecedores (2019 T1 e 2025 Q3). Refazer as antigas rende ponto."}, {"titulo": "Qui-quadrado saiu da P3", "texto": "Caiu em 2 das 2 P3 de 2018–2019 (aderência à Poisson, independência 3 × 3) e o K-S em 2018. Em 2023–2025, nenhuma: foi para a P2."}, {"titulo": "Regressão múltipla cresceu", "texto": "2 questões por P3 recente (6 de 30), contra 1 por prova em 2018–2019. O F parcial pelo R² apareceu em 2023, 2024 e 2025."}, {"titulo": "ANOVA estável", "texto": "3 a 4 questões por prova recente (11 de 30), contra 4 de 10 em 2018 e 4 de 10 em 2019. Dois fatores aparecem todo ano; desde 2024 o formato 'dão as estimativas α̂ e β̂' substituiu a tabela de dados."}, {"titulo": "Formato fixo", "texto": "10 testes de assertivas ('quais são corretas?') com 5 alternativas, sem discursiva. Em 2025: 120 minutos, calculadora científica permitida. Muitas assertivas trazem conta certa com justificativa errada."}], "checklist": ["Escrever os gl de qualquer desenho: um fator (k − 1, N − k), dois fatores sem repetição ((a − 1)(b − 1) no resíduo) e com n réplicas (ab(n − 1) no resíduo).", "Montar a ANOVA de um fator a partir de médias e desvios: SQE = n·Σ(ȳi − ȳ)², SQD = (n − 1)·Σsi².", "Recuperar uma média ou desvio ilegível pela média geral ou pela média dos desvios.", "Calcular SQA = b·Σα̂² e SQB = a·Σβ̂² a partir dos efeitos estimados e completar resíduos pela soma zero.", "Inverter o teste: dizer qual SQ faz o valor-p ficar acima ou abaixo de 0,05 (SQ > gl·QMRes·Fc).", "Calcular b0, b1, SQRes e σ̂² a partir de n, ΣX, ΣY, ΣX², ΣY², ΣXY.", "Tirar b1 = r·Sy/Sx e R² = r² a partir de médias, desvios e correlação.", "Fazer o teste t de β1 = c unilateral com o crítico de n − 2 gl (não 1,96).", "Distinguir IC da média e intervalo de previsão e convertê-los entre si (variância somada, não desvio).", "Trocar o nível de um intervalo (95% → 90%) mantendo o centro e usando t com n − p − 1 gl.", "Usar Σe = 0 para obter Ȳ e para responder sobre soma dos resíduos sem os dados.", "Calcular os resíduos padronizado e studentizado (com h = 1/n + (x − X̄)²/Sxx).", "Linearizar Y = β0·e^(β1X) e exponenciar o intercepto e seu IC.", "Interpretar βj em regressão múltipla 'fixadas as outras' e escrever H0 e H1 do F global.", "Calcular o F parcial entre modelos aninhados pelo R² e o F de um modelo simples pelo R².", "Tirar Sxx de SQReg = b1²·Sxx e testar se duas retas têm a mesma inclinação."], "pegadinhas": [{"titulo": "Conta certa, justificativa errada", "texto": "2023 Q6: t = −4 está certo e a decisão também, mas o crítico 1,96 é bilateral. 2023 Q10: F = 6,94 certo com H0 escrita com ≠. Leia a frase inteira antes de marcar."}, {"titulo": "Hipótese nula com ≠", "texto": "H0 nunca tem ≠. Em 2023 Q10, 2024 Q7 e 2025 Q9 há assertivas com 'H0: β1 ≠ 0' para descartar de cara."}, {"titulo": "H1 do F global", "texto": "É 'pelo menos um βi ≠ 0', não 'β1 ≠ 0 e β2 ≠ 0' (2024 Q1, 2025 Q5, 2025 Q9)."}, {"titulo": "'Fixado o outro preditor'", "texto": "0,06 × 100 = 6 h só vale com o número de entregas fixo. Sem essa frase, a assertiva é falsa (2023 Q4, 2024 Q1, 2025 Q5)."}, {"titulo": "Interação sem réplica", "texto": "Com uma observação por casela não existe teste de interação (2023 Q7). A assertiva 'existe interação' é falsa por construção."}, {"titulo": "ln β0 no lugar de β0", "texto": "No modelo exponencial, 4,02 é ln β0; β0 ≈ 55,6 (2024 Q2). O IC [3,82; 4,23] é de ln β0 (2023 Q5)."}, {"titulo": "Crítico do outro fator", "texto": "Em 2025 Q2 a assertiva usa F = 2,48 e Fc = 5,14, que são do rolo (2; 6 gl), para falar da tinta (3; 6 gl). Em 2023 Q8, 3,63 é F(4; 9) da interação, não F(2; 9)."}, {"titulo": "IC da média para um valor individual", "texto": "O pedido de reembolso se julga com o intervalo de previsão (2023 Q2); o IC da média é dez vezes mais estreito e engana."}, {"titulo": "Maior R² não basta", "texto": "'M3 é melhor porque R² = 0,72 > 0,70' é falso pela justificativa (2023 Q10, 2025 Q9). Em 2024 Q7 o R² subiu e o F parcial (2,25) não foi significativo."}, {"titulo": "Soma dos resíduos", "texto": "É sempre zero com intercepto (2025 Q6), e por isso Ȳ sai da reta (2024 Q3). Não confunda com SQRes."}], "dicas_prova": ["10 testes em 120 minutos (2025): 12 minutos por questão. Comece pelas conceituais e pelas repetidas (caminhões, resíduos, H0: β = 0), que saem em 2 minutos.", "Em questão de assertivas, julgue primeiro as fáceis (H0 com ≠, frase sem 'fixado') e elimine alternativas; muitas vezes não precisa fazer a conta pesada.", "Antes de qualquer ANOVA, escreva a coluna de gl inteira a partir do desenho. Metade das assertivas erradas tem gl errado.", "Tabelas: as provas recentes (2025) não mostram tabela anexa, e vários críticos vêm dentro das assertivas (Fc = 5,14; F(1; 27; 0,05) = 4,21), às vezes com gl errados de propósito. Não sabemos se a prova traz tabelas t e F anexas [CONFIRMAR]; treine ler t e F nas tabelas da disciplina e decore âncoras: t ≈ 1,98 (100 gl), t(0,025; 9) = 2,262, F(0,05; 1; ∞) ≈ 3,84.", "Calculadora científica é permitida (capa de 2025): treine o modo estatístico (soma, Σx², Σxy) para conferir somatórios.", "Ao trocar o nível de um intervalo ou passar do IC ao IP, confira o centro: as alternativas erradas costumam ter outro centro.", "Se a decisão depende de n desconhecido, compare com o pior caso (menor n): foi o que bastou em 2025 Q4."], "formulario": [{"nome": "ANOVA 1 fator (n por grupo)", "typst": "$\"SQE\" = n sum_i (overline(y)_i - overline(y))^2, quad \"SQD\" = (n - 1) sum_i s_i^2$", "txt": "SQE = n·Σ(ȳi − ȳ)², SQD = (n − 1)·Σsi²; gl k − 1 e N − k"}, {"nome": "Estatística F", "typst": "$F = \"QM\"_\"efeito\" / \"QMRes\", quad \"rejeita se\" F > F(alpha; \"gl\"_\"efeito\"; \"gl\"_\"res\")$", "txt": "F = QMefeito/QMRes; rejeita H0 se F > F(α; gl efeito; gl resíduo)"}, {"nome": "Dois fatores sem repetição (a × b)", "typst": "$\"gl\": a - 1, quad b - 1, quad (a - 1)(b - 1)$", "txt": "gl: a − 1, b − 1 e resíduo (a − 1)(b − 1); não há interação"}, {"nome": "Dois fatores com n réplicas", "typst": "$\"gl\": a - 1, quad b - 1, quad (a - 1)(b - 1), quad a b (n - 1)$", "txt": "gl: a − 1, b − 1, interação (a − 1)(b − 1), resíduo ab(n − 1)"}, {"nome": "SQ pelos efeitos (aditivo)", "typst": "$\"SQA\" = b sum hat(alpha)_i^2, quad \"SQB\" = a sum hat(beta)_j^2$", "txt": "SQA = b·Σα̂i², SQB = a·Σβ̂j²; Σα̂ = Σβ̂ = 0"}, {"nome": "Limiar de SQ", "typst": "$p < alpha <=> \"SQ\" > \"gl\" dot \"QMRes\" dot F_c$", "txt": "p < α ⇔ SQ > gl·QMRes·Fc"}, {"nome": "Somatórios da reta", "typst": "$S_(x x) = sum X^2 - n overline(X)^2, quad S_(x y) = sum X Y - n overline(X) overline(Y)$", "txt": "Sxx = ΣX² − n·X̄², Sxy = ΣXY − n·X̄·Ȳ, Syy = ΣY² − n·Ȳ²"}, {"nome": "Estimadores", "typst": "$b_1 = S_(x y) / S_(x x) = r S_y / S_x, quad b_0 = overline(Y) - b_1 overline(X)$", "txt": "b1 = Sxy/Sxx = r·Sy/Sx, b0 = Ȳ − b1·X̄"}, {"nome": "Decomposição e σ̂", "typst": "$\"SQReg\" = b_1 S_(x y) = b_1^2 S_(x x), quad hat(sigma)^2 = \"SQRes\" / (n - 2), quad R^2 = r^2$", "txt": "SQReg = b1·Sxy = b1²·Sxx, σ̂² = SQRes/(n − 2), R² = SQReg/SQT = r²"}, {"nome": "Teste e IC de β1", "typst": "$t = (b_1 - c) / sqrt(hat(sigma)^2 \\/ S_(x x)), quad n - 2 \"gl\"; quad F = t^2 \"se\" c = 0$", "txt": "t = (b1 − c)/√(σ̂²/Sxx), n − 2 gl; IC: b1 ± t·ep; F = t² quando c = 0"}, {"nome": "IC da média e intervalo de previsão", "typst": "$hat(Y)_0 plus.minus t hat(sigma) sqrt(1/n + (x_0 - overline(X))^2 / S_(x x)) quad \"e\" quad hat(Y)_0 plus.minus t hat(sigma) sqrt(1 + 1/n + (x_0 - overline(X))^2 / S_(x x))$", "txt": "IC: Ŷ0 ± t·σ̂·√(1/n + (x0 − X̄)²/Sxx); IP: Ŷ0 ± t·σ̂·√(1 + 1/n + (x0 − X̄)²/Sxx) = Ŷ0 ± t·√(σ̂² + σ̂Ŷ²)"}, {"nome": "Resíduos", "typst": "$sum hat(e)_i = 0, quad z_i = hat(e)_i / hat(sigma), quad r_i = hat(e)_i / (hat(sigma) sqrt(1 - h_i)), quad h_i = 1/n + (x_i - overline(X))^2 / S_(x x)$", "txt": "Σe = 0; z = e/σ̂; r = e/(σ̂·√(1 − h)), h = 1/n + (x − X̄)²/Sxx"}, {"nome": "Modelo exponencial", "typst": "$Y = beta_0 e^(beta_1 X) => ln Y = ln beta_0 + beta_1 X$", "txt": "Y = β0·e^(β1X) ⇒ ln Y = ln β0 + β1X; β̂0 = e^(intercepto)"}, {"nome": "F global (p preditores)", "typst": "$F = (R^2 \\/ p) / ((1 - R^2) \\/ (n - p - 1))$", "txt": "F = (R²/p)/((1 − R²)/(n − p − 1)); H0: todos βj = 0"}, {"nome": "F parcial (q variáveis novas)", "typst": "$F = ((R_c^2 - R_r^2) \\/ q) / ((1 - R_c^2) \\/ (n - p - 1))$", "txt": "F = ((R²completo − R²reduzido)/q)/((1 − R²completo)/(n − p − 1))"}, {"nome": "Duas inclinações", "typst": "$T = (hat(beta)_1 - hat(gamma)_1) / (hat(sigma) sqrt(1 \\/ S_(x x 1) + 1 \\/ S_(x x 2))), quad hat(sigma)^2 = (\"SQRes\"_1 + \"SQRes\"_2) / (n_1 + n_2 - 4)$", "txt": "T = (b1 − g1)/(σ̂·√(1/Sxx1 + 1/Sxx2)), σ̂² = (SQRes1 + SQRes2)/(n1 + n2 − 4), t com n1 + n2 − 4 gl"}, {"nome": "Trocar o nível do intervalo", "typst": "$h_(90%) = h_(95%) dot t_(0.05; nu) / t_(0.025; nu)$", "txt": "meia-largura(90%) = meia-largura(95%)·t(0,05; ν)/t(0,025; ν), mesmo centro"}]}, "historico": [{"ano": 2018, "rotulo": "P3 2018", "fonte": "fontes/2018-antiga-3KM2", "questoes": [{"resumo": "Aderência à Poisson (300 cromossomos): χ², classes e valor crítico.", "topicos": ["qui-quadrado"]}, {"resumo": "Formulação × velocidade com 3 réplicas: ler p-valores e interação.", "topicos": ["anova-2f-com-rep"]}, {"resumo": "Assentos × funcionários, uma medida por casela: completar a ANOVA.", "topicos": ["anova-2f-sem-rep", "anova-gl-critico"]}, {"resumo": "Produção × distância: saída de software da reta (IC, p-valor, R²).", "topicos": ["reg-inferencia", "reg-correlacao"]}, {"resumo": "Velas de ignição (4 marcas × 5): ANOVA com lacunas.", "topicos": ["anova-1f", "anova-gl-critico"]}, {"resumo": "Três cimentos: ANOVA de médias e variâncias, decisão a 5% e 1%.", "topicos": ["anova-1f", "anova-gl-critico"]}, {"resumo": "Três amostras: qual reta tem maior R² e correlação.", "topicos": ["reg-correlacao"]}, {"resumo": "Fundição: regressão simples × múltipla pelas tabelas de SQ.", "topicos": ["reg-mult-f-parcial"]}, {"resumo": "CO × NOy: covariância, correlação e sinal da reta.", "topicos": ["reg-correlacao"]}, {"resumo": "Teste de Kolmogorov-Smirnov de normalidade com p-valor dado.", "topicos": ["ks-normalidade"]}]}, {"ano": 2019, "rotulo": "P3 2019", "fonte": "fontes/2019-antiga-4p59", "questoes": [{"resumo": "Fornecedores (4 × 31) com café no relatório: completar a ANOVA (voltou em 2025 Q3).", "topicos": ["anova-1f", "anova-gl-critico"]}, {"resumo": "Cereal formato × cor com 3 semanas: teste de interação.", "topicos": ["anova-2f-com-rep"]}, {"resumo": "Reembolso de viagem (n = 102): reta por somatórios e intervalo de previsão (voltou em 2023 Q2).", "topicos": ["reg-estimacao", "reg-previsao"]}, {"resumo": "Sensibilidade ao sal, tabela 3 × 3: χ² de independência.", "topicos": ["qui-quadrado"]}, {"resumo": "Máquinas × funcionários sem repetição: ANOVA de dois fatores.", "topicos": ["anova-2f-sem-rep"]}, {"resumo": "Campanha publicitária (n = 122): reta por somatórios e interpretação.", "topicos": ["reg-estimacao", "reg-inferencia"]}, {"resumo": "Soja × fertilizante (n = 20): IC do coeficiente angular.", "topicos": ["reg-inferencia"]}, {"resumo": "Tempo × volume (n = 8): correlação e teste de ρ = 0.", "topicos": ["reg-correlacao"]}, {"resumo": "Seguros: regressão múltipla, completar a ANOVA e ler os t dos coeficientes.", "topicos": ["reg-mult-interp", "reg-inferencia"]}, {"resumo": "Quatro grupos com somas e somas de quadrados: ANOVA de um fator.", "topicos": ["anova-1f"]}]}], "extra": {}, "codigos": ["PRO3200"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, PROVAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+PROVAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de 2016–2020 para a tendência`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  PROVAS.map(p=>`<a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">${esc(p.rotulo||p.ano)} · prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">${esc(p.rotulo||p.ano)} · resolução</a>`).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+const av = [];
+if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
+if (PROVAS.some(p=>p.status!=='revisada')) av.push('<b>Resoluções em revisão.</b> Ainda não foram conferidas por um segundo revisor. Achou algo? Avise em @prisma.poli.');
+if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
+else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
+document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: 2016–2020 x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de 2016–2020 contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>2016–2020</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, PROVAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(Q.length / Math.max(1,n)));
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false;
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+document.getElementById('simdur').textContent = durs.length ? `Duração sugerida: ${durPadrao} min, a das P3 analisadas. Ajuste ao tempo da sua turma.` : 'A duração não consta nas provas analisadas; ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  timer=setInterval(()=>{ restante=Math.max(0,restante-1); clock.textContent=fmt(restante); if(!restante){ encerrar(); } },1000);
+});
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+<script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
+function rot(){var d=r.getAttribute("data-theme")==="dark";b.textContent=d?"☀ Modo claro":"☾ Modo escuro";b.setAttribute("aria-pressed",d?"true":"false")}
+b.addEventListener("click",function(){var d=r.getAttribute("data-theme")!=="dark";if(d)r.setAttribute("data-theme","dark");else r.removeAttribute("data-theme");try{localStorage.setItem("fuja-p3-tema",d?"dark":"light")}catch(e){}rot()});rot()})();</script>
+</body>
+</html>
