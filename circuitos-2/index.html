@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Circuitos Elétricos II · Fuja das P3</title>
+<meta name="description" content="P3 de Circuitos Elétricos II (PSI3213) transcritas e resolvidas: 3 provas, 20 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Circuitos Elétricos II · Fuja das P3">
+<meta property="og:description" content="P3 de Circuitos Elétricos II (PSI3213) transcritas e resolvidas: 3 provas, 20 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1ECE2">
+<link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<script>(function(){try{if(localStorage.getItem("fuja-p3-tema")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}})();</script>
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#F1ECE2; --band-fg:#0F2347; --band-muted:#4A5468; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:#C2410C;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{border-color:var(--laranja);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F; --ok-fg:#FFE39A;
+  --link:#FF9A75; --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+:root[data-theme="dark"] .band .eyebrow,:root[data-theme="dark"] .contador b{color:var(--amarelo)}
+:root[data-theme="dark"] .hero{background:var(--band)}
+:root[data-theme="dark"] .docs a{background:transparent;border-color:rgba(255,255,255,.28);color:var(--band-fg)}
+:root[data-theme="dark"] .docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347}
+:root[data-theme="dark"] .cta-hero a.sec{border-color:rgba(255,255,255,.3)}
+.band{position:relative}
+.tema{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));z-index:6;display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--f-body);color:var(--band-fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+:root[data-theme="dark"] .tema{border-color:rgba(255,255,255,.3)}
+.tema:hover,.tema:focus-visible{border-color:var(--laranja);outline:none}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="band">
+  <button class="tema" id="tema" type="button" aria-label="Alternar modo escuro">☾ Modo escuro</button>
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
+  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+    <ol class="roteiro" id="gRoteiro"></ol>
+
+    <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+    <div class="tend" id="gTend"></div>
+
+    <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+      <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+    <div class="check" id="gCheck"></div>
+
+    <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+    <div class="pegas" id="gPegas"></div>
+
+    <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+    <ul class="dicas" id="gDicas"></ul>
+
+    <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+    <div class="form" id="gForm"></div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "A P3 de Circuitos Elétricos II cobre o fim do programa: potência em regime senoidal, acoplamento magnético, quadripolos e Bode. As P3 de 2023 e 2024 misturam 2 discursivas e testes de folha óptica; a de 2025 tem só 2 discursivas no arquivo. Os tópicos separam potência, transformador ideal e perfeito, cada família de parâmetros de quadripolo e as três formas de cobrar Bode.", "topicos": [{"slug": "potencia-complexa", "nome": "Potência complexa, ativa e reativa", "grupo": "Potência em RPS", "ref": null, "material": null}, {"slug": "fator-potencia", "nome": "Fator de potência e correção com capacitor", "grupo": "Potência em RPS", "ref": null, "material": null}, {"slug": "max-transferencia", "nome": "Máxima transferência de potência", "grupo": "Potência em RPS", "ref": null, "material": null}, {"slug": "analise-rps", "nome": "Fasores: malhas, nós e divisores em RPS", "grupo": "Potência em RPS", "ref": null, "material": null}, {"slug": "mutua", "nome": "Indutância mútua: pontos, k e equações", "grupo": "Acoplamento magnético", "ref": null, "material": null}, {"slug": "trafo-perfeito", "nome": "Transformador perfeito (k = 1)", "grupo": "Acoplamento magnético", "ref": null, "material": null}, {"slug": "trafo-ideal", "nome": "Transformador ideal e impedância refletida", "grupo": "Acoplamento magnético", "ref": null, "material": null}, {"slug": "param-zy", "nome": "Parâmetros Z e Y", "grupo": "Quadripolos", "ref": null, "material": null}, {"slug": "param-hibridos", "nome": "Parâmetros híbridos H e G", "grupo": "Quadripolos", "ref": null, "material": null}, {"slug": "param-transmissao", "nome": "Matriz de transmissão T", "grupo": "Quadripolos", "ref": null, "material": null}, {"slug": "quadripolo-terminado", "nome": "Quadripolo com gerador e carga (Ze, Thévenin)", "grupo": "Quadripolos", "ref": null, "material": null}, {"slug": "bode-modulo", "nome": "Bode assintótico de módulo: ler e esboçar", "grupo": "Resposta em frequência", "ref": null, "material": null}, {"slug": "bode-identificar", "nome": "Função de rede a partir do Bode", "grupo": "Resposta em frequência", "ref": null, "material": null}, {"slug": "bode-fase", "nome": "Bode de fase", "grupo": "Resposta em frequência", "ref": null, "material": null}, {"slug": "funcao-rede", "nome": "Funções de rede e Thévenin no domínio s", "grupo": "Resposta em frequência", "ref": null, "material": null}, {"slug": "estabilidade", "nome": "Frequências próprias e estabilidade", "grupo": "Resposta em frequência", "ref": null, "material": null}], "padroes": [{"id": "P-FP-CAP", "nome": "Corrigir o fator de potência com capacitor", "reconhecer": "Dão P e fp de uma carga (ou V e I) e pedem o capacitor que leva o fp a 0,8, 0,95 ou 0,98.", "metodo": "Q = P·tg φ antes e Q' = P·tg φ' depois (P não muda). Qc = Q' − Q < 0. C = −Qc/(ω|V|²), com a tensão que o capacitor de fato vê (cuidado com instalação a três fios: 200 V, não 100 V)."}, {"id": "P-TABELA-POT", "nome": "Tabela de fasores e potências", "reconhecer": "Circuito em RPS com um dado de potência (P num resistor, P na carga) e uma tabela de I, V e S por ramo.", "metodo": "Do dado para trás: |I| = √(P/R), escolha a fase de referência, V = Z·I, S = V·I* em cada ramo, some as correntes e as potências. Feche com a conservação: S total = V_fonte·I*."}, {"id": "P-MAXPOT", "nome": "Máxima transferência de potência", "reconhecer": "Pedem a carga Z (ou R e L em série) que recebe a máxima potência.", "metodo": "Inative as fontes independentes (tensão vira curto, corrente vira aberto), calcule Zth vista pela carga e use Z = Zth*. Reatância X vira L = X/ω ou C = 1/(ω|X|)."}, {"id": "P-MALHA-MUTUA", "nome": "Malhas com indutância mútua", "reconhecer": "Bobinas acopladas com pontos dentro de um circuito; pedem as equações de malha ou a impedância de entrada.", "metodo": "Em cada bobina: v = jωL·i_própria ± jωM·i_outra, com + se as duas correntes entram (ou saem) pelos pontos e − se uma entra e a outra sai. Confira |M| ≤ √(L₁L₂)."}, {"id": "P-TRAFO-REFLETE", "nome": "Trafo ideal: relações e impedância refletida", "reconhecer": "Transformador ideal com relação n₁:n₂ (ou r = V₁/V₂) e uma carga ou fonte do outro lado.", "metodo": "V₁ = r·V₂ e I₁ = −I₂/r (correntes entrando pelos pontos). Impedância vista do lado 1: Z₁ = r²·Z₂. Potência passa inteira, sem perda."}, {"id": "P-TRAFO-K1", "nome": "Transformador perfeito (k = 1)", "reconhecer": "Indutâncias L₁, L₂ e k = 1; pedem M, a matriz Z ou L, a relação r e a impedância de entrada com carga.", "metodo": "M = √(L₁L₂), Z = s·[L₁ M; M L₂], r = √(L₁/L₂) para qualquer carga. Não é ideal: T = [r 0; 1/(sM) 1/r]. Para Ze, resolva as malhas ou use Ze = sL₁ − (sM)²/(sL₂ + Z_carga) (somando o que houver em série no primário)."}, {"id": "P-PARAM-DEF", "nome": "Parâmetro de quadripolo pela definição", "reconhecer": "Dão um circuito (resistores, fonte controlada, AO) e pedem z, y, h, g ou A, B, C, D.", "metodo": "Escreva a definição (ex.: B = V₁/(−I₂) com V₂ = 0), imponha a condição na porta (abrir = corrente nula, curto = tensão nula) e resolva o circuito que sobra. Rede passiva: z₁₂ = z₂₁ e det T = 1."}, {"id": "P-QUAD-TERMINADO", "nome": "Quadripolo com gerador e carga", "reconhecer": "Dão a matriz (T, H, Z) e a carga ou o gerador; pedem Ze, a corrente de saída ou a carga de máxima potência.", "metodo": "Ze = (A·ZL + B)/(C·ZL + D). Impedância de saída: inative o gerador (fonte de tensão = curto na porta 1) e calcule V₂/I₂; com H, Z₀ = h₁₁/det H. Depois ZL = Z₀*."}, {"id": "P-BODE-LER", "nome": "Ler um valor do Bode assintótico", "reconhecer": "Dão F(s) e pedem o valor em dB numa frequência, ou onde a assíntota cruza um nível.", "metodo": "Cada (s + a) vale a para ω < a e ω para ω > a; s vale ω. Escreva o trecho da assíntota como K·ωⁿ e aplique 20 log. −6 dB = fator 1/2, −20 dB = 1/10."}, {"id": "P-BODE-IDENT", "nome": "Função de rede a partir do gráfico de Bode", "reconhecer": "Dão o diagrama assintótico (módulo ou fase) e pedem a F(s) entre as alternativas.", "metodo": "Inclinações dão polos e zeros (±20 dB/dec simples, ±40 duplos ou complexos); a primeira inclinação dá o polo ou zero na origem. Use um ponto marcado para achar K e descarte as alternativas pelo valor nesse ponto."}, {"id": "P-FUNCAO-S", "nome": "Função de rede ou Thévenin em s", "reconhecer": "Pedem V₂(s)/E(s), a tensão de Thévenin transformada ou a corrente de curto em Laplace (c.i.n.).", "metodo": "Impedâncias sL e 1/(sC); divisor de tensão ou malhas. Excitação degrau: multiplique por 1/s. Confira com valor inicial (s → ∞) e final (s → 0)."}, {"id": "P-ESTAB", "nome": "Frequências próprias e estabilidade", "reconhecer": "Pedem o valor de um parâmetro (μ, α) para estabilidade ou para uma única frequência própria.", "metodo": "Frequências próprias = raízes do determinante da matriz de análise. Estável: todas com parte real negativa. Só caiu na prova sem data (PSI2212)."}], "blocos": [{"id": "potencia", "nome": "Potência em RPS: complexa, fator de potência e máxima transferência", "questoes": ["PSI3213-2023-P3-Q1", "PSI3213-2023-P3-Q5", "PSI3213-2023-P3-Q7", "PSI3213-2023-P3-Q10", "PSI3213-2024-P3-Q2", "PSI3213-2024-P3-Q6"]}, {"id": "acoplados", "nome": "Indutância mútua e transformadores (ideal e perfeito)", "questoes": ["PSI3213-2023-P3-Q2", "PSI3213-2023-P3-Q3", "PSI3213-2024-P3-Q1", "PSI3213-2024-P3-Q5", "PSI3213-2025-P3-Q1"]}, {"id": "quadripolos", "nome": "Quadripolos: Z, Y, híbridos e transmissão", "questoes": ["PSI3213-2023-P3-Q4", "PSI3213-2023-P3-Q9", "PSI3213-2025-P3-Q2"]}, {"id": "frequencia", "nome": "Funções de rede em s e diagramas de Bode", "questoes": ["PSI3213-2023-P3-Q6", "PSI3213-2023-P3-Q8", "PSI3213-2024-P3-Q3", "PSI3213-2024-P3-Q4", "PSI3213-2024-P3-Q7", "PSI3213-2024-P3-Q8"]}], "codigo": "PSI3213", "materia": "Circuitos Elétricos II"}, "provas": [{"id": "PSI3213-2023-P3", "codigo": "PSI3213", "materia": "Circuitos Elétricos II", "prova": "P3", "ano": 2023, "rotulo": "2023", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "misto", "duracao_min": null, "questoes": [{"n": 1, "id": "PSI3213-2023-P3-Q1", "pontos": null, "topicos": ["fator-potencia", "potencia-complexa", "trafo-ideal"], "padrao": "P-FP-CAP", "padroes_secundarios": ["P-TRAFO-REFLETE"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Instalação a três fios (2 × 100 V): capacitor que leva o fp de 0,6 a 0,8, sua corrente e o novo C ligado por trafo ideal 1:5.", "armadilhas": ["Usar 100 V em vez de 200 V na tensão do capacitor", "Aplicar r² ao contrário no trafo ideal"], "armadilhas_tag": ["fator-potencia", "trafo-ideal"], "gabarito": null, "respostas": ["(a) C ≈ 386,8 μF", "(b) Î_C = j29,17 A ef (29,17∠90°)", "(c) C ≈ 15,47 μF"]}, {"n": 2, "id": "PSI3213-2023-P3-Q2", "pontos": null, "topicos": ["trafo-perfeito", "param-zy", "param-transmissao", "quadripolo-terminado"], "padrao": "P-TRAFO-K1", "padroes_secundarios": ["P-PARAM-DEF", "P-QUAD-TERMINADO"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Trafo com k = 1 (16 H e 4 H) e carga de 1 Ω: matriz Z, r, Z₁(s), matriz T; depois o trafo ideal r = 2.", "armadilhas": ["Tratar o trafo com k = 1 como ideal e zerar o parâmetro C", "Errar o sinal de I₂ na convenção da matriz T"], "armadilhas_tag": ["trafo-perfeito", "param-transmissao"], "gabarito": null, "respostas": ["(a) Z = [16s 8s; 8s 4s], r = 2, Z₁ = 16s/(4s + 1)", "(b) T = [2 0; 1/(8s) 1/2]", "(c) T = [2 0; 0 1/2], Z₁ = 4 Ω"]}, {"n": 3, "id": "PSI3213-2023-P3-Q3", "pontos": null, "topicos": ["trafo-ideal"], "padrao": "P-TRAFO-REFLETE", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Teste 1: impedância 8 + j4 refletida por um trafo ideal com r = √2.", "armadilhas": ["Multiplicar por r² em vez de dividir"], "armadilhas_tag": ["trafo-ideal"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 4, "id": "PSI3213-2023-P3-Q4", "pontos": null, "topicos": ["param-zy"], "padrao": "P-PARAM-DEF", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "Teste 2: z₁₁ e z₁₂ de um L de resistores (9 Ω em série, 8 Ω em derivação).", "armadilhas": ["Incluir o resistor sem corrente no cálculo de z₁₂"], "armadilhas_tag": ["param-zy"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 5, "id": "PSI3213-2023-P3-Q5", "pontos": null, "topicos": ["potencia-complexa", "analise-rps"], "padrao": "P-TABELA-POT", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Teste 3: potência complexa no capacitor de um LC paralelo alimentado por fonte de corrente.", "armadilhas": ["Trocar as impedâncias no divisor de corrente"], "armadilhas_tag": ["analise-rps"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 6, "id": "PSI3213-2023-P3-Q6", "pontos": null, "topicos": ["bode-identificar", "bode-modulo"], "padrao": "P-BODE-IDENT", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Teste 4: identificar H(s) a partir do Bode assintótico de módulo (−20, −60 e −40 dB/dec).", "armadilhas": ["Esquecer que (s + a) vale a na assíntota de baixa frequência"], "armadilhas_tag": ["bode-identificar"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 7, "id": "PSI3213-2023-P3-Q7", "pontos": null, "topicos": ["max-transferencia", "analise-rps"], "padrao": "P-MAXPOT", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 7, "resumo": "Teste 5: carga série RL para máxima transferência de potência (ω = 10 rad/s).", "armadilhas": ["Confundir reatância com indutância (esquecer de dividir por ω)"], "armadilhas_tag": ["max-transferencia"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 8, "id": "PSI3213-2023-P3-Q8", "pontos": null, "topicos": ["bode-modulo"], "padrao": "P-BODE-LER", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Teste 6: onde a última assíntota de Bode de 10s(s+3)/((s+2)(s+4)(s+5)) cruza 0 dB.", "armadilhas": ["Usar o ganho de baixa frequência na assíntota de alta"], "armadilhas_tag": ["bode-modulo"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 9, "id": "PSI3213-2023-P3-Q9", "pontos": null, "topicos": ["param-hibridos", "max-transferencia", "quadripolo-terminado"], "padrao": "P-QUAD-TERMINADO", "padroes_secundarios": ["P-MAXPOT"], "dificuldade": 3, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "Teste 7: carga de máxima transferência na saída de um quadripolo dado pela matriz híbrida H.", "armadilhas": ["Esquecer de conjugar Z₀", "Usar 1/h₂₂ com o gerador de tensão inativado"], "armadilhas_tag": ["max-transferencia", "param-hibridos"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 10, "id": "PSI3213-2023-P3-Q10", "pontos": null, "topicos": ["fator-potencia", "potencia-complexa"], "padrao": "P-FP-CAP", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 10, "resumo": "Teste 8: capacitor que corrige para 0,98 o fp de um quadripolo de cargas (220 V, I₁ = 10 − j10 A).", "armadilhas": ["Não conjugar a corrente em S = V·I*", "Corrigir até fp = 1 em vez de 0,98"], "armadilhas_tag": ["potencia-complexa", "fator-potencia"], "gabarito": "e", "respostas": ["(e)"]}]}, {"id": "PSI3213-2024-P3", "codigo": "PSI3213", "materia": "Circuitos Elétricos II", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "misto", "duracao_min": null, "questoes": [{"n": 1, "id": "PSI3213-2024-P3-Q1", "pontos": 3.0, "topicos": ["mutua", "analise-rps"], "padrao": "P-MALHA-MUTUA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Mútua realizável (|M| ≤ √(L₁L₂)), coeficientes da análise de malhas com mútua em RPS e sistema 2×2 por Cramer.", "armadilhas": ["Somar 2Xm quando a corrente sai pelo ponto da outra bobina", "Esquecer o termo mútuo na malha 2"], "armadilhas_tag": ["mutua", "mutua"], "gabarito": null, "respostas": ["(a) Sim: |M| = 30 mH ≤ √(L₁L₂) ≈ 48,99 mH (k ≈ 0,61)", "(b) A = 10 + j5; B = j3,5; C = j2", "(c) Î₁ ≈ 2,15∠86,57° A; Î₂ ≈ 3,22∠86,57° A"]}, {"n": 2, "id": "PSI3213-2024-P3-Q2", "pontos": 3.0, "topicos": ["potencia-complexa", "analise-rps"], "padrao": "P-TABELA-POT", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 2, "resumo": "Tabela de fasores e potências por ramo a partir de P = 240 W em R₂; fase de I₂ com o gerador na referência.", "armadilhas": ["Esquecer a potência do resistor série na potência total", "Trocar o sinal da fase ao mudar a referência"], "armadilhas_tag": ["potencia-complexa", "analise-rps"], "gabarito": null, "respostas": ["(a) Î₂ = 2 A; V̂₁ = 120 + j40 V; S₂ = 240 + j80 VA; Î₁ = 3,2 + j2,4 A; S₁ = 480 − j160 VA; Î = 5,2 + j2,4 A; S = 1376 − j80 VA; V̂s ≈ 240,67∠21,45° V", "(b) fase de Î₂ = −21,45°"]}, {"n": 3, "id": "PSI3213-2024-P3-Q3", "pontos": null, "topicos": ["funcao-rede"], "padrao": "P-FUNCAO-S", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Teste 1: tensão de Thévenin em Laplace (degrau, divisor R–L).", "armadilhas": ["Esquecer o 1/s do degrau na transformada"], "armadilhas_tag": ["funcao-rede"], "gabarito": "e", "respostas": ["(e)"]}, {"n": 4, "id": "PSI3213-2024-P3-Q4", "pontos": null, "topicos": ["funcao-rede", "mutua"], "padrao": "P-FUNCAO-S", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Teste 2: função de rede V₂/Es de bobinas acopladas com o secundário em aberto.", "armadilhas": ["Usar a relação de espiras sem conferir o acoplamento"], "armadilhas_tag": ["mutua"], "gabarito": "a", "respostas": ["(a)"]}, {"n": 5, "id": "PSI3213-2024-P3-Q5", "pontos": null, "topicos": ["trafo-ideal"], "padrao": "P-TRAFO-REFLETE", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Teste 3: tensão no primário de um trafo ideal 1:2 com fonte de corrente no primário e fonte de tensão no secundário.", "armadilhas": ["Responder em função de Ve, que não é dado"], "armadilhas_tag": ["trafo-ideal"], "gabarito": "d", "respostas": ["(d)"]}, {"n": 6, "id": "PSI3213-2024-P3-Q6", "pontos": null, "topicos": ["trafo-ideal", "potencia-complexa"], "padrao": "P-TABELA-POT", "padroes_secundarios": ["P-TRAFO-REFLETE"], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 7, "resumo": "Teste 4: |S| fornecida a uma carga 5 + j10 Ω que recebe 100 W através de um trafo ideal 10:1.", "armadilhas": ["Achar que a relação de espiras muda a potência"], "armadilhas_tag": ["trafo-ideal"], "gabarito": "b", "respostas": ["(b)"]}, {"n": 7, "id": "PSI3213-2024-P3-Q7", "pontos": null, "topicos": ["bode-modulo"], "padrao": "P-BODE-LER", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Teste 5: valor do Bode assintótico de 6(s+2)/((s+1)(s+3)) em ω = 2.", "armadilhas": ["Esquecer o polo que já atuou antes da frequência pedida"], "armadilhas_tag": ["bode-modulo"], "gabarito": "c", "respostas": ["(c)"]}, {"n": 8, "id": "PSI3213-2024-P3-Q8", "pontos": null, "topicos": ["bode-modulo"], "padrao": "P-BODE-LER", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 8, "resumo": "Teste 6: frequências em que o Bode assintótico de (1/16)s(s+8)²/(s+2)² vale −6 dB.", "armadilhas": ["Confundir −6 dB com o fator 1/4"], "armadilhas_tag": ["bode-modulo"], "gabarito": "d", "respostas": ["(d)"]}]}, {"id": "PSI3213-2025-P3", "codigo": "PSI3213", "materia": "Circuitos Elétricos II", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 1, "id": "PSI3213-2025-P3-Q1", "pontos": 5.0, "topicos": ["trafo-perfeito", "mutua", "funcao-rede", "potencia-complexa"], "padrao": "P-TRAFO-K1", "padroes_secundarios": ["P-FUNCAO-S"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Trafo com k = 1 (4 H e 1 H): matriz L, matriz Z(s), r; Ze(s) com R = 1 Ω e C = 1 F; fp em ω = 1/2.", "armadilhas": ["Tratar o trafo com k = 1 como ideal ao refletir a carga", "Usar ω = 1 em vez de ω = 1/2 no fator de potência"], "armadilhas_tag": ["trafo-perfeito", "potencia-complexa"], "gabarito": null, "respostas": ["(a) L = [4 2; 2 1] H", "(b) Z(s) = [4s 2s; 2s s]", "(c) r = 2", "(d) Ze(s) = (s² + 4s + 1)/(s² + 1)", "(e) fp = 3/√73 ≈ 0,351, indutivo"]}, {"n": 2, "id": "PSI3213-2025-P3-Q2", "pontos": 5.0, "topicos": ["param-transmissao", "quadripolo-terminado"], "padrao": "P-PARAM-DEF", "padroes_secundarios": ["P-QUAD-TERMINADO"], "dificuldade": 3, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Ze de um quadripolo T = [2 0; 0 1/2] com capacitor de 1 F; matriz T de um circuito com fonte controlada gm·V.", "armadilhas": ["Inverter a polaridade da tensão de controle V", "Trocar −I₂ por I₂ na definição de B e D"], "armadilhas_tag": ["param-transmissao", "param-transmissao"], "gabarito": null, "respostas": ["(a) Ze = 4/s (capacitor de 1/4 F)", "(b) T = [1, R(2 − gm·R); 0, 1 − gm·R]"]}]}], "atualizado": "22/11/2026", "blocos": [{"id": "PSI3213-P3-bloco-potencia", "nome": "Potência em RPS: complexa, fator de potência e máxima transferência", "questoes": ["PSI3213-2023-P3-Q1", "PSI3213-2023-P3-Q5", "PSI3213-2023-P3-Q7", "PSI3213-2023-P3-Q10", "PSI3213-2024-P3-Q2", "PSI3213-2024-P3-Q6"]}, {"id": "PSI3213-P3-bloco-acoplados", "nome": "Indutância mútua e transformadores (ideal e perfeito)", "questoes": ["PSI3213-2023-P3-Q2", "PSI3213-2023-P3-Q3", "PSI3213-2024-P3-Q1", "PSI3213-2024-P3-Q5", "PSI3213-2025-P3-Q1"]}, {"id": "PSI3213-P3-bloco-quadripolos", "nome": "Quadripolos: Z, Y, híbridos e transmissão", "questoes": ["PSI3213-2023-P3-Q4", "PSI3213-2023-P3-Q9", "PSI3213-2025-P3-Q2"]}, {"id": "PSI3213-P3-bloco-frequencia", "nome": "Funções de rede em s e diagramas de Bode", "questoes": ["PSI3213-2023-P3-Q6", "PSI3213-2023-P3-Q8", "PSI3213-2024-P3-Q3", "PSI3213-2024-P3-Q4", "PSI3213-2024-P3-Q7", "PSI3213-2024-P3-Q8"]}], "guia": {"escopo": "A P3 de Circuitos Elétricos II cobre o fim do programa: potência em regime senoidal (complexa, ativa e reativa, fator de potência e sua correção, máxima transferência), indutância mútua e transformadores ideal e perfeito, quadripolos (Z, Y, híbridos, transmissão) e diagramas de Bode. O domínio s aparece como ferramenta (funções de rede, Thévenin em Laplace, matriz Z em s), mas transformada inversa, frequências próprias e estabilidade não caíram em nenhuma P3 de PSI3213 das fontes (2016–2019 e 2023–2025); só aparecem na prova sem data da disciplina antiga PSI2212. As P3 de 2023 e 2024 têm 2 questões discursivas e 8 ou 6 testes de folha óptica; a de 2025 tem só 2 discursivas de 5,0 pontos no arquivo. Confirme com a sua turma até onde foi a P2.", "programa": ["Potência em regime senoidal: complexa, ativa e reativa; fator de potência e correção", "Máxima transferência de potência (com Thévenin e Norton)", "Análise de malhas e nós em regime senoidal", "Indutância mútua; transformador ideal e perfeito", "Quadripolos: parâmetros Z, Y, híbridos e de transmissão; reciprocidade e associações", "Funções de rede no domínio s (como ferramenta)", "Diagramas de Bode; dB"], "roteiro": [{"etapa": "Potência complexa", "texto": "Refaça a 2024 Q2 (tabela de fasores e potências) e confira pela conservação S = V·I*. Depois os testes 2023 Q5 e 2024 Q6. Se sobrar tempo, a 2019 Q1 do histórico, que é a tabela de cargas a três fios."}, {"etapa": "Correção do fator de potência", "texto": "2023 Q1 (a) e (b), com o capacitor sob 200 V, e o teste 2023 Q10 (fp 0,98). Fixe a receita Q' = P·tg φ', Qc = Q' − Q, C = −Qc/(ω|V|²)."}, {"etapa": "Mútua e transformador ideal", "texto": "2024 Q1 (sinais pelos pontos nas malhas), depois os testes 2023 Q3, 2024 Q5 e 2024 Q4. Termine com o item (c) da 2023 Q1 (capacitor ligado por trafo)."}, {"etapa": "Transformador perfeito (k = 1)", "texto": "2023 Q2 e 2025 Q1 têm o mesmo esqueleto: M = √(L₁L₂), matriz Z em s, r = √(L₁/L₂), impedância de entrada com carga. Faça as duas seguidas e compare com o trafo ideal (item c da 2023 Q2)."}, {"etapa": "Quadripolos", "texto": "2023 Q4 (definição de z), 2025 Q2 (matriz T com fonte controlada e Ze = (A·ZL + B)/(C·ZL + D)) e 2023 Q9 (impedância de saída pela matriz H). Os testes de quadripolos de 2016 a 2019 no histórico são bom treino extra."}, {"etapa": "Bode", "texto": "2024 Q7 e Q8 (ler a assíntota), 2023 Q8 (última assíntota) e 2023 Q6 (identificar H(s) pelo gráfico). Depois os testes 2024 Q3 e Q4 de função de rede em s."}, {"etapa": "Simulado", "texto": "Faça a P3 2023 limpa, no tempo da sua prova, e só depois abra a resolução. Em seguida, a de 2024."}], "tendencias": [{"titulo": "Acoplamento magnético virou questão discursiva", "texto": "Mútua ou transformador teve uma questão discursiva nas 3 P3 recentes (2023 Q2, 2024 Q1, 2025 Q1), duas delas com o trafo de k = 1. Entre as 4 P3 de 2016–2019 isso aconteceu só em 2018 Q1; nas outras o tema vinha em teste."}, {"titulo": "Correção de fator de potência perdeu espaço", "texto": "A discursiva de potência com capacitor de correção caiu nas 4 P3 de 2016–2019 (2016 Q1, 2017 Q1, 2018 Q2, 2019 Q1). Nas recentes, só em 2023 (Q1 e teste Q10); em 2024 a potência veio como tabela de fasores, e em 2025 só como o fp do item (e)."}, {"titulo": "Bode é teste certo", "texto": "Toda P3 com testes teve 2 a 4 testes de Bode: 4 em 2016, 2017 e 2019, 4 em 2018 (módulo e fase) e 2 em 2023 e 2024. Hoje os testes pedem ler a assíntota num ponto ou identificar a F(s); o desenho do Bode nas grades (2016 Q1, 2019 Q2) não voltou."}, {"titulo": "Quadripolos em 2 de 3", "texto": "Quadripolos caíram em 2023 (Q2, Q4 e Q9) e 2025 (Q2), e não em 2024. De 2016 a 2019 eram 3 ou 4 testes por prova (Z, Y, H, G e T, com AO e fontes controladas)."}, {"titulo": "Menos questões", "texto": "De 2016 a 2019: 1 ou 2 discursivas (4 pontos no total) e 10 a 12 testes. 2023: 2 discursivas e 8 testes; 2024: 2 discursivas de 3,0 e 6 testes; 2025: 2 discursivas de 5,0 (sem testes no arquivo). Cada item discursivo pesa mais."}], "checklist": ["Calcular S = V·I*, P, Q, |S| e fp de cada ramo e conferir que a soma bate com V_fonte·I*.", "Achar Q de uma carga a partir de P e fp (Q = P·tg φ) e o sinal de Q pelo tipo de carga.", "Dimensionar o capacitor de correção: C = −Qc/(ω|V|²), com a tensão certa nos terminais do capacitor.", "Calcular Zth vista por uma carga e a carga de máxima transferência Z = Zth*, convertendo X em L ou C.", "Escrever as equações de malha com mútua decidindo o sinal de jωM pelos pontos.", "Verificar se uma mútua é realizável: |M| ≤ √(L₁L₂), k = M/√(L₁L₂).", "Montar a matriz de indutâncias e a matriz Z(s) = s·L de um par de bobinas acopladas.", "Usar as relações do trafo ideal (V₁ = rV₂, I₁ = −I₂/r) e refletir impedâncias por r².", "Distinguir trafo perfeito (k = 1, T = [r 0; 1/(sM) 1/r]) de trafo ideal (T = [r 0; 0 1/r]).", "Calcular a impedância de entrada de bobinas acopladas com carga: Ze = sL₁ − (sM)²/(sL₂ + Z).", "Achar z, y, h e A, B, C, D pela definição, abrindo ou curto-circuitando a porta certa.", "Achar parâmetros de um quadripolo com fonte controlada e checar reciprocidade (det T = 1).", "Converter entre matrizes (Z → T, H → impedância de saída h₁₁/det H).", "Calcular Ze = (A·ZL + B)/(C·ZL + D) de um quadripolo terminado.", "Ler o valor do Bode assintótico numa frequência e achar onde ele cruza 0 dB ou −6 dB.", "Identificar F(s) a partir das inclinações e de um ponto do gráfico de Bode.", "Calcular uma tensão de Thévenin ou função de rede em Laplace com excitação degrau."], "pegadinhas": [{"titulo": "Capacitor sob 200 V", "texto": "Na instalação a três fios de 2023 Q1 o capacitor fica entre os dois fios de fase: |V| = 200 V. Com 100 V o C sai 4 vezes maior."}, {"titulo": "Trafo k = 1 não é ideal", "texto": "Em 2023 Q2 a matriz T do trafo perfeito tem C = 1/(8s), não zero, e Z₁ = 16s/(4s + 1) só vira 4 Ω em alta frequência. Em 2025 Q1 é a indutância L₁ que deixa a carga indutiva."}, {"titulo": "Sinal da mútua", "texto": "Em 2024 Q1 a corrente da malha 1 entra pelo ponto de L₁ e sai pelo de L₂: X₁ + X₂ − 2Xm. E a malha 2 tem o termo mútuo −jXm·I₁."}, {"titulo": "Reatância não é indutância", "texto": "Em 2023 Q7 a carga ótima é 0,5 + j0,5 Ω em ω = 10: L = 0,05 H. A alternativa com L = 0,5 H está lá de propósito."}, {"titulo": "Conjugar Z₀ e não usar 1/h₂₂", "texto": "Em 2023 Q9 a impedância de saída é h₁₁/det H (gerador de tensão inativado = curto). A alternativa 0,32∠45° é |Z₀| sem conjugar."}, {"titulo": "Assintótico, não exato", "texto": "Em 2024 Q7 e Q8 o enunciado pede o diagrama ASSINTÓTICO. Não calcule |F(jω)| exato; use os trechos da assíntota."}, {"titulo": "Constante no Bode", "texto": "Em 2023 Q6, (s + 10)/(s(s + 5)²) vale −8 dB em ω = 1 porque na assíntota de baixa frequência (s + 10) → 10 e (s + 5)² → 25. Quem lê 0 dB marca a opção com 2,5."}, {"titulo": "Degrau na transformada", "texto": "Em 2024 Q3 a tensão de Thévenin com e(t) = H(t) é 1/(s + 1), não s/(s + 1): falta o 1/s do degrau."}, {"titulo": "Potência no resistor série", "texto": "Em 2024 Q2 o resistor R = 20 Ω consome 656 W, a maior parcela da potência total. Esquecê-lo estraga S e V_s."}, {"titulo": "Polaridade da tensão de controle", "texto": "Em 2025 Q2 a seta de V aponta para o nó central: V = v_m − v₂. Com o sinal trocado, g_m entra com sinal errado em B e D."}], "dicas_prova": ["Os testes são de folha óptica: marque a alternativa e confira a letra no fim. Não há ponto parcial em teste.", "Nas discursivas, mostre a conta: a P3 2019 avisava que valores sem cálculo ou justificativa não são considerados.", "Fasores em valor eficaz, como pedem as provas (2024 Q2). Se a fonte vier em amplitude, divida por √2.", "Comece pelos testes de Bode e de trafo ideal, que saem em 2 minutos, e guarde tempo para as discursivas de mútua e quadripolo.", "Feche toda conta de potência com a conservação: a soma das potências dos ramos tem que dar V_fonte·I*.", "Em questão de quadripolo, escreva a convenção da matriz (−I₂ na T) antes de calcular; o gabarito oficial sempre começa por ela.", "Em Bode, desenhe a assíntota à mão, mesmo que a pergunta seja só um número: é o jeito mais rápido de não errar inclinação."], "formulario": [{"nome": "Potência complexa", "typst": "$S = hat(V) hat(I)^* = P + j Q = Z |hat(I)|^2 = |hat(V)|^2 / Z^*$", "txt": "S = V·I* = P + jQ = Z·|I|² = |V|²/Z*"}, {"nome": "Fator de potência", "typst": "$f_p = cos phi = P / |S|, quad Q = P tan phi$", "txt": "fp = cos φ = P/|S|; Q = P·tg φ"}, {"nome": "Capacitor de correção", "typst": "$Q_C = P (tan phi' - tan phi), quad C = -Q_C / (omega |hat(V)|^2)$", "txt": "Qc = P(tg φ' − tg φ); C = −Qc/(ω|V|²)"}, {"nome": "Máxima transferência", "typst": "$Z_L = Z_\"th\"^*, quad P_max = |hat(E)_\"th\"|^2 / (4 R_\"th\")$", "txt": "ZL = Zth*; Pmáx = |Eth|²/(4Rth)"}, {"nome": "Mútua", "typst": "$M = k sqrt(L_1 L_2), quad 0 <= k <= 1$", "txt": "M = k√(L₁L₂), 0 ≤ k ≤ 1"}, {"nome": "Bobinas acopladas em s", "typst": "$mat(V_1; V_2) = mat(s L_1, plus.minus s M; plus.minus s M, s L_2) mat(I_1; I_2)$", "txt": "V₁ = sL₁I₁ ± sMI₂; V₂ = ±sMI₁ + sL₂I₂ (+ se as correntes entram pelos pontos)"}, {"nome": "Impedância de entrada com mútua", "typst": "$Z_e = s L_1 - (s M)^2 / (s L_2 + Z_2)$", "txt": "Ze = sL₁ − (sM)²/(sL₂ + Z₂)"}, {"nome": "Trafo ideal", "typst": "$V_1 = r V_2, quad I_1 = -I_2 / r, quad Z_1 = r^2 Z_2$", "txt": "V₁ = rV₂; I₁ = −I₂/r; Z₁ = r²Z₂"}, {"nome": "Trafo perfeito (k = 1)", "typst": "$r = sqrt(L_1 / L_2), quad bold(T) = mat(r, 0; 1/(s M), 1/r)$", "txt": "r = √(L₁/L₂); T = [r 0; 1/(sM) 1/r]"}, {"nome": "Matriz de transmissão", "typst": "$mat(V_1; I_1) = mat(A, B; C, D) mat(V_2; -I_2)$", "txt": "V₁ = A·V₂ + B·(−I₂); I₁ = C·V₂ + D·(−I₂)"}, {"nome": "T a partir de Z", "typst": "$bold(T) = 1/z_(21) mat(z_(11), Delta_Z; 1, z_(22))$", "txt": "A = z₁₁/z₂₁; B = ΔZ/z₂₁; C = 1/z₂₁; D = z₂₂/z₂₁"}, {"nome": "Quadripolo terminado", "typst": "$Z_e = (A Z_L + B) / (C Z_L + D)$", "txt": "Ze = (A·ZL + B)/(C·ZL + D)"}, {"nome": "Impedância de saída pela H", "typst": "$Z_0 = 1 / y_(22) = h_(11) / Delta_H$", "txt": "Z₀ = 1/y₂₂ = h₁₁/ΔH (entrada em curto)"}, {"nome": "Reciprocidade", "typst": "$z_(12) = z_(21), quad y_(12) = y_(21), quad h_(12) = -h_(21), quad A D - B C = 1$", "txt": "z₁₂ = z₂₁; y₁₂ = y₂₁; h₁₂ = −h₂₁; AD − BC = 1"}, {"nome": "Decibel", "typst": "$|F|_\"dB\" = 20 log_(10) |F|, quad 2 -> 6 \"dB\", quad 10 -> 20 \"dB\"$", "txt": "|F|dB = 20 log|F|; ×2 = +6 dB; ×10 = +20 dB"}, {"nome": "Assíntota de Bode", "typst": "$|s + a| approx cases(a & omega < a, omega & omega > a)$", "txt": "|s + a| ≈ a para ω < a e ≈ ω para ω > a; ±20 dB/dec por polo ou zero simples"}, {"nome": "Valores inicial e final", "typst": "$f(0_+) = lim_(s -> infinity) s F(s), quad f(infinity) = lim_(s -> 0) s F(s)$", "txt": "f(0+) = lim s→∞ sF(s); f(∞) = lim s→0 sF(s)"}]}, "historico": [{"ano": 2016, "rotulo": "P3 2016", "fonte": "fontes/2016-antiga-vMLn", "questoes": [{"resumo": "Q1 (4,0): instalação de 60 Hz com linha: P, Q, |S| e fp; capacitor para fp 0,95 e perdas na linha antes e depois; Bode de 6000/(s + 8000).", "topicos": ["potencia-complexa", "fator-potencia", "bode-modulo", "bode-fase"]}, {"resumo": "T1: potência ativa numa bobina R + jX.", "topicos": ["potencia-complexa"]}, {"resumo": "T2: potência ativa nos bipolos de uma região do circuito.", "topicos": ["potencia-complexa", "analise-rps"]}, {"resumo": "T3: capacitor em paralelo que leva o fp a 0,966.", "topicos": ["fator-potencia"]}, {"resumo": "T4: fator de potência visto pela fonte.", "topicos": ["potencia-complexa", "analise-rps"]}, {"resumo": "T5: função racional a partir do Bode de módulo (patamar).", "topicos": ["bode-identificar"]}, {"resumo": "T6: Z(s) com polos e zeros dados; achar o zero pelos valores em DC e no infinito.", "topicos": ["funcao-rede"]}, {"resumo": "T7: função de rede a partir do Bode de módulo.", "topicos": ["bode-identificar"]}, {"resumo": "T8: função de rede a partir do Bode (zero duplo na origem, polo duplo).", "topicos": ["bode-identificar"]}, {"resumo": "T9: matriz T de um quadripolo RC.", "topicos": ["param-transmissao"]}, {"resumo": "T10: z₁₁ e z₂₂ do mesmo quadripolo.", "topicos": ["param-zy"]}, {"resumo": "T11: matriz G de um quadripolo com amplificador operacional.", "topicos": ["param-hibridos"]}, {"resumo": "T12: matriz H de um transformador ideal.", "topicos": ["param-hibridos", "trafo-ideal"]}]}, {"ano": 2017, "rotulo": "P3 2017", "fonte": "fontes/2017-antiga-6BLQ", "questoes": [{"resumo": "Q1 (4,0): fábrica de 55,2 MVA com fp 0,8 em 13,8 kV: variação da corrente de linha, capacitor para fp 0,95 e custo da perda num capacitor mal apertado.", "topicos": ["fator-potencia", "potencia-complexa"]}, {"resumo": "T1: impedância de uma carga a partir de P e da corrente.", "topicos": ["potencia-complexa"]}, {"resumo": "T2: potência aparente de duas cargas em paralelo.", "topicos": ["potencia-complexa"]}, {"resumo": "T3: corrente eficaz de linha.", "topicos": ["potencia-complexa"]}, {"resumo": "T4: capacitor que leva o fp a 1.", "topicos": ["fator-potencia"]}, {"resumo": "T5: capacitância de um RC a partir do Bode de módulo.", "topicos": ["bode-modulo", "funcao-rede"]}, {"resumo": "T6: assíntota de fase do mesmo RC.", "topicos": ["bode-fase"]}, {"resumo": "T7: função de rede a partir do Bode (passa-faixa).", "topicos": ["bode-identificar"]}, {"resumo": "T8: função de rede com polos complexos a partir do Bode.", "topicos": ["bode-identificar"]}, {"resumo": "T9: z₁₁ e z₁₂ de um L de resistores.", "topicos": ["param-zy"]}, {"resumo": "T10: corrente de saída com a matriz Z e carga de 10 Ω.", "topicos": ["param-zy", "quadripolo-terminado"]}, {"resumo": "T11: y₁₁ de um quadripolo com fonte controlada.", "topicos": ["param-zy"]}, {"resumo": "T12: carga de máxima transferência com a matriz T e gerador com 10 Ω.", "topicos": ["param-transmissao", "max-transferencia", "quadripolo-terminado"]}]}, {"ano": 2018, "rotulo": "P3 2018", "fonte": "fontes/2018-antiga-L8YK", "questoes": [{"resumo": "Q1 (2,0): impedância de entrada por malhas com bobinas acopladas (k = 1); trocando por trafo ideal, a relação de espiras para |Ze| = 10 Ω.", "topicos": ["mutua", "analise-rps", "trafo-ideal"]}, {"resumo": "Q2 (2,0): duas cargas em paralelo: impedância da carga B pelo fp da associação; capacitor para fp 0,95.", "topicos": ["potencia-complexa", "fator-potencia"]}, {"resumo": "T1: função de rede a partir do Bode de módulo (zeros complexos).", "topicos": ["bode-identificar"]}, {"resumo": "T2: função de rede a partir da fase assintótica.", "topicos": ["bode-fase", "bode-identificar"]}, {"resumo": "T3: valor do Bode assintótico de módulo em ω = 15 (zeros e polos complexos).", "topicos": ["bode-modulo"]}, {"resumo": "T4: fase assintótica de (s + 6)/(s + 10) em ω = 15.", "topicos": ["bode-fase"]}, {"resumo": "T5: fasor da corrente de uma carga a partir da potência aparente.", "topicos": ["potencia-complexa"]}, {"resumo": "T6: fator de potência da carga com o capacitor.", "topicos": ["fator-potencia"]}, {"resumo": "T7: perda na linha de transmissão.", "topicos": ["potencia-complexa", "analise-rps"]}, {"resumo": "T8: matriz H de um quadripolo com fonte controlada.", "topicos": ["param-hibridos"]}, {"resumo": "T9: z₁₁ e g₂₁ de uma treliça.", "topicos": ["param-zy", "param-hibridos"]}, {"resumo": "T10: y₂₁ de um quadripolo RC.", "topicos": ["param-zy"]}]}, {"ano": 2019, "rotulo": "P3 2019", "fonte": "fontes/2019-antiga-q9BQ", "questoes": [{"resumo": "Q1 (2,5): instalação a três fios (2 × 110 V): tabela de P, Q, fp, |S|, I e Z das cargas; capacitor para fp 0,95.", "topicos": ["potencia-complexa", "fator-potencia"]}, {"resumo": "Q2 (1,5): RC: função de rede, polos e zeros e Bode de módulo e fase (passa-altas).", "topicos": ["funcao-rede", "bode-modulo", "bode-fase"]}, {"resumo": "T1: diagrama de fasores e fator de potência.", "topicos": ["potencia-complexa"]}, {"resumo": "T2: fasor da corrente de linha de duas cargas.", "topicos": ["potencia-complexa"]}, {"resumo": "T3: tensão do gerador com P = 240 W no resistor de 60 Ω (o mesmo circuito da 2024 Q2).", "topicos": ["potencia-complexa", "analise-rps"]}, {"resumo": "T4: impedância vista por um trafo ideal com r = √5.", "topicos": ["trafo-ideal"]}, {"resumo": "T5: frequência de quebra como média geométrica no Bode.", "topicos": ["bode-modulo"]}, {"resumo": "T6: erro da assíntota num fator de 2ª ordem.", "topicos": ["bode-modulo"]}, {"resumo": "T7: ganho e inclinação do Bode de 32s²/((s + 2)²(s + 4)).", "topicos": ["bode-modulo"]}, {"resumo": "T8: onde a assíntota cruza 0 dB.", "topicos": ["bode-modulo"]}, {"resumo": "T9: h₂₂ de bobinas acopladas.", "topicos": ["param-hibridos", "mutua"]}, {"resumo": "T10: z₂₁ de um amplificador com AO.", "topicos": ["param-zy"]}, {"resumo": "T11: matriz T do mesmo amplificador.", "topicos": ["param-transmissao"]}, {"resumo": "T12: matriz T de uma célula T LC (associação em cascata).", "topicos": ["param-transmissao"]}]}, {"ano": 2010, "rotulo": "P3 sem data (PSI2212)", "fonte": "fontes/sem-ano-antiga-19vN", "questoes": [{"resumo": "Q1 (4,0): malhas em Laplace com mútua, condições iniciais e fonte controlada: L, k, C e vC(0); α para uma única frequência própria; frequência própria nula.", "topicos": ["mutua", "estabilidade", "funcao-rede"]}, {"resumo": "T2 a T4: amplificador simulado no PSpice (ganho, resposta CA e transitória); fora do programa atual.", "topicos": []}, {"resumo": "T5: constante de tempo de um circuito com trafo ideal.", "topicos": ["trafo-ideal"]}, {"resumo": "T6 a T8: bobinas acopladas em RPS: L₃, coeficiente de acoplamento e parte indutiva de Z₁.", "topicos": ["mutua", "analise-rps"]}, {"resumo": "T9: tensão de Thévenin em Laplace com fonte controlada.", "topicos": ["funcao-rede"]}, {"resumo": "T10: corrente de curto em Laplace.", "topicos": ["funcao-rede"]}, {"resumo": "T11: intervalo de μ para estabilidade assintótica.", "topicos": ["estabilidade"]}, {"resumo": "T12: condição para a resposta livre não ter componente constante.", "topicos": ["estabilidade"]}]}], "extra": {}, "codigos": ["PSI3213"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, PROVAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+PROVAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de 2016–2020 para a tendência`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  PROVAS.map(p=>`<a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">${esc(p.rotulo||p.ano)} · prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">${esc(p.rotulo||p.ano)} · resolução</a>`).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+const av = [];
+if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
+if (PROVAS.some(p=>p.status!=='revisada')) av.push('<b>Resoluções em revisão.</b> Ainda não foram conferidas por um segundo revisor. Achou algo? Avise em @prisma.poli.');
+if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
+else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
+document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: 2016–2020 x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de 2016–2020 contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>2016–2020</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, PROVAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(Q.length / Math.max(1,n)));
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false;
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+document.getElementById('simdur').textContent = durs.length ? `Duração sugerida: ${durPadrao} min, a das P3 analisadas. Ajuste ao tempo da sua turma.` : 'A duração não consta nas provas analisadas; ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  timer=setInterval(()=>{ restante=Math.max(0,restante-1); clock.textContent=fmt(restante); if(!restante){ encerrar(); } },1000);
+});
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+<script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
+function rot(){var d=r.getAttribute("data-theme")==="dark";b.textContent=d?"☀ Modo claro":"☾ Modo escuro";b.setAttribute("aria-pressed",d?"true":"false")}
+b.addEventListener("click",function(){var d=r.getAttribute("data-theme")!=="dark";if(d)r.setAttribute("data-theme","dark");else r.removeAttribute("data-theme");try{localStorage.setItem("fuja-p3-tema",d?"dark":"light")}catch(e){}rot()});rot()})();</script>
+</body>
+</html>
