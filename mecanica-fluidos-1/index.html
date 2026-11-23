@@ -238,6 +238,7 @@ footer a{color:inherit}
 }
 
 /* tipo de material junto aos PDFs */
+.docs .revnota a{display:inline;background:none;border:0;padding:0;border-radius:0;color:inherit;font-size:inherit;font-weight:500;text-decoration:underline;text-underline-offset:2px;box-shadow:none!important;transform:none!important}
 .docs .revnota{width:100%;margin:2px 0 4px;font-size:.84rem;color:var(--warn-fg);background:var(--warn-bg);border-left:3px solid var(--laranja);padding:7px 11px;border-radius:2px;max-width:72ch}
 .docs .pvl{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
 .docs .pva{font-family:var(--f-mono);font-size:.84rem;font-weight:500;min-width:4.5em}
@@ -420,7 +421,7 @@ const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
 document.getElementById('docs').innerHTML =
   `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF <span class="ar ar-d">↓</span></a>` +
   `<span class="grp">Provas: treinar e resolução</span>` +
-  (TODAS.some(p=>p.status!=='revisada') ? `<p class="revnota"><b>Resoluções em revisão.</b> Feitas por alunos da Prisma e ainda não conferidas por um segundo revisor. Não são gabarito oficial. Achou erro? Avise em @prisma.poli.</p>` : '') +
+  `<p class="revnota">Encontrou algum problema numa prova ou resolução? Avise a Prisma em <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a>.</p>` +
   TODAS.map(p=>{ const t=tipoDe(p); return `<div class="pvl"><span class="pva">${esc((p.rotulo||p.ano).replace(' (complementar)',''))}</span><span class="tipo t-${t}">${TIPO[t]}${p.tipo_det?`<i> · ${esc(p.tipo_det)}</i>`:''}</span><a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">resolução</a></div>`; }).join('') +
   ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
 document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
