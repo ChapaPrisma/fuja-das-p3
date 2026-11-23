@@ -1,0 +1,114 @@
+/* Tema "caderno de estudo" do Fuja das P3 (prévia em /novo/).
+   Camada por cima do CSS atual: tudo fica sob html.papel. Para desfazer, basta não carregar este arquivo.
+   Ideia: papel quadriculado, marca-texto amarelo, caneta laranja e fichas de estudo; as cores são as da Prisma. */
+
+html.papel {
+  --bg: #FAF8F3; --card: #FFFFFF; --soft: #F4F0E7; --line: #E3DED3; --band: transparent;
+  --grade: rgba(15, 35, 71, .055);
+  --marca: rgba(255, 200, 69, .88);
+  --folha: 3px 4px 0 rgba(15, 35, 71, .07);
+  --sem2: #FFC845; --sem4: #C9A7FF;
+}
+html.papel[data-theme="dark"] {
+  --bg: #0B1730; --card: #12214A; --soft: #172A55; --line: #25355A; --band: transparent;
+  --grade: rgba(255, 255, 255, .04);
+  --marca: rgba(255, 200, 69, .95);
+  --folha: 3px 4px 0 rgba(0, 0, 0, .28);
+}
+
+/* papel quadriculado no fundo de tudo */
+html.papel body {
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--grade) 1px, transparent 1px), linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+html.papel .band, html.papel .hero, html.papel footer { background: transparent; }
+
+/* marca-texto: o GSAP anima --mt-p de 0 a 1 */
+html.papel .mt {
+  --mt-p: 1;
+  background-image: linear-gradient(100deg, transparent .4%, var(--marca) 1.8%, var(--marca) 97%, transparent 99.6%);
+  background-repeat: no-repeat;
+  background-size: calc(var(--mt-p) * 100%) 50%;
+  background-position: 0 88%;
+  padding: 0 .1em; margin: 0 -.1em; border-radius: .12em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+html.papel.mt-espera .mt { --mt-p: 0; }
+html.papel[data-theme="dark"] .mt, html.papel[data-theme="dark"] .hero h1 .p3.mt { color: #0F2347; background-size: calc(var(--mt-p) * 100%) 96%; background-position: 0 55%; }
+
+/* rótulos em texto normal, não em caixa alta espaçada */
+html.papel .lbl, html.papel .eyebrow, html.papel .band .eyebrow {
+  text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 700; font-size: .86rem;
+}
+html.papel .band .eyebrow { color: #C2410C; }
+html.papel[data-theme="dark"] .band .eyebrow { color: var(--amarelo); }
+
+/* ---------- home ---------- */
+html.papel .hero .wrap { padding-block: 56px 40px; }
+html.papel .hero h1 { font-size: clamp(3.4rem, 13vw, 7.6rem); letter-spacing: -.055em; }
+html.papel .hero h1 .p3 { color: var(--fg); }
+html.papel .contador { font-family: var(--f-mono); }
+html.papel .contador b { color: var(--fg); font-size: 1.3rem; }
+html.papel .cta-hero a.pri { background: var(--azul); color: #fff; border-radius: 6px; }
+html.papel .cta-hero a.pri:hover, html.papel .cta-hero a.pri:focus-visible { background: var(--laranja); color: var(--azul); }
+html.papel[data-theme="dark"] .cta-hero a.pri { background: var(--amarelo); color: var(--azul); }
+
+html.papel section { border-bottom-color: transparent; }
+html.papel .sec-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); letter-spacing: -.025em; }
+
+/* atalhos e títulos de semestre com a cor do semestre */
+html.papel .atalhos-sem a { border-radius: 6px; color: var(--azul); box-shadow: var(--folha); }
+html.papel .atalhos-sem a:nth-child(1) { background: var(--sem2); }
+html.papel .atalhos-sem a:nth-child(2) { background: var(--sem4); }
+html.papel .atalhos-sem a span { color: rgba(15, 35, 71, .72); text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 500; font-size: .86rem; }
+html.papel .atalhos-sem a:hover, html.papel .atalhos-sem a:focus-visible { background: var(--azul); color: #fff; }
+html.papel .atalhos-sem a:hover span, html.papel .atalhos-sem a:focus-visible span { color: rgba(255, 255, 255, .75); }
+html.papel .semestre { border-top: 0; padding-top: 0; font-size: clamp(1.5rem, 3vw, 1.9rem); letter-spacing: -.03em; }
+html.papel .semestre::before { content: ""; width: 14px; height: 14px; border-radius: 3px; align-self: center; background: var(--sem); }
+html.papel #sem2 { --sem: var(--sem2); }
+html.papel #sem4 { --sem: var(--sem4); }
+html.papel .semestre span { text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-size: .9rem; }
+html.papel .area > h3 { text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 700; font-size: .92rem; }
+
+/* fichas de matéria: papel com a faixa do semestre na esquerda e sombra sólida de folha */
+html.papel #sem2 ~ .area .mat { --sem: var(--sem2); }
+html.papel #sem4 ~ .area .mat { --sem: var(--sem4); }
+html.papel .mat { border-radius: 4px; border-color: var(--line); box-shadow: inset 6px 0 0 var(--sem, var(--sem2)), var(--folha); padding-left: 24px; }
+html.papel .mat:hover, html.papel .mat:focus-visible { border-color: var(--azul); }
+html.papel[data-theme="dark"] .mat:hover, html.papel[data-theme="dark"] .mat:focus-visible { border-color: var(--amarelo); }
+html.papel .mat h4 { font-size: 1.45rem; letter-spacing: -.025em; }
+html.papel .mat .cod { color: var(--muted); }
+html.papel .chip { border-radius: 3px; }
+html.papel .chip.g { background: var(--amarelo); }
+
+html.papel .passo { border-top-width: 3px; }
+html.papel .leg, html.papel .cta { border-radius: 4px; }
+html.papel .leg { box-shadow: var(--folha); }
+
+/* ---------- página da matéria ---------- */
+html.papel header.band .wrap { padding-block: 44px 32px; }
+html.papel #titulo { font-size: clamp(2.2rem, 6.4vw, 3.6rem); letter-spacing: -.045em; }
+html.papel main > section { border-radius: 4px; box-shadow: var(--folha); }
+html.papel main > section > .head h2 { letter-spacing: -.025em; }
+html.papel .gbloco { border-radius: 4px; border-left: 2px solid rgba(255, 107, 61, .6); }
+html.papel .roteiro li, html.papel .tend div, html.papel .form div, html.papel .qcard, html.papel .simbar { border-radius: 4px; }
+html.papel .tend div { border-top-color: var(--amarelo); }
+html.papel .parte h2 { letter-spacing: -.035em; }
+html.papel .docs .tipo, html.papel .chip { border-radius: 3px; }
+
+/* rótulos que ainda vinham em caixa alta */
+html.papel .docs .grp, html.papel .toc-grp { text-transform: none; letter-spacing: 0; font-family: var(--f-body); font-weight: 700; font-size: .84rem; }
+html.papel .toc-grp { font-size: .74rem; }
+
+/* aviso de prévia */
+.previa-aviso { position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 50;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px);
+  padding: 9px 10px 9px 16px; border-radius: 999px; background: #0F2347; color: #fff; font: 500 .86rem "DM Sans", system-ui, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25); }
+.previa-aviso a { color: #0F2347; background: #FFC845; text-decoration: none; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
+.previa-aviso a:hover, .previa-aviso a:focus-visible { background: #fff; outline: none; }
+.previa-aviso button { width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font: 700 1rem/1 system-ui, sans-serif; cursor: pointer; }
+.previa-aviso button:hover, .previa-aviso button:focus-visible { background: rgba(255, 255, 255, .3); outline: none; }
+@media (max-width: 560px) { .previa-aviso { left: auto; right: 12px; transform: none; padding: 6px 6px 6px 12px; font-size: .78rem; gap: 8px; } .previa-aviso span { display: none; } }

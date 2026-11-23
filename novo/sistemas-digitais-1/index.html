@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="pt-BR" class="papel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sistemas Digitais I · Fuja das P3</title>
+<meta name="description" content="P3 de Sistemas Digitais I (PCS3115) transcritas e resolvidas: 4 provas, 12 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Sistemas Digitais I · Fuja das P3">
+<meta property="og:description" content="P3 de Sistemas Digitais I (PCS3115) transcritas e resolvidas: 4 provas, 12 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1ECE2">
+<link rel="icon" href="../../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<script>(function(){try{if(localStorage.getItem("fuja-p3-tema")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}})();</script>
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#F1ECE2; --band-fg:#0F2347; --band-muted:#4A5468; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:#C2410C;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{border-color:var(--laranja);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F; --ok-fg:#FFE39A;
+  --link:#FF9A75; --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+:root[data-theme="dark"] .band .eyebrow,:root[data-theme="dark"] .contador b{color:var(--amarelo)}
+:root[data-theme="dark"] .hero{background:var(--band)}
+:root[data-theme="dark"] .docs a{background:transparent;border-color:rgba(255,255,255,.28);color:var(--band-fg)}
+:root[data-theme="dark"] .docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347}
+:root[data-theme="dark"] .cta-hero a.sec{border-color:rgba(255,255,255,.3)}
+.band{position:relative}
+.tema{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));z-index:6;display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--f-body);color:var(--band-fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+:root[data-theme="dark"] .tema{border-color:rgba(255,255,255,.3)}
+.tema:hover,.tema:focus-visible{border-color:var(--laranja);outline:none}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+/* ---------- movimento dos botões (home e matérias) ----------
+   Sobe ao passar o mouse, afunda ao apertar, setas apontam para onde o botão leva.
+   Tudo some com prefers-reduced-motion. */
+:root{--ease:cubic-bezier(.2,.8,.2,1);--mola:cubic-bezier(.34,1.56,.64,1);--sombra:rgba(15,35,71,.32)}
+:root[data-theme="dark"]{--sombra:rgba(0,0,0,.55)}
+.ar{display:inline-block;font-style:normal}
+@media (prefers-reduced-motion: no-preference){
+  .docs a,.btn,.tema,nav.toc a,.cell,.links a,.qlink,.cta-hero a,.atalhos-sem a,.cta,.mat,.qcard,.volta,.ar,.chk input,.check input{
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease),background-color .15s,border-color .15s,color .15s}
+  @media (hover: hover){
+    .docs a:hover,.btn:not([disabled]):hover,.tema:hover,.cta-hero a:hover,.atalhos-sem a:hover,.cta:hover,nav.toc a.toc-home:hover{
+      transform:translateY(-2px);box-shadow:0 8px 16px -8px var(--sombra)}
+    nav.toc .toc-scroll a:hover{transform:translateY(-1px)}
+    .cell:not([data-n="0"]):hover{transform:scale(1.07);box-shadow:0 6px 12px -6px var(--sombra)}
+    .mat:hover{transform:translateY(-4px);box-shadow:0 16px 28px -16px var(--sombra)}
+    .qcard:hover{border-color:var(--h2)}
+    .links a:hover,.qlink:hover{transform:translateY(-1px)}
+    a:hover .ar-r{transform:translateX(5px)}
+    a:hover .ar-l{transform:translateX(-5px)}
+    a:hover .ar-d{animation:quica .8s var(--ease) infinite}
+  }
+  .docs a:active,.btn:not([disabled]):active,.tema:active,nav.toc a:active,.cta-hero a:active,.atalhos-sem a:active,.cta:active,.cell:not([data-n="0"]):active,.links a:active,.qlink:active{
+    transform:scale(.95);box-shadow:none;transition-duration:.07s}
+  .mat:active{transform:translateY(-1px) scale(.985);box-shadow:none;transition-duration:.07s}
+  nav.toc .toc-scroll a.ativo{animation:pop .34s var(--mola)}
+  .cell.sel{animation:pop .3s var(--mola)}
+  .chk input:checked,.check input:checked{animation:pop .28s var(--mola)}
+  .qcard{animation:entra .28s var(--ease) both}
+  .prog-bar .fill{transition:width .45s var(--mola)}
+  @keyframes pop{0%{transform:scale(.86)}100%{transform:scale(1)}}
+  @keyframes quica{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  @keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+
+/* segmentação: cada seção é um cartão numerado; o guia é dividido em painéis */
+main.wrap{counter-reset:sec;padding-bottom:20px}
+main > section{counter-increment:sec;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px clamp(16px,3.5vw,34px) 32px;margin-block:16px;box-shadow:0 1px 2px rgba(15,35,71,.05)}
+main > section > .head{margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+main > section > .head h2{font-size:1.6rem}
+main > section > .head .lbl::before{content:counter(sec, decimal-leading-zero);display:inline-block;margin-right:10px;padding:2px 7px;border-radius:4px;background:var(--azul);color:#fff;font-family:var(--f-mono);letter-spacing:.04em}
+:root[data-theme="dark"] main > section > .head .lbl::before{background:var(--laranja);color:#0F2347}
+.parte{margin:48px 0 4px;display:grid;gap:4px}
+.parte .lbl{color:#C2410C;font-weight:700;font-size:.8rem}
+:root[data-theme="dark"] .parte .lbl{color:var(--amarelo)}
+.parte h2{font-size:clamp(1.7rem,4.4vw,2.2rem);font-weight:800;letter-spacing:-.02em}
+.parte p{margin:0;color:var(--muted);max-width:68ch}
+.parte::after{content:"";height:4px;width:64px;background:var(--laranja);border-radius:2px;margin-top:10px}
+.gbloco{background:var(--soft);border-radius:10px;padding:18px clamp(14px,2.5vw,22px) 20px;margin-top:16px}
+.gbloco > .gsub{margin:0 0 14px}
+.gbloco .check label:hover{background:var(--card)}
+@media (max-width:560px){main > section{padding:22px 14px 24px;border-radius:10px} main > section > .head h2{font-size:1.4rem}}
+/* notação matemática no texto */
+main sub,main sup,header sub,header sup{font-size:.74em;line-height:0;position:relative}
+main sub,header sub{vertical-align:baseline;top:.32em}
+main sup,header sup{vertical-align:baseline;top:-.48em}
+/* abertura da página (no lugar dos avisos) */
+.abre{padding-block:30px 6px;display:flex;flex-direction:column;gap:8px}
+.abre .lbl{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;letter-spacing:.14em;color:#0F2347;background:var(--laranja);border-radius:999px;padding:6px 14px 6px 12px}
+.abre .lbl::before{content:"";width:8px;height:8px;border-radius:50%;background:#0F2347}
+.abre-txt{font-size:1.12rem;line-height:1.6;max-width:72ch;margin:0;text-wrap:pretty}
+.abre-base{color:var(--muted);font-size:.9rem;max-width:72ch;margin:0;padding-left:12px;border-left:3px solid var(--lilas)}
+/* simulado em PDF: botões e visor na própria página */
+.pdfgrp{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pdfgrp[hidden]{display:none}
+.pdfrot{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.visor{margin:14px 0 6px;border:1px solid var(--line);border-radius:6px;background:var(--soft);overflow:hidden;scroll-margin-top:72px}
+.visor-top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+.visor-acoes{display:inline-flex;gap:8px}
+.visor-pgs{max-height:min(85vh,1100px);overflow:auto;padding:14px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.visor-pg{width:100%;max-width:820px;margin:0 auto;flex:none;aspect-ratio:595/842;background:#fff;box-shadow:0 2px 12px -5px rgba(15,35,71,.4);border-radius:2px}
+.visor-pg canvas{width:100%;height:auto;display:block;border-radius:2px}
+@media (max-width:560px){.visor-pgs{padding:8px;gap:8px;max-height:80vh}}
+/* tipo de material junto aos PDFs */
+.docs .revnota a{display:inline;background:none;border:0;padding:0;border-radius:0;color:inherit;font-size:inherit;font-weight:500;text-decoration:underline;text-underline-offset:2px;box-shadow:none!important;transform:none!important}
+.docs .revnota{width:100%;margin:2px 0 4px;font-size:.84rem;color:var(--warn-fg);background:var(--warn-bg);border-left:3px solid var(--laranja);padding:7px 11px;border-radius:2px;max-width:72ch}
+.docs .pvl{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.docs .pva{font-family:var(--f-mono);font-size:.84rem;font-weight:500;min-width:4.5em}
+.docs .tipo{font-size:.74rem;font-weight:500;border-radius:3px;padding:3px 8px;background:#FFFFFF;border:1px solid var(--line);color:var(--fg)}
+:root[data-theme="dark"] .docs .tipo.t-completa{background:transparent;border-color:rgba(255,255,255,.28)}
+.docs .tipo.t-parcial,.docs .tipo.t-complementar,.docs .tipo.t-reconstrucao,.docs .tipo.t-coletanea{border-color:transparent}
+.docs .tipo i{font-style:normal;font-weight:400;opacity:.85}
+.docs .tipo.t-parcial,.docs .tipo.t-complementar{background:var(--warn-bg);color:var(--warn-fg)}
+.docs .tipo.t-reconstrucao,.docs .tipo.t-coletanea{background:var(--tag);color:var(--tag-fg)}
+.tag.w{background:var(--warn-bg);color:var(--warn-fg)}
+@media (max-width:560px){.docs .pva{min-width:0;width:100%}}
+/* barra de navegação */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--azul);border-bottom:0;box-shadow:0 3px 12px rgba(15,35,71,.22)}
+:root[data-theme="dark"] nav.toc{background:#08122A;box-shadow:0 1px 0 var(--line),0 3px 12px rgba(0,0,0,.35)}
+nav.toc .wrap.toc-in{max-width:1260px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding-block:6px}
+nav.toc a.toc-home{flex:none;font-size:.84rem;font-weight:500;color:#fff;text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.4);white-space:nowrap}
+nav.toc a.toc-home:hover,nav.toc a.toc-home:focus-visible{border-color:var(--amarelo);color:var(--amarelo);outline:none;text-decoration:none}
+.toc-scroll{display:flex;align-items:center;gap:4px;overflow-x:auto;padding-block:3px;flex:1;min-width:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+.toc-scroll.fim{-webkit-mask-image:none;mask-image:none}
+.toc-scroll::-webkit-scrollbar{display:none}
+nav.toc .toc-scroll a{flex:none;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap;transition:background-color .15s,color .15s}
+nav.toc .toc-scroll a:hover{background:rgba(255,255,255,.13);color:#fff;text-decoration:none}
+nav.toc .toc-scroll a:focus-visible{outline:2px solid var(--amarelo);outline-offset:1px;text-decoration:none}
+nav.toc .toc-scroll a.ativo{background:var(--laranja);color:#0F2347}
+/* o simulado tem destaque na barra: contorno amarelo e um cronômetro */
+nav.toc .toc-scroll a.toc-sim{display:inline-flex;align-items:center;gap:7px;color:var(--amarelo);box-shadow:inset 0 0 0 1.5px var(--amarelo);font-weight:700}
+nav.toc .toc-scroll a.toc-sim:hover{background:var(--amarelo);color:#0F2347}
+nav.toc .toc-scroll a.toc-sim.ativo{background:var(--laranja);color:#0F2347;box-shadow:none}
+.toc-sim .ic{width:11px;height:11px;border:1.8px solid currentColor;border-radius:50%;position:relative;flex:none}
+.toc-sim .ic::before{content:"";position:absolute;left:50%;top:1.5px;width:1.6px;height:3.6px;margin-left:-.8px;background:currentColor;border-radius:1px;transform-origin:50% 100%}
+.toc-sim .ic::after{content:"";position:absolute;left:50%;top:-4px;width:4px;height:1.8px;margin-left:-2px;background:currentColor;border-radius:1px}
+@media (prefers-reduced-motion: no-preference){ nav.toc .toc-scroll a.toc-sim:not(.ativo) .ic::before{animation:ponteiro 4s linear infinite} @keyframes ponteiro{to{transform:rotate(360deg)}} }
+.toc-grp{flex:none;font-size:.64rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:0 2px 0 12px}
+.toc-grp:first-child{padding-left:2px}
+main section{scroll-margin-top:70px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (max-width:560px){.toc-grp{display:none}nav.toc .wrap.toc-in{gap:8px}nav.toc .toc-scroll a{padding:7px 11px}}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../tema-papel.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("mt-espera");setTimeout(function(){document.documentElement.classList.remove("mt-espera")},2500)}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="../tema-papel.js" defer></script>
+</head>
+<body>
+<header class="band">
+  <button class="tema" id="tema" type="button" aria-label="Alternar modo escuro">☾ Modo escuro</button>
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../"><span class="ar ar-l">←</span> Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções desta matéria"><div class="wrap toc-in">
+  <a class="toc-home" href="../" aria-label="Voltar para todas as matérias"><span class="ar ar-l">←</span> Matérias</a>
+  <div class="toc-scroll" id="toc">
+    <span class="toc-grp">Entender</span><a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a>
+    <span class="toc-grp">Praticar</span><a href="#banco">Banco de questões</a><a href="#simulado" class="toc-sim"><span class="ic" aria-hidden="true"></span>Simulado</a><a href="#estude">Estude aqui</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <div class="parte"><span class="lbl">Parte 1</span><h2>Entender a P3</h2><p>O guia, o que cai, o que tem caído mais, quanto vale cada assunto, os padrões de questão e as armadilhas.</p></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+      <ol class="roteiro" id="gRoteiro"></ol>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+      <div class="tend" id="gTend"></div>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+        <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+      <div class="check" id="gCheck"></div>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+      <div class="pegas" id="gPegas"></div>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+      <ul class="dicas" id="gDicas"></ul>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+      <div class="form" id="gForm"></div>
+    </div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <div class="parte"><span class="lbl">Parte 2</span><h2>Praticar</h2><p>Todas as questões com filtro, um simulado com cronômetro e onde treinar cada tópico.</p></div>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <span class="pdfgrp"><span class="pdfrot">Prova em PDF</span><button class="btn" id="bVer" type="button">Ver aqui</button><button class="btn" id="bPdf" type="button">Baixar <span class="ar ar-d">↓</span></button></span>
+        <span class="pdfgrp" id="grpRes" hidden><span class="pdfrot">Resolução em PDF</span><button class="btn pri" id="bVerRes" type="button">Ver aqui</button><button class="btn" id="bPdfRes" type="button">Baixar <span class="ar ar-d">↓</span></button></span>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div class="visor" id="visor" hidden>
+        <div class="visor-top"><b id="visorTit">Simulado</b><span class="visor-acoes"><button class="btn" id="vBaixar" type="button">Baixar <span class="ar ar-d">↓</span></button><button class="btn" id="vFechar" type="button">Fechar ✕</button></span></div>
+        <div class="visor-pgs" id="visorPgs" tabindex="0" aria-label="Páginas do PDF do simulado"></div>
+      </div>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "Cada P3 recente tem 3 questões, uma de cada bloco: máquina de estados (com VHDL), registradores e contadores com temporização, e projeto RTL (ASM + fluxo de dados).", "topicos": [{"slug": "mef-analise", "nome": "Análise de MEF (circuito ou VHDL → tabela e diagrama)", "grupo": "Máquinas de estados", "ref": null, "material": null}, {"slug": "mef-modelagem", "nome": "Modelagem de MEF a partir do enunciado (Moore/Mealy)", "grupo": "Máquinas de estados", "ref": null, "material": null}, {"slug": "mef-sintese", "nome": "Síntese de MEF com flip-flops D (codificação, excitação, Karnaugh)", "grupo": "Máquinas de estados", "ref": null, "material": null}, {"slug": "vhdl-mef", "nome": "VHDL de MEF (process de estado, when/else, with/select)", "grupo": "VHDL", "ref": null, "material": null}, {"slug": "vhdl-registrador", "nome": "VHDL de registradores e contadores (rising_edge, concatenação, unsigned)", "grupo": "VHDL", "ref": null, "material": null}, {"slug": "flipflops", "nome": "Latches e flip-flops (tabelas, reset/clear síncrono e assíncrono)", "grupo": "Blocos sequenciais", "ref": null, "material": null}, {"slug": "registradores", "nome": "Registradores de deslocamento e carga paralela", "grupo": "Blocos sequenciais", "ref": null, "material": null}, {"slug": "contadores", "nome": "Contadores, relógios e divisores de frequência", "grupo": "Blocos sequenciais", "ref": null, "material": null}, {"slug": "carta-tempos", "nome": "Cartas de tempo e planos de teste", "grupo": "Blocos sequenciais", "ref": null, "material": null}, {"slug": "asm-uc", "nome": "Diagrama ASM e unidade de controle", "grupo": "Projeto RTL (UC + FD)", "ref": null, "material": null}, {"slug": "fluxo-dados", "nome": "Fluxo de dados: MUX, registradores com enable, sinais de controle", "grupo": "Projeto RTL (UC + FD)", "ref": null, "material": null}, {"slug": "rom-memoria", "nome": "ROM como tabela e dimensionamento de memória", "grupo": "Projeto RTL (UC + FD)", "ref": null, "material": null}, {"slug": "combinacional", "nome": "Blocos combinatórios MSI (decodificador, MUX, codificador, comparador, somador)", "grupo": "Combinacional (P3 antigas)", "ref": null, "material": null}, {"slug": "codigos", "nome": "Códigos e aritmética (BCD, Gray, paridade, Hamming, complemento de 2)", "grupo": "Combinacional (P3 antigas)", "ref": null, "material": null}], "padroes": [{"id": "P-MEF-ANALISE", "nome": "Analisar MEF dada", "reconhecer": "Dão o circuito ou um VHDL estrutural (port map de flip-flops) e pedem tabela de transição, diagrama e se é Moore ou Mealy.", "metodo": "Escreva as equações de D de cada flip-flop e simplifique (XOR repetido se cancela). Para cada estado e cada entrada, calcule o próximo estado; a saída depende só do estado? Moore. Desenhe o diagrama a partir da tabela."}, {"id": "P-MEF-PROJETO", "nome": "Projetar MEF a partir de um texto", "reconhecer": "Uma história (jogo, esteira, sensor) e o pedido de diagrama de Moore, tabela de transição e equações com flip-flops D.", "metodo": "Liste o que o circuito precisa lembrar do passado; cada combinação vira um estado. Desenhe todas as setas para todas as entradas. Codifique (siga a codificação dada), monte a tabela de excitação (D = próximo estado), mande estados espúrios para o inicial e minimize por Karnaugh."}, {"id": "P-VHDL-MEF", "nome": "Completar VHDL de MEF", "reconhecer": "Código com process (reset, clock) já pronto e lacunas no next_s (when/else) ou na saída (with/select), às vezes com alternativas por lacuna.", "metodo": "Descubra o significado de cada estado pelas linhas já preenchidas. Para cada estado e entrada, aplique a regra e escreva o destino. Saída de Moore: depende só do estado; liste em with/select os estados que dão cada código."}, {"id": "P-VHDL-REG", "nome": "Completar VHDL de registrador ou contador", "reconhecer": "Entidade com load/enable/op e um sinal interno (intR, internal, cont) para completar dentro do process.", "metodo": "Tudo dentro de if rising_edge(clk). Teste os controles na ordem de prioridade (reset assíncrono fora do teste de borda; depois load, depois enable). Monte deslocamentos e trocas com fatias e &; conte com unsigned (+1/−1). Escreva só no sinal interno; a porta out recebe o interno fora do process."}, {"id": "P-MSI-SEQ", "nome": "Projetar com contador ou registrador pronto", "reconhecer": "Dão um CI ou bloco (contador de 6 bits, 74175, deslocador) e pedem relógio, divisor, detector de borda, shift-register ou contador com portas.", "metodo": "Identifique se CLR/RST é síncrono ou assíncrono e o nível ativo. Para parar em N, detecte N com AND dos bits em 1 (decodificação parcial basta se valores maiores nunca ocorrem). Para carga + deslocamento, use MUX 2:1 na frente de cada D. Para contar, ligue Q + 1 de volta em D."}, {"id": "P-CARTA", "nome": "Carta de tempos e plano de testes", "reconhecer": "Formas de onda para completar ou tabela de casos de teste ciclo a ciclo.", "metodo": "Marque as bordas ativas. Amostre as entradas só nelas (pulsos entre bordas somem). Atualize registradores e estado borda a borda e desenhe a saída mudando logo após a borda. Siga a convenção das linhas já preenchidas."}, {"id": "P-ASM-UC", "nome": "Completar o ASM da unidade de controle", "reconhecer": "Diagrama ASM com estados e decisões em branco (A1, B1, X, Y, C1, O1…), com UC e FD em bordas opostas.", "metodo": "Para cada estado, escreva os sinais de Moore que fazem a operação do nome do estado. Para as decisões, crie no FD um sinal de condição (comparador) e diga o que ele significa. Ligue as setas “?” de volta à decisão que reavalia o pedido."}, {"id": "P-FD-CONTROLE", "nome": "Fluxo de dados e sinais de controle", "reconhecer": "Diagrama de registradores, MUX e somador, e uma tabela de Sel/enable por estado do ASM.", "metodo": "Siga o caminho até o somador para descobrir quem é cada registrador. Em cada estado, enable = 1 só no registrador que o ASM atribui; os outros ficam em 0 (mantêm). Sel importa só quando algo é gravado; senão X."}, {"id": "P-ROM", "nome": "ROM como tabela", "reconhecer": "Pedem tamanho da ROM (endereço, palavra, capacidade) e o conteúdo de um endereço.", "metodo": "Bits de endereço = soma dos bits das entradas. Palavra = ⌈log2(maior valor + 1)⌉. Capacidade = 2^n × palavra. Conteúdo = a função aplicada aos campos do endereço."}], "blocos": [{"id": "mef", "nome": "Máquinas de estados e VHDL de MEF", "questoes": ["PCS3115-2022-P3-Q1", "PCS3115-2024-P3-Q1", "PCS3115-2025-P3-Q1", "PCS3115-2026-P3-Q3"]}, {"id": "blocos", "nome": "Registradores, contadores e temporização", "questoes": ["PCS3115-2022-P3-Q2", "PCS3115-2024-P3-Q2", "PCS3115-2025-P3-Q2", "PCS3115-2026-P3-Q1"]}, {"id": "rtl", "nome": "Projeto RTL: ASM, unidade de controle e fluxo de dados", "questoes": ["PCS3115-2022-P3-Q3", "PCS3115-2024-P3-Q3", "PCS3115-2025-P3-Q3", "PCS3115-2026-P3-Q2"]}], "codigo": "PCS3115", "materia": "Sistemas Digitais I"}, "provas": [{"id": "PCS3115-2022-P3", "codigo": "PCS3115", "materia": "Sistemas Digitais I", "prova": "P3", "ano": 2022, "rotulo": "2022", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "tipo": "completa", "tipo_det": null, "complementar": false, "questoes": [{"n": 1, "id": "PCS3115-2022-P3-Q1", "pontos": 3.0, "topicos": ["mef-analise", "vhdl-mef", "flipflops"], "padrao": "P-MEF-ANALISE", "padroes_secundarios": ["P-VHDL-MEF"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "MEF em VHDL estrutural (2 FF D): tabela, diagrama, Moore/Mealy e reescrita comportamental com when/else.", "armadilhas": ["Não perceber que x se cancela em d1", "Usar reset ativo em 1 quando o FF zera com reset='0'"], "armadilhas_tag": ["mef-analise", "vhdl-mef"], "anulada": false, "gabarito": null, "respostas": ["Moore; A→D/C, B→B/A, C→C/D, D→A/B (x=0/x=1); z=1 só em C", "reset='0' → A; z='1' quando state=C; A⇐(B,1),(D,0); B⇐(D,1),(B,0); C⇐(A,1),(C,0); D⇐(C,1),(A,0)"], "av": {"e": [2, 3, 62.4, 83.7], "r": [2, 4, 62.4, 83.7]}}, {"n": 2, "id": "PCS3115-2022-P3-Q2", "pontos": 3.5, "topicos": ["contadores", "rom-memoria", "combinacional"], "padrao": "P-MSI-SEQ", "padroes_secundarios": ["P-ROM"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "Relógio 00:00–23:59 com dois contadores de 6 bits (CLR síncrono), somador em ROM e detector de múltiplo de 8.", "armadilhas": ["Zerar as horas às 23:00 por não amarrar CLR ao EN", "Achar que o estouro da soma de 6 bits invalida o teste de múltiplo de 8"], "armadilhas_tag": ["contadores", "rom-memoria"], "anulada": false, "gabarito": null, "respostas": ["CLR_M = M5·M4·M3·M1·M0; EN_H = CLR_M; CLR_H = H4·H2·H1·H0", "ROM 12 bits de endereço, 4096 × 6 bits; 5h10 → 000101001010 → 001111", "Z = NOR(S2, S1, S0)"], "av": {"e": [4, 4, 62.4, 83.7], "r": [5, 6, 62.4, 83.7]}}, {"n": 3, "id": "PCS3115-2022-P3-Q3", "pontos": 3.5, "topicos": ["vhdl-registrador", "asm-uc", "fluxo-dados", "contadores"], "padrao": "P-ASM-UC", "padroes_secundarios": ["P-VHDL-REG"], "dificuldade": 3, "pagina_enunciado": 3, "pagina_resolucao": 5, "resumo": "Contador bidirecional de 32 bits em VHDL (load, count, plus) e ASM da UC que trava a contagem entre min e max.", "armadilhas": ["Comparar com ≤ max e ultrapassar o limite", "Escrever 'else then' ou esquecer o rising_edge"], "armadilhas_tag": ["asm-uc", "vhdl-registrador"], "anulada": false, "gabarito": null, "respostas": ["if rising_edge(clock): load → data; count&plus → +1; count&not plus → −1", "Hold (0, X, 0), GoUp (1, 1, 0), GoDown (1, 0, 0); X=count, Y=plus, Z=ctr<max, W=ctr>min; GoUp/GoDown voltam a X"], "av": {"e": [5, 6, 62.4, 83.7], "r": [7, 9, 62.4, 83.7]}}]}, {"id": "PCS3115-2024-P3", "codigo": "PCS3115", "materia": "Sistemas Digitais I", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": 120, "tipo": "completa", "tipo_det": "Q3 de gabarito anexo, provavelmente desta prova", "complementar": false, "questoes": [{"n": 1, "id": "PCS3115-2024-P3-Q1", "pontos": 3.5, "topicos": ["mef-modelagem", "mef-sintese", "vhdl-mef"], "padrao": "P-MEF-PROJETO", "padroes_secundarios": ["P-VHDL-MEF"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Jokempô: MEF de Moore com 3 estados e FF D (tabelas e equações) e MEF de 6 estados em VHDL com lacunas.", "armadilhas": ["Trocar na ordem errada depois de duas vitórias", "Esquecer de mandar o estado espúrio 10 para 00"], "armadilhas_tag": ["mef-modelagem", "mef-sintese"], "anulada": false, "gabarito": null, "respostas": ["D1 = Q1'·Q0·v' + Q1·Q0·v; D0 = Q1'·v' + Q0·v", "B→C/F, C→D/E, D→A/F, E(v=1)→B, F→A/E; j=01 em C|E, j=11 em D|F"], "av": {"e": [7, 8, 62.4, 83.7], "r": [10, 12, 62.4, 83.7]}}, {"n": 2, "id": "PCS3115-2024-P3-Q2", "pontos": 3.0, "topicos": ["flipflops", "registradores", "contadores"], "padrao": "P-MSI-SEQ", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "74175 (4 FF D, CLR assíncrono): explicar, montar shift-register à direita com 74157 e contador síncrono com 7483.", "armadilhas": ["Dizer que dá para fazer ripple counter com um só 74175", "Inverter a seleção A/B do 74157"], "armadilhas_tag": ["contadores", "registradores"], "anulada": false, "gabarito": null, "respostas": ["CLR assíncrono, ativo em 0; CLK comum na borda de subida", "74157 com Ā/B = L/S̄; B = dados paralelos; A = deslocamento (1A←2Q, 2A←3Q, 3A←4Q, 4A←serial); Y → D", "7483 soma Q + 1 → D; reset no CLR; ripple com um único 74175 não é possível (clock comum)"], "av": {"e": [9, 10, 62.4, 83.7], "r": [13, 14, 62.4, 83.7]}}, {"n": 3, "id": "PCS3115-2024-P3-Q3", "pontos": 3.5, "topicos": ["vhdl-registrador", "registradores", "asm-uc", "fluxo-dados"], "padrao": "P-ASM-UC", "padroes_secundarios": ["P-VHDL-REG"], "dificuldade": 3, "pagina_enunciado": 4, "pagina_resolucao": 6, "resumo": "Dominó: registrador de 9 bits P|D1|D0 em VHDL (zera, gira, carrega, desloca) e ASM da UC que testa e descarta peças.", "armadilhas": ["Vetor de zeros com 8 bits num registrador de 9", "Pôr D1 (e não D0) como nova ponta livre"], "armadilhas_tag": ["vhdl-registrador", "registradores"], "anulada": false, "gabarito": null, "respostas": ["00: (others=>'0'); 01: intR(8..6)&intR(2..0)&intR(5..3); 10: intR(8..6)&pc; 11: intR(2..0)&pc", "O1=00, O2=11, O3=01, O4=10; C1=C2=(D1=P) or coringa; C1: 1→Place, 0→Rotate; C2: 1→Place, 0→Discard; Discard→C1"], "av": {"e": [11, 12, 62.4, 83.7], "r": [15, 17, 62.4, 83.7]}}]}, {"id": "PCS3115-2025-P3", "codigo": "PCS3115", "materia": "Sistemas Digitais I", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "misto", "duracao_min": null, "tipo": "completa", "tipo_det": null, "complementar": false, "questoes": [{"n": 1, "id": "PCS3115-2025-P3-Q1", "pontos": 3.3, "topicos": ["vhdl-registrador", "registradores", "vhdl-mef", "mef-modelagem"], "padrao": "P-VHDL-MEF", "padroes_secundarios": ["P-VHDL-REG"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Esteira de minério: lacunas em VHDL de registrador circular e de MEF de Moore que detecta 11 (e depois também 00).", "armadilhas": ["Escrever na porta out dentro do process (dois drivers)", "Mandar S4 com E=1 para S1 em vez de S2"], "armadilhas_tag": ["vhdl-registrador", "mef-modelagem"], "anulada": false, "gabarito": null, "respostas": ["(a) 1-A r <= carga; 2-C r <= r(0) & r(7 downto 1); 3-A remover", "(b) S1, S2, S1, S3, S1, S3", "(c) N=1, α=S4; 7=S4; 8=S2; β = state=S3 or state=S4"], "av": {"e": [13, 14, 62.4, 83.7], "r": [18, 20, 62.4, 83.7]}}, {"n": 2, "id": "PCS3115-2025-P3-Q2", "pontos": 3.0, "topicos": ["carta-tempos", "registradores", "contadores", "codigos"], "padrao": "P-CARTA", "padroes_secundarios": ["P-MSI-SEQ"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "RS-232C: carta de tempos de um caractere com paridade ímpar, transmissão com registrador de deslocamento de 11 bits e controle por contador.", "armadilhas": ["Ligar os dados na ordem inversa no registrador", "Contar start/stop na paridade"], "armadilhas_tag": ["registradores", "codigos"], "anulada": false, "gabarito": null, "respostas": ["p = 1; linha: 0 | 1 1 1 0 0 0 1 | 1 | 1 1", "D0=0, D1..D7=b0..b6, D8=p, D9=D10=1; LD/DESL=controle; CLK=clock; saida=Q0", "contador com clock invertido; controle = Q̄3Q̄2Q̄1Q̄0 + Q3Q̄2Q1Q0; Y = Q3Q̄2Q1Q0"], "av": {"e": [15, 16, 62.4, 83.7], "r": [21, 23, 62.4, 83.7]}}, {"n": 3, "id": "PCS3115-2025-P3-Q3", "pontos": 3.7, "topicos": ["rom-memoria", "asm-uc", "fluxo-dados"], "padrao": "P-FD-CONTROLE", "padroes_secundarios": ["P-ROM", "P-ASM-UC"], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 6, "resumo": "Volume de um filtro: ROM para R²h, multiplicação por 3,125 com deslocamentos, sinais de controle do FD e ASM de alarme cheio/vazio.", "armadilhas": ["Usar < e > estritos onde o enunciado pede ≤ e ≥", "Dividir por 8 com >> 8 em vez de >> 3"], "armadilhas_tag": ["asm-uc", "rom-memoria"], "anulada": false, "gabarito": null, "respostas": ["L = 16 bits, 64 posições, C = 1024 bits (1 Kibit)", "V2 <= V1 << 1; V3 <= V1 >> 3", "In_E0_MUX1 = Vtot; V_Sum1: Sel0=0, Sel1=1, En=1; V_Sum2: Sel0=1, Sel1=0, En=1; demais: X, X, 0", "Vtot ≤ Vmin → cheio=0, vazio=1; Vtot ≥ Vmax → cheio=1, vazio=0; senão 0, 0"], "av": {"e": [17, 18, 62.4, 83.7], "r": [24, 26, 62.4, 83.7]}}]}, {"id": "PCS3115-2026-P3", "codigo": "PCS3115", "materia": "Sistemas Digitais I", "prova": "P3", "ano": 2026, "rotulo": "2026", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "misto", "duracao_min": 120, "tipo": "completa", "tipo_det": null, "complementar": false, "questoes": [{"n": 1, "id": "PCS3115-2026-P3-Q1", "pontos": 2.8, "topicos": ["registradores", "contadores", "carta-tempos", "vhdl-registrador"], "padrao": "P-MSI-SEQ", "padroes_secundarios": ["P-CARTA", "P-VHDL-REG"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Micro-ondas: detector de borda com deslocador (carta de tempos), divisor 60 Hz → 1 Hz com contador e FF D, e timer decrescente em VHDL com lacunas.", "armadilhas": ["Inverter Q3 em vez de Q2 no detector de borda", "Dividir 60 Hz por 60 com o FF em toggle (dá 0,5 Hz)", "Dar a enable prioridade sobre load"], "armadilhas_tag": ["registradores", "contadores", "vhdl-registrador"], "anulada": false, "gabarito": null, "respostas": ["pulso = Q3·not Q2; pulsos após as bordas 2, 8, 10 e 12 (1 ciclo cada)", "AND detecta 30 = 011110 → RST (via OR) e CLK do FF D em toggle", "1-B, 2-B, 3-B, 4-B, 5-A, 6-E, 7-A, 8-D, 9-D, 10-D"], "av": {"e": [19, 21, 62.4, 83.7], "r": [27, 30, 62.4, 83.7]}}, {"n": 2, "id": "PCS3115-2026-P3-Q2", "pontos": 3.7, "topicos": ["asm-uc", "fluxo-dados", "carta-tempos"], "padrao": "P-FD-CONTROLE", "padroes_secundarios": ["P-ASM-UC", "P-CARTA"], "dificuldade": 3, "pagina_enunciado": 3, "pagina_resolucao": 4, "resumo": "Drone semeador: ler o ASM (sinais B–F), identificar registradores do fluxo de dados, lógica do comparador, sinais de controle e plano de testes.", "armadilhas": ["Trocar os registradores Y e Z (Sum2 fica impossível)", "Deixar X no enable de rV/rA em Sum1"], "armadilhas_tag": ["fluxo-dados", "fluxo-dados"], "anulada": false, "gabarito": null, "respostas": ["B=decola, C=temSemente, D=escotilha, E=retorno, F=fimSemeio", "U=A, W=V, X=rL, Y=rA, Z=rV, S=(rL ≥ 40)", "S = (A>B) + (A=B) = not(A<B)", "Read 0 1 1 X; Sum1 1 0 0 1; Sum2 1 0 0 0", "CT3..10: Sum1 32, Sum2 44, OH (esc=1), Read (rA=5), Sum1 17, Sum2 29, CH1 (fim=1), CH2"], "av": {"e": [22, 24, 62.4, 83.7], "r": [31, 34, 62.4, 83.7]}}, {"n": 3, "id": "PCS3115-2026-P3-Q3", "pontos": 3.5, "topicos": ["mef-modelagem", "mef-sintese"], "padrao": "P-MEF-PROJETO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 5, "pagina_resolucao": 8, "resumo": "Esteira com sensor S e garra G: MEF de Moore com 4 estados, tabela de transição e equações com FF D.", "armadilhas": ["Ir para a verificação com o pacote ainda na esteira", "Colocar a saída Alarme na transição (Mealy)"], "armadilhas_tag": ["mef-modelagem", "mef-modelagem"], "anulada": false, "gabarito": null, "respostas": ["I (S=0→I, S=1→E); E (S=1→E, S=0→V); V (G=1→I, G=0→D); D (→I, Alarme=1)", "D1 = Q1'·Q0·S' + Q1·Q0·G'; D0 = Q1'·(Q0 + S); Alarme = Q1·Q0'"], "av": {"e": [25, 25, 62.4, 83.7], "r": [35, 36, 62.4, 83.7]}}]}], "atualizado": "23/11/2026", "blocos": [{"id": "PCS3115-P3-bloco-mef", "nome": "Máquinas de estados e VHDL de MEF", "questoes": ["PCS3115-2022-P3-Q1", "PCS3115-2024-P3-Q1", "PCS3115-2025-P3-Q1", "PCS3115-2026-P3-Q3"]}, {"id": "PCS3115-P3-bloco-blocos", "nome": "Registradores, contadores e temporização", "questoes": ["PCS3115-2022-P3-Q2", "PCS3115-2024-P3-Q2", "PCS3115-2025-P3-Q2", "PCS3115-2026-P3-Q1"]}, {"id": "PCS3115-P3-bloco-rtl", "nome": "Projeto RTL: ASM, unidade de controle e fluxo de dados", "questoes": ["PCS3115-2022-P3-Q3", "PCS3115-2024-P3-Q3", "PCS3115-2025-P3-Q3", "PCS3115-2026-P3-Q2"]}], "guia": {"escopo": "A P3 de Sistemas Digitais I é a prova de circuitos sequenciais: flip-flops, máquinas de estados síncronas (análise e síntese), registradores, contadores, VHDL e projeto com unidade de controle + fluxo de dados (diagrama ASM). Nas 4 P3 recentes (2022, 2024, 2025 e 2026) não caiu combinacional puro, CMOS nem FPGA; somador, MUX, comparador e ROM só aparecem como peças do fluxo de dados. A prova é única para as turmas (as capas listam vários professores), tem 3 questões de cerca de 3,3 pontos e dura 120 min, sem consulta e sem calculadora. Em 2026 ela se chamou “Prova Final (P3)”. A avaliação é a média de 3 notas.", "programa": ["Latches, flip-flops e máquinas de estado síncronas: análise e síntese", "Registradores, shift registers e contadores", "HDL (VHDL)", "Somadores, multiplexadores e comparadores (dentro do fluxo de dados)", "Memória ROM usada como tabela"], "roteiro": [{"etapa": "Flip-flops e MEF à mão", "texto": "Refaça 2022 Q1(a), 2024 Q1(a) e 2026 Q3: tabela, diagrama de Moore, codificação e Karnaugh. Treine mandar estado espúrio para o inicial."}, {"etapa": "VHDL de MEF", "texto": "Refaça 2022 Q1(b), 2024 Q1(b) e 2025 Q1(b)(c). Treine descobrir o significado dos estados a partir das linhas já dadas."}, {"etapa": "VHDL de registrador e contador", "texto": "Refaça 2025 Q1(a), 2022 Q3(a), 2024 Q3(a) e 2026 Q1(c): rising_edge, prioridade dos controles, fatias com & e unsigned."}, {"etapa": "Blocos prontos e cartas de tempo", "texto": "Refaça 2022 Q2, 2024 Q2, 2026 Q1(a)(b) e 2025 Q2: relógio, divisor, detector de borda e transmissão serial. Desenhe as formas de onda borda a borda."}, {"etapa": "ASM + fluxo de dados", "texto": "Refaça 2022 Q3(b), 2024 Q3(b), 2025 Q3 e 2026 Q2. Para cada estado, escreva enable/Sel e confira com um plano de testes."}, {"etapa": "Simulado", "texto": "Faça a P3 de 2026 inteira em 120 min com a prova limpa; corrija e depois faça a de 2025."}], "tendencias": [{"titulo": "A P3 virou sequencial", "texto": "Nas 3 P3 de 2016 a 2018S1, tudo era combinacional e códigos (MUX, decodificadores, Karnaugh, paridade, Hamming, multiplicadores). Desde 2018S2, 6 de 6 provas são de circuitos sequenciais. Não estude Hamming nem negabinário para esta P3."}, {"titulo": "Uma questão de cada bloco", "texto": "Nas 4 P3 recentes, sempre há uma questão de máquina de estados (2022 Q1, 2024 Q1, 2025 Q1, 2026 Q3), uma de registradores/contadores com temporização (2022 Q2, 2024 Q2, 2025 Q2, 2026 Q1) e uma de ASM + fluxo de dados (2022 Q3, 2024 Q3, 2025 Q3, 2026 Q2)."}, {"titulo": "ASM subiu de zero para sempre", "texto": "Diagrama ASM de unidade de controle caiu em 4 das 4 P3 recentes e em 0 das 5 de 2016–2019. Os enunciados repetem o formato: UC e FD em bordas opostas e diagrama com lacunas (A1, X, C1, O1)."}, {"titulo": "VHDL em todas", "texto": "VHDL apareceu em 4 de 4 P3 recentes (em 2022 e 2024, em duas questões cada), contra 3 de 5 antigas. O pedido é quase sempre completar lacunas, não escrever do zero."}, {"titulo": "Lacunas com alternativas", "texto": "2025 Q1 e 2026 Q1(c) trouxeram código VHDL com posições numeradas e 3 a 9 alternativas por posição. Vale 0,1 a 0,4 por lacuna: dá ponto rápido para quem simula o código."}, {"titulo": "Tabelas para preencher", "texto": "2025 e 2026 pedem tabelas de sinais de controle por estado (Sel, enable, com 0/1/X) e, em 2026, um plano de testes de 10 linhas. É conta mecânica que pune quem não segue a convenção das linhas dadas."}], "checklist": ["Ler um VHDL estrutural (port map de flip-flops) e montar a tabela de transição, simplificando XOR repetido.", "Dizer se a máquina é Moore ou Mealy olhando se a saída depende só do estado.", "Modelar um texto em diagrama de Moore com todas as setas para todas as combinações de entrada.", "Codificar estados, montar a tabela de excitação com FF D e minimizar D1 e D0 por Karnaugh, mandando espúrios para o estado inicial.", "Escrever o process de estado (reset assíncrono + clock'event) e o next_s com when/else; saída com with/select.", "Guardar no estado a informação do passado que a regra pede (ex.: jogada × venceu a anterior, 6 estados).", "Escrever registrador em VHDL com prioridade correta (rst, load, enable) e fatias com &: rotação r(0) & r(7 downto 1).", "Contar com unsigned (+1/−1) e converter entre bit_vector, unsigned e integer.", "Projetar relógio ou divisor com contador + AND de detecção, sabendo se o CLR/RST é síncrono ou assíncrono.", "Montar shift-register com carga paralela usando MUX 2:1 na frente de cada D (74157 + 74175).", "Fazer detector de borda com deslocador: pulso = Q3 · Q̄2.", "Ligar um quadro serial (start, dados, paridade, stops) no registrador de deslocamento na ordem certa e calcular a paridade.", "Desenhar carta de tempos amostrando só nas bordas ativas.", "Preencher sinais de Moore e condições de um ASM, criando os comparadores no fluxo de dados.", "Descobrir qual registrador é qual num fluxo de dados pelo caminho até o somador.", "Preencher a tabela de enable/Sel por estado com 0, 1 e X justificados.", "Montar um plano de testes ciclo a ciclo (estado e registradores).", "Dimensionar ROM (endereço, palavra, capacidade) e multiplicar por constante com deslocamentos (3,125 = 2 + 1 + 1/8)."], "pegadinhas": [{"titulo": "A entrada some da equação", "texto": "2022 Q1: d1 = d0 ⊕ x ⊕ q̄1 com d0 = x ⊕ q0 dá d1 = q0 ⊕ q̄1, sem x. Simplifique antes de tabelar."}, {"titulo": "Pulso entre bordas não existe", "texto": "2026 Q1(a): o botão sobe e desce entre duas bordas de subida e o detector não vê nada; outro pulso curto pega uma borda e gera saída."}, {"titulo": "Toggle divide por 2", "texto": "2026 Q1(b): para 1 Hz a partir de 60 Hz com FF em toggle, o contador reinicia em 30, não em 60."}, {"titulo": "CLR só com EN", "texto": "2022 Q2(a): o CLR síncrono das horas só age com EN = 1, por isso as horas zeram às 23:59, e não às 23:00."}, {"titulo": "Estouro que não atrapalha", "texto": "2022 Q2(c): 23 + 59 = 82 passa de 63, mas a soma mod 64 preserva os 3 bits de baixo, e o teste de múltiplo de 8 continua certo."}, {"titulo": "Não atribuído = enable 0", "texto": "2026 Q2(d): em Sum1 o rV não pode ser regravado antes de Sum2. O que o ASM não atribui num estado fica com enable 0, não X."}, {"titulo": "Prioridade dos controles", "texto": "2026 Q1(c): load é mais prioritário que enable, e o reset assíncrono vem antes do teste de borda."}, {"titulo": "Porta out dentro do process", "texto": "2025 Q1(a): escrever val dentro do process cria um segundo driver (val já recebe r fora dele). Trabalhe só no sinal interno."}, {"titulo": "Clock comum", "texto": "2024 Q2(c): não dá para fazer ripple counter com um 74175 só, porque os 4 flip-flops têm o mesmo pino de clock."}, {"titulo": "Ordem dos bits no deslocamento", "texto": "2025 Q2(b): com deslocamento à direita e saída em Q0, o start bit vai em D0 e b0 em D1."}, {"titulo": "Tamanho do vetor", "texto": "2024 Q3(a): \"00000000\" tem 8 bits e o registrador tem 9. Use (others => '0')."}, {"titulo": "Desigualdade estrita", "texto": "2022 Q3(b) e 2025 Q3(d): “no mínimo” é ≥ e “de até” é ≤; para não passar do máximo, só incremente se ctr < max."}], "dicas_prova": ["São 120 min para 3 questões de cerca de 3,3 pontos: uns 35 min por questão e 15 min de revisão.", "Comece pelas lacunas de VHDL com alternativas (2025 Q1, 2026 Q1c): simule o código com uma sequência curta de entradas e marque.", "Nas lacunas, a resposta de uma pode ser usada em outras (2026: o símbolo (1) aparece nas alternativas de 7, 9 e 10). Se errar a primeira, as outras ainda contam.", "Quase todo item pede “justifique”: uma frase por resposta (o que o estado significa, por que o sinal é 0) garante ponto parcial.", "Em figuras, esboce a lápis e confirme a caneta (instrução da prova de 2026). Não rasure as quadrículas do topo: a prova é lida por máquina.", "Escreva as hipóteses que assumir (instrução de todas as provas): por exemplo, se o reset é ativo em 0 ou 1.", "Em ASM, deixe claro o que é cada sinal de condição (ex.: CtrLtMax = ctr < max) e de onde ele vem no fluxo de dados.", "Sem calculadora: deixe contas binárias pequenas e confira somas em decimal."], "formulario": [{"nome": "Flip-flop D", "typst": "$Q^+ = D$", "txt": "Q⁺ = D"}, {"nome": "Flip-flop T feito com D", "typst": "$D = T plus.o Q$ (toggle: $D = overline(Q)$)", "txt": "D = T ⊕ Q (toggle: D = Q̄)"}, {"nome": "Flip-flop JK", "typst": "$Q^+ = J overline(Q) + overline(K) Q$", "txt": "Q⁺ = J·Q̄ + K̄·Q"}, {"nome": "Número de flip-flops", "typst": "$n = ceil(log_2 N_\"estados\")$", "txt": "n = ⌈log2 N⌉"}, {"nome": "Moore x Mealy", "typst": "Moore: $Z = g(Q)$ #h(6pt) Mealy: $Z = g(Q, X)$", "txt": "Moore: Z = g(Q); Mealy: Z = g(Q, X)"}, {"nome": "Divisor com toggle", "typst": "$f_\"out\" = f_\"in\" \\/ (2 M)$, contador reinicia a cada $M$ ciclos", "txt": "f_out = f_in / (2M)"}, {"nome": "Detector de borda de subida", "typst": "$\"pulso\" = Q_n overline(Q_(n-1))$", "txt": "pulso = Qn · Q̄(n−1)"}, {"nome": "Rotação e deslocamento em VHDL", "typst": "`r(0) & r(7 downto 1)` (rotação à direita) #h(4pt) `r(6 downto 0) & '0'` (à esquerda)", "txt": "r(0) & r(7 downto 1); r(6 downto 0) & '0'"}, {"nome": "Process de MEF", "typst": "`if rst='1' then s <= S0; elsif rising_edge(clk) then s <= prox; end if;`", "txt": "if rst then s <= S0; elsif rising_edge(clk) then s <= prox"}, {"nome": "Deslocamentos", "typst": "$x << k = x dot 2^k$, #h(4pt) $x >> k = floor(x \\/ 2^k)$", "txt": "x<<k = x·2^k; x>>k = ⌊x/2^k⌋"}, {"nome": "ROM", "typst": "$C = 2^n dot L$, #h(4pt) $L = ceil(log_2 (V_max + 1))$", "txt": "C = 2^n · L; L = ⌈log2(Vmax+1)⌉"}, {"nome": "Paridade ímpar (7 bits)", "typst": "$p = overline(b_0 plus.o b_1 plus.o dots.c plus.o b_6)$", "txt": "p = NOT(b0 ⊕ … ⊕ b6)"}, {"nome": "Complemento de 2", "typst": "$-x = overline(x) + 1$", "txt": "−x = x̄ + 1"}, {"nome": "Comparador → condição", "typst": "$A >= B = (A > B) + (A = B) = overline(A < B)$", "txt": "A ≥ B = (A>B) + (A=B) = NOT(A<B)"}]}, "historico": [{"ano": 2016, "rotulo": "P3 2016 (1º sem.)", "fonte": "fontes/2016-antiga-ROEa", "questoes": [{"resumo": "Verdadeiro ou falso sobre linguagens de descrição de hardware.", "topicos": ["combinacional"]}, {"resumo": "V ou F sobre VHDL estrutural de XOR de 3 entradas usado como gerador/verificador de paridade de 7 bits.", "topicos": ["combinacional", "codigos"]}, {"resumo": "V ou F: Karnaugh, Quine-McCluskey, comparadores, hazards, tri-state, paridade e Hamming.", "topicos": ["combinacional", "codigos"]}, {"resumo": "Síntese com decodificador de saída ativa baixa e com MUX 8:1 e 4:1; formas canônicas.", "topicos": ["combinacional"]}]}, {"ano": 2017, "rotulo": "P3 2017 (2º sem.)", "fonte": "fontes/2017-antiga-NOyL", "questoes": [{"resumo": "Prioridade entre 8 alarmes com 74x148, BCD para 7 segmentos e 74x138.", "topicos": ["combinacional"]}, {"resumo": "MUX 8:1 feito de MUX 4:1 e somador completo com MUX.", "topicos": ["combinacional"]}, {"resumo": "Somador em negabinário (base −2).", "topicos": ["codigos"]}, {"resumo": "Multiplicador em complemento de 2 com ULA, decodificadores e MUX (neurônio ReLU).", "topicos": ["codigos", "combinacional"]}]}, {"ano": 2018, "rotulo": "P3 2018 (1º sem.)", "fonte": "fontes/2018-antiga-Dgle", "questoes": [{"resumo": "Conversões BCD, código de Gray de 4 bits e ASCII maiúscula/minúscula só com fios.", "topicos": ["codigos"]}, {"resumo": "Teclado telefônico: BCD, paridade e código de Hamming.", "topicos": ["codigos"]}, {"resumo": "Detector de números de Fibonacci com PROM, MUX e blocos de FPGA.", "topicos": ["rom-memoria", "combinacional"]}, {"resumo": "Multiplicador de 2 bits sem sinal e com sinal (complemento de 2).", "topicos": ["codigos", "combinacional"]}]}, {"ano": 2018, "rotulo": "P3 2018 (2º sem.)", "fonte": "fontes/2018-antiga-wXaq", "questoes": [{"resumo": "Tabelas do latch RS, latch D e flip-flop D mestre-escravo; flip-flop T com D.", "topicos": ["flipflops"]}, {"resumo": "Contador síncrono em VHDL estrutural: diagrama lógico e sequência de contagem.", "topicos": ["mef-analise", "contadores", "vhdl-registrador"]}, {"resumo": "Registradores SIPO e PISO com flip-flops D.", "topicos": ["registradores"]}, {"resumo": "MEF de Moore que decodifica código de Huffman (K, Z, W) de entrada serial.", "topicos": ["mef-modelagem", "mef-sintese"]}]}, {"ano": 2019, "rotulo": "P3 2019 (1º sem.)", "fonte": "fontes/2019-antiga-O8mE", "questoes": [{"resumo": "MEF de disparo por sequência de cores: diagrama, tabela, excitação e diagrama lógico.", "topicos": ["mef-modelagem", "mef-sintese"]}, {"resumo": "Banner com registrador universal em VHDL (modos de deslocamento e carga).", "topicos": ["registradores", "vhdl-registrador"]}, {"resumo": "Divisor de 320 MHz para 1 MHz com registradores em anel.", "topicos": ["contadores", "registradores"]}, {"resumo": "Expansão de memória RAM (2K×4 → 4K×8) e mapa de endereços.", "topicos": ["rom-memoria"]}]}], "extra": {}, "codigos": ["PCS3115"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, TODAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+// material complementar (origem incerta) fica no banco e nos PDFs, mas fora das contas
+const PROVAS = TODAS.filter(p=>!p.complementar), COMP = TODAS.filter(p=>p.complementar);
+const TIPO = {completa:'Prova completa', parcial:'Prova parcial', reconstrucao:'Reconstrução de alunos', coletanea:'Coletânea', complementar:'Material complementar'};
+const tipoDe = p => p.complementar ? 'complementar' : (p.tipo || 'completa');
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+TODAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status, tipo:tipoDe(p)}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `../../sistemas-digitais-1/pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// faixa de anos do histórico (as provas antigas usadas na tendência)
+const comData = h => typeof h.ano==='number' && !/sem data/i.test(h.rotulo||'');
+const anosH = H.filter(comData).map(h=>h.ano);
+const faixaH = (anosH.length ? (Math.min(...anosH)===Math.max(...anosH) ? `${Math.min(...anosH)}` : `${Math.min(...anosH)}–${Math.max(...anosH)}`) : '') + (H.some(h=>!comData(h)) ? (anosH.length?' e sem data':'sem data') : '');
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de ${faixaH} para a tendência`:''}${COMP.length?` · material complementar, fora das contas: ${COMP.map(p=>esc((p.rotulo||p.ano).replace(' (complementar)',''))+(p.tipo_det?` (${esc(p.tipo_det)})`:'')).join(', ')}`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `../../sistemas-digitais-1/pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF <span class="ar ar-d">↓</span></a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  `<p class="revnota">Encontrou algum problema numa prova ou resolução? Avise a Prisma em <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a>.</p>` +
+  TODAS.map(p=>{ const t=tipoDe(p); return `<div class="pvl"><span class="pva">${esc((p.rotulo||p.ano).replace(' (complementar)',''))}</span><span class="tipo t-${t}">${TIPO[t]}${p.tipo_det?`<i> · ${esc(p.tipo_det)}</i>`:''}</span><a href="../../sistemas-digitais-1/pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">prova</a><a href="../../sistemas-digitais-1/pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">resolução</a></div>`; }).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="../../sistemas-digitais-1/pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="../../sistemas-digitais-1/pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+// abertura: como a P3 se organiza e em que provas o raio-X se baseia
+const listaE = a => a.length<2 ? a.join('') : a.slice(0,-1).join(', ') + ' e ' + a[a.length-1];
+const base = `Tudo nesta página sai ${n===1?'da P3':`das ${n} P3`} de ${listaE(PROVAS.map(p=>esc(p.rotulo||p.ano)))}` +
+  (H.length ? `, comparada${n===1?'':'s'} com ${H.length} P3 de ${faixaH}` : '') +
+  `. Mostra o que já caiu, não o que vai cair` + (n < 4 ? `: com ${n===1?'uma prova só':`só ${n} provas`}, uma diferença pequena pode ser acaso.` : '.');
+document.getElementById('avisos').innerHTML = `<div class="abre"><span class="lbl">Em resumo</span>` +
+  (T.nota_organizacao ? `<p class="abre-txt">${esc(T.nota_organizacao)}</p>` : '') + `<p class="abre-base">${base}</p></div>`;
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: histórico x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de ${faixaH} contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>'+esc(faixaH)+'</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, TODAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  ${(()=>{ const mostra = !['completa','parcial'].includes(q.tipo); return (q.anulada||mostra)?`<div class="tags">${q.anulada?'<span class="tag w">Anulada na prova original (mantida para treino)</span>':''}${mostra?`<span class="tag w">${TIPO[q.tipo]}</span>`:''}</div>`:''; })()}
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(PROVAS.reduce((t,p)=>t+p.questoes.length,0) / Math.max(1,n)));   // tamanho de uma P3 típica (sem material complementar)
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false, fim=0, aoSortear=()=>{};
+const bPdf=document.getElementById('bPdf'), bPdfRes=document.getElementById('bPdfRes'), grpRes=document.getElementById('grpRes');
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+const comDur = PROVAS.filter(p=>p.duracao_min), rotP = p => String(p.rotulo||p.ano), eLista = a => a.length<2 ? a.join('') : a.slice(0,-1).join(', ') + ' e ' + a[a.length-1];
+let fraseDur;
+if (SIM.duracao) fraseDur = `Duração sugerida: ${durPadrao} min.`;
+else if (!comDur.length) fraseDur = 'A duração não consta nas provas analisadas; usamos 110 min.';
+else if (new Set(comDur.map(p=>p.duracao_min)).size===1) fraseDur = `Duração sugerida: ${durPadrao} min, ${comDur.length===1?'a da P3 de':'a das P3 de'} ${eLista(comDur.map(rotP))}.` + (comDur.length<PROVAS.length ? ' As outras provas não informam a duração.' : '');
+else fraseDur = `Duração sugerida: ${durPadrao} min, a mediana das durações informadas (${comDur.map(p=>`${rotP(p)}: ${p.duracao_min} min`).join('; ')}).`;
+document.getElementById('simdur').textContent = fraseDur + ' Ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; grpRes.hidden=true; aoSortear(); parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ tique(); parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  fim = Date.now() + restante*1000;   // conta pelo horário de término: não atrasa com a aba em segundo plano
+  timer=setInterval(tique,250);
+});
+function tique(){ if(!rodando) return; restante=Math.max(0,Math.ceil((fim-Date.now())/1000)); clock.textContent=fmt(restante); if(!restante){ encerrar(); } }
+document.addEventListener('visibilitychange', tique);
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; grpRes.hidden=false; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// simulado em PDF: recorta do PDF de questões avulsas só as páginas das questões sorteadas (pdf-lib, no navegador)
+const PDFLIB = 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+let libP = null;
+const carregaLib = () => libP || (libP = new Promise((ok, er) => { const sc = document.createElement('script'); sc.src = PDFLIB;
+  sc.onload = () => ok(window.PDFLib); sc.onerror = () => { libP = null; er(new Error('não carregou a biblioteca de PDF')); }; document.head.appendChild(sc); }));
+const avBytes = {};
+async function montaPDF(v){   // v: 'e' (enunciados) ou 'r' (resoluções)
+  const { PDFDocument, StandardFonts, rgb } = await carregaLib();
+  const url = `../../sistemas-digitais-1/pdf/${T.codigo}-P3-avulsas_${v==='e'?'enunciado':'resolucao'}.pdf`;
+  if (!avBytes[url]) { const r = await fetch(url); if (!r.ok) throw new Error('PDF ' + r.status); avBytes[url] = await r.arrayBuffer(); }
+  const src = await PDFDocument.load(avBytes[url]);
+  const out = await PDFDocument.create();
+  out.setTitle(`Simulado P3 · ${T.materia}${v==='r'?' · resolução':''}`); out.setAuthor('Fuja das P3 · Chapa Prisma');
+  const bold = await out.embedFont(StandardFonts.HelveticaBold), reg = await out.embedFont(StandardFonts.Helvetica);
+  const W = 595.28, A = 841.89, laranja = rgb(1, .42, .24), azul = rgb(.06, .14, .28), cinza = rgb(.36, .39, .47);
+  const ok = (f, t) => [...String(t)].map(c => { try { f.encodeText(c); return c; } catch (e) { return c==='→'?'->':'?'; } }).join('');
+  const quebra = (f, t, tam, larg) => { const ps = ok(f, t).split(' '); const ls = []; let l = ''; ps.forEach(p => { const c = l ? l + ' ' + p : p; if (f.widthOfTextAtSize(c, tam) > larg && l) { ls.push(l); l = p; } else l = c; }); if (l) ls.push(l); return ls; };
+  // capa
+  const capa = out.addPage([W, A]); let y = A - 92;
+  capa.drawRectangle({ x: 0, y: A - 10, width: W, height: 10, color: laranja });
+  capa.drawText(ok(bold, 'FUJA DAS P3 · SIMULADO' + (v==='r' ? ' · RESOLUÇÃO' : '')), { x: 62, y, size: 9.5, font: bold, color: laranja }); y -= 36;
+  quebra(bold, T.materia, 26, W - 124).forEach(l => { capa.drawText(l, { x: 62, y, size: 26, font: bold, color: azul }); y -= 30; });
+  capa.drawText(ok(reg, `${(D.codigos||[T.codigo]).join(' / ')} · ${sim.length} questões · ${dur.value} min`), { x: 62, y, size: 12, font: reg, color: cinza }); y -= 40;
+  capa.drawText(ok(bold, 'De onde vem cada questão'), { x: 62, y, size: 11, font: bold, color: azul }); y -= 20;
+  const col = sim.length > 14 ? 2 : 1, porCol = Math.ceil(sim.length / col), y0 = y;
+  sim.forEach((q, k) => { const cx = 62 + Math.floor(k / porCol) * 240, cy = y0 - (k % porCol) * 17;
+    capa.drawText(String(k + 1), { x: cx, y: cy, size: 10.5, font: bold, color: laranja });
+    capa.drawText(ok(reg, `${q.prova} ${q.rot} · questão ${q.n}` + (q.pontos != null ? ` · ${num(q.pontos)} pt` : '') + (q.anulada ? ' · anulada na prova' : '')), { x: cx + 22, y: cy, size: 10.5, font: reg, color: azul }); });
+  y = y0 - porCol * 17 - 24;
+  if (v === 'r' && col === 1 && sim.every(q => (q.respostas||[]).length)) {   // gabarito rápido
+    capa.drawText(ok(bold, 'Gabarito rápido'), { x: 62, y, size: 11, font: bold, color: azul }); y -= 18;
+    const corta = (t, larg) => { let x = ok(reg, t); while (reg.widthOfTextAtSize(x, 9.5) > larg && x.length > 4) x = x.slice(0, -2); return x === ok(reg, t) ? x : x + '…'; };
+    sim.forEach((q, k) => { if (y < 130) return; capa.drawText(String(k + 1), { x: 62, y, size: 9.5, font: bold, color: laranja });
+      capa.drawText(corta(q.respostas.join('; '), W - 146), { x: 84, y, size: 9.5, font: reg, color: azul }); y -= 15; });
+    y -= 12;
+  }
+  const instr = v === 'e'
+    ? ['Sem consulta. Marque o tempo e faça tudo antes de olhar qualquer resolução.', 'Quando terminar, encerre o simulado no site e baixe a resolução destas mesmas questões.']
+    : ['Corrija questão por questão. Onde errou, leia a armadilha e refaça pelo bloco do assunto no site.'];
+  instr.forEach(t => quebra(reg, t, 10.5, W - 124).forEach(l => { capa.drawText(l, { x: 62, y, size: 10.5, font: reg, color: cinza }); y -= 15; }));
+  capa.drawText(ok(reg, 'Feito por alunos da Chapa Prisma. Não é gabarito oficial. Encontrou algum problema? Avise em @prisma.poli.'), { x: 62, y: 70, size: 8.5, font: reg, color: cinza });
+  capa.drawText('chapaprisma.github.io/fuja-das-p3', { x: 62, y: 56, size: 8.5, font: bold, color: azul });
+  // questões, renumeradas de 1 a N
+  for (const [k, q] of sim.entries()) {
+    const a = q.av && q.av[v]; if (!a) continue;
+    const idx = []; for (let p = a[0]; p <= a[1]; p++) idx.push(p - 1);
+    const pgs = await out.copyPages(src, idx);
+    pgs.forEach((pg, j) => { out.addPage(pg); if (j === 0) pg.drawText(String(k + 1), { x: a[2], y: pg.getHeight() - a[3] - 16.5, size: 22, font: bold, color: laranja }); });
+  }
+  return out.save();
+}
+// o mesmo PDF serve para ver e para baixar: guarda o último de cada versão enquanto o sorteio não muda
+const pdfFeito = {};
+const chaveSim = v => v + '|' + sim.map(q => q.id).join(',');
+async function pdfDo(v){ const k = chaveSim(v); if (!pdfFeito[k]) pdfFeito[k] = montaPDF(v).catch(e => { delete pdfFeito[k]; throw e; }); return pdfFeito[k]; }
+const nomePDF = v => `Simulado P3 - ${T.materia}${v==='r' ? ' - resolução' : ''}.pdf`;
+function salva(bytes, v){
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+  a.download = nomePDF(v); document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+async function comBotao(botao, fn){
+  const txt = botao.innerHTML; botao.disabled = true; botao.textContent = 'Montando…';
+  try { await fn(); } catch (e) { alert('Não deu para montar o PDF agora (' + e.message + '). Os links de cada questão continuam funcionando.'); }
+  finally { botao.disabled = false; botao.innerHTML = txt; }
+}
+const baixaPDF = (v, botao) => comBotao(botao, async () => { salva(await pdfDo(v), v); ga(v==='r' ? 'simulado-pdf-res' : 'simulado-pdf'); });
+
+// visor: desenha as páginas na própria página com o PDF.js (funciona também no celular, que não mostra PDF embutido)
+const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', PDFJS_W = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let jsP = null;
+const carregaPdfjs = () => jsP || (jsP = new Promise((ok, er) => { const sc = document.createElement('script'); sc.src = PDFJS;
+  sc.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_W; ok(window.pdfjsLib); };
+  sc.onerror = () => { jsP = null; er(new Error('não carregou o leitor de PDF')); }; document.head.appendChild(sc); }));
+const visor = document.getElementById('visor'), visorPgs = document.getElementById('visorPgs'), visorTit = document.getElementById('visorTit');
+let visorV = null, visorDoc = null, visorObs = null;
+function fechaVisor(){ visor.hidden = true; visorV = null; if (visorObs) visorObs.disconnect(); if (visorDoc) visorDoc.destroy(); visorDoc = null; visorPgs.innerHTML = ''; }
+async function desenhaPagina(box){
+  if (box.dataset.ok || !visorDoc) return; box.dataset.ok = '1';
+  const pg = await visorDoc.getPage(+box.dataset.p);
+  const base = pg.getViewport({ scale: 1 }), dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const vp = pg.getViewport({ scale: (box.clientWidth / base.width) * dpr });
+  const cv = document.createElement('canvas'); cv.width = Math.floor(vp.width); cv.height = Math.floor(vp.height);
+  await pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+  box.replaceChildren(cv);
+}
+const verPDF = (v, botao) => comBotao(botao, async () => {
+  const [bytes, lib] = await Promise.all([pdfDo(v), carregaPdfjs()]);
+  fechaVisor(); visorV = v;
+  visorDoc = await lib.getDocument({ data: bytes.slice() }).promise;
+  visorTit.textContent = `${v==='r' ? 'Resolução do simulado' : 'Simulado'} · ${sim.length} questões · ${visorDoc.numPages} páginas`;
+  visorObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) desenhaPagina(e.target); }), { root: visorPgs, rootMargin: '600px 0px' });
+  for (let i = 1; i <= visorDoc.numPages; i++) { const b = document.createElement('div'); b.className = 'visor-pg'; b.dataset.p = i; b.setAttribute('aria-label', `Página ${i}`); visorPgs.appendChild(b); visorObs.observe(b); }
+  visor.hidden = false; visorPgs.scrollTop = 0; visor.scrollIntoView({ block: 'start' }); ga(v==='r' ? 'simulado-ver-res' : 'simulado-ver');
+});
+document.getElementById('vFechar').addEventListener('click', fechaVisor);
+aoSortear = fechaVisor;   // um sorteio novo invalida o PDF aberto
+document.getElementById('vBaixar').addEventListener('click', e => { if (visorV) baixaPDF(visorV, e.currentTarget); });
+document.getElementById('bVer').addEventListener('click', e => verPDF('e', e.currentTarget));
+document.getElementById('bVerRes').addEventListener('click', e => verPDF('r', e.currentTarget));
+bPdf.addEventListener('click', () => baixaPDF('e', bPdf));
+bPdfRes.addEventListener('click', () => baixaPDF('r', bPdfRes));
+window.__montaPDF = montaPDF;
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+// barra de navegação: destaca a seção atual e mantém o botão dela visível
+(function(){
+  const box = document.getElementById('toc');
+  const links = [...box.querySelectorAll('a')];
+  const secs = links.map(a=>document.getElementById(a.getAttribute('href').slice(1)));
+  let ultimo = null, pend = false;
+  const fimBox = () => box.classList.toggle('fim', box.scrollLeft + box.clientWidth >= box.scrollWidth - 4);
+  function marca(){
+    pend = false;
+    const lim = 90; let atual = -1;
+    secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top <= lim) atual = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) atual = secs.length - 1;
+    links.forEach((a,i)=>{ const on = i===atual; a.classList.toggle('ativo', on); if(on) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current'); });
+    const a = links[atual] || null;
+    if (a && a !== ultimo) { ultimo = a; const alvo = a.offsetLeft - box.offsetLeft - (box.clientWidth - a.offsetWidth)/2; box.scrollTo({left: Math.max(0, alvo), behavior: 'smooth'}); }
+    if (!a) ultimo = null;
+  }
+  window.addEventListener('scroll', ()=>{ if(!pend){ pend = true; requestAnimationFrame(marca); } }, {passive:true});
+  window.addEventListener('resize', ()=>{ fimBox(); marca(); });
+  box.addEventListener('scroll', fimBox, {passive:true});
+  links.forEach(a=>a.addEventListener('click', ()=>ga('nav-' + a.getAttribute('href').slice(1))));
+  fimBox(); marca();
+})();
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+<script>
+// notação matemática no texto da página: T_BC -> T com BC subscrito, e^(2x) -> e com 2x sobrescrito.
+// Só converte índice de base com uma letra (ou NPSH), para não mexer em nomes de código como push_back ou static_cast.
+(function(){
+  const PULA = new Set(['SCRIPT','STYLE','TEXTAREA','OPTION','SELECT','SUB','SUP','NAV','CANVAS']);
+  const RE_SUB = /(^|[^\p{L}0-9_]|[α-ωΣΔ∂])(\p{L}|∫)_(\{[^{}]{1,12}\}|[\p{L}0-9]{1,12})(?![\p{L}0-9_])/gu;
+  const RE_NPSH = /\bNPSH_([a-z]{1,3})\b/g;
+  const RE_SUP = /\^(\((?:[^()]|\([^()]*\)){1,26}\)|\{[^{}]{1,12}\}|∫\([^()]{1,14}\)(?:\/\p{L}{1,2})?(?:\s?d[a-z])?|∫[\p{L}0-9]{1,5}(?:\([^()]{1,8}\))?(?:\s?d[a-z](?![\p{L}0-9]))?|[-−+]?∫?[\p{L}0-9∞]{1,5}(?:\([^()]{1,8}\)[a-z]{0,2})?)/gu;
+  const tira = x => (/^\(.*\)$/s.test(x) || /^\{.*\}$/s.test(x)) ? x.slice(1, -1) : x;
+  const escH = t => t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const pode = n => { for (let e = n.parentElement; e; e = e.parentElement) { if (PULA.has(e.tagName) || e.classList.contains('pid') || e.classList.contains('nomath')) return false; } return true; };
+  function texto(n){
+    const t = n.nodeValue; if (!t || (t.indexOf('_') < 0 && t.indexOf('^') < 0) || !pode(n)) return;
+    let h = escH(t);
+    const antes = h;
+    h = h.replace(RE_SUP, (m, e) => `<sup>${tira(e)}</sup>`)
+         .replace(RE_NPSH, (m, i) => `NPSH<sub>${i}</sub>`)
+         .replace(RE_SUB, (m, a, b, i) => `${a}${b}<sub>${tira(i)}</sub>`);
+    if (h === antes) return;
+    const tpl = document.createElement('template'); tpl.innerHTML = h; n.replaceWith(tpl.content);
+  }
+  function passa(raiz){
+    if (raiz.nodeType === 3) return texto(raiz);
+    if (raiz.nodeType !== 1 || PULA.has(raiz.tagName)) return;
+    const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT); const ns = [];
+    while (w.nextNode()) ns.push(w.currentNode);
+    ns.forEach(texto);
+  }
+  passa(document.body);
+  new MutationObserver(rs => rs.forEach(r => r.addedNodes.forEach(passa))).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
+function rot(){var d=r.getAttribute("data-theme")==="dark";b.textContent=d?"☀ Modo claro":"☾ Modo escuro";b.setAttribute("aria-pressed",d?"true":"false")}
+b.addEventListener("click",function(){var d=r.getAttribute("data-theme")!=="dark";if(d)r.setAttribute("data-theme","dark");else r.removeAttribute("data-theme");try{localStorage.setItem("fuja-p3-tema",d?"dark":"light")}catch(e){}rot()});rot()})();</script>
+</body>
+</html>

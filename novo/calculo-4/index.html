@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="pt-BR" class="papel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cálculo IV · Fuja das P3</title>
+<meta name="description" content="P3 de Cálculo IV (MAT2456) transcritas e resolvidas: 3 provas, 33 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Cálculo IV · Fuja das P3">
+<meta property="og:description" content="P3 de Cálculo IV (MAT2456) transcritas e resolvidas: 3 provas, 33 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1ECE2">
+<link rel="icon" href="../../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<script>(function(){try{if(localStorage.getItem("fuja-p3-tema")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}})();</script>
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#F1ECE2; --band-fg:#0F2347; --band-muted:#4A5468; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:#C2410C;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{border-color:var(--laranja);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F; --ok-fg:#FFE39A;
+  --link:#FF9A75; --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+:root[data-theme="dark"] .band .eyebrow,:root[data-theme="dark"] .contador b{color:var(--amarelo)}
+:root[data-theme="dark"] .hero{background:var(--band)}
+:root[data-theme="dark"] .docs a{background:transparent;border-color:rgba(255,255,255,.28);color:var(--band-fg)}
+:root[data-theme="dark"] .docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347}
+:root[data-theme="dark"] .cta-hero a.sec{border-color:rgba(255,255,255,.3)}
+.band{position:relative}
+.tema{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));z-index:6;display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--f-body);color:var(--band-fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+:root[data-theme="dark"] .tema{border-color:rgba(255,255,255,.3)}
+.tema:hover,.tema:focus-visible{border-color:var(--laranja);outline:none}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+/* ---------- movimento dos botões (home e matérias) ----------
+   Sobe ao passar o mouse, afunda ao apertar, setas apontam para onde o botão leva.
+   Tudo some com prefers-reduced-motion. */
+:root{--ease:cubic-bezier(.2,.8,.2,1);--mola:cubic-bezier(.34,1.56,.64,1);--sombra:rgba(15,35,71,.32)}
+:root[data-theme="dark"]{--sombra:rgba(0,0,0,.55)}
+.ar{display:inline-block;font-style:normal}
+@media (prefers-reduced-motion: no-preference){
+  .docs a,.btn,.tema,nav.toc a,.cell,.links a,.qlink,.cta-hero a,.atalhos-sem a,.cta,.mat,.qcard,.volta,.ar,.chk input,.check input{
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease),background-color .15s,border-color .15s,color .15s}
+  @media (hover: hover){
+    .docs a:hover,.btn:not([disabled]):hover,.tema:hover,.cta-hero a:hover,.atalhos-sem a:hover,.cta:hover,nav.toc a.toc-home:hover{
+      transform:translateY(-2px);box-shadow:0 8px 16px -8px var(--sombra)}
+    nav.toc .toc-scroll a:hover{transform:translateY(-1px)}
+    .cell:not([data-n="0"]):hover{transform:scale(1.07);box-shadow:0 6px 12px -6px var(--sombra)}
+    .mat:hover{transform:translateY(-4px);box-shadow:0 16px 28px -16px var(--sombra)}
+    .qcard:hover{border-color:var(--h2)}
+    .links a:hover,.qlink:hover{transform:translateY(-1px)}
+    a:hover .ar-r{transform:translateX(5px)}
+    a:hover .ar-l{transform:translateX(-5px)}
+    a:hover .ar-d{animation:quica .8s var(--ease) infinite}
+  }
+  .docs a:active,.btn:not([disabled]):active,.tema:active,nav.toc a:active,.cta-hero a:active,.atalhos-sem a:active,.cta:active,.cell:not([data-n="0"]):active,.links a:active,.qlink:active{
+    transform:scale(.95);box-shadow:none;transition-duration:.07s}
+  .mat:active{transform:translateY(-1px) scale(.985);box-shadow:none;transition-duration:.07s}
+  nav.toc .toc-scroll a.ativo{animation:pop .34s var(--mola)}
+  .cell.sel{animation:pop .3s var(--mola)}
+  .chk input:checked,.check input:checked{animation:pop .28s var(--mola)}
+  .qcard{animation:entra .28s var(--ease) both}
+  .prog-bar .fill{transition:width .45s var(--mola)}
+  @keyframes pop{0%{transform:scale(.86)}100%{transform:scale(1)}}
+  @keyframes quica{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  @keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+
+/* segmentação: cada seção é um cartão numerado; o guia é dividido em painéis */
+main.wrap{counter-reset:sec;padding-bottom:20px}
+main > section{counter-increment:sec;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px clamp(16px,3.5vw,34px) 32px;margin-block:16px;box-shadow:0 1px 2px rgba(15,35,71,.05)}
+main > section > .head{margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+main > section > .head h2{font-size:1.6rem}
+main > section > .head .lbl::before{content:counter(sec, decimal-leading-zero);display:inline-block;margin-right:10px;padding:2px 7px;border-radius:4px;background:var(--azul);color:#fff;font-family:var(--f-mono);letter-spacing:.04em}
+:root[data-theme="dark"] main > section > .head .lbl::before{background:var(--laranja);color:#0F2347}
+.parte{margin:48px 0 4px;display:grid;gap:4px}
+.parte .lbl{color:#C2410C;font-weight:700;font-size:.8rem}
+:root[data-theme="dark"] .parte .lbl{color:var(--amarelo)}
+.parte h2{font-size:clamp(1.7rem,4.4vw,2.2rem);font-weight:800;letter-spacing:-.02em}
+.parte p{margin:0;color:var(--muted);max-width:68ch}
+.parte::after{content:"";height:4px;width:64px;background:var(--laranja);border-radius:2px;margin-top:10px}
+.gbloco{background:var(--soft);border-radius:10px;padding:18px clamp(14px,2.5vw,22px) 20px;margin-top:16px}
+.gbloco > .gsub{margin:0 0 14px}
+.gbloco .check label:hover{background:var(--card)}
+@media (max-width:560px){main > section{padding:22px 14px 24px;border-radius:10px} main > section > .head h2{font-size:1.4rem}}
+/* notação matemática no texto */
+main sub,main sup,header sub,header sup{font-size:.74em;line-height:0;position:relative}
+main sub,header sub{vertical-align:baseline;top:.32em}
+main sup,header sup{vertical-align:baseline;top:-.48em}
+/* abertura da página (no lugar dos avisos) */
+.abre{padding-block:30px 6px;display:flex;flex-direction:column;gap:8px}
+.abre .lbl{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;letter-spacing:.14em;color:#0F2347;background:var(--laranja);border-radius:999px;padding:6px 14px 6px 12px}
+.abre .lbl::before{content:"";width:8px;height:8px;border-radius:50%;background:#0F2347}
+.abre-txt{font-size:1.12rem;line-height:1.6;max-width:72ch;margin:0;text-wrap:pretty}
+.abre-base{color:var(--muted);font-size:.9rem;max-width:72ch;margin:0;padding-left:12px;border-left:3px solid var(--lilas)}
+/* simulado em PDF: botões e visor na própria página */
+.pdfgrp{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pdfgrp[hidden]{display:none}
+.pdfrot{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.visor{margin:14px 0 6px;border:1px solid var(--line);border-radius:6px;background:var(--soft);overflow:hidden;scroll-margin-top:72px}
+.visor-top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+.visor-acoes{display:inline-flex;gap:8px}
+.visor-pgs{max-height:min(85vh,1100px);overflow:auto;padding:14px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.visor-pg{width:100%;max-width:820px;margin:0 auto;flex:none;aspect-ratio:595/842;background:#fff;box-shadow:0 2px 12px -5px rgba(15,35,71,.4);border-radius:2px}
+.visor-pg canvas{width:100%;height:auto;display:block;border-radius:2px}
+@media (max-width:560px){.visor-pgs{padding:8px;gap:8px;max-height:80vh}}
+/* tipo de material junto aos PDFs */
+.docs .revnota a{display:inline;background:none;border:0;padding:0;border-radius:0;color:inherit;font-size:inherit;font-weight:500;text-decoration:underline;text-underline-offset:2px;box-shadow:none!important;transform:none!important}
+.docs .revnota{width:100%;margin:2px 0 4px;font-size:.84rem;color:var(--warn-fg);background:var(--warn-bg);border-left:3px solid var(--laranja);padding:7px 11px;border-radius:2px;max-width:72ch}
+.docs .pvl{width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.docs .pva{font-family:var(--f-mono);font-size:.84rem;font-weight:500;min-width:4.5em}
+.docs .tipo{font-size:.74rem;font-weight:500;border-radius:3px;padding:3px 8px;background:#FFFFFF;border:1px solid var(--line);color:var(--fg)}
+:root[data-theme="dark"] .docs .tipo.t-completa{background:transparent;border-color:rgba(255,255,255,.28)}
+.docs .tipo.t-parcial,.docs .tipo.t-complementar,.docs .tipo.t-reconstrucao,.docs .tipo.t-coletanea{border-color:transparent}
+.docs .tipo i{font-style:normal;font-weight:400;opacity:.85}
+.docs .tipo.t-parcial,.docs .tipo.t-complementar{background:var(--warn-bg);color:var(--warn-fg)}
+.docs .tipo.t-reconstrucao,.docs .tipo.t-coletanea{background:var(--tag);color:var(--tag-fg)}
+.tag.w{background:var(--warn-bg);color:var(--warn-fg)}
+@media (max-width:560px){.docs .pva{min-width:0;width:100%}}
+/* barra de navegação */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--azul);border-bottom:0;box-shadow:0 3px 12px rgba(15,35,71,.22)}
+:root[data-theme="dark"] nav.toc{background:#08122A;box-shadow:0 1px 0 var(--line),0 3px 12px rgba(0,0,0,.35)}
+nav.toc .wrap.toc-in{max-width:1260px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding-block:6px}
+nav.toc a.toc-home{flex:none;font-size:.84rem;font-weight:500;color:#fff;text-decoration:none;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.4);white-space:nowrap}
+nav.toc a.toc-home:hover,nav.toc a.toc-home:focus-visible{border-color:var(--amarelo);color:var(--amarelo);outline:none;text-decoration:none}
+.toc-scroll{display:flex;align-items:center;gap:4px;overflow-x:auto;padding-block:3px;flex:1;min-width:0;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+.toc-scroll.fim{-webkit-mask-image:none;mask-image:none}
+.toc-scroll::-webkit-scrollbar{display:none}
+nav.toc .toc-scroll a{flex:none;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap;transition:background-color .15s,color .15s}
+nav.toc .toc-scroll a:hover{background:rgba(255,255,255,.13);color:#fff;text-decoration:none}
+nav.toc .toc-scroll a:focus-visible{outline:2px solid var(--amarelo);outline-offset:1px;text-decoration:none}
+nav.toc .toc-scroll a.ativo{background:var(--laranja);color:#0F2347}
+/* o simulado tem destaque na barra: contorno amarelo e um cronômetro */
+nav.toc .toc-scroll a.toc-sim{display:inline-flex;align-items:center;gap:7px;color:var(--amarelo);box-shadow:inset 0 0 0 1.5px var(--amarelo);font-weight:700}
+nav.toc .toc-scroll a.toc-sim:hover{background:var(--amarelo);color:#0F2347}
+nav.toc .toc-scroll a.toc-sim.ativo{background:var(--laranja);color:#0F2347;box-shadow:none}
+.toc-sim .ic{width:11px;height:11px;border:1.8px solid currentColor;border-radius:50%;position:relative;flex:none}
+.toc-sim .ic::before{content:"";position:absolute;left:50%;top:1.5px;width:1.6px;height:3.6px;margin-left:-.8px;background:currentColor;border-radius:1px;transform-origin:50% 100%}
+.toc-sim .ic::after{content:"";position:absolute;left:50%;top:-4px;width:4px;height:1.8px;margin-left:-2px;background:currentColor;border-radius:1px}
+@media (prefers-reduced-motion: no-preference){ nav.toc .toc-scroll a.toc-sim:not(.ativo) .ic::before{animation:ponteiro 4s linear infinite} @keyframes ponteiro{to{transform:rotate(360deg)}} }
+.toc-grp{flex:none;font-size:.64rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:0 2px 0 12px}
+.toc-grp:first-child{padding-left:2px}
+main section{scroll-margin-top:70px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (max-width:560px){.toc-grp{display:none}nav.toc .wrap.toc-in{gap:8px}nav.toc .toc-scroll a{padding:7px 11px}}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../tema-papel.css">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("mt-espera");setTimeout(function(){document.documentElement.classList.remove("mt-espera")},2500)}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="../tema-papel.js" defer></script>
+</head>
+<body>
+<header class="band">
+  <button class="tema" id="tema" type="button" aria-label="Alternar modo escuro">☾ Modo escuro</button>
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../"><span class="ar ar-l">←</span> Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções desta matéria"><div class="wrap toc-in">
+  <a class="toc-home" href="../" aria-label="Voltar para todas as matérias"><span class="ar ar-l">←</span> Matérias</a>
+  <div class="toc-scroll" id="toc">
+    <span class="toc-grp">Entender</span><a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a>
+    <span class="toc-grp">Praticar</span><a href="#banco">Banco de questões</a><a href="#simulado" class="toc-sim"><span class="ic" aria-hidden="true"></span>Simulado</a><a href="#estude">Estude aqui</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <div class="parte"><span class="lbl">Parte 1</span><h2>Entender a P3</h2><p>O guia, o que cai, o que tem caído mais, quanto vale cada assunto, os padrões de questão e as armadilhas.</p></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+      <ol class="roteiro" id="gRoteiro"></ol>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+      <div class="tend" id="gTend"></div>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+        <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+      <div class="check" id="gCheck"></div>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+      <div class="pegas" id="gPegas"></div>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+      <ul class="dicas" id="gDicas"></ul>
+    </div>
+
+    <div class="gbloco">
+      <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+      <div class="form" id="gForm"></div>
+    </div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <div class="parte"><span class="lbl">Parte 2</span><h2>Praticar</h2><p>Todas as questões com filtro, um simulado com cronômetro e onde treinar cada tópico.</p></div>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <span class="pdfgrp"><span class="pdfrot">Prova em PDF</span><button class="btn" id="bVer" type="button">Ver aqui</button><button class="btn" id="bPdf" type="button">Baixar <span class="ar ar-d">↓</span></button></span>
+        <span class="pdfgrp" id="grpRes" hidden><span class="pdfrot">Resolução em PDF</span><button class="btn pri" id="bVerRes" type="button">Ver aqui</button><button class="btn" id="bPdfRes" type="button">Baixar <span class="ar ar-d">↓</span></button></span>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div class="visor" id="visor" hidden>
+        <div class="visor-top"><b id="visorTit">Simulado</b><span class="visor-acoes"><button class="btn" id="vBaixar" type="button">Baixar <span class="ar ar-d">↓</span></button><button class="btn" id="vFechar" type="button">Fechar ✕</button></span></div>
+        <div class="visor-pgs" id="visorPgs" tabindex="0" aria-label="Páginas do PDF do simulado"></div>
+      </div>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "A P3 de Cálculo IV é só equações diferenciais ordinárias (itens 12 a 14 do programa): EDOs de 1ª ordem (linear, separável, homogênea, Bernoulli, exata e fator integrante) e EDOs lineares de ordem n (coeficientes constantes, coeficientes a determinar, variação de parâmetros, Euler-Cauchy). Séries de potências e de Fourier ficaram na P2 de 2023 a 2025. O item 15 (EDO por séries de potências) não caiu em nenhuma P3 que temos.", "topicos": [{"slug": "linear-1", "nome": "Linear de 1ª ordem (fator e^∫p)", "grupo": "EDOs de 1ª ordem", "ref": null, "material": null}, {"slug": "separavel", "nome": "Separável e logística", "grupo": "EDOs de 1ª ordem", "ref": null, "material": null}, {"slug": "homogenea-1", "nome": "Homogênea y' = F(y/x)", "grupo": "EDOs de 1ª ordem", "ref": null, "material": null}, {"slug": "bernoulli", "nome": "Bernoulli (v = 1/y)", "grupo": "EDOs de 1ª ordem", "ref": null, "material": null}, {"slug": "exata", "nome": "Equação exata e potencial", "grupo": "Exatas e fator integrante", "ref": null, "material": null}, {"slug": "fator-integrante", "nome": "Fator integrante μ(x) ou μ(y)", "grupo": "Exatas e fator integrante", "ref": null, "material": null}, {"slug": "existencia-unicidade", "nome": "Existência, unicidade e intervalo máximo", "grupo": "Teoria e comportamento", "ref": null, "material": null}, {"slug": "qualitativa", "nome": "Comportamento das soluções (limite, monotonia, extremos)", "grupo": "Teoria e comportamento", "ref": null, "material": null}, {"slug": "modelagem", "nome": "Modelagem (população, queda com atrito)", "grupo": "Teoria e comportamento", "ref": null, "material": null}, {"slug": "teoria-linear", "nome": "Teoria das lineares: base, Wronskiano, ordem mínima", "grupo": "Teoria e comportamento", "ref": null, "material": null}, {"slug": "segunda-ordem-redutivel", "nome": "2ª ordem sem y: z = y'", "grupo": "EDOs lineares de ordem n", "ref": null, "material": null}, {"slug": "coef-constantes", "nome": "Coeficientes constantes: raízes e base", "grupo": "EDOs lineares de ordem n", "ref": null, "material": null}, {"slug": "coef-a-determinar", "nome": "Coeficientes a determinar e ressonância", "grupo": "EDOs lineares de ordem n", "ref": null, "material": null}, {"slug": "variacao-parametros", "nome": "Variação de parâmetros", "grupo": "EDOs lineares de ordem n", "ref": null, "material": null}, {"slug": "reducao-ordem", "nome": "Euler-Cauchy e redução de ordem", "grupo": "EDOs lineares de ordem n", "ref": null, "material": null}], "padroes": [{"id": "P-LINEAR1", "nome": "Linear de 1ª ordem", "reconhecer": "y' + p(x)y = q(x), às vezes disfarçada (y' = (y + 2)x², x²z' + xz = 1).", "metodo": "Ponha na forma y' + p y = q, multiplique por μ = e^∫p e integre: (μy)' = μq. Imponha a condição inicial no fim."}, {"id": "P-SEPARAVEL", "nome": "Separável ou logística", "reconhecer": "y' = f(x)·g(y): logística y' = ky(1 − y/M), xy' = 2y, y' = x³(1 − y), ou relação integral que vira EDO ao derivar.", "metodo": "Separe dy/g(y) = f(x)dx, integre (frações parciais na logística) e use a condição. Anote as soluções constantes g(y) = 0, que a divisão perde."}, {"id": "P-HOMOGENEA", "nome": "Homogênea y' = F(y/x)", "reconhecer": "O lado direito só depende de y/x: y/x + (y/x)², −1 + y/x + (y/x)², y/x + √(y/x).", "metodo": "v = y/x, y' = v + x v'. Sobra x v' = F(v) − v, separável. Volte para y = v x e ache a constante pela condição."}, {"id": "P-BERNOULLI", "nome": "Bernoulli", "reconhecer": "y' + p y = q yⁿ com n = 2 (aparece y²), muitas vezes com a sugestão v = 1/y.", "metodo": "v = y^(1−n): para n = 2, v = 1/y e y' = −v'/v². Multiplique por v² e resolva a linear em v."}, {"id": "P-EXATA", "nome": "Exata e potencial", "reconhecer": "P dx + Q dy = 0 com constantes A, B a ajustar, ou alternativas do tipo F(x, y) = C.", "metodo": "Exata ⇔ P_y = Q_x em todo ponto. Potencial: F = ∫P dx + g(y), depois F_y = Q fixa g. Termos só de x em P (ou só de y em Q) não entram na condição."}, {"id": "P-FATOR", "nome": "Fator integrante μ(x) ou μ(y)", "reconhecer": "Equação não exata, ou afirmação 'tem fator integrante que depende só de x (ou de y)', ou um μ(x, y) dado para testar.", "metodo": "(P_y − Q_x)/Q só de x ⇒ μ = e^∫(P_y − Q_x)/Q dx. (Q_x − P_y)/P só de y ⇒ μ = e^∫(Q_x − P_y)/P dy. μ dado: multiplique e teste exatidão."}, {"id": "P-INTERVALO", "nome": "Existência, unicidade e intervalo máximo", "reconhecer": "PVI com condição em ponto singular (y(0) com xy' = 2y) ou pedido do intervalo máximo de definição.", "metodo": "Escreva y' = f(x, y): f e ∂f/∂y contínuas perto do ponto ⇒ existe e é única. O intervalo máximo vai até onde a solução explode ou sai do domínio, sempre contendo o ponto inicial."}, {"id": "P-RAIZES", "nome": "Coeficientes constantes: raízes", "reconhecer": "Pedem a solução geral, uma base com condições, a EDO a partir das soluções ou a ordem mínima.", "metodo": "Polinômio característico: raiz r de multiplicidade m dá e^(rx), x e^(rx), …, x^(m−1) e^(rx); α ± βi dá e^(αx)cos βx e e^(αx)sen βx. Ache raiz inteira entre os divisores do termo independente."}, {"id": "P-FORMA-YP", "nome": "Forma da solução particular", "reconhecer": "Lado direito do tipo polinômio·e^(ax)·(cos bx ou sen bx); pedem a forma de y_p ou a solução geral.", "metodo": "Chute do mesmo tipo e multiplique por x^s, com s = multiplicidade de a + bi como raiz da característica (0 se não for raiz). Substitua para achar os coeficientes."}, {"id": "P-PVI-LINEAR", "nome": "PVI linear: valor, limite ou extremo", "reconhecer": "PVI de 2ª ordem e afirmações sobre y(x) em um ponto, limite no infinito, mínimo local ou y'''(0).", "metodo": "Para valores em x = 0, use a própria EDO (y''(0) sai dela; derive para y'''). Para limites, zere o coeficiente da exponencial que cresce."}, {"id": "P-VARPAR", "nome": "Variação de parâmetros", "reconhecer": "Lado direito fora da tabela (eˣ/(1 + x²), e^(2x) com coeficientes variáveis) ou alternativas com integrais.", "metodo": "Divida pelo coeficiente de y''. W = y1 y2' − y1' y2; u1' = −y2 g/W, u2' = y1 g/W; y_p = u1 y1 + u2 y2."}, {"id": "P-EULER", "nome": "Euler-Cauchy e redução de ordem", "reconhecer": "a x² y'' + b x y' + c y = 0 (x > 0), muitas vezes com uma solução y1 dada.", "metodo": "Tente y = x^r: a r(r − 1) + b r + c = 0. Se a raiz é dupla, a outra é x^r ln x. Com y1 dado, confira se ele resolve antes de usar."}, {"id": "P-REDUCAO2", "nome": "2ª ordem sem y", "reconhecer": "Só aparecem y'' e y' (x y'' = 3x² + y', x² y'' + x y' = 1).", "metodo": "z = y' vira linear de 1ª ordem em z. Integre de novo para y: aparece uma segunda constante (a solução geral tem duas)."}, {"id": "P-AFIRMACOES", "nome": "Verdadeiro ou falso teórico", "reconhecer": "Afirmações I, II, III sobre raízes, Wronskiano, linearidade ou soluções sem fórmula dada.", "metodo": "Teste cada afirmação com um contraexemplo simples (λ(λ² + 1), λ²(λ + 1)) ou com a definição (linear = y e y' na 1ª potência; homogênea = sem termo só de x)."}], "blocos": [{"id": "primeira-ordem", "nome": "EDOs de 1ª ordem: linear, separável, homogênea e Bernoulli", "questoes": ["MAT2456-2023-P3-Q2", "MAT2456-2023-P3-Q4", "MAT2456-2023-P3-Q5", "MAT2456-2023-P3-Q7", "MAT2456-2023-P3-Q8", "MAT2456-2023-P3-Q9", "MAT2456-2023-P3-Q12", "MAT2456-2024-P3-Q5", "MAT2456-2024-P3-Q7", "MAT2456-2024-P3-Q8", "MAT2456-2025-P3-Q4", "MAT2456-2025-P3-Q6", "MAT2456-2025-P3-Q12"]}, {"id": "exatas", "nome": "Equações exatas e fator integrante", "questoes": ["MAT2456-2023-P3-Q11", "MAT2456-2024-P3-Q2", "MAT2456-2024-P3-Q4", "MAT2456-2025-P3-Q3", "MAT2456-2025-P3-Q10"]}, {"id": "lineares-n", "nome": "EDOs lineares de ordem n", "questoes": ["MAT2456-2023-P3-Q1", "MAT2456-2023-P3-Q3", "MAT2456-2023-P3-Q6", "MAT2456-2023-P3-Q10", "MAT2456-2024-P3-Q1", "MAT2456-2024-P3-Q3", "MAT2456-2024-P3-Q6", "MAT2456-2024-P3-Q9", "MAT2456-2024-P3-Q10", "MAT2456-2024-P3-Q11", "MAT2456-2024-P3-Q12", "MAT2456-2025-P3-Q1", "MAT2456-2025-P3-Q5", "MAT2456-2025-P3-Q8", "MAT2456-2025-P3-Q9"]}], "codigo": "MAT2456", "materia": "Cálculo IV"}, "provas": [{"id": "MAT2456-2023-P3", "codigo": "MAT2456", "materia": "Cálculo IV", "prova": "P3", "ano": 2023, "rotulo": "2023", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": 120, "tipo": "completa", "tipo_det": null, "complementar": false, "questoes": [{"n": 1, "id": "MAT2456-2023-P3-Q1", "pontos": null, "topicos": ["coef-a-determinar", "coef-constantes"], "padrao": "P-FORMA-YP", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "y'' − 4y' + 4y = e^(2x): forma de y_p (raiz dupla 2).", "armadilhas": ["Multiplicar o chute por x quando a raiz é dupla (precisa de x²)"], "armadilhas_tag": ["coef-a-determinar"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [2, 2, 62.4, 83.7], "r": [2, 2, 62.4, 83.7]}}, {"n": 2, "id": "MAT2456-2023-P3-Q2", "pontos": null, "topicos": ["segunda-ordem-redutivel", "linear-1", "fator-integrante"], "padrao": "P-REDUCAO2", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "x²y'' + xy' = 1: z = y', fator integrante 1/x, y' = (C + ln x)/x.", "armadilhas": ["Achar que o fator integrante é único (x na forma padrão, 1/x na forma dada)", "Esquecer que constante dá 0 = 1, não solução"], "armadilhas_tag": ["fator-integrante", "segunda-ordem-redutivel"], "anulada": false, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [3, 3, 62.4, 83.7], "r": [3, 3, 62.4, 83.7]}}, {"n": 3, "id": "MAT2456-2023-P3-Q3", "pontos": null, "topicos": ["coef-constantes", "qualitativa"], "padrao": "P-PVI-LINEAR", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "PVI y'' − 4y' + 3y = 2e^(3x), y(0) = y'(0) = 0: mínimo em 0 e y'''(0).", "armadilhas": ["Resolver a EDO toda quando basta avaliar a equação em x = 0"], "armadilhas_tag": ["qualitativa"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [4, 4, 62.4, 83.7], "r": [4, 4, 62.4, 83.7]}}, {"n": 4, "id": "MAT2456-2023-P3-Q4", "pontos": null, "topicos": ["separavel", "existencia-unicidade"], "padrao": "P-INTERVALO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "xy' = 2y, y(a) = b: unicidade em x > 0 e o ponto singular x = 0.", "armadilhas": ["Usar o teorema de unicidade num ponto onde f(x, y) = 2y/x nem existe"], "armadilhas_tag": ["existencia-unicidade"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [5, 5, 62.4, 83.7], "r": [5, 5, 62.4, 83.7]}}, {"n": 5, "id": "MAT2456-2023-P3-Q5", "pontos": null, "topicos": ["linear-1"], "padrao": "P-LINEAR1", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "y' + y = 1 − x, y(0) = A: A para que y'(ln 4) = −1.", "armadilhas": ["Errar o sinal na integral por partes de (1 − x)eˣ"], "armadilhas_tag": ["linear-1"], "anulada": false, "gabarito": "c", "respostas": ["(c)"], "av": {"e": [6, 6, 62.4, 83.7], "r": [6, 6, 62.4, 83.7]}}, {"n": 6, "id": "MAT2456-2023-P3-Q6", "pontos": null, "topicos": ["coef-constantes"], "padrao": "P-RAIZES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "9y'' + 12y' + 4y = 0: base com condições iniciais, produto y1·y2.", "armadilhas": ["Somar expoentes na soma y1 + y2 (só no produto eles somam)"], "armadilhas_tag": ["coef-constantes"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [7, 7, 62.4, 83.7], "r": [7, 7, 62.4, 83.7]}}, {"n": 7, "id": "MAT2456-2023-P3-Q7", "pontos": null, "topicos": ["bernoulli", "qualitativa"], "padrao": "P-BERNOULLI", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Bernoulli y' = ry − ky²: relação entre r e k para y → 1.", "armadilhas": ["Trocar o sinal de v' = −y'/y² na mudança de variável"], "armadilhas_tag": ["bernoulli"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [8, 8, 62.4, 83.7], "r": [8, 8, 62.4, 83.7]}}, {"n": 8, "id": "MAT2456-2023-P3-Q8", "pontos": null, "topicos": ["homogenea-1"], "padrao": "P-HOMOGENEA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "Curva com y' = −1 + y/x + (y/x)² por (1, 2): qual ponto em x = 3.", "armadilhas": ["Testar os pontos na fórmula de y' em vez da solução integrada"], "armadilhas_tag": ["homogenea-1"], "anulada": false, "gabarito": "b", "respostas": ["(b)"], "av": {"e": [9, 9, 62.4, 83.7], "r": [9, 9, 62.4, 83.7]}}, {"n": 9, "id": "MAT2456-2023-P3-Q9", "pontos": null, "topicos": ["separavel"], "padrao": "P-SEPARAVEL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "f² = 16 + ∫₀ˣ (f² + f'²): derivar dá f' = f e f(0) = ±4.", "armadilhas": ["Esquecer a condição inicial que sai de x = 0 na relação integral"], "armadilhas_tag": ["separavel"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [10, 10, 62.4, 83.7], "r": [10, 10, 62.4, 83.7]}}, {"n": 10, "id": "MAT2456-2023-P3-Q10", "pontos": null, "topicos": ["segunda-ordem-redutivel", "coef-a-determinar", "teoria-linear"], "padrao": "P-REDUCAO2", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 8, "resumo": "xy'' = 3x² + y': y_p = x³ e solução geral da homogênea C x² + D.", "armadilhas": ["Aceitar uma família com uma constante como solução geral de 2ª ordem", "Chamar de homogênea uma equação com termo 3x² sem y"], "armadilhas_tag": ["teoria-linear", "segunda-ordem-redutivel"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [11, 11, 62.4, 83.7], "r": [11, 11, 62.4, 83.7]}}, {"n": 11, "id": "MAT2456-2023-P3-Q11", "pontos": null, "topicos": ["fator-integrante", "exata"], "padrao": "P-FATOR", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "Três testes de fator integrante: 1/(xy³), μ(y) e μ(x).", "armadilhas": ["Trocar a fórmula de μ(y): divide por P e o numerador é Qx − Py"], "armadilhas_tag": ["fator-integrante"], "anulada": false, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [12, 12, 62.4, 83.7], "r": [12, 12, 62.4, 83.7]}}, {"n": 12, "id": "MAT2456-2023-P3-Q12", "pontos": null, "topicos": ["separavel"], "padrao": "P-SEPARAVEL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "xf' = 2f, f(1) = 1/16: f(2).", "armadilhas": ["Ignorar o fator x em xf' = 2f e responder com exponencial"], "armadilhas_tag": ["separavel"], "anulada": false, "gabarito": "c", "respostas": ["(c)"], "av": {"e": [13, 13, 62.4, 83.7], "r": [13, 13, 62.4, 83.7]}}]}, {"id": "MAT2456-2024-P3", "codigo": "MAT2456", "materia": "Cálculo IV", "prova": "P3", "ano": 2024, "rotulo": "2024", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": null, "tipo": "completa", "tipo_det": null, "complementar": false, "questoes": [{"n": 1, "id": "MAT2456-2024-P3-Q1", "pontos": null, "topicos": ["reducao-ordem"], "padrao": "P-EULER", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "2x²y'' + 3xy' − y = 0 com y1 = 1/x: y2(4).", "armadilhas": ["Aplicar a fórmula de redução de ordem sem pôr a equação na forma padrão"], "armadilhas_tag": ["reducao-ordem"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [14, 14, 62.4, 83.7], "r": [14, 14, 62.4, 83.7]}}, {"n": 2, "id": "MAT2456-2024-P3-Q2", "pontos": null, "topicos": ["fator-integrante", "exata"], "padrao": "P-FATOR", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "(xy − 2x²)dx + (x² + 2x cos 2y)dy = 0: μ = 1/x e potencial.", "armadilhas": ["Errar o sinal no expoente do fator integrante (μ = x em vez de 1/x)"], "armadilhas_tag": ["fator-integrante"], "anulada": false, "gabarito": "b", "respostas": ["(b)"], "av": {"e": [15, 15, 62.4, 83.7], "r": [15, 15, 62.4, 83.7]}}, {"n": 3, "id": "MAT2456-2024-P3-Q3", "pontos": null, "topicos": ["coef-constantes", "coef-a-determinar"], "padrao": "P-RAIZES", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "y⁽⁴⁾ + 2y''' + 2y'' + 2y' + y = x³: raízes e forma de y_p.", "armadilhas": ["Pôr fator x em y_p polinomial quando 0 não é raiz"], "armadilhas_tag": ["coef-a-determinar"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [16, 16, 62.4, 83.7], "r": [16, 16, 62.4, 83.7]}}, {"n": 4, "id": "MAT2456-2024-P3-Q4", "pontos": null, "topicos": ["exata"], "padrao": "P-EXATA", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "(y e^(2xy) + Ax)dx + Bx e^(2xy)dy = 0 exata: A e B.", "armadilhas": ["Esquecer a regra do produto ao derivar y·e^(2xy)"], "armadilhas_tag": ["exata"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [17, 17, 62.4, 83.7], "r": [17, 17, 62.4, 83.7]}}, {"n": 5, "id": "MAT2456-2024-P3-Q5", "pontos": null, "topicos": ["homogenea-1", "existencia-unicidade"], "padrao": "P-HOMOGENEA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "y' = y/x + (y/x)², y(1) = 1: intervalo máximo ]0, e[.", "armadilhas": ["Esticar o intervalo máximo para além da assíntota vertical"], "armadilhas_tag": ["existencia-unicidade"], "anulada": false, "gabarito": "c", "respostas": ["(c)"], "av": {"e": [18, 18, 62.4, 83.7], "r": [18, 18, 62.4, 83.7]}}, {"n": 6, "id": "MAT2456-2024-P3-Q6", "pontos": null, "topicos": ["coef-constantes"], "padrao": "P-RAIZES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "y''' + 6y'' + 13y' + 20y = 0: solução geral (raízes −4 e −1 ± 2i).", "armadilhas": ["Ler β = 4 (de 2λ + 5) em vez de β = 2"], "armadilhas_tag": ["coef-constantes"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [19, 19, 62.4, 83.7], "r": [19, 19, 62.4, 83.7]}}, {"n": 7, "id": "MAT2456-2024-P3-Q7", "pontos": null, "topicos": ["separavel", "qualitativa"], "padrao": "P-SEPARAVEL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "Logística y' = 3y(1 − y/2), y(0) = 1: linearidade, y(1/3) e limite.", "armadilhas": ["Confundir 'de primeira ordem' com 'linear'"], "armadilhas_tag": ["separavel"], "anulada": false, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [20, 20, 62.4, 83.7], "r": [20, 20, 62.4, 83.7]}}, {"n": 8, "id": "MAT2456-2024-P3-Q8", "pontos": null, "topicos": ["bernoulli", "fator-integrante", "linear-1"], "padrao": "P-BERNOULLI", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "4xy' + y = −xy² com v = 1/y: equação linear em v.", "armadilhas": ["Esquecer de multiplicar o lado direito por v² na troca v = 1/y"], "armadilhas_tag": ["bernoulli"], "anulada": false, "gabarito": "c", "respostas": ["(c)"], "av": {"e": [21, 21, 62.4, 83.7], "r": [21, 21, 62.4, 83.7]}}, {"n": 9, "id": "MAT2456-2024-P3-Q9", "pontos": null, "topicos": ["coef-constantes", "teoria-linear"], "padrao": "P-RAIZES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "ay''' − y'' − by' + y = 0 com base eˣ, xeˣ, e⁻ˣ: a e b.", "armadilhas": ["Esquecer que x·eˣ na base exige raiz 1 dupla"], "armadilhas_tag": ["coef-constantes"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [22, 22, 62.4, 83.7], "r": [22, 22, 62.4, 83.7]}}, {"n": 10, "id": "MAT2456-2024-P3-Q10", "pontos": null, "topicos": ["coef-constantes", "qualitativa"], "padrao": "P-PVI-LINEAR", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "4y'' − y = 0, y(0) = 2, y'(0) = β: β para φ → 0.", "armadilhas": ["Esquecer o fator 1/2 ao derivar e^(±x/2)"], "armadilhas_tag": ["coef-constantes"], "anulada": false, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [23, 23, 62.4, 83.7], "r": [23, 23, 62.4, 83.7]}}, {"n": 11, "id": "MAT2456-2024-P3-Q11", "pontos": null, "topicos": ["coef-a-determinar", "coef-constantes"], "padrao": "P-FORMA-YP", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 8, "resumo": "y'' − 3y' − 4y = 2e⁻ˣ: solução geral com ressonância.", "armadilhas": ["Trocar o sinal das raízes de λ² − 3λ − 4", "Esquecer o fator x quando o expoente é raiz da característica"], "armadilhas_tag": ["coef-constantes", "coef-a-determinar"], "anulada": false, "gabarito": "b", "respostas": ["(b)"], "av": {"e": [24, 24, 62.4, 83.7], "r": [24, 24, 62.4, 83.7]}}, {"n": 12, "id": "MAT2456-2024-P3-Q12", "pontos": null, "topicos": ["variacao-parametros", "reducao-ordem"], "padrao": "P-VARPAR", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 4, "pagina_resolucao": 9, "resumo": "x²y'' − 2xy' + 2y = e^(2x), base {x, x²}: y_p por variação de parâmetros.", "armadilhas": ["Não dividir pelo coeficiente de y'' antes de usar as fórmulas"], "armadilhas_tag": ["variacao-parametros"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [25, 25, 62.4, 83.7], "r": [25, 25, 62.4, 83.7]}}]}, {"id": "MAT2456-2025-P3", "codigo": "MAT2456", "materia": "Cálculo IV", "prova": "P3", "ano": 2025, "rotulo": "2025", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "testes", "duracao_min": null, "tipo": "parcial", "tipo_det": "9 dos 12 testes", "complementar": false, "questoes": [{"n": 1, "id": "MAT2456-2025-P3-Q1", "pontos": null, "topicos": ["coef-constantes"], "padrao": "P-RAIZES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "y''' − 3y'' + 3y' − y = 0: raiz 1 tripla.", "armadilhas": ["Pôr o expoente igual à multiplicidade (e^(2x)) em vez da raiz"], "armadilhas_tag": ["coef-constantes"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [26, 26, 62.4, 83.7], "r": [26, 26, 62.4, 83.7]}}, {"n": 3, "id": "MAT2456-2025-P3-Q3", "pontos": null, "topicos": ["exata"], "padrao": "P-EXATA", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "(2xy e^(x²y) + y)dx + (Ax² e^(x²y) + x + By)dy = 0 exata: A = 1, B livre.", "armadilhas": ["Fixar uma constante (B) que não entra em Py = Qx"], "armadilhas_tag": ["exata"], "anulada": false, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [27, 27, 62.4, 83.7], "r": [27, 27, 62.4, 83.7]}}, {"n": 4, "id": "MAT2456-2025-P3-Q4", "pontos": null, "topicos": ["linear-1", "separavel"], "padrao": "P-SEPARAVEL", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "y' = (y + 2)x², y(0) = 1: linear? y(1) e limite.", "armadilhas": ["Achar que equação separável não pode ser linear"], "armadilhas_tag": ["linear-1"], "anulada": false, "gabarito": "a", "respostas": ["(a)"], "av": {"e": [28, 28, 62.4, 83.7], "r": [28, 28, 62.4, 83.7]}}, {"n": 5, "id": "MAT2456-2025-P3-Q5", "pontos": null, "topicos": ["coef-a-determinar"], "padrao": "P-FORMA-YP", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 3, "resumo": "y'' + 9y = sen 3x: ressonância, y_p = x(A cos 3x + B sen 3x).", "armadilhas": ["Esquecer o fator x quando a frequência do lado direito é raiz da característica"], "armadilhas_tag": ["coef-a-determinar"], "anulada": false, "gabarito": "d", "respostas": ["(d)"], "av": {"e": [29, 29, 62.4, 83.7], "r": [29, 29, 62.4, 83.7]}}, {"n": 6, "id": "MAT2456-2025-P3-Q6", "pontos": null, "topicos": ["separavel", "qualitativa"], "padrao": "P-SEPARAVEL", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "y' = x³(1 − y): soluções constantes, monotonia e limitação.", "armadilhas": ["Ler o sinal de y' pelo valor de y(0) em vez de por x³(1 − y)"], "armadilhas_tag": ["qualitativa"], "anulada": false, "gabarito": "b", "respostas": ["(b)"], "av": {"e": [30, 30, 62.4, 83.7], "r": [30, 30, 62.4, 83.7]}}, {"n": 8, "id": "MAT2456-2025-P3-Q8", "pontos": null, "topicos": ["teoria-linear", "coef-constantes"], "padrao": "P-AFIRMACOES", "padroes_secundarios": ["P-RAIZES"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Solução constante e outra limitada: o que se sabe das raízes.", "armadilhas": ["Tirar conclusão sobre todas as raízes a partir de uma solução"], "armadilhas_tag": ["teoria-linear"], "anulada": false, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [31, 31, 62.4, 83.7], "r": [31, 31, 62.4, 83.7]}}, {"n": 9, "id": "MAT2456-2025-P3-Q9", "pontos": null, "topicos": ["teoria-linear", "coef-constantes"], "padrao": "P-RAIZES", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 2, "pagina_resolucao": 5, "resumo": "x⁴ e x² resolvem uma EDO de coeficientes constantes: ordem mínima 5.", "armadilhas": ["Contar uma ordem por solução dada, sem olhar a multiplicidade"], "armadilhas_tag": ["teoria-linear"], "anulada": false, "gabarito": "b", "respostas": ["(b)"], "av": {"e": [32, 32, 62.4, 83.7], "r": [32, 32, 62.4, 83.7]}}, {"n": 10, "id": "MAT2456-2025-P3-Q10", "pontos": null, "topicos": ["fator-integrante", "exata"], "padrao": "P-FATOR", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 6, "resumo": "μ(x) para (y sen x − cos x)dx + dy, teste de μ = xy² e exatidão.", "armadilhas": ["Comparar só parte dos termos de Py e Qx"], "armadilhas_tag": ["fator-integrante"], "anulada": true, "gabarito": "e", "respostas": ["(e)"], "av": {"e": [33, 33, 62.4, 83.7], "r": [33, 33, 62.4, 83.7]}}, {"n": 12, "id": "MAT2456-2025-P3-Q12", "pontos": null, "topicos": ["homogenea-1"], "padrao": "P-HOMOGENEA", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 3, "pagina_resolucao": 7, "resumo": "y' = y/x + √(y/x), y(1) = 1: y(e).", "armadilhas": ["Esquecer a constante de integração antes de impor y(1) = 1"], "armadilhas_tag": ["homogenea-1"], "anulada": false, "gabarito": "b", "respostas": ["(b)"], "av": {"e": [34, 34, 62.4, 83.7], "r": [34, 34, 62.4, 83.7]}}]}], "atualizado": "23/11/2026", "blocos": [{"id": "MAT2456-P3-bloco-primeira-ordem", "nome": "EDOs de 1ª ordem: linear, separável, homogênea e Bernoulli", "questoes": ["MAT2456-2023-P3-Q2", "MAT2456-2023-P3-Q4", "MAT2456-2023-P3-Q5", "MAT2456-2023-P3-Q7", "MAT2456-2023-P3-Q8", "MAT2456-2023-P3-Q9", "MAT2456-2023-P3-Q12", "MAT2456-2024-P3-Q5", "MAT2456-2024-P3-Q7", "MAT2456-2024-P3-Q8", "MAT2456-2025-P3-Q4", "MAT2456-2025-P3-Q6", "MAT2456-2025-P3-Q12"]}, {"id": "MAT2456-P3-bloco-exatas", "nome": "Equações exatas e fator integrante", "questoes": ["MAT2456-2023-P3-Q11", "MAT2456-2024-P3-Q2", "MAT2456-2024-P3-Q4", "MAT2456-2025-P3-Q3", "MAT2456-2025-P3-Q10"]}, {"id": "MAT2456-P3-bloco-lineares-n", "nome": "EDOs lineares de ordem n", "questoes": ["MAT2456-2023-P3-Q1", "MAT2456-2023-P3-Q3", "MAT2456-2023-P3-Q6", "MAT2456-2023-P3-Q10", "MAT2456-2024-P3-Q1", "MAT2456-2024-P3-Q3", "MAT2456-2024-P3-Q6", "MAT2456-2024-P3-Q9", "MAT2456-2024-P3-Q10", "MAT2456-2024-P3-Q11", "MAT2456-2024-P3-Q12", "MAT2456-2025-P3-Q1", "MAT2456-2025-P3-Q5", "MAT2456-2025-P3-Q8", "MAT2456-2025-P3-Q9"]}], "guia": {"escopo": "A P3 de Cálculo IV é só EDO. De 2023 a 2025 a P2 cobriu séries de potências, Taylor e Fourier, e a P3 cobriu os itens 12 a 14 do programa: EDOs de 1ª ordem (linear, separável, homogênea, Bernoulli, exata, fator integrante) e EDOs lineares de ordem n (coeficientes constantes, coeficientes a determinar, variação de parâmetros, Euler-Cauchy). O item 15 (resolver EDO por séries de potências) não caiu em nenhuma P3 que temos, de 2017 a 2025; não deixe de ver se o seu professor deu esse tópico. As provas recentes são de 12 testes de múltipla escolha em 2 h, iguais para todas as turmas (cadernos com vários tipos).", "programa": ["EDOs de 1ª e 2ª ordem", "EDOs lineares de ordem n com coeficientes constantes", "Variação de parâmetros e coeficientes a determinar", "Resolução de EDOs por séries de potências (está no programa, mas não caiu nas P3 que temos)"], "roteiro": [{"etapa": "1. Os quatro métodos de 1ª ordem", "texto": "Linear (fator e^∫p), separável, homogênea (v = y/x) e Bernoulli (v = 1/y). Refaça 2023 Q5, Q7, Q8 e Q12, 2024 Q5 e Q8 e 2025 Q4 e Q12."}, {"etapa": "2. Exatas e fator integrante", "texto": "Caiu em todas as P3. Treine o teste Py = Qx e as duas fórmulas de μ: 2023 Q11, 2024 Q2 e Q4, 2025 Q3 e Q10."}, {"etapa": "3. Coeficientes constantes", "texto": "Raízes, multiplicidade e base, nos dois sentidos (da EDO para a base e da base para a EDO): 2023 Q6, 2024 Q6 e Q9, 2025 Q1 e Q9."}, {"etapa": "4. Solução particular", "texto": "Forma de y_p com ressonância e variação de parâmetros na forma padrão: 2023 Q1, 2024 Q11 e Q12, 2025 Q5."}, {"etapa": "5. PVI, comportamento e teoria", "texto": "Valores em x = 0, limites, intervalo máximo e afirmações sobre raízes: 2023 Q3, Q4 e Q10, 2024 Q7 e Q10, 2025 Q6 e Q8."}, {"etapa": "6. Simulado", "texto": "Faça uma prova inteira (12 testes) em 2 h, sem consulta. Depois veja o histórico de 2018 e 2019, que tem variação de parâmetros e modelagem que podem voltar."}], "tendencias": [{"titulo": "Exatas e fator integrante em todas", "texto": "Caíram nas 3 P3 recentes (5 questões ao todo) e em 3 das 3 antigas com enunciado (2017, 2018, 2019). Quem domina as duas fórmulas de μ resolve todas essas questões."}, {"titulo": "Coeficientes constantes dominam a parte de ordem n", "texto": "10 das 33 questões recentes usam as raízes do polinômio característico, em 3 de 3 provas. A forma de y_p com ressonância caiu em 3 de 3 (2023 Q1, 2024 Q11, 2025 Q5)."}, {"titulo": "Homogênea y/x subiu", "texto": "Uma questão de y' = F(y/x) por prova de 2023 a 2025, quase sempre com PVI (achar y(e), intervalo máximo, ponto da curva). Antes só aparecia em 2017 e 2019."}, {"titulo": "Modelagem e variação de parâmetros caíram", "texto": "Problemas com enunciado em palavras (população, pedra com atrito) estavam em 2018 e 2019 e sumiram depois. Variação de parâmetros caiu em 2024 Q12 e numa questão anulada em 2025 (Q11); antes era conta completa (2017 Q3, 2018 T1)."}, {"titulo": "Formato estável", "texto": "12 testes em 2 h desde 2023 (11 em 2018 e 2019, 14 em 2016; 2017 foi discursiva, com 3 questões). Metade são afirmações I, II, III, que exigem acertar todas as partes."}, {"titulo": "Questões anuladas", "texto": "Em 2025, 4 das 12 vieram marcadas como anuladas na fonte (Q2, Q7, Q10 e Q11). Três tinham erro de enunciado: y1 que não resolve a equação, base errada, resposta fora das alternativas."}], "checklist": ["Pôr uma linear de 1ª ordem na forma y' + p y = q e achar o fator integrante e^∫p.", "Separar variáveis e não perder as soluções constantes (g(y) = 0).", "Resolver a logística por frações parciais e dizer o limite pelo equilíbrio estável.", "Reconhecer y' = F(y/x) e trocar v = y/x, com y' = v + x v'.", "Transformar Bernoulli com v = 1/y (y' = −v'/v²) e multiplicar tudo por v².", "Testar se P dx + Q dy = 0 é exata e achar as constantes A, B que a tornam exata.", "Decidir se existe fator integrante μ(x) ou μ(y) e calculá-lo.", "Achar um potencial F com F_x = P e F_y = Q e escrever a solução F = C.", "Dar o intervalo máximo de uma solução de PVI (até a assíntota, contendo o ponto inicial).", "Achar raiz inteira do polinômio característico, fatorar e escrever a base, inclusive com raiz múltipla e complexa.", "Achar a EDO de coeficientes constantes (ou a ordem mínima) a partir de soluções dadas.", "Escrever a forma de y_p com o fator x^s certo (ressonância) e achar os coeficientes.", "Usar variação de parâmetros na forma padrão: W, u1' = −y2 g/W, u2' = y1 g/W.", "Resolver Euler-Cauchy com y = x^r e conferir se o y1 dado resolve mesmo a equação.", "Reduzir uma EDO de 2ª ordem sem y com z = y' e lembrar a segunda constante.", "Calcular y''(0) e y'''(0) direto da EDO para decidir máximo, mínimo ou inflexão."], "pegadinhas": [{"titulo": "Fator x esquecido na ressonância", "texto": "y'' + 9y = sen 3x (2025 Q5) e y'' − 4y' + 4y = e^(2x) (2023 Q1): o chute leva x^s, com s igual à multiplicidade da raiz (1 e 2)."}, {"titulo": "Separável também pode ser linear", "texto": "2025 Q4 diz que y' = (y + 2)x² não é linear: é falso. Linear depende só de y e y' aparecerem na 1ª potência."}, {"titulo": "Logística não é linear", "texto": "2024 Q7: 'de 1ª ordem e linear' é falso por causa do y². Primeira ordem e linear são coisas diferentes."}, {"titulo": "Uma constante não basta", "texto": "2023 Q10: x² é solução de x y'' = y', mas a solução geral é C x² + D. Em 2ª ordem são duas funções LI."}, {"titulo": "Intervalo além da assíntota", "texto": "2024 Q5: y = x/(1 − ln x) explode em x = e. O intervalo máximo é ]0, e[, não ]0, +∞[."}, {"titulo": "Constante livre na exata", "texto": "2024 Q4 (A livre) e 2025 Q3 (B livre): termo só de x em P, ou só de y em Q, não muda Py − Qx."}, {"titulo": "Sinal na troca de Bernoulli", "texto": "2024 Q8: com y = 1/v, y' = −v'/v². Trocar o sinal ou não multiplicar o lado direito por v² leva à afirmação falsa II."}, {"titulo": "Variação de parâmetros fora da forma padrão", "texto": "2024 Q12: divida x²y'' − 2xy' + 2y = e^(2x) por x² antes; g = e^(2x)/x², não e^(2x)."}, {"titulo": "Condição escondida em x = 0", "texto": "2023 Q9: na relação integral, x = 0 dá f(0)² = 16. Sem isso, qualquer C eˣ pareceria servir."}, {"titulo": "Enunciado com erro", "texto": "2025 Q2 e Q11 dão soluções que não resolvem a equação (foram anuladas). Confira y1 na EDO antes de construir em cima dele."}], "dicas_prova": ["São 12 testes em 2 h: 10 minutos por questão. Comece pelas de raízes e de exatidão, que saem em 3 minutos.", "Em afirmações I, II, III, ache primeiro a que é mais fácil de julgar e elimine alternativas antes de fazer as contas difíceis.", "Use as alternativas: substitua a resposta candidata na EDO e na condição inicial. Em 2024 Q11 e 2025 Q12 isso decide sozinho.", "Para valores em x = 0 (mínimo, inflexão, y'''(0)), use a própria EDO em vez de resolver (2023 Q3).", "Não há tempo extra para passar as respostas para a folha (instrução de 2023 e 2019): marque à medida que resolve.", "Confira se o tipo do caderno é o mesmo em todas as folhas e na folha de respostas, como pede a instrução.", "As provas não trazem formulário: as fórmulas de μ(x), μ(y) e de variação de parâmetros têm de estar de cabeça.", "Na dúvida sobre fator integrante, multiplique a equação pelo μ candidato e teste Py = Qx: é mais seguro que lembrar a fórmula."], "formulario": [{"nome": "Linear de 1ª ordem", "typst": "$y' + p(x) y = q(x) => (mu y)' = mu q, quad mu = e^(integral p d x)$", "txt": "y' + p y = q ⇒ (μy)' = μq, com μ = e^∫p dx"}, {"nome": "Homogênea", "typst": "$y' = F(y/x): quad y = v x, quad x v' = F(v) - v$", "txt": "y' = F(y/x): y = v x e x v' = F(v) − v"}, {"nome": "Bernoulli", "typst": "$y' + p y = q y^n: quad v = y^(1 - n), quad v' + (1 - n) p v = (1 - n) q$", "txt": "y' + p y = q yⁿ: v = y^(1−n) e v' + (1 − n)p v = (1 − n)q"}, {"nome": "Exata", "typst": "$P d x + Q d y = 0 \"exata\" <=> P_y = Q_x; quad F_x = P, F_y = Q, F = C$", "txt": "P dx + Q dy = 0 é exata ⇔ Py = Qx; solução F = C com Fx = P e Fy = Q"}, {"nome": "Fator integrante μ(x)", "typst": "$(P_y - Q_x)/Q = g(x) => mu = e^(integral g(x) d x)$", "txt": "(Py − Qx)/Q = g(x) ⇒ μ = e^∫g(x)dx"}, {"nome": "Fator integrante μ(y)", "typst": "$(Q_x - P_y)/P = h(y) => mu = e^(integral h(y) d y)$", "txt": "(Qx − Py)/P = h(y) ⇒ μ = e^∫h(y)dy"}, {"nome": "Logística", "typst": "$y' = k y (1 - y/M) => y = M/(1 + C e^(-k x))$", "txt": "y' = k y(1 − y/M) ⇒ y = M/(1 + C e^(−kx))"}, {"nome": "Raiz real r de multiplicidade m", "typst": "$e^(r x), x e^(r x), dots, x^(m - 1) e^(r x)$", "txt": "e^(rx), x e^(rx), …, x^(m−1) e^(rx)"}, {"nome": "Raízes complexas α ± βi", "typst": "$e^(alpha x) cos(beta x), quad e^(alpha x) op(\"sen\")(beta x)$", "txt": "e^(αx) cos βx e e^(αx) sen βx"}, {"nome": "Forma de y_p", "typst": "$g = P_n (x) e^(a x) cos(b x) => y_p = x^s e^(a x) (Q_n (x) cos(b x) + R_n (x) op(\"sen\")(b x))$", "txt": "g = Pn(x) e^(ax) cos(bx) ⇒ y_p = x^s e^(ax)(Qn cos bx + Rn sen bx), s = multiplicidade de a + bi"}, {"nome": "Wronskiano", "typst": "$W = y_1 y_2' - y_1' y_2$", "txt": "W = y1 y2' − y1' y2"}, {"nome": "Variação de parâmetros", "typst": "$y_p = -y_1 integral (y_2 g)/W d x + y_2 integral (y_1 g)/W d x$", "txt": "y_p = −y1 ∫ y2 g/W dx + y2 ∫ y1 g/W dx (com y'' + p y' + q y = g)"}, {"nome": "Euler-Cauchy", "typst": "$a x^2 y'' + b x y' + c y = 0: quad a r(r - 1) + b r + c = 0$", "txt": "a x² y'' + b x y' + c y = 0: a r(r − 1) + b r + c = 0 (raiz dupla: x^r e x^r ln x)"}, {"nome": "Redução de ordem", "typst": "$y_2 = y_1 integral e^(-integral p d x)/y_1^2 d x$", "txt": "y2 = y1 ∫ e^(−∫p dx)/y1² dx"}]}, "historico": [{"ano": 2017, "rotulo": "P3 2017 (discursiva)", "fonte": "fontes/2017-antiga-xMN1", "questoes": [{"resumo": "Q1 (4,0): a) equação não exata com fator integrante μ(y) = 1/y e potencial; b) homogênea y' = (2y² + 3xy)/(xy + 2x²) com u = y/x.", "topicos": ["fator-integrante", "exata", "homogenea-1"]}, {"resumo": "Q2 (2,0): solução geral de y'' − 2y' − 8y = e^(−2x) + 2x², com ressonância em e^(−2x).", "topicos": ["coef-constantes", "coef-a-determinar"]}, {"resumo": "Q3 (3,0): dado y1 = x³ de x²y'' + xy' − 9y = 0, achar y2, resolver com lado direito ln x e o PVI y(1) = 0, y'(1) = 1.", "topicos": ["reducao-ordem", "variacao-parametros"]}]}, {"ano": 2018, "rotulo": "P3 2018", "fonte": "fontes/2018-antiga-edE9", "questoes": [{"resumo": "T1: variação de parâmetros em y'' − 2y' + y = eˣ/(1 + x²), PVI e y(1).", "topicos": ["variacao-parametros"]}, {"resumo": "T2: V ou F sobre dependência linear, Wronskiano, fator integrante e sen x e x como soluções de y'' + py' + qy = 0.", "topicos": ["teoria-linear", "fator-integrante"]}, {"resumo": "T3: y' = √x + x³y²: solução nula, monotonia e unicidade em (0, 0).", "topicos": ["existencia-unicidade", "qualitativa"]}, {"resumo": "T4: (y² + 1)dx + x(y³ + 3y)dy = 0: exata? fator μ(y) e potencial.", "topicos": ["exata", "fator-integrante"]}, {"resumo": "T5: dado um fator integrante μ e o potencial f, qual é outro fator integrante.", "topicos": ["fator-integrante"]}, {"resumo": "T6: y'' + y = cos x + 8x², y(0) = 0: y(π), com ressonância.", "topicos": ["coef-a-determinar", "coef-constantes"]}, {"resumo": "T7: paridade das soluções de y'' + 2y' + 2y = sen x e inflexão de y' = x²y², y(0) = 1.", "topicos": ["qualitativa", "coef-a-determinar"]}, {"resumo": "T8: pedra lançada para cima com atrito kv: altura máxima.", "topicos": ["modelagem", "linear-1"]}, {"resumo": "T9: x²y'' + 2xy' − 2y = 0 com y1 = x, PVI e y(2).", "topicos": ["reducao-ordem"]}, {"resumo": "T10: y''' − 3y'' + 3y' − y = 0: forma do produto y1y2y3.", "topicos": ["coef-constantes", "teoria-linear"]}, {"resumo": "T11: y' + (t² + 2t)y = 3t² + 6t: solução geral e comportamento.", "topicos": ["linear-1", "qualitativa"]}]}, {"ano": 2019, "rotulo": "P3 2019", "fonte": "fontes/2019-antiga-8eQW", "questoes": [{"resumo": "Q1: V ou F: PVI homogêneo, separabilidade de y' = x + y e verificação de solução de x²y' + xy = 1.", "topicos": ["homogenea-1", "separavel", "linear-1"]}, {"resumo": "Q2: x²y'' − 4xy' + 6y = 0 com y1 = x², PVI e y(2).", "topicos": ["reducao-ordem"]}, {"resumo": "Q3: V ou F: logística y' = 2y(1 − y/5), linearidade e monotonia de y' = −1 − y⁴.", "topicos": ["separavel", "qualitativa"]}, {"resumo": "Q4: V ou F: superposição na não homogênea, y_p de y'' − y = eˣ, unicidade de y' = y^(2/3)/3, y(0) = 0.", "topicos": ["teoria-linear", "coef-a-determinar", "existencia-unicidade"]}, {"resumo": "Q5: problema de contorno y'' + 2y' + 2y = 0, y(0) = 1, y(2π) = e^(−2π): quantas soluções.", "topicos": ["coef-constantes"]}, {"resumo": "Q6: yy'' + 2(y')² = 0: redução com u = y'.", "topicos": ["segunda-ordem-redutivel"]}, {"resumo": "Q7: modelagem de população (+50% por década) com imigração constante.", "topicos": ["modelagem", "linear-1"]}, {"resumo": "Q8: xy' + 2y = 4x², y(1) = 2: y(2).", "topicos": ["linear-1"]}, {"resumo": "Q9: V ou F sobre o Wronskiano de soluções de y'' + p y' + q y = 0.", "topicos": ["teoria-linear"]}, {"resumo": "Q10: forma de y_p para y'' + b²y = t² cos(bt), com ressonância.", "topicos": ["coef-a-determinar"]}, {"resumo": "Q11: (3xy + 2)dx + x²dy = 0 com fator integrante e y(2).", "topicos": ["fator-integrante", "exata"]}]}], "extra": {}, "codigos": ["MAT2456"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, TODAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+// material complementar (origem incerta) fica no banco e nos PDFs, mas fora das contas
+const PROVAS = TODAS.filter(p=>!p.complementar), COMP = TODAS.filter(p=>p.complementar);
+const TIPO = {completa:'Prova completa', parcial:'Prova parcial', reconstrucao:'Reconstrução de alunos', coletanea:'Coletânea', complementar:'Material complementar'};
+const tipoDe = p => p.complementar ? 'complementar' : (p.tipo || 'completa');
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+TODAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status, tipo:tipoDe(p)}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `../../calculo-4/pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// faixa de anos do histórico (as provas antigas usadas na tendência)
+const comData = h => typeof h.ano==='number' && !/sem data/i.test(h.rotulo||'');
+const anosH = H.filter(comData).map(h=>h.ano);
+const faixaH = (anosH.length ? (Math.min(...anosH)===Math.max(...anosH) ? `${Math.min(...anosH)}` : `${Math.min(...anosH)}–${Math.max(...anosH)}`) : '') + (H.some(h=>!comData(h)) ? (anosH.length?' e sem data':'sem data') : '');
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de ${faixaH} para a tendência`:''}${COMP.length?` · material complementar, fora das contas: ${COMP.map(p=>esc((p.rotulo||p.ano).replace(' (complementar)',''))+(p.tipo_det?` (${esc(p.tipo_det)})`:'')).join(', ')}`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `../../calculo-4/pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF <span class="ar ar-d">↓</span></a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  `<p class="revnota">Encontrou algum problema numa prova ou resolução? Avise a Prisma em <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a>.</p>` +
+  TODAS.map(p=>{ const t=tipoDe(p); return `<div class="pvl"><span class="pva">${esc((p.rotulo||p.ano).replace(' (complementar)',''))}</span><span class="tipo t-${t}">${TIPO[t]}${p.tipo_det?`<i> · ${esc(p.tipo_det)}</i>`:''}</span><a href="../../calculo-4/pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">prova</a><a href="../../calculo-4/pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">resolução</a></div>`; }).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="../../calculo-4/pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="../../calculo-4/pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+// abertura: como a P3 se organiza e em que provas o raio-X se baseia
+const listaE = a => a.length<2 ? a.join('') : a.slice(0,-1).join(', ') + ' e ' + a[a.length-1];
+const base = `Tudo nesta página sai ${n===1?'da P3':`das ${n} P3`} de ${listaE(PROVAS.map(p=>esc(p.rotulo||p.ano)))}` +
+  (H.length ? `, comparada${n===1?'':'s'} com ${H.length} P3 de ${faixaH}` : '') +
+  `. Mostra o que já caiu, não o que vai cair` + (n < 4 ? `: com ${n===1?'uma prova só':`só ${n} provas`}, uma diferença pequena pode ser acaso.` : '.');
+document.getElementById('avisos').innerHTML = `<div class="abre"><span class="lbl">Em resumo</span>` +
+  (T.nota_organizacao ? `<p class="abre-txt">${esc(T.nota_organizacao)}</p>` : '') + `<p class="abre-base">${base}</p></div>`;
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: histórico x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de ${faixaH} contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>'+esc(faixaH)+'</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, TODAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  ${(()=>{ const mostra = !['completa','parcial'].includes(q.tipo); return (q.anulada||mostra)?`<div class="tags">${q.anulada?'<span class="tag w">Anulada na prova original (mantida para treino)</span>':''}${mostra?`<span class="tag w">${TIPO[q.tipo]}</span>`:''}</div>`:''; })()}
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(PROVAS.reduce((t,p)=>t+p.questoes.length,0) / Math.max(1,n)));   // tamanho de uma P3 típica (sem material complementar)
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false, fim=0, aoSortear=()=>{};
+const bPdf=document.getElementById('bPdf'), bPdfRes=document.getElementById('bPdfRes'), grpRes=document.getElementById('grpRes');
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+const comDur = PROVAS.filter(p=>p.duracao_min), rotP = p => String(p.rotulo||p.ano), eLista = a => a.length<2 ? a.join('') : a.slice(0,-1).join(', ') + ' e ' + a[a.length-1];
+let fraseDur;
+if (SIM.duracao) fraseDur = `Duração sugerida: ${durPadrao} min.`;
+else if (!comDur.length) fraseDur = 'A duração não consta nas provas analisadas; usamos 110 min.';
+else if (new Set(comDur.map(p=>p.duracao_min)).size===1) fraseDur = `Duração sugerida: ${durPadrao} min, ${comDur.length===1?'a da P3 de':'a das P3 de'} ${eLista(comDur.map(rotP))}.` + (comDur.length<PROVAS.length ? ' As outras provas não informam a duração.' : '');
+else fraseDur = `Duração sugerida: ${durPadrao} min, a mediana das durações informadas (${comDur.map(p=>`${rotP(p)}: ${p.duracao_min} min`).join('; ')}).`;
+document.getElementById('simdur').textContent = fraseDur + ' Ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; grpRes.hidden=true; aoSortear(); parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ tique(); parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  fim = Date.now() + restante*1000;   // conta pelo horário de término: não atrasa com a aba em segundo plano
+  timer=setInterval(tique,250);
+});
+function tique(){ if(!rodando) return; restante=Math.max(0,Math.ceil((fim-Date.now())/1000)); clock.textContent=fmt(restante); if(!restante){ encerrar(); } }
+document.addEventListener('visibilitychange', tique);
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; grpRes.hidden=false; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// simulado em PDF: recorta do PDF de questões avulsas só as páginas das questões sorteadas (pdf-lib, no navegador)
+const PDFLIB = 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+let libP = null;
+const carregaLib = () => libP || (libP = new Promise((ok, er) => { const sc = document.createElement('script'); sc.src = PDFLIB;
+  sc.onload = () => ok(window.PDFLib); sc.onerror = () => { libP = null; er(new Error('não carregou a biblioteca de PDF')); }; document.head.appendChild(sc); }));
+const avBytes = {};
+async function montaPDF(v){   // v: 'e' (enunciados) ou 'r' (resoluções)
+  const { PDFDocument, StandardFonts, rgb } = await carregaLib();
+  const url = `../../calculo-4/pdf/${T.codigo}-P3-avulsas_${v==='e'?'enunciado':'resolucao'}.pdf`;
+  if (!avBytes[url]) { const r = await fetch(url); if (!r.ok) throw new Error('PDF ' + r.status); avBytes[url] = await r.arrayBuffer(); }
+  const src = await PDFDocument.load(avBytes[url]);
+  const out = await PDFDocument.create();
+  out.setTitle(`Simulado P3 · ${T.materia}${v==='r'?' · resolução':''}`); out.setAuthor('Fuja das P3 · Chapa Prisma');
+  const bold = await out.embedFont(StandardFonts.HelveticaBold), reg = await out.embedFont(StandardFonts.Helvetica);
+  const W = 595.28, A = 841.89, laranja = rgb(1, .42, .24), azul = rgb(.06, .14, .28), cinza = rgb(.36, .39, .47);
+  const ok = (f, t) => [...String(t)].map(c => { try { f.encodeText(c); return c; } catch (e) { return c==='→'?'->':'?'; } }).join('');
+  const quebra = (f, t, tam, larg) => { const ps = ok(f, t).split(' '); const ls = []; let l = ''; ps.forEach(p => { const c = l ? l + ' ' + p : p; if (f.widthOfTextAtSize(c, tam) > larg && l) { ls.push(l); l = p; } else l = c; }); if (l) ls.push(l); return ls; };
+  // capa
+  const capa = out.addPage([W, A]); let y = A - 92;
+  capa.drawRectangle({ x: 0, y: A - 10, width: W, height: 10, color: laranja });
+  capa.drawText(ok(bold, 'FUJA DAS P3 · SIMULADO' + (v==='r' ? ' · RESOLUÇÃO' : '')), { x: 62, y, size: 9.5, font: bold, color: laranja }); y -= 36;
+  quebra(bold, T.materia, 26, W - 124).forEach(l => { capa.drawText(l, { x: 62, y, size: 26, font: bold, color: azul }); y -= 30; });
+  capa.drawText(ok(reg, `${(D.codigos||[T.codigo]).join(' / ')} · ${sim.length} questões · ${dur.value} min`), { x: 62, y, size: 12, font: reg, color: cinza }); y -= 40;
+  capa.drawText(ok(bold, 'De onde vem cada questão'), { x: 62, y, size: 11, font: bold, color: azul }); y -= 20;
+  const col = sim.length > 14 ? 2 : 1, porCol = Math.ceil(sim.length / col), y0 = y;
+  sim.forEach((q, k) => { const cx = 62 + Math.floor(k / porCol) * 240, cy = y0 - (k % porCol) * 17;
+    capa.drawText(String(k + 1), { x: cx, y: cy, size: 10.5, font: bold, color: laranja });
+    capa.drawText(ok(reg, `${q.prova} ${q.rot} · questão ${q.n}` + (q.pontos != null ? ` · ${num(q.pontos)} pt` : '') + (q.anulada ? ' · anulada na prova' : '')), { x: cx + 22, y: cy, size: 10.5, font: reg, color: azul }); });
+  y = y0 - porCol * 17 - 24;
+  if (v === 'r' && col === 1 && sim.every(q => (q.respostas||[]).length)) {   // gabarito rápido
+    capa.drawText(ok(bold, 'Gabarito rápido'), { x: 62, y, size: 11, font: bold, color: azul }); y -= 18;
+    const corta = (t, larg) => { let x = ok(reg, t); while (reg.widthOfTextAtSize(x, 9.5) > larg && x.length > 4) x = x.slice(0, -2); return x === ok(reg, t) ? x : x + '…'; };
+    sim.forEach((q, k) => { if (y < 130) return; capa.drawText(String(k + 1), { x: 62, y, size: 9.5, font: bold, color: laranja });
+      capa.drawText(corta(q.respostas.join('; '), W - 146), { x: 84, y, size: 9.5, font: reg, color: azul }); y -= 15; });
+    y -= 12;
+  }
+  const instr = v === 'e'
+    ? ['Sem consulta. Marque o tempo e faça tudo antes de olhar qualquer resolução.', 'Quando terminar, encerre o simulado no site e baixe a resolução destas mesmas questões.']
+    : ['Corrija questão por questão. Onde errou, leia a armadilha e refaça pelo bloco do assunto no site.'];
+  instr.forEach(t => quebra(reg, t, 10.5, W - 124).forEach(l => { capa.drawText(l, { x: 62, y, size: 10.5, font: reg, color: cinza }); y -= 15; }));
+  capa.drawText(ok(reg, 'Feito por alunos da Chapa Prisma. Não é gabarito oficial. Encontrou algum problema? Avise em @prisma.poli.'), { x: 62, y: 70, size: 8.5, font: reg, color: cinza });
+  capa.drawText('chapaprisma.github.io/fuja-das-p3', { x: 62, y: 56, size: 8.5, font: bold, color: azul });
+  // questões, renumeradas de 1 a N
+  for (const [k, q] of sim.entries()) {
+    const a = q.av && q.av[v]; if (!a) continue;
+    const idx = []; for (let p = a[0]; p <= a[1]; p++) idx.push(p - 1);
+    const pgs = await out.copyPages(src, idx);
+    pgs.forEach((pg, j) => { out.addPage(pg); if (j === 0) pg.drawText(String(k + 1), { x: a[2], y: pg.getHeight() - a[3] - 16.5, size: 22, font: bold, color: laranja }); });
+  }
+  return out.save();
+}
+// o mesmo PDF serve para ver e para baixar: guarda o último de cada versão enquanto o sorteio não muda
+const pdfFeito = {};
+const chaveSim = v => v + '|' + sim.map(q => q.id).join(',');
+async function pdfDo(v){ const k = chaveSim(v); if (!pdfFeito[k]) pdfFeito[k] = montaPDF(v).catch(e => { delete pdfFeito[k]; throw e; }); return pdfFeito[k]; }
+const nomePDF = v => `Simulado P3 - ${T.materia}${v==='r' ? ' - resolução' : ''}.pdf`;
+function salva(bytes, v){
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+  a.download = nomePDF(v); document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+async function comBotao(botao, fn){
+  const txt = botao.innerHTML; botao.disabled = true; botao.textContent = 'Montando…';
+  try { await fn(); } catch (e) { alert('Não deu para montar o PDF agora (' + e.message + '). Os links de cada questão continuam funcionando.'); }
+  finally { botao.disabled = false; botao.innerHTML = txt; }
+}
+const baixaPDF = (v, botao) => comBotao(botao, async () => { salva(await pdfDo(v), v); ga(v==='r' ? 'simulado-pdf-res' : 'simulado-pdf'); });
+
+// visor: desenha as páginas na própria página com o PDF.js (funciona também no celular, que não mostra PDF embutido)
+const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', PDFJS_W = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let jsP = null;
+const carregaPdfjs = () => jsP || (jsP = new Promise((ok, er) => { const sc = document.createElement('script'); sc.src = PDFJS;
+  sc.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_W; ok(window.pdfjsLib); };
+  sc.onerror = () => { jsP = null; er(new Error('não carregou o leitor de PDF')); }; document.head.appendChild(sc); }));
+const visor = document.getElementById('visor'), visorPgs = document.getElementById('visorPgs'), visorTit = document.getElementById('visorTit');
+let visorV = null, visorDoc = null, visorObs = null;
+function fechaVisor(){ visor.hidden = true; visorV = null; if (visorObs) visorObs.disconnect(); if (visorDoc) visorDoc.destroy(); visorDoc = null; visorPgs.innerHTML = ''; }
+async function desenhaPagina(box){
+  if (box.dataset.ok || !visorDoc) return; box.dataset.ok = '1';
+  const pg = await visorDoc.getPage(+box.dataset.p);
+  const base = pg.getViewport({ scale: 1 }), dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const vp = pg.getViewport({ scale: (box.clientWidth / base.width) * dpr });
+  const cv = document.createElement('canvas'); cv.width = Math.floor(vp.width); cv.height = Math.floor(vp.height);
+  await pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+  box.replaceChildren(cv);
+}
+const verPDF = (v, botao) => comBotao(botao, async () => {
+  const [bytes, lib] = await Promise.all([pdfDo(v), carregaPdfjs()]);
+  fechaVisor(); visorV = v;
+  visorDoc = await lib.getDocument({ data: bytes.slice() }).promise;
+  visorTit.textContent = `${v==='r' ? 'Resolução do simulado' : 'Simulado'} · ${sim.length} questões · ${visorDoc.numPages} páginas`;
+  visorObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) desenhaPagina(e.target); }), { root: visorPgs, rootMargin: '600px 0px' });
+  for (let i = 1; i <= visorDoc.numPages; i++) { const b = document.createElement('div'); b.className = 'visor-pg'; b.dataset.p = i; b.setAttribute('aria-label', `Página ${i}`); visorPgs.appendChild(b); visorObs.observe(b); }
+  visor.hidden = false; visorPgs.scrollTop = 0; visor.scrollIntoView({ block: 'start' }); ga(v==='r' ? 'simulado-ver-res' : 'simulado-ver');
+});
+document.getElementById('vFechar').addEventListener('click', fechaVisor);
+aoSortear = fechaVisor;   // um sorteio novo invalida o PDF aberto
+document.getElementById('vBaixar').addEventListener('click', e => { if (visorV) baixaPDF(visorV, e.currentTarget); });
+document.getElementById('bVer').addEventListener('click', e => verPDF('e', e.currentTarget));
+document.getElementById('bVerRes').addEventListener('click', e => verPDF('r', e.currentTarget));
+bPdf.addEventListener('click', () => baixaPDF('e', bPdf));
+bPdfRes.addEventListener('click', () => baixaPDF('r', bPdfRes));
+window.__montaPDF = montaPDF;
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+// barra de navegação: destaca a seção atual e mantém o botão dela visível
+(function(){
+  const box = document.getElementById('toc');
+  const links = [...box.querySelectorAll('a')];
+  const secs = links.map(a=>document.getElementById(a.getAttribute('href').slice(1)));
+  let ultimo = null, pend = false;
+  const fimBox = () => box.classList.toggle('fim', box.scrollLeft + box.clientWidth >= box.scrollWidth - 4);
+  function marca(){
+    pend = false;
+    const lim = 90; let atual = -1;
+    secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top <= lim) atual = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) atual = secs.length - 1;
+    links.forEach((a,i)=>{ const on = i===atual; a.classList.toggle('ativo', on); if(on) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current'); });
+    const a = links[atual] || null;
+    if (a && a !== ultimo) { ultimo = a; const alvo = a.offsetLeft - box.offsetLeft - (box.clientWidth - a.offsetWidth)/2; box.scrollTo({left: Math.max(0, alvo), behavior: 'smooth'}); }
+    if (!a) ultimo = null;
+  }
+  window.addEventListener('scroll', ()=>{ if(!pend){ pend = true; requestAnimationFrame(marca); } }, {passive:true});
+  window.addEventListener('resize', ()=>{ fimBox(); marca(); });
+  box.addEventListener('scroll', fimBox, {passive:true});
+  links.forEach(a=>a.addEventListener('click', ()=>ga('nav-' + a.getAttribute('href').slice(1))));
+  fimBox(); marca();
+})();
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+<script>
+// notação matemática no texto da página: T_BC -> T com BC subscrito, e^(2x) -> e com 2x sobrescrito.
+// Só converte índice de base com uma letra (ou NPSH), para não mexer em nomes de código como push_back ou static_cast.
+(function(){
+  const PULA = new Set(['SCRIPT','STYLE','TEXTAREA','OPTION','SELECT','SUB','SUP','NAV','CANVAS']);
+  const RE_SUB = /(^|[^\p{L}0-9_]|[α-ωΣΔ∂])(\p{L}|∫)_(\{[^{}]{1,12}\}|[\p{L}0-9]{1,12})(?![\p{L}0-9_])/gu;
+  const RE_NPSH = /\bNPSH_([a-z]{1,3})\b/g;
+  const RE_SUP = /\^(\((?:[^()]|\([^()]*\)){1,26}\)|\{[^{}]{1,12}\}|∫\([^()]{1,14}\)(?:\/\p{L}{1,2})?(?:\s?d[a-z])?|∫[\p{L}0-9]{1,5}(?:\([^()]{1,8}\))?(?:\s?d[a-z](?![\p{L}0-9]))?|[-−+]?∫?[\p{L}0-9∞]{1,5}(?:\([^()]{1,8}\)[a-z]{0,2})?)/gu;
+  const tira = x => (/^\(.*\)$/s.test(x) || /^\{.*\}$/s.test(x)) ? x.slice(1, -1) : x;
+  const escH = t => t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const pode = n => { for (let e = n.parentElement; e; e = e.parentElement) { if (PULA.has(e.tagName) || e.classList.contains('pid') || e.classList.contains('nomath')) return false; } return true; };
+  function texto(n){
+    const t = n.nodeValue; if (!t || (t.indexOf('_') < 0 && t.indexOf('^') < 0) || !pode(n)) return;
+    let h = escH(t);
+    const antes = h;
+    h = h.replace(RE_SUP, (m, e) => `<sup>${tira(e)}</sup>`)
+         .replace(RE_NPSH, (m, i) => `NPSH<sub>${i}</sub>`)
+         .replace(RE_SUB, (m, a, b, i) => `${a}${b}<sub>${tira(i)}</sub>`);
+    if (h === antes) return;
+    const tpl = document.createElement('template'); tpl.innerHTML = h; n.replaceWith(tpl.content);
+  }
+  function passa(raiz){
+    if (raiz.nodeType === 3) return texto(raiz);
+    if (raiz.nodeType !== 1 || PULA.has(raiz.tagName)) return;
+    const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT); const ns = [];
+    while (w.nextNode()) ns.push(w.currentNode);
+    ns.forEach(texto);
+  }
+  passa(document.body);
+  new MutationObserver(rs => rs.forEach(r => r.addedNodes.forEach(passa))).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
+function rot(){var d=r.getAttribute("data-theme")==="dark";b.textContent=d?"☀ Modo claro":"☾ Modo escuro";b.setAttribute("aria-pressed",d?"true":"false")}
+b.addEventListener("click",function(){var d=r.getAttribute("data-theme")!=="dark";if(d)r.setAttribute("data-theme","dark");else r.removeAttribute("data-theme");try{localStorage.setItem("fuja-p3-tema",d?"dark":"light")}catch(e){}rot()});rot()})();</script>
+</body>
+</html>
