@@ -21,7 +21,8 @@
     raiz.classList.remove("mt-espera");
   }
 
-  // aviso de prévia, com link para a mesma página na estética atual
+  // aviso de prévia, com link para a mesma página na estética atual (só nas páginas em /novo/)
+  if (location.pathname.indexOf("/novo/") < 0) return;
   var atual = location.pathname.replace("/novo/", "/");
   var aviso = document.createElement("div");
   aviso.className = "previa-aviso"; aviso.setAttribute("role", "note");
