@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resistência dos Materiais I · Fuja das P3</title>
+<meta name="description" content="P3 de Resistência dos Materiais I (PEF3201) transcritas e resolvidas: 5 provas, 10 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:title" content="Resistência dos Materiais I · Fuja das P3">
+<meta property="og:description" content="P3 de Resistência dos Materiais I (PEF3201) transcritas e resolvidas: 5 provas, 10 questões, guia do que cai, tendências, checklist e simulado.">
+<meta property="og:image" content="https://chapaprisma.github.io/fuja-das-p3/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F1ECE2">
+<link rel="icon" href="../assets/simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<script>(function(){try{if(localStorage.getItem("fuja-p3-tema")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}})();</script>
+<style>
+/* Layout: faixa azul de abertura com o símbolo da Prisma, depois seções empilhadas numa coluna de ~960px; mapa e tabelas rolam dentro de si no celular. */
+:root{
+  --azul:#0F2347; --laranja:#FF6B3D; --amarelo:#FFC845; --lilas:#C9A7FF;
+  --bg:#F8F6F2; --fg:#0F2347; --muted:#5B6478; --line:#DCD8CF; --card:#FFFFFF; --soft:#EFEBE3;
+  --band:#F1ECE2; --band-fg:#0F2347; --band-muted:#4A5468; --faixa-azul:#0F2347;
+  --tag:#EDE3FF; --tag-fg:#3B2A63; --warn-bg:#FFE7DE; --warn-fg:#7A2A12; --ok-bg:#FFF4D6;
+  --h0:#EEF1F6; --h1:#C6D2E6; --h2:#7F97C2; --h3:#0F2347; --h-fg-dark:#FFFFFF;
+  --f-display:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lbl{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h2{font-size:1.45rem;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);height:5px}
+.faixa i:nth-child(1){background:var(--faixa-azul)}.faixa i:nth-child(2){background:var(--laranja)}.faixa i:nth-child(3){background:var(--amarelo)}.faixa i:nth-child(4){background:var(--lilas)}
+/* topo */
+.band{background:var(--band);color:var(--band-fg)}
+.band .wrap{padding-block:34px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.band svg{width:64px;height:auto}
+.band .eyebrow{color:#C2410C;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+.band h1{font-size:clamp(1.7rem,4.6vw,2.6rem);font-weight:700;line-height:1.1;margin-top:4px}
+.band .sub{color:var(--band-muted);margin-top:6px}
+.band .sub b{color:var(--band-fg);font-weight:500}
+.docs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.docs a{font-size:.82rem;text-decoration:none;background:#FFFFFF;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--band-fg)}
+.docs a:hover,.docs a:focus-visible{border-color:var(--laranja);outline:none}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:4px 16px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-size:.85rem;text-decoration:none;color:var(--muted)}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--fg);text-decoration:underline;text-underline-offset:3px;outline:none}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+section .head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+section .lead{color:var(--muted);max-width:68ch;margin:0}
+.aviso{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);padding:10px 14px;border-radius:2px;font-size:.92rem;margin-top:18px}
+.aviso + .aviso{margin-top:8px}
+/* mapa de calor */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.heat{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.heat th{font-size:.78rem;font-weight:500;color:var(--muted);text-align:left;padding:4px 6px;white-space:nowrap}
+table.heat th.col{text-align:center}
+table.heat td.t{font-size:.9rem;padding:4px 8px 4px 0;min-width:180px}
+table.heat td.t small{display:block;color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.heat td.c{text-align:center;padding:0}
+.cell{width:100%;min-width:64px;border:0;border-radius:3px;padding:9px 4px;font:500 .85rem var(--f-mono);cursor:pointer;color:var(--fg)}
+.cell[data-n="0"]{background:var(--h0);color:var(--muted);cursor:default}
+.cell[data-n="1"]{background:var(--h1)}
+.cell[data-n="2"]{background:var(--h2);color:#fff}
+.cell[data-n="3"]{background:var(--h3);color:var(--h-fg-dark)}
+.cell:focus-visible{outline:2px solid var(--laranja);outline-offset:1px}
+.cell.sel{box-shadow:0 0 0 2px var(--laranja)}
+.legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:12px;border-radius:2px;display:inline-block}
+.detail{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px;font-size:.92rem}
+.detail ul{margin:6px 0 0;padding-left:18px}
+/* quanto vale */
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr 64px;gap:10px;align-items:center;font-size:.9rem}
+.bar .track{height:14px;background:var(--soft);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--laranja)}
+.bar .v{text-align:right;font-family:var(--f-mono);font-size:.85rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 56px}.bar .track{grid-column:1/-1;order:3}}
+/* padrões */
+table.pad{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+table.pad th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.pad td{vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+table.pad td:first-child{min-width:170px}
+table.pad td:last-child{min-width:92px}
+.pid{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);display:block}
+.qlink{display:inline-block;white-space:nowrap;font-family:var(--f-mono);font-size:.78rem;margin:0 6px 4px 0;text-decoration:none;border-bottom:1px solid var(--laranja)}
+/* armadilhas */
+.traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.trap h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.trap ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.92rem}
+.trap li span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);white-space:nowrap}
+/* banco */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+select,button{font:inherit;font-size:.9rem}
+select{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 8px;min-width:120px;max-width:100%}
+.cards{display:grid;gap:12px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:8px}
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-weight:500;font-size:.92rem}
+.meta{font-size:.8rem;color:var(--muted)}
+.dots{letter-spacing:2px;color:var(--laranja)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--tag);color:var(--tag-fg);font-size:.75rem;border-radius:2px;padding:2px 7px}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--f-mono)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem}
+.links a{font-weight:500;text-decoration:none;border-bottom:2px solid var(--laranja)}
+.links a.r{border-bottom-color:var(--lilas)}
+.empty{color:var(--muted);font-size:.92rem}
+/* simulado */
+.sim{display:grid;gap:14px}
+.simbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.clock{font-family:var(--f-mono);font-size:2rem;font-weight:500;min-width:7ch;font-variant-numeric:tabular-nums}
+.btn{border:1px solid var(--fg);background:transparent;color:var(--fg);border-radius:3px;padding:7px 14px;cursor:pointer}
+.btn.pri{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.btn:focus-visible{outline:2px solid var(--laranja);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.dur{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dur select{min-width:auto}
+.blocos{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.blocos .lbl{width:100%}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.92rem;cursor:pointer}
+.chk input{accent-color:var(--laranja);width:16px;height:16px}
+.simq{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:grid;gap:6px}
+.simq .num{font-weight:700;color:var(--laranja);font-size:1.4rem;line-height:1}
+.key{background:var(--ok-bg);border-radius:3px;padding:10px 12px;font-size:.9rem}
+.key ol{margin:4px 0 0;padding-left:20px}
+.study{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:10px 24px}
+.study div{border-top:1px solid var(--line);padding-top:8px}
+.study b{font-weight:500}
+.study p{margin:2px 0 0;color:var(--muted);font-size:.88rem}
+footer{padding-block:26px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.band .wrap{grid-template-columns:1fr}.band svg{width:48px}}
+:root[data-theme="dark"]{
+  --bg:#0B1730; --fg:#EEF0F5; --muted:#A3ACBF; --line:#25355A; --card:#12214A; --soft:#172A55;
+  --band:#08122A; --band-fg:#FFFFFF; --band-muted:#A3ACBF; --faixa-azul:#3A5590;
+  --tag:#2E2550; --tag-fg:#E3D5FF; --warn-bg:#3A1E19; --warn-fg:#FFC2AE; --ok-bg:#33290F; --ok-fg:#FFE39A;
+  --link:#FF9A75; --h0:#16264D; --h1:#2B4B86; --h2:#5D86CC; --h3:#B9CCF2; --h-fg-dark:#0B1730; color-scheme:dark }
+:root[data-theme="dark"] .band .eyebrow,:root[data-theme="dark"] .contador b{color:var(--amarelo)}
+:root[data-theme="dark"] .hero{background:var(--band)}
+:root[data-theme="dark"] .docs a{background:transparent;border-color:rgba(255,255,255,.28);color:var(--band-fg)}
+:root[data-theme="dark"] .docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347}
+:root[data-theme="dark"] .cta-hero a.sec{border-color:rgba(255,255,255,.3)}
+.band{position:relative}
+.tema{position:absolute;top:12px;right:max(16px,env(safe-area-inset-right,0px));z-index:6;display:inline-flex;align-items:center;gap:6px;font:500 .78rem var(--f-body);color:var(--band-fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+:root[data-theme="dark"] .tema{border-color:rgba(255,255,255,.3)}
+.tema:hover,.tema:focus-visible{border-color:var(--laranja);outline:none}
+/* ---------- novo na P3 ---------- */
+.volta{display:inline-flex;gap:6px;align-items:center;font-size:.82rem;color:var(--band-muted);text-decoration:none;margin-bottom:10px}
+.volta:hover,.volta:focus-visible{color:var(--band-fg);outline:none;text-decoration:underline;text-underline-offset:3px}
+.docs a.pdfguia{background:var(--laranja);border-color:var(--laranja);color:#0F2347;font-weight:500}
+.docs a.pdfguia:hover,.docs a.pdfguia:focus-visible{background:var(--amarelo);border-color:var(--amarelo)}
+.docs .grp{width:100%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--band-muted);margin-top:4px}
+#guia .escopo{font-size:1.04rem;max-width:72ch;margin:0}
+#guia .prog{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+#guia .prog span{font-size:.78rem;background:var(--tag);color:var(--tag-fg);border-radius:3px;padding:3px 8px}
+.gsub{font-size:1.05rem;font-weight:700;margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.gsub .lbl{font-weight:500}
+.roteiro{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:r}
+.roteiro li{counter-increment:r;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+.roteiro li::before{content:counter(r);font:700 1.35rem/1 var(--f-display);color:var(--laranja)}
+.roteiro b{display:block;margin-bottom:2px}
+.roteiro p{margin:0;color:var(--muted);font-size:.93rem}
+.tend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.tend div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--lilas);border-radius:5px;padding:12px 14px}
+.tend b{display:block;margin-bottom:4px}
+.tend p{margin:0;color:var(--muted);font-size:.92rem}
+.check{display:grid;gap:4px}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;padding:8px 10px;border-radius:4px;cursor:pointer;font-size:.95rem}
+.check label:hover{background:var(--soft)}
+.check input{accent-color:var(--laranja);width:17px;height:17px;margin:2px 0 0}
+.check input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--laranja)}
+.prog-bar{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-weight:400}
+.prog-bar .track{width:140px;height:8px;background:var(--soft);border-radius:999px;overflow:hidden}
+.prog-bar .fill{height:100%;background:var(--laranja);width:0;transition:width .2s}
+.btn.min{padding:3px 10px;font-size:.8rem}
+.pegas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.pegas div{background:var(--warn-bg);color:var(--warn-fg);border-left:4px solid var(--laranja);border-radius:3px;padding:11px 14px;font-size:.92rem}
+.pegas b{display:block;margin-bottom:3px}
+.dicas{margin:0;padding-left:20px;display:grid;gap:6px;max-width:76ch}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.form div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.form small{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.form code{font-family:var(--f-mono);font-size:.88rem;white-space:pre-wrap;word-break:break-word}
+table.tr{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+table.tr th{text-align:left;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+table.tr td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.tr td.n{font-family:var(--f-mono);white-space:nowrap}
+.mini{display:inline-block;height:8px;border-radius:2px;background:var(--h2);vertical-align:middle;margin-right:8px}
+.mini.r{background:var(--laranja)}
+.seta{font-weight:700;white-space:nowrap}
+.seta.up{color:var(--laranja)}.seta.down{color:var(--muted)}.seta.eq{color:var(--muted)}
+footer a{color:inherit}
+.filters label{min-width:0;max-width:100%}
+.filters select{max-width:min(100%,340px);text-overflow:ellipsis}
+@media (max-width:560px){.filters{display:grid;grid-template-columns:1fr 1fr}.filters label{width:100%}.filters select{width:100%;max-width:100%}}
+</style>
+<script data-goatcounter="https://prisma-poli.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="band">
+  <button class="tema" id="tema" type="button" aria-label="Alternar modo escuro">☾ Modo escuro</button>
+  <div class="wrap">
+    <svg viewBox="0 0 381 414" role="img" aria-label="Símbolo da chapa Prisma"><polygon points="122,8 12,81 123,148" fill="#FFC845"/><polygon points="132,9 371,156 260,230 132,153" fill="#FF6B3D"/><polygon points="10,88 123,156 123,324 9,404" fill="#0F2347"/><polygon points="132,240 193,200 252,235 132,319" fill="#C9A7FF"/></svg>
+    <div style="min-width:0">
+      <a class="volta" href="../">← Fuja das P3 · todas as matérias</a>
+      <div class="eyebrow">Fuja das P3 · Raio-X da matéria</div>
+      <h1 id="titulo"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="docs" id="docs"></div>
+    </div>
+  </div>
+  <div class="faixa"><i></i><i></i><i></i><i></i></div>
+</header>
+<nav class="toc" aria-label="Seções"><div class="wrap" id="toc">
+  <a href="#guia">Guia da P3</a><a href="#cai">O que cai</a><a href="#tendencia">Tendência</a><a href="#vale">Quanto vale</a><a href="#padroes">Padrões</a><a href="#armadilhas">Armadilhas</a><a href="#banco">Banco</a><a href="#simulado">Simulado</a><a href="#estude">Estude aqui</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="avisos"></div>
+
+  <section id="guia">
+    <div class="head"><span class="lbl">Guia da P3</span><h2>Tudo o que você precisa para gabaritar</h2></div>
+    <p class="escopo" id="gEscopo"></p>
+    <div class="prog" id="gProg"></div>
+
+    <h3 class="gsub"><span class="lbl">Plano</span>Roteiro de estudo, na ordem</h3>
+    <ol class="roteiro" id="gRoteiro"></ol>
+
+    <h3 class="gsub"><span class="lbl">O que mudou</span>Tendências recentes</h3>
+    <div class="tend" id="gTend"></div>
+
+    <h3 class="gsub"><span class="lbl">Para gabaritar</span>Checklist
+      <span class="prog-bar"><span class="track"><span class="fill" id="gFill"></span></span><span id="gCont"></span><button class="btn min" id="gZerar" type="button">zerar</button></span></h3>
+    <div class="check" id="gCheck"></div>
+
+    <h3 class="gsub"><span class="lbl">Armadilhas</span>Pegadinhas que mais derrubam</h3>
+    <div class="pegas" id="gPegas"></div>
+
+    <h3 class="gsub"><span class="lbl">No dia</span>Na hora da prova</h3>
+    <ul class="dicas" id="gDicas"></ul>
+
+    <h3 class="gsub"><span class="lbl">Formulário</span>O essencial, para revisar na véspera</h3>
+    <div class="form" id="gForm"></div>
+  </section>
+
+  <section id="cai">
+    <div class="head"><span class="lbl">O que cai</span><h2>Em quais P3 cada assunto apareceu</h2>
+      <p class="lead">Cada célula conta em quantas provas o tópico apareceu. Toque numa célula para ver as questões.</p></div>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend" id="legend"></div>
+    <div class="detail" id="heatdetail">Toque numa célula colorida para listar as questões daquele tópico.</div>
+  </section>
+
+  <section id="tendencia">
+    <div class="head"><span class="lbl">Tendência</span><h2>O que tem caído mais nos últimos anos</h2>
+      <p class="lead" id="trLead"></p></div>
+    <div class="scroll"><table class="tr" id="trTab"></table></div>
+  </section>
+
+  <section id="vale">
+    <div class="head"><span class="lbl">Quanto vale</span><h2>Quanto da nota costuma depender de cada assunto</h2>
+      <p class="lead">Média, por prova, dos pontos das questões que usam o tópico (de 10). Uma questão costuma usar vários tópicos, então a soma passa de 10.</p></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section id="padroes">
+    <div class="head"><span class="lbl">Padrões de questão</span><h2>Como reconhecer e como atacar</h2>
+      <p class="lead">Os tipos de questão que se repetem. Os links levam à página da resolução.</p></div>
+    <div class="scroll"><table class="pad" id="pad"></table></div>
+  </section>
+
+  <section id="armadilhas">
+    <div class="head"><span class="lbl">Armadilhas que mais derrubam</span><h2>Os erros que custam pontos, por assunto</h2></div>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="banco">
+    <div class="head"><span class="lbl">Banco de questões</span><h2>Todas as questões, com filtro</h2></div>
+    <div class="filters">
+      <label for="fTop">Tópico<select id="fTop"></select></label>
+      <label for="fPad">Padrão<select id="fPad"></select></label>
+      <label for="fAno">Prova<select id="fAno"></select></label>
+      <label for="fDif">Dificuldade<select id="fDif"></select></label>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="simulado">
+    <div class="head"><span class="lbl">Simulado</span><h2>Monte uma P3 com questões de anos diferentes</h2>
+      <p class="lead" id="simlead"></p></div>
+    <div class="sim">
+      <div class="simbar">
+        <div class="clock" id="clock" aria-live="off">110:00</div>
+        <button class="btn pri" id="bStart" type="button">Começar</button>
+        <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
+        <button class="btn" id="bNew" type="button">Sortear outra</button>
+        <label class="dur" for="dur">Duração
+          <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
+      </div>
+      <p class="empty" style="margin:0" id="simdur"></p>
+      <div id="simqs" class="cards"></div>
+    </div>
+  </section>
+
+  <section id="estude">
+    <div class="head"><span class="lbl">Estude aqui</span><h2>Onde treinar cada tópico</h2>
+      <p class="lead">Cada tópico leva às resoluções das questões em que ele caiu.</p></div>
+    <div class="study" id="study"></div>
+  </section>
+</main>
+<footer class="wrap" id="rodape"><b>Fuja das P3</b> · uma iniciativa da chapa <b>Prisma</b> · Poli-USP · <a href="https://instagram.com/prisma.poli" target="_blank" rel="noopener">@prisma.poli</a><br>Provas originais compartilhadas por alunos no Polishare. Transcrição e resolução: Chapa Prisma. Revisão: pendente.<br>Feito por alunos. Não é gabarito oficial.</footer>
+
+<script id="dados" type="application/json">{"taxonomia": {"status": "proposta", "organizacao": "conteudo", "nota_organizacao": "A P3 de Resistência dos Materiais I cobre o fim do programa: tensões de cisalhamento na flexão (seções delgadas), deslocamentos (linha elástica e superposição) e estruturas hiperestáticas pelo método dos esforços. Os blocos seguem essas três famílias.", "topicos": [{"slug": "inercia", "nome": "Momento de inércia e momento estático S*", "grupo": "Tensões na flexão", "ref": null, "material": null}, {"slug": "tau-flexao", "nome": "Tensão de cisalhamento na flexão (V·S*/(b·I))", "grupo": "Tensões na flexão", "ref": null, "material": null}, {"slug": "secao-delgada", "nome": "Seção delgada: fluxo, cortes simétricos e sentido pelo elemento dx", "grupo": "Tensões na flexão", "ref": null, "material": null}, {"slug": "tensao-normal", "nome": "Tensão normal e resultante numa região da seção", "grupo": "Tensões na flexão", "ref": null, "material": null}, {"slug": "linha-elastica", "nome": "Integração da linha elástica", "grupo": "Deslocamentos", "ref": null, "material": null}, {"slug": "inercia-variavel", "nome": "Rigidez variável EI(x)", "grupo": "Deslocamentos", "ref": null, "material": null}, {"slug": "superposicao", "nome": "Superposição com o formulário de tramos e balanços", "grupo": "Deslocamentos", "ref": null, "material": null}, {"slug": "portico-desl", "nome": "Deslocamento de ponto em pórtico isostático", "grupo": "Deslocamentos", "ref": null, "material": null}, {"slug": "rotula", "nome": "Rótulas, barras rígidas e giro de corpo rígido", "grupo": "Deslocamentos", "ref": null, "material": null}, {"slug": "reciprocidade", "nome": "Linearidade e reciprocidade entre vinculações", "grupo": "Deslocamentos", "ref": null, "material": null}, {"slug": "viga-continua", "nome": "Viga contínua por tramos biapoiados", "grupo": "Hiperestáticas", "ref": null, "material": null}, {"slug": "hiper-portico", "nome": "Pórtico hiperestático pelo método dos esforços", "grupo": "Hiperestáticas", "ref": null, "material": null}, {"slug": "tirante", "nome": "Tirante: rigidez EA e variação de temperatura", "grupo": "Hiperestáticas", "ref": null, "material": null}, {"slug": "simetria", "nome": "Simetria e antissimetria", "grupo": "Hiperestáticas", "ref": null, "material": null}, {"slug": "diagramas", "nome": "Diagramas de M e V e deformada", "grupo": "Hiperestáticas", "ref": null, "material": null}, {"slug": "recalque", "nome": "Recalque de apoio e mola", "grupo": "Hiperestáticas", "ref": null, "material": null}], "padroes": [{"id": "P-TAU-DELGADA", "nome": "Tensão de cisalhamento em seção delgada", "reconhecer": "Seção de chapas de espessura δ (caixão, perfis com cortes, diagonais) e pedem τ em pontos M e N 'no trecho mais solicitado por cortante', com direção e sentido.", "metodo": "1) Reações e diagrama de V: escolha o trecho de maior |V|. 2) Isole a parte da seção entre o ponto e uma borda livre; se a seção é fechada e simétrica, corte em dois pontos simétricos. 3) S* = Σ área × distância à linha neutra. 4) τ = V·S*/(b·I), com b = soma das espessuras cortadas. 5) Sentido: a força normal N* = M·S*/I da parte isolada cresce para o lado em que M cresce; o cisalhamento no corte equilibra essa diferença."}, {"id": "P-RESULTANTE", "nome": "Resultante das tensões normais numa região", "reconhecer": "Área escurecida numa seção e pedem a resultante das tensões normais na seção de momento máximo.", "metodo": "R = M·S*/I, com S* o momento estático da região em relação à linha neutra. Confira integrando σ = M·z/I (triângulo na alma, retângulo na mesa)."}, {"id": "P-LE-INTEGRA", "nome": "Integrar a linha elástica", "reconhecer": "Pedem a equação da linha elástica, a rotação ou a flecha num ponto, ou há I(x) variável.", "metodo": "M(x) por trecho; v'' = −M/(E·I(x)); integre duas vezes; condições de contorno (apoio: v = 0; engaste: v = v' = 0) e de continuidade (v e v' iguais nos dois lados de cada ponto de troca)."}, {"id": "P-DESL-PORTICO", "nome": "Deslocamento de ponto em pórtico isostático", "reconhecer": "Pórtico em L, Z ou T, com barra rígida, rótula ou balanço; pedem u ou w de um ponto ou a rotação de outro.", "metodo": "Reações primeiro. Depois some casos: em cada um, uma barra flete e as outras andam como corpo rígido. Use o formulário (balanço: PL³/3EI, PL²/2EI, ML²/2EI, ML/EI; tramo biapoiado: ML/3EI e ML/6EI). Giro θ numa base leva um ponto a distância d de θ·d, perpendicular à linha que os une."}, {"id": "P-BETTI", "nome": "Usar um deslocamento dado em outra vinculação", "reconhecer": "'Conhecido o deslocamento w_C da fig. (1), determinar u_A da fig. (2)', com rigidezes diferentes ou não dadas.", "metodo": "Mostre que os esforços internos das duas figuras são proporcionais (mesma estrutura, outro apoio); escale o deslocamento dado pela linearidade; corrija com um giro de corpo rígido que respeite os apoios da fig. (2). Alternativa: teorema de Betti com as reações."}, {"id": "P-VIGA-CONT", "nome": "Viga contínua por tramos biapoiados", "reconhecer": "Viga sobre vários apoios, com 'resolver dividindo a barra em tramos biapoiados, obrigatoriamente'; pedem o diagrama de M (e às vezes de V).", "metodo": "Incógnitas = momentos nos apoios internos. Em cada apoio, θ_esquerda = θ_direita, com o formulário do tramo biapoiado (ML/3EI na ponta do momento, ML/6EI na oposta, PL²/16EI para P no meio, Mℓ/24EI para momento no meio). Resolva o sistema e monte o diagrama: retas entre apoios e cargas, salto igual a cada momento aplicado."}, {"id": "P-PORTICO-HIPER", "nome": "Pórtico hiperestático pelo método dos esforços", "reconhecer": "Pórtico com engastes ou apoios a mais; pedem o diagrama de M ou uma reação.", "metodo": "Grau de hiperestaticidade; libere vínculos e chame as forças de X, Y; calcule os deslocamentos nos vínculos liberados por superposição; imponha compatibilidade (deslocamento = 0 ou igual ao imposto); resolva e monte os diagramas."}, {"id": "P-TIRANTE", "nome": "Tirante com temperatura ou rigidez EA", "reconhecer": "Tirante (barra só com normal), dado EA = k·EI/a² ou a/EA = …, e aquecimento ou resfriamento ΔT.", "metodo": "Incógnita N no tirante. Deslocamento do ponto de ligação na estrutura sob N (por superposição) = variação de comprimento do tirante: ΔL = N·L/(EA) + α·ΔT·L, com o sinal certo (resfriamento encurta)."}, {"id": "P-SIMETRIA", "nome": "Reduzir pela simetria ou antissimetria", "reconhecer": "Estrutura simétrica; cargas espelhadas (simetria) ou com mesmo sentido de giro nos dois lados (antissimetria); às vezes 'considerando a antissimetria do carregamento'.", "metodo": "Simetria: no eixo, θ = 0 e cortante nula (engaste deslizante). Antissimetria: no eixo, v = 0, M = 0 e N = 0 (só a cortante). Barra sobre o eixo: divida a rigidez por 2. Resolva meia (ou um quarto da) estrutura e espelhe."}], "blocos": [{"id": "flexao", "nome": "Tensões na flexão", "questoes": ["PEF3201-2023-P3-Q1"]}, {"id": "deslocamentos", "nome": "Deslocamentos em estruturas isostáticas", "questoes": ["PEF3201-2024-P3-Q1", "PEF3201-2024-P3-Q3", "PEF3201-2025-P3-Q1"]}, {"id": "hiperestaticas", "nome": "Hiperestáticas: vigas contínuas, pórticos e tirantes", "questoes": ["PEF3201-2023-P3-Q2", "PEF3201-2023-P3-Q3", "PEF3201-2024-P3-Q2", "PEF3201-2024-P3-2SEM-Q3", "PEF3201-2025-P3-Q3", "PEF3201-2026-P3-Q2"]}], "codigo": "PEF3201", "materia": "Resistência dos Materiais I"}, "provas": [{"id": "PEF3201-2023-P3", "codigo": "PEF3201", "materia": "Resistência dos Materiais I", "prova": "P3", "ano": 2023, "rotulo": "2023/2", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 1, "id": "PEF3201-2023-P3-Q1", "pontos": 3.0, "topicos": ["tau-flexao", "secao-delgada", "inercia", "tensao-normal", "diagramas"], "padrao": "P-TAU-DELGADA", "padroes_secundarios": ["P-RESULTANTE"], "dificuldade": 3, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Viga biapoiada com seção de chapas finas cortadas: τ em M e N (módulo, direção e sentido) e resultante de σ numa região.", "armadilhas": ["Dividir por δ em vez de 2δ quando a parte só se solta com dois cortes simétricos", "Esquecer as paredes externas cortadas no S* do ponto N", "Pegar o sentido de τ no chute, sem o equilíbrio do elemento dx"], "armadilhas_tag": ["secao-delgada", "tau-flexao", "secao-delgada"], "gabarito": null, "respostas": ["τ_M = 2P/(17δc), horizontal, para a alma central", "τ_N = 3P/(17δc), vertical, para baixo", "R = 8Pa/(51c), tração"]}, {"n": 2, "id": "PEF3201-2023-P3-Q2", "pontos": 3.5, "topicos": ["viga-continua", "superposicao", "diagramas", "inercia-variavel", "linha-elastica"], "padrao": "P-VIGA-CONT", "padroes_secundarios": ["P-LE-INTEGRA"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 3, "resumo": "Viga contínua de três tramos com carga no meio e momento aplicado em C: diagrama de M por tramos biapoiados e efeito de I(x) variável.", "armadilhas": ["Esquecer o salto do momento aplicado no apoio C", "Trocar ML/(3EI) (ponta onde o momento atua) por ML/(6EI) (ponta oposta)"], "armadilhas_tag": ["diagramas", "superposicao"], "gabarito": null, "respostas": ["M_B = −Pa/20 (X = Pa/20)", "M sob P = +11Pa/80", "M_C = −7Pa/40 (esq.) e +Pa/80 (dir.)", "(b) θ_B,e = Xa/(2EI₀) em vez de Xa/(3EI)"]}, {"n": 3, "id": "PEF3201-2023-P3-Q3", "pontos": 3.5, "topicos": ["tirante", "hiper-portico", "portico-desl", "superposicao"], "padrao": "P-TIRANTE", "padroes_secundarios": ["P-DESL-PORTICO"], "dificuldade": 2, "pagina_enunciado": 2, "pagina_resolucao": 4, "resumo": "Pórtico isostático com balanço preso a um tirante resfriado (EA = 2EI/a²): força normal no tirante.", "armadilhas": ["Esquecer o giro de corpo rígido causado pela rotação em C", "Errar o sinal da compatibilidade térmica (resfriamento encurta o tirante)"], "armadilhas_tag": ["portico-desl", "tirante"], "gabarito": null, "respostas": ["w_A = 2Na³/(EI)", "N = 2αΔT·EI/(9a²), tração"]}]}, {"id": "PEF3201-2024-P3", "codigo": "PEF3201", "materia": "Resistência dos Materiais I", "prova": "P3", "ano": 2024, "rotulo": "2024/1", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 1, "id": "PEF3201-2024-P3-Q1", "pontos": 3.5, "topicos": ["portico-desl", "rotula", "superposicao"], "padrao": "P-DESL-PORTICO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Corpo em Z com barra rígida, apoiado em A e ligado por rótula a um balanço: deslocamento horizontal de D.", "armadilhas": ["Esquecer o giro de corpo rígido em torno de A causado pela flecha do balanço", "Achar que a rótula transmite momento da coluna para o balanço"], "armadilhas_tag": ["rotula", "rotula"], "gabarito": null, "respostas": ["R_A = 2P", "u_D = Pa³/(EI), para a esquerda (1/2 + 1/6 + 1/3)"]}, {"n": 2, "id": "PEF3201-2024-P3-Q2", "pontos": 3.5, "topicos": ["viga-continua", "simetria", "diagramas", "superposicao"], "padrao": "P-VIGA-CONT", "padroes_secundarios": ["P-SIMETRIA"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Viga contínua simétrica de quatro tramos com cargas e momentos aplicados: diagrama de M usando θ_C = 0.", "armadilhas": ["Esquecer o salto do momento aplicado em B", "Não ver que momentos espelhados (horário em B, anti-horário em D) formam carregamento simétrico"], "armadilhas_tag": ["diagramas", "simetria"], "gabarito": null, "respostas": ["θ_C = 0 por simetria", "M_B = −3Pa/5 (esq.) e +3Pa/20 (dir.)", "M sob P = +7Pa/20", "M_C = −9Pa/20"]}, {"n": 3, "id": "PEF3201-2024-P3-Q3", "pontos": 3.0, "topicos": ["reciprocidade", "portico-desl", "simetria", "hiper-portico"], "padrao": "P-BETTI", "padroes_secundarios": ["P-SIMETRIA"], "dificuldade": 3, "pagina_enunciado": 1, "pagina_resolucao": 3, "resumo": "(a) Deslocamento horizontal de A num L a partir de w_C conhecido de outra vinculação; (b) incógnitas e condições de contorno de pórtico antissimétrico.", "armadilhas": ["Recalcular deslocamentos em vez de usar o w_C dado e a linearidade", "Não dividir a rigidez da coluna sobre o eixo de simetria por 2"], "armadilhas_tag": ["reciprocidade", "simetria"], "gabarito": null, "respostas": ["(a) u_A = βPa³/(4EI), para a esquerda", "(b) incógnitas Q, Q̄ e M̄; coluna central com EI/2", "(b) w_C = 0, u_C = u_D, φ_C = φ_D"]}]}, {"id": "PEF3201-2024-P3-2SEM", "codigo": "PEF3201", "materia": "Resistência dos Materiais I", "prova": "P3", "ano": 2024, "rotulo": "2024/2", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 3, "id": "PEF3201-2024-P3-2SEM-Q3", "pontos": 3.5, "topicos": ["hiper-portico", "simetria", "rotula", "diagramas", "superposicao"], "padrao": "P-SIMETRIA", "padroes_secundarios": ["P-PORTICO-HIPER"], "dificuldade": 3, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Pórtico duplamente simétrico com rótulas no meio das colunas e momentos M* nos nós: diagrama de M com X e Y.", "armadilhas": ["Colocar momento ou cortante na rótula D", "Confundir simetria com antissimetria ao ler o sentido dos M*"], "armadilhas_tag": ["rotula", "simetria"], "gabarito": null, "respostas": ["X = Y = 3M*/(7a)", "Viga de cima: 2M*/7 em A, 4M*/7 e 3M*/7 em B, 0 em C", "Colunas sem momento (só normal X)"]}]}, {"id": "PEF3201-2025-P3", "codigo": "PEF3201", "materia": "Resistência dos Materiais I", "prova": "P3", "ano": 2025, "rotulo": "2025/2", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 1, "id": "PEF3201-2025-P3-Q1", "pontos": 3.0, "topicos": ["portico-desl", "superposicao", "rotula"], "padrao": "P-DESL-PORTICO", "padroes_secundarios": [], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Pórtico isostático com coluna, braço e viga 2EI: deslocamento horizontal de D e rotação de E por superposição.", "armadilhas": ["Usar EI em vez de 2EI na viga AB", "Esquecer que o giro de B leva D, a 2a de altura, para o lado"], "armadilhas_tag": ["superposicao", "portico-desl"], "gabarito": null, "respostas": ["R_B = 2P, V_A = 0, H_A = P", "u_D = 13Pa³/(6EI), para a esquerda", "φ_E = Pa²/(2EI), anti-horária"]}, {"n": 3, "id": "PEF3201-2025-P3-Q3", "pontos": 3.5, "topicos": ["hiper-portico", "simetria", "diagramas", "superposicao"], "padrao": "P-PORTICO-HIPER", "padroes_secundarios": ["P-SIMETRIA"], "dificuldade": 2, "pagina_enunciado": 1, "pagina_resolucao": 2, "resumo": "Pórtico engastado com carga distribuída horizontal nas duas colunas: diagrama de M por antissimetria e deformada.", "armadilhas": ["Esquecer a rotação do topo da coluna causada pela própria carga q", "Pôr momento no meio da viga num carregamento antissimétrico"], "armadilhas_tag": ["superposicao", "simetria"], "gabarito": null, "respostas": ["X = 2qℓ/7 (cortante no meio da viga)", "Base das colunas: 5qℓ²/14", "Topo das colunas e pontas da viga: qℓ²/7", "Meio da viga: 0"]}]}, {"id": "PEF3201-2026-P3", "codigo": "PEF3201", "materia": "Resistência dos Materiais I", "prova": "P3", "ano": 2026, "rotulo": "2026/1", "status": "rascunho", "transcricao": ["Chapa Prisma"], "resolucao": ["Chapa Prisma"], "revisao": [], "formato": "discursiva", "duracao_min": null, "questoes": [{"n": 2, "id": "PEF3201-2026-P3-Q2", "pontos": 3.5, "topicos": ["viga-continua", "diagramas", "superposicao"], "padrao": "P-VIGA-CONT", "padroes_secundarios": [], "dificuldade": 1, "pagina_enunciado": 1, "pagina_resolucao": 1, "resumo": "Viga contínua de dois tramos com momentos M0 no meio do 1º tramo e no apoio B: diagramas de M e V.", "armadilhas": ["Achar que momento aplicado muda a cortante", "Trocar o sinal da rotação do momento no meio do vão (Mℓ/24EI)"], "armadilhas_tag": ["diagramas", "superposicao"], "gabarito": null, "respostas": ["X = 5M0/12", "M: −17M0/24 e +7M0/24 no meio de AB; −5M0/12 e +7M0/12 em B", "V = −17M0/(24a) em AB e −7M0/(12a) em BC"]}]}], "atualizado": "22/11/2026", "blocos": [{"id": "PEF3201-P3-bloco-flexao", "nome": "Tensões na flexão", "questoes": ["PEF3201-2023-P3-Q1"]}, {"id": "PEF3201-P3-bloco-deslocamentos", "nome": "Deslocamentos em estruturas isostáticas", "questoes": ["PEF3201-2024-P3-Q1", "PEF3201-2024-P3-Q3", "PEF3201-2025-P3-Q1"]}, {"id": "PEF3201-P3-bloco-hiperestaticas", "nome": "Hiperestáticas: vigas contínuas, pórticos e tirantes", "questoes": ["PEF3201-2023-P3-Q2", "PEF3201-2023-P3-Q3", "PEF3201-2024-P3-Q2", "PEF3201-2024-P3-2SEM-Q3", "PEF3201-2025-P3-Q3", "PEF3201-2026-P3-Q2"]}], "guia": {"escopo": "A P3 de Resistência dos Materiais I (PEF3201) cobre o fim do programa: tensões de cisalhamento na flexão (seções delgadas), deslocamentos na flexão (linha elástica e superposição) e estruturas hiperestáticas pelo método dos esforços (vigas contínuas, pórticos, tirantes, simetria). As 10 questões recentes que temos (2023/2, 2024/1, 2024/2, 2025/2 e 2026/1) são todas desses três temas. Só a de 2023 está completa; das outras temos uma ou duas questões. O formato é fixo: 3 questões discursivas de 3,0 a 3,5 pontos. A prova é única para a turma (o cabeçalho não indica turma), e há P3 nos dois semestres.", "programa": ["Flexão simples normal: tensões de cisalhamento, seções delgadas abertas e fechadas (unicelulares)", "Características geométricas usadas: momento de inércia, momento estático S*", "Linha elástica: equação diferencial, deslocamentos e rotações", "Vigas hiperestáticas e contínuas (método dos esforços, por tramos biapoiados)", "Pórticos hiperestáticos, tirantes com temperatura, simetria e antissimetria"], "roteiro": [{"etapa": "Formulário de deslocamentos de cor", "texto": "Decore e saiba deduzir: balanço (PL³/3EI, PL²/2EI, ML²/2EI, ML/EI, qL⁴/8EI) e tramo biapoiado (ML/3EI, ML/6EI, PL²/16EI, qL³/24EI). Deduza um deles integrando v'' = −M/EI, como em 2023 Q2 (b)."}, {"etapa": "Deslocamento em pórtico isostático", "texto": "Refaça 2025/2 Q1 e 2024/1 Q1: reações, um caso por barra que flete, giro de corpo rígido das outras. Depois 2024/1 Q3 (a), que só usa linearidade e giro rígido."}, {"etapa": "Viga contínua por tramos", "texto": "2026/1 Q2 (uma incógnita), 2023/2 Q2 (duas incógnitas e momento aplicado em apoio) e 2024/1 Q2 (simetria, θ_C = 0). Monte sempre o diagrama com os saltos dos momentos aplicados."}, {"etapa": "Tirante e temperatura", "texto": "2023/2 Q3: força no tirante igualando a descida do ponto ao encurtamento térmico menos o elástico. Cuidado com o giro de corpo rígido do apoio articulado."}, {"etapa": "Simetria e antissimetria em pórticos", "texto": "2025/2 Q3 (uma incógnita), 2024/2 Q3 (duas incógnitas, dupla simetria, rótulas) e 2024/1 Q3 (b) (coluna sobre o eixo com EI/2)."}, {"etapa": "Cisalhamento em seção delgada", "texto": "2023/2 Q1: S* com cortes simétricos, divisão por 2δ e o sentido pelo elemento dx. Treine também o caso da seção vista 'da direita para a esquerda' (P3 2018 Q1)."}, {"etapa": "Simulado", "texto": "Faça a P3 2023/2 inteira, sem consulta, com a prova limpa. Só depois abra a resolução e corrija item por item."}], "tendencias": [{"titulo": "Hiperestática cai sempre", "texto": "Vigas contínuas ou pórticos hiperestáticos aparecem nas 5 provas recentes (6 das 10 questões que temos: 2023/2 Q2 e Q3, 2024/1 Q2, 2024/2 Q3, 2025/2 Q3, 2026/1 Q2). Em 2016–2019 também caíram em todas as provas que temos."}, {"titulo": "Deslocamento de pórtico isostático é a outra questão fixa", "texto": "Caiu em 2024/1 (Q1 e Q3 a) e 2025/2 (Q1), e antes em 2016, 2017 e 2018 (Q3). O padrão é um pórtico em L ou Z com barra rígida, rótula ou balanço, resolvido por superposição."}, {"titulo": "Simetria e antissimetria subiram", "texto": "Foram a chave de 4 questões recentes (2024/1 Q2 e Q3 b, 2024/2 Q3, 2025/2 Q3). Antes de 2021 só vimos isso em 2019 (Q3)."}, {"titulo": "Cisalhamento na flexão abre as provas completas", "texto": "Nas duas provas completas que temos (2018 e 2023/2), a Q1 é tensão de cisalhamento em seção delgada, com sentido pelo elemento dx. Das outras provas recentes não temos a Q1, então não dá para dizer que o tema sumiu: estude como certo."}, {"titulo": "Tirante com temperatura volta de tempos em tempos", "texto": "2016, 2018 (Q2) e 2023/2 (Q3). Vem sempre com EA dado em função de EI (EA = 2EI/a², a/EA = a³/12EI)."}, {"titulo": "Formato estável", "texto": "3 questões discursivas de 3,0 a 3,5 pontos. Desde 2018 o enunciado exige 'dividir em tramos biapoiados, obrigatoriamente', e em 2026 o formulário dos tramos veio na prova ('Dados')."}], "checklist": ["Calcular reações e o diagrama de V para achar o trecho mais solicitado por cortante", "Calcular S* de uma parte da seção delgada, com cortes simétricos quando a seção é fechada", "Aplicar τ = V·S*/(b·I) com b = soma das espessuras cortadas", "Decidir o sentido de τ pelo equilíbrio do elemento dx e dizer de que lado se olha a seção", "Calcular a resultante das tensões normais numa região: R = M·S*/I", "Integrar v'' = −M/(EI) com condições de contorno e de continuidade, inclusive com I(x) variável", "Citar de cor as rotações e flechas de balanço e de tramo biapoiado (momento, força e carga distribuída)", "Somar parcelas de deslocamento num pórtico: barra que flete + giro de corpo rígido das outras", "Tratar rótula (momento zero) e barra rígida (não flete, só gira) num cálculo de deslocamento", "Montar as equações θ_esq = θ_dir de uma viga contínua e resolver o sistema", "Desenhar o diagrama de M com os saltos dos momentos aplicados e o de V constante entre cargas", "Escrever a compatibilidade de um tirante com EA finito e variação de temperatura", "Identificar simetria ou antissimetria e escrever as condições no eixo (θ = 0 ou v = 0, M = 0)", "Dividir por 2 a rigidez de uma barra que está sobre o eixo de simetria", "Esboçar a deformada a partir do diagrama de M (curvatura do lado tracionado, pontos de inflexão)"], "pegadinhas": [{"titulo": "Dois cortes, 2δ", "texto": "Seção fechada simétrica: o fluxo se reparte entre dois cortes, então τ = V·S*/(2δ·I), não V·S*/(δ·I) (2023/2 Q1)."}, {"titulo": "Paredes cortadas também contam", "texto": "O ponto N de 2023/2 Q1 recebe também o fluxo das paredes externas cortadas: S* = 9δc², não 6δc²."}, {"titulo": "Salto do momento aplicado", "texto": "Momento aplicado num apoio cria salto no diagrama: dê o valor dos dois lados (2023/2 Q2, 2024/1 Q2, 2026/1 Q2)."}, {"titulo": "Momento aplicado e cortante", "texto": "Momento aplicado não muda a cortante: V continua constante no tramo (2026/1 Q2)."}, {"titulo": "Apoio articulado gira", "texto": "Apoio articulado gira: a rotação em C leva a coluna e o braço como corpo rígido (2023/2 Q3)."}, {"titulo": "Balanço embaixo da rótula", "texto": "Balanço flexível sob uma rótula: a flecha da ponta faz o corpo apoiado girar (2024/1 Q1, parcela III)."}, {"titulo": "Sinal do tirante", "texto": "Resfriamento encurta o tirante; a força de tração reduz o encurtamento: ΔL = −αΔT·L + N·L/(EA)."}, {"titulo": "Rigidez 2EI", "texto": "Viga com 2EI: não use EI no formulário (2025/2 Q1)."}, {"titulo": "Braço de alavanca do giro", "texto": "Ponto a 2a acima da base gira 2a·θ, não a·θ (2025/2 Q1)."}, {"titulo": "Barra sobre o eixo", "texto": "Barra sobre o eixo de simetria entra com EI/2 na meia estrutura (2024/1 Q3 b)."}, {"titulo": "Simetria ou antissimetria", "texto": "Momentos de mesmo sentido de giro nos dois lados formam carregamento antissimétrico; espelhados, simétrico (2024/2 Q3, 2024/1 Q2)."}], "dicas_prova": ["Comece pelas reações e diagramas: valem ponto em todas as questões e mostram o trecho mais solicitado.", "Desenhe cada caso de superposição separado, com a deformada e o valor de cada parcela. Os gabaritos dão nota por parcela (1,0 + 1,0 + 1,5 em 2024/1 Q1).", "Numere as equações de compatibilidade (I), (II) e diga o que é cada incógnita e seu sentido positivo.", "Se o enunciado manda 'dividir em tramos biapoiados, obrigatoriamente', não use outro método: perde ponto.", "Em τ, diga módulo, direção e sentido, e desenhe o elemento dx com N* e N* + dN*. O sentido sem esse desenho não vale ponto.", "Na seção, diga de que lado está olhando (observador no apoio direito ou 'da direita para a esquerda').", "O formulário de tramos biapoiados pode vir na prova (2026/1 'Dados'), mas o de balanço não: saiba de cor.", "Confira o equilíbrio dos nós no fim: a soma dos momentos das barras num nó é o momento aplicado nele."], "formulario": [{"nome": "Linha elástica", "typst": "$v'' = -M/(E I)$", "txt": "v'' = −M/(EI)"}, {"nome": "Tensão normal na flexão", "typst": "$sigma = M/I z$", "txt": "σ = M·z/I"}, {"nome": "Tensão de cisalhamento (Jourawski)", "typst": "$tau = (V S^*)/(b I)$", "txt": "τ = V·S*/(b·I)"}, {"nome": "Resultante numa região da seção", "typst": "$R = (M S^*)/I$", "txt": "R = M·S*/I"}, {"nome": "Steiner", "typst": "$I = I_G + A d^2$", "txt": "I = I_G + A·d²"}, {"nome": "Balanço com força na ponta", "typst": "$v = (P L^3)/(3 E I), quad theta = (P L^2)/(2 E I)$", "txt": "v = PL³/(3EI); θ = PL²/(2EI)"}, {"nome": "Balanço com momento na ponta", "typst": "$v = (M L^2)/(2 E I), quad theta = (M L)/(E I)$", "txt": "v = ML²/(2EI); θ = ML/(EI)"}, {"nome": "Balanço com carga distribuída", "typst": "$v = (q L^4)/(8 E I), quad theta = (q L^3)/(6 E I)$", "txt": "v = qL⁴/(8EI); θ = qL³/(6EI)"}, {"nome": "Tramo biapoiado com momento na ponta", "typst": "$theta_\"perto\" = (M L)/(3 E I), quad theta_\"longe\" = (M L)/(6 E I)$", "txt": "θ na ponta do momento = ML/(3EI); na outra = ML/(6EI)"}, {"nome": "Tramo biapoiado com P no meio", "typst": "$theta = (P L^2)/(16 E I), quad v_max = (P L^3)/(48 E I)$", "txt": "θ = PL²/(16EI); flecha = PL³/(48EI)"}, {"nome": "Tramo biapoiado com carga distribuída", "typst": "$theta = (q L^3)/(24 E I), quad v_max = (5 q L^4)/(384 E I)$", "txt": "θ = qL³/(24EI); flecha = 5qL⁴/(384EI)"}, {"nome": "Tramo biapoiado com momento no meio", "typst": "$theta = (M L)/(24 E I)$ (nas duas pontas, mesmo sentido)", "txt": "θ = ML/(24EI) nas duas pontas"}, {"nome": "Tirante", "typst": "$Delta L = (N L)/(E A) + alpha Delta T L$", "txt": "ΔL = NL/(EA) + α·ΔT·L"}, {"nome": "Giro de corpo rígido", "typst": "$delta = theta d$ (perpendicular à linha até o centro do giro)", "txt": "δ = θ·d, perpendicular à linha até o centro do giro"}, {"nome": "Simetria e antissimetria no eixo", "typst": "simetria: $theta = 0$, $V = 0$; antissimetria: $v = 0$, $M = 0$, $N = 0$", "txt": "simetria: θ = 0 e V = 0; antissimetria: v = 0, M = 0 e N = 0"}]}, "historico": [{"ano": 2016, "rotulo": "P3 2016", "fonte": "fontes/2016-antiga-L8qK", "questoes": [{"resumo": "Tensões de cisalhamento em M e N de uma seção delgada com almas inclinadas (em V), viga biapoiada com cargas P.", "topicos": ["tau-flexao", "secao-delgada", "inercia"]}, {"resumo": "Estrutura com barra rígida e tirante (EA = 2EI/a²): deslocamento do ponto A.", "topicos": ["tirante", "portico-desl", "rotula"]}]}, {"ano": 2017, "rotulo": "P3 2017", "fonte": "fontes/sem-ano-antiga-M8rb", "questoes": [{"resumo": "Viga contínua com cargas concentradas e momento aplicado: diagrama de momentos.", "topicos": ["viga-continua", "diagramas"]}, {"resumo": "Q3: deslocamento em pórtico isostático com uma barra flexível (sistema de barras).", "topicos": ["portico-desl", "superposicao"]}]}, {"ano": 2018, "rotulo": "P3 2018 (30/11)", "fonte": "fontes/2018-antiga-0v9x", "questoes": [{"resumo": "Q1: tensões tangenciais em M e N da seção mais solicitada por cortante, seção de chapas com diagonais; seção vista da direita.", "topicos": ["tau-flexao", "secao-delgada", "inercia"]}, {"resumo": "Q2: viga contínua apoiada num tirante (EA) aquecido; diagramas de M por tramos biapoiados.", "topicos": ["viga-continua", "tirante", "diagramas"]}, {"resumo": "Q3: deslocamento vertical do ponto de aplicação da carga 2P numa estrutura com barra rígida.", "topicos": ["portico-desl", "rotula"]}]}, {"ano": 2019, "rotulo": "P3 2019 reof (19/6)", "fonte": "fontes/2019-antiga-ppDD", "questoes": [{"resumo": "Q3: viga contínua engastada nas pontas, com P e M* = Pℓ/4: diagrama de M por tramos biapoiados, explorando simetria e antissimetria.", "topicos": ["viga-continua", "simetria", "diagramas"]}]}], "extra": {}, "codigos": ["PEF3201"], "simulado": null}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('dados').textContent);
+const T = D.taxonomia, PROVAS = D.provas.slice().sort((a,b)=>a.ano-b.ano), G = D.guia || {}, H = D.historico || [];
+const top = Object.fromEntries(T.topicos.map(t=>[t.slug,t]));
+const pad = Object.fromEntries(T.padroes.map(p=>[p.id,p]));
+const Q = [];
+PROVAS.forEach(p=>p.questoes.forEach(q=>Q.push(Object.assign({prova:p.prova, ano:p.ano, rot:p.rotulo||String(p.ano), pid:p.id, status:p.status}, q))));
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num = (x,d=1) => x.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pdf = (q,v) => `pdf/${q.pid}_${v}.pdf#page=${v==='enunciado'?q.pagina_enunciado:q.pagina_resolucao}`;
+const qrot = q => `${q.rot} · Q${q.n}`;
+const ga = (nome) => { try { window.goatcounter && window.goatcounter.count({path: 'p3-' + T.codigo + '-' + nome, event: true}); } catch(e){} };
+
+// topo
+const n = PROVAS.length;
+document.getElementById('titulo').textContent = T.materia;
+document.getElementById('sub').innerHTML = `<b>${esc((D.codigos||[T.codigo]).join(' / '))}</b> · baseado em <b>${n} ${n>1?'provas':'prova'}</b> (P3 de ${PROVAS.map(p=>esc(p.rotulo||p.ano)).join(', ')})${H.length?` e em ${H.length} P3 de 2016–2020 para a tendência`:''} · atualizado em ${esc(D.atualizado)}`;
+const guiaPdf = `pdf/${T.codigo}-P3-guia.pdf`;
+document.getElementById('docs').innerHTML =
+  `<a class="pdfguia" href="${guiaPdf}" target="_blank" rel="noopener" data-ga="guia-pdf">Guia da P3 em PDF ↓</a>` +
+  `<span class="grp">Provas: treinar e resolução</span>` +
+  PROVAS.map(p=>`<a href="pdf/${p.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="prova">${esc(p.rotulo||p.ano)} · prova</a><a href="pdf/${p.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="resolucao">${esc(p.rotulo||p.ano)} · resolução</a>`).join('') +
+  ((D.blocos||[]).length ? `<span class="grp">Por assunto</span>` + D.blocos.map(b=>`<a href="pdf/${b.id}_enunciado.pdf" target="_blank" rel="noopener" data-ga="bloco">${esc(b.nome)} · prova</a><a href="pdf/${b.id}_resolucao.pdf" target="_blank" rel="noopener" data-ga="bloco-res">${esc(b.nome)} · resolução</a>`).join('') : '');
+document.getElementById('docs').addEventListener('click', e=>{ const a=e.target.closest('a[data-ga]'); if(a) ga(a.dataset.ga); });
+const av = [];
+if (T.nota_organizacao) av.push(`<b>Como a P3 se organiza.</b> ${esc(T.nota_organizacao)}`);
+if (PROVAS.some(p=>p.status!=='revisada')) av.push('<b>Resoluções em revisão.</b> Ainda não foram conferidas por um segundo revisor. Achou algo? Avise em @prisma.poli.');
+if (n < 4) av.push(`<b>Poucas provas, tendência fraca.</b> São só ${n} P3 analisadas; os números mostram o que já caiu, não o que vai cair.`);
+else av.push(`<b>Lembre:</b> os números mostram o que caiu nas ${n} P3 analisadas, não o que vai cair.`);
+document.getElementById('avisos').innerHTML = av.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+// guia
+document.getElementById('gEscopo').textContent = G.escopo || '';
+document.getElementById('gProg').innerHTML = (G.programa||[]).map(x=>`<span>${esc(x)}</span>`).join('');
+const semNum = s => String(s||'').replace(/^\s*(\d+|[ivx]+)\s*[.)º°:-]\s*/i,'');
+document.getElementById('gRoteiro').innerHTML = (G.roteiro||[]).map(r=>`<li><div><b>${esc(semNum(r.etapa))}</b><p>${esc(r.texto)}</p></div></li>`).join('');
+document.getElementById('gTend').innerHTML = (G.tendencias||[]).map(t=>`<div><b>${esc(t.titulo)}</b><p>${esc(t.texto)}</p></div>`).join('');
+document.getElementById('gPegas').innerHTML = (G.pegadinhas||[]).map(t=>`<div><b>${esc(t.titulo)}</b>${esc(t.texto)}</div>`).join('');
+document.getElementById('gDicas').innerHTML = (G.dicas_prova||[]).map(t=>`<li>${esc(t)}</li>`).join('');
+document.getElementById('gForm').innerHTML = (G.formulario||[]).map(f=>`<div><small>${esc(f.nome)}</small><code>${esc(f.txt)}</code></div>`).join('');
+const CK = 'fuja-p3-check-' + T.codigo;
+let marcados = {}; try { marcados = JSON.parse(localStorage.getItem(CK) || '{}') || {}; } catch(e) { marcados = {}; }
+const lista = G.checklist || [];
+document.getElementById('gCheck').innerHTML = lista.map((c,i)=>`<label for="ck${i}"><input type="checkbox" id="ck${i}" data-i="${i}" ${marcados[i]?'checked':''}><span>${esc(c)}</span></label>`).join('');
+const atualiza = () => { const k = lista.filter((_,i)=>marcados[i]).length; document.getElementById('gCont').textContent = `${k} de ${lista.length}`; document.getElementById('gFill').style.width = (lista.length? 100*k/lista.length : 0) + '%'; };
+document.getElementById('gCheck').addEventListener('change', e=>{ const i=e.target.dataset.i; if(i==null) return; if(e.target.checked) marcados[i]=1; else delete marcados[i]; try{ localStorage.setItem(CK, JSON.stringify(marcados)); }catch(err){} atualiza(); });
+document.getElementById('gZerar').addEventListener('click', ()=>{ marcados={}; try{ localStorage.removeItem(CK); }catch(err){} document.querySelectorAll('#gCheck input').forEach(x=>x.checked=false); atualiza(); });
+atualiza();
+
+// mapa de calor: coluna total + uma por prova
+const colunas = [{k:'tot', label:'Total', provas:PROVAS}].concat(PROVAS.map(p=>({k:p.id, label:p.rotulo||String(p.ano), provas:[p]})));
+const contagem = slug => colunas.map(c=>{ const qs=Q.filter(q=>c.provas.some(p=>p.id===q.pid) && q.topicos.includes(slug)); const np=new Set(qs.map(q=>q.pid)).size; return {np, tot:c.provas.length, qs}; });
+const grupos = [...new Set(T.topicos.map(t=>t.grupo))];
+const ordem = T.topicos.slice().sort((a,b)=> grupos.indexOf(a.grupo)-grupos.indexOf(b.grupo));
+let html = '<thead><tr><th>Tópico</th>' + colunas.map(c=>`<th class="col">${esc(c.label)}</th>`).join('') + '</tr></thead><tbody>';
+ordem.forEach(t=>{
+  const cs = contagem(t.slug);
+  html += `<tr><td class="t">${esc(t.nome)}<small>${esc(t.grupo)}</small></td>` + cs.map((c,i)=>{
+    const fr = c.np/c.tot; const lvl = c.np===0?0: (fr<=0.34?1: fr<=0.67?2:3);
+    const txt = colunas[i].provas.length>1 ? `${c.np} de ${c.tot}` : (c.np? '✓' : '–');
+    const aria = `${t.nome}, ${colunas[i].label}: ${c.np} de ${c.tot} provas`;
+    return `<td class="c"><button class="cell" type="button" data-n="${lvl}" data-t="${t.slug}" data-c="${i}" aria-label="${esc(aria)}" ${c.np?'':'tabindex="-1"'}>${txt}</button></td>`; }).join('') + '</tr>';
+});
+document.getElementById('heat').innerHTML = html + '</tbody>';
+document.getElementById('legend').innerHTML = '<span><i style="background:var(--h0)"></i>não apareceu</span><span><i style="background:var(--h1)"></i>em poucas</span><span><i style="background:var(--h2)"></i>em cerca de metade</span><span><i style="background:var(--h3)"></i>em quase todas</span>';
+document.getElementById('heat').addEventListener('click', e=>{
+  const b = e.target.closest('.cell'); if(!b || b.dataset.n==='0') return;
+  document.querySelectorAll('.cell.sel').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+  const t = top[b.dataset.t], c = colunas[+b.dataset.c], cs = contagem(t.slug)[+b.dataset.c];
+  document.getElementById('heatdetail').innerHTML = `<b>${esc(t.nome)}</b> · ${esc(c.label)}: apareceu em ${cs.np} de ${cs.tot} ${cs.tot>1?'provas analisadas':'prova'}.<ul>` +
+    cs.qs.map(q=>`<li><a class="qlink" href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">${esc(qrot(q))}</a> ${esc(q.resumo)}</li>`).join('') + '</ul>';
+});
+
+// tendência: 2016–2020 x provas recentes
+const recentes = PROVAS.filter(p=>p.ano>=2021);
+if (H.length && recentes.length) {
+  const fA = slug => H.filter(h=>h.questoes.some(q=>q.topicos.includes(slug))).length / H.length;
+  const fR = slug => recentes.filter(p=>p.questoes.some(q=>q.topicos.includes(slug))).length / recentes.length;
+  const linhas = T.topicos.map(t=>({t, a:fA(t.slug), r:fR(t.slug)})).filter(x=>x.a||x.r).sort((x,y)=>(y.r-y.a)-(x.r-x.a) || y.r-x.r);
+  const pct = x => Math.round(x*100) + '%';
+  document.getElementById('trLead').textContent = `Em quantas P3 cada tópico apareceu: ${H.length} provas de 2016–2020 contra ${recentes.length} de 2021 em diante. Com poucas provas, uma diferença pequena pode ser acaso.`;
+  document.getElementById('trTab').innerHTML = '<thead><tr><th>Tópico</th><th>2016–2020</th><th>2021 em diante</th><th>Tendência</th></tr></thead><tbody>' +
+    linhas.map(x=>{ const d = x.r - x.a; const s = d>0.2?['up','↑ subiu']: d<-0.2?['down','↓ caiu menos']:['eq','≈ estável'];
+      return `<tr><td>${esc(x.t.nome)}</td><td class="n"><span class="mini" style="width:${Math.max(2,x.a*80)}px"></span>${pct(x.a)}</td><td class="n"><span class="mini r" style="width:${Math.max(2,x.r*80)}px"></span>${pct(x.r)}</td><td><span class="seta ${s[0]}">${s[1]}</span></td></tr>`; }).join('') + '</tbody>';
+} else {
+  document.getElementById('tendencia').remove(); const a=document.querySelector('#toc a[href="#tendencia"]'); if(a) a.remove();
+}
+
+// quanto vale
+const vale = T.topicos.map(t=>{ const tot = PROVAS.reduce((s,p)=>{ const tp=p.questoes.reduce((a,q)=>a+(q.pontos||0),0)||10; return s + p.questoes.filter(q=>q.topicos.includes(t.slug)).reduce((a,q)=>a+(q.pontos||0),0)*10/tp; },0); return {t, v: tot/PROVAS.length}; }).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+document.getElementById('bars').innerHTML = vale.map(x=>`<div class="bar"><span>${esc(x.t.nome)}</span><div class="track"><div class="fill" style="width:${Math.min(100,x.v*10)}%"></div></div><span class="v">${num(x.v)}</span></div>`).join('');
+
+// padrões
+const qsDoPadrao = id => Q.filter(q=>q.padrao===id || (q.padroes_secundarios||[]).includes(id));
+document.getElementById('pad').innerHTML = '<thead><tr><th>Padrão</th><th>Como reconhecer</th><th>Como atacar</th><th>Onde caiu</th></tr></thead><tbody>' +
+  T.padroes.map(p=>`<tr><td><b>${esc(p.nome)}</b><span class="pid">${esc(p.id)}</span></td><td>${esc(p.reconhecer)}</td><td>${esc(p.metodo)}</td><td>${qsDoPadrao(p.id).map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'<span class="empty">–</span>'}</td></tr>`).join('') + '</tbody>';
+
+// armadilhas por tópico
+const porTop = {};
+Q.forEach(q=>(q.armadilhas_tag||[]).forEach((slug,i)=>{ (porTop[slug] ||= []).push({txt:q.armadilhas[i], q}); }));
+document.getElementById('traps').innerHTML = Object.entries(porTop).filter(([s])=>top[s]).sort((a,b)=>b[1].length-a[1].length).map(([slug,arr])=>
+  `<div class="trap"><h3>${esc(top[slug].nome)} <span class="meta">· ${arr.length}</span></h3><ul>${arr.map(a=>`<li>${esc(a.txt)} <span>${esc(qrot(a.q))}</span></li>`).join('')}</ul></div>`).join('');
+
+// banco
+const opt = (sel, arr, all) => { sel.innerHTML = `<option value="">${all}</option>` + arr.map(([v,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join(''); };
+const fTop=document.getElementById('fTop'), fPad=document.getElementById('fPad'), fAno=document.getElementById('fAno'), fDif=document.getElementById('fDif');
+opt(fTop, T.topicos.map(t=>[t.slug,t.nome]), 'Todos');
+opt(fPad, T.padroes.map(p=>[p.id,p.nome]), 'Todos');
+opt(fAno, PROVAS.map(p=>[p.id,p.rotulo||p.ano]), 'Todas');
+opt(fDif, [[1,'1 · aplicação direta'],[2,'2 · montar a estratégia'],[3,'3 · exige uma sacada']], 'Todas');
+const dif = d => '●'.repeat(d)+'○'.repeat(3-d);
+const card = (q, opts={}) => `<article class="qcard">
+  <div class="qtop"><span class="qid">${esc(qrot(q))}</span><span class="meta">${q.pontos!=null?num(q.pontos)+' pontos · ':''}<span class="dots" title="dificuldade ${q.dificuldade} de 3">${dif(q.dificuldade)}</span></span></div>
+  <div>${esc(q.resumo)}</div>
+  <div class="tags">${q.topicos.map(s=>`<span class="tag">${esc(top[s].nome)}</span>`).join('')}<span class="tag p">${esc(q.padrao)}</span></div>
+  <div class="links"><a href="${pdf(q,'enunciado')}" target="_blank" rel="noopener">Enunciado</a>${opts.semResolucao?'':`<a class="r" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">Resolução</a>`}</div>
+  ${opts.gabarito?`<div class="key"><span class="lbl">Gabarito rápido</span><ol>${q.respostas.map(r=>`<li>${esc(r)}</li>`).join('')}</ol></div>`:''}
+</article>`;
+function render(){
+  const r = Q.filter(q=>(!fTop.value||q.topicos.includes(fTop.value)) && (!fPad.value||q.padrao===fPad.value||(q.padroes_secundarios||[]).includes(fPad.value)) && (!fAno.value||q.pid===fAno.value) && (!fDif.value||String(q.dificuldade)===fDif.value));
+  document.getElementById('cards').innerHTML = r.length ? r.map(q=>card(q)).join('') : '<p class="empty">Nenhuma questão com esses filtros. Tire um dos filtros para ver mais.</p>';
+}
+[fTop,fPad,fAno,fDif].forEach(s=>s.addEventListener('change',render)); render();
+
+// simulado (por blocos de conteúdo)
+const SIM = D.simulado || {};
+const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
+const nSim = SIM.n || Math.max(1, Math.round(Q.length / Math.max(1,n)));
+document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false;
+const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
+const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
+const durPadrao = SIM.duracao || (durs.length ? durs.sort((a,b)=>a-b)[Math.floor(durs.length/2)] : 110);
+if (![...dur.options].some(o=>+o.value===durPadrao)) { const o=document.createElement('option'); o.value=durPadrao; o.textContent=durPadrao+' min'; dur.appendChild(o); }
+dur.value = String(durPadrao);
+document.getElementById('simdur').textContent = durs.length ? `Duração sugerida: ${durPadrao} min, a das P3 analisadas. Ajuste ao tempo da sua turma.` : 'A duração não consta nas provas analisadas; ajuste ao tempo da sua turma.';
+const bx=document.createElement('div'); bx.className='blocos'; bx.innerHTML = '<span class="lbl">Blocos que caem na sua prova</span>' + BL.map((b,i)=>`<label class="chk" for="blk${i}"><input type="checkbox" id="blk${i}" data-i="${i}" checked> ${esc(b.nome)} <span class="meta">(${b.ids.length} questões)</span></label>`).join('');
+document.querySelector('.sim').insertBefore(bx, document.querySelector('.simbar'));
+bx.addEventListener('change', ()=>sortear());
+function sortear(){
+  const sel=[...document.querySelectorAll('.blocos input:checked')].map(i=>BL[+i.dataset.i]);
+  const pool=[...new Set(sel.flatMap(b=>b.ids))].map(id=>Q.find(q=>q.id===id)).filter(Boolean);
+  const emb=pool.slice().sort(()=>Math.random()-0.5); const pick=[]; const usados=new Set();
+  for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
+  for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
+  sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
+  encerrado=false; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+}
+function desenhaSim(){
+  document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
+}
+function parar(){ clearInterval(timer); timer=null; rodando=false; }
+bStart.addEventListener('click',()=>{
+  if(encerrado) return;
+  if(rodando){ parar(); bStart.textContent='Continuar'; return; }
+  rodando=true; bStart.textContent='Pausar'; ga('simulado');
+  timer=setInterval(()=>{ restante=Math.max(0,restante-1); clock.textContent=fmt(restante); if(!restante){ encerrar(); } },1000);
+});
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; desenhaSim(); }
+bEnd.addEventListener('click',encerrar);
+document.getElementById('bNew').addEventListener('click',sortear);
+dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
+sortear();
+
+// estude aqui
+document.getElementById('study').innerHTML = ordem.map(t=>{
+  const qs = Q.filter(q=>q.topicos.includes(t.slug));
+  return `<div><b>${esc(t.nome)}</b><p>${qs.map(q=>`<a class="qlink" href="${pdf(q,'resolucao')}" target="_blank" rel="noopener">${esc(qrot(q))}</a>`).join('')||'Não caiu nas P3 recentes analisadas.'}</p></div>`; }).join('');
+
+
+if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+<script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
+function rot(){var d=r.getAttribute("data-theme")==="dark";b.textContent=d?"☀ Modo claro":"☾ Modo escuro";b.setAttribute("aria-pressed",d?"true":"false")}
+b.addEventListener("click",function(){var d=r.getAttribute("data-theme")!=="dark";if(d)r.setAttribute("data-theme","dark");else r.removeAttribute("data-theme");try{localStorage.setItem("fuja-p3-tema",d?"dark":"light")}catch(e){}rot()});rot()})();</script>
+</body>
+</html>
