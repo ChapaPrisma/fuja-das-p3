@@ -243,6 +243,17 @@ footer a{color:inherit}
 .abre .lbl::before{content:"";width:8px;height:8px;border-radius:50%;background:#0F2347}
 .abre-txt{font-size:1.12rem;line-height:1.6;max-width:72ch;margin:0;text-wrap:pretty}
 .abre-base{color:var(--muted);font-size:.9rem;max-width:72ch;margin:0;padding-left:12px;border-left:3px solid var(--lilas)}
+/* simulado em PDF: botões e visor na própria página */
+.pdfgrp{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pdfgrp[hidden]{display:none}
+.pdfrot{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.visor{margin:14px 0 6px;border:1px solid var(--line);border-radius:6px;background:var(--soft);overflow:hidden;scroll-margin-top:72px}
+.visor-top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+.visor-acoes{display:inline-flex;gap:8px}
+.visor-pgs{max-height:min(85vh,1100px);overflow:auto;padding:14px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.visor-pg{width:100%;max-width:820px;margin:0 auto;flex:none;aspect-ratio:595/842;background:#fff;box-shadow:0 2px 12px -5px rgba(15,35,71,.4);border-radius:2px}
+.visor-pg canvas{width:100%;height:auto;display:block;border-radius:2px}
+@media (max-width:560px){.visor-pgs{padding:8px;gap:8px;max-height:80vh}}
 /* tipo de material junto aos PDFs */
 .docs .revnota a{display:inline;background:none;border:0;padding:0;border-radius:0;color:inherit;font-size:inherit;font-weight:500;text-decoration:underline;text-underline-offset:2px;box-shadow:none!important;transform:none!important}
 .docs .revnota{width:100%;margin:2px 0 4px;font-size:.84rem;color:var(--warn-fg);background:var(--warn-bg);border-left:3px solid var(--laranja);padding:7px 11px;border-radius:2px;max-width:72ch}
@@ -380,12 +391,16 @@ main section{scroll-margin-top:70px}
         <button class="btn pri" id="bStart" type="button">Começar</button>
         <button class="btn" id="bEnd" type="button">Encerrar e ver resolução</button>
         <button class="btn" id="bNew" type="button">Sortear outra</button>
-        <button class="btn" id="bPdf" type="button">Baixar em PDF <span class="ar ar-d">↓</span></button>
-        <button class="btn pri" id="bPdfRes" type="button" hidden>Resolução em PDF <span class="ar ar-d">↓</span></button>
+        <span class="pdfgrp"><span class="pdfrot">Prova em PDF</span><button class="btn" id="bVer" type="button">Ver aqui</button><button class="btn" id="bPdf" type="button">Baixar <span class="ar ar-d">↓</span></button></span>
+        <span class="pdfgrp" id="grpRes" hidden><span class="pdfrot">Resolução em PDF</span><button class="btn pri" id="bVerRes" type="button">Ver aqui</button><button class="btn" id="bPdfRes" type="button">Baixar <span class="ar ar-d">↓</span></button></span>
         <label class="dur" for="dur">Duração
           <select id="dur"><option value="60">60 min</option><option value="90">90 min</option><option value="100">100 min</option><option value="110">110 min</option><option value="120">120 min</option></select></label>
       </div>
       <p class="empty" style="margin:0" id="simdur"></p>
+      <div class="visor" id="visor" hidden>
+        <div class="visor-top"><b id="visorTit">Simulado</b><span class="visor-acoes"><button class="btn" id="vBaixar" type="button">Baixar <span class="ar ar-d">↓</span></button><button class="btn" id="vFechar" type="button">Fechar ✕</button></span></div>
+        <div class="visor-pgs" id="visorPgs" tabindex="0" aria-label="Páginas do PDF do simulado"></div>
+      </div>
       <div id="simqs" class="cards"></div>
     </div>
   </section>
@@ -540,8 +555,8 @@ const SIM = D.simulado || {};
 const BL = (D.blocos||[]).length ? D.blocos.map(b=>({nome:b.nome, ids:b.questoes})) : [{nome:'Todas as questões', ids:Q.map(q=>q.id)}];
 const nSim = SIM.n || Math.max(1, Math.round(PROVAS.reduce((t,p)=>t+p.questoes.length,0) / Math.max(1,n)));   // tamanho de uma P3 típica (sem material complementar)
 document.getElementById('simlead').textContent = SIM.texto || `Escolha os blocos que caem na sua turma. O sorteio pega ${nSim} questões desses blocos, de anos diferentes quando dá. O gabarito rápido e os links das resoluções só aparecem quando você encerra.`;
-let sim=[], restante=0, timer=null, rodando=false, encerrado=false, fim=0;
-const bPdf=document.getElementById('bPdf'), bPdfRes=document.getElementById('bPdfRes');
+let sim=[], restante=0, timer=null, rodando=false, encerrado=false, fim=0, aoSortear=()=>{};
+const bPdf=document.getElementById('bPdf'), bPdfRes=document.getElementById('bPdfRes'), grpRes=document.getElementById('grpRes');
 const clock=document.getElementById('clock'), bStart=document.getElementById('bStart'), bEnd=document.getElementById('bEnd'), dur=document.getElementById('dur');
 const fmt = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
 const durs = PROVAS.map(p=>p.duracao_min).filter(Boolean);
@@ -565,7 +580,7 @@ function sortear(){
   for (const q of emb) { if (pick.length>=nSim) break; if (!usados.has(q.pid) || usados.size>=n) { pick.push(q); usados.add(q.pid); } }
   for (const q of emb) { if (pick.length>=nSim) break; if (!pick.includes(q)) pick.push(q); }
   sim = pick.sort((a,b)=>pool.indexOf(a)-pool.indexOf(b));
-  encerrado=false; bPdfRes.hidden=true; parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
+  encerrado=false; grpRes.hidden=true; aoSortear(); parar(); restante=+dur.value*60; clock.textContent=fmt(restante); bStart.textContent='Começar'; bStart.disabled=!sim.length; desenhaSim();
 }
 function desenhaSim(){
   document.getElementById('simqs').innerHTML = `<p class="empty" style="margin:0">${sim.length} questões</p>` + sim.map((q,i)=>`<div class="simq"><div class="num">${i+1}</div>${card(q,{semResolucao:!encerrado, gabarito:encerrado})}</div>`).join('');
@@ -580,7 +595,7 @@ bStart.addEventListener('click',()=>{
 });
 function tique(){ if(!rodando) return; restante=Math.max(0,Math.ceil((fim-Date.now())/1000)); clock.textContent=fmt(restante); if(!restante){ encerrar(); } }
 document.addEventListener('visibilitychange', tique);
-function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; bPdfRes.hidden=false; desenhaSim(); }
+function encerrar(){ parar(); encerrado=true; bStart.disabled=true; bStart.textContent='Encerrado'; grpRes.hidden=false; desenhaSim(); }
 bEnd.addEventListener('click',encerrar);
 document.getElementById('bNew').addEventListener('click',sortear);
 dur.addEventListener('change',()=>{ if(!rodando && !encerrado){ restante=+dur.value*60; clock.textContent=fmt(restante);} });
@@ -637,16 +652,54 @@ async function montaPDF(v){   // v: 'e' (enunciados) ou 'r' (resoluções)
   }
   return out.save();
 }
-async function baixaPDF(v, botao){
-  const txt = botao.innerHTML; botao.disabled = true; botao.textContent = 'Montando o PDF…';
-  try {
-    const bytes = await montaPDF(v);
-    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
-    a.download = `Simulado P3 - ${T.materia}${v==='r' ? ' - resolução' : ''}.pdf`; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 10000); ga(v==='r' ? 'simulado-pdf-res' : 'simulado-pdf');
-  } catch (e) { alert('Não deu para montar o PDF agora (' + e.message + '). Os links de cada questão continuam funcionando.'); }
+// o mesmo PDF serve para ver e para baixar: guarda o último de cada versão enquanto o sorteio não muda
+const pdfFeito = {};
+const chaveSim = v => v + '|' + sim.map(q => q.id).join(',');
+async function pdfDo(v){ const k = chaveSim(v); if (!pdfFeito[k]) pdfFeito[k] = montaPDF(v).catch(e => { delete pdfFeito[k]; throw e; }); return pdfFeito[k]; }
+const nomePDF = v => `Simulado P3 - ${T.materia}${v==='r' ? ' - resolução' : ''}.pdf`;
+function salva(bytes, v){
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+  a.download = nomePDF(v); document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+async function comBotao(botao, fn){
+  const txt = botao.innerHTML; botao.disabled = true; botao.textContent = 'Montando…';
+  try { await fn(); } catch (e) { alert('Não deu para montar o PDF agora (' + e.message + '). Os links de cada questão continuam funcionando.'); }
   finally { botao.disabled = false; botao.innerHTML = txt; }
 }
+const baixaPDF = (v, botao) => comBotao(botao, async () => { salva(await pdfDo(v), v); ga(v==='r' ? 'simulado-pdf-res' : 'simulado-pdf'); });
+
+// visor: desenha as páginas na própria página com o PDF.js (funciona também no celular, que não mostra PDF embutido)
+const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', PDFJS_W = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+let jsP = null;
+const carregaPdfjs = () => jsP || (jsP = new Promise((ok, er) => { const sc = document.createElement('script'); sc.src = PDFJS;
+  sc.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_W; ok(window.pdfjsLib); };
+  sc.onerror = () => { jsP = null; er(new Error('não carregou o leitor de PDF')); }; document.head.appendChild(sc); }));
+const visor = document.getElementById('visor'), visorPgs = document.getElementById('visorPgs'), visorTit = document.getElementById('visorTit');
+let visorV = null, visorDoc = null, visorObs = null;
+function fechaVisor(){ visor.hidden = true; visorV = null; if (visorObs) visorObs.disconnect(); if (visorDoc) visorDoc.destroy(); visorDoc = null; visorPgs.innerHTML = ''; }
+async function desenhaPagina(box){
+  if (box.dataset.ok || !visorDoc) return; box.dataset.ok = '1';
+  const pg = await visorDoc.getPage(+box.dataset.p);
+  const base = pg.getViewport({ scale: 1 }), dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const vp = pg.getViewport({ scale: (box.clientWidth / base.width) * dpr });
+  const cv = document.createElement('canvas'); cv.width = Math.floor(vp.width); cv.height = Math.floor(vp.height);
+  await pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+  box.replaceChildren(cv);
+}
+const verPDF = (v, botao) => comBotao(botao, async () => {
+  const [bytes, lib] = await Promise.all([pdfDo(v), carregaPdfjs()]);
+  fechaVisor(); visorV = v;
+  visorDoc = await lib.getDocument({ data: bytes.slice() }).promise;
+  visorTit.textContent = `${v==='r' ? 'Resolução do simulado' : 'Simulado'} · ${sim.length} questões · ${visorDoc.numPages} páginas`;
+  visorObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) desenhaPagina(e.target); }), { root: visorPgs, rootMargin: '600px 0px' });
+  for (let i = 1; i <= visorDoc.numPages; i++) { const b = document.createElement('div'); b.className = 'visor-pg'; b.dataset.p = i; b.setAttribute('aria-label', `Página ${i}`); visorPgs.appendChild(b); visorObs.observe(b); }
+  visor.hidden = false; visorPgs.scrollTop = 0; visor.scrollIntoView({ block: 'start' }); ga(v==='r' ? 'simulado-ver-res' : 'simulado-ver');
+});
+document.getElementById('vFechar').addEventListener('click', fechaVisor);
+aoSortear = fechaVisor;   // um sorteio novo invalida o PDF aberto
+document.getElementById('vBaixar').addEventListener('click', e => { if (visorV) baixaPDF(visorV, e.currentTarget); });
+document.getElementById('bVer').addEventListener('click', e => verPDF('e', e.currentTarget));
+document.getElementById('bVerRes').addEventListener('click', e => verPDF('r', e.currentTarget));
 bPdf.addEventListener('click', () => baixaPDF('e', bPdf));
 bPdfRes.addEventListener('click', () => baixaPDF('r', bPdfRes));
 window.__montaPDF = montaPDF;
