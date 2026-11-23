@@ -254,6 +254,10 @@ main > section > .head .lbl::before{content:counter(sec, decimal-leading-zero);d
 .gbloco > .gsub{margin:0 0 14px}
 .gbloco .check label:hover{background:var(--card)}
 @media (max-width:560px){main > section{padding:22px 14px 24px;border-radius:10px} main > section > .head h2{font-size:1.4rem}}
+/* notação matemática no texto */
+main sub,main sup,header sub,header sup{font-size:.74em;line-height:0;position:relative}
+main sub,header sub{vertical-align:baseline;top:.32em}
+main sup,header sup{vertical-align:baseline;top:-.48em}
 /* abertura da página (no lugar dos avisos) */
 .abre{padding-block:30px 6px;display:flex;flex-direction:column;gap:8px}
 .abre .lbl{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;letter-spacing:.14em;color:#0F2347;background:var(--laranja);border-radius:999px;padding:6px 14px 6px 12px}
@@ -776,6 +780,38 @@ document.getElementById('study').innerHTML = ordem.map(t=>{
 })();
 
 if(location.hash){ const el=document.getElementById(location.hash.slice(1)); if(el) el.scrollIntoView(); }
+})();
+</script>
+<script>
+// notação matemática no texto da página: T_BC -> T com BC subscrito, e^(2x) -> e com 2x sobrescrito.
+// Só converte índice de base com uma letra (ou NPSH), para não mexer em nomes de código como push_back ou static_cast.
+(function(){
+  const PULA = new Set(['SCRIPT','STYLE','TEXTAREA','OPTION','SELECT','SUB','SUP','NAV','CANVAS']);
+  const RE_SUB = /(^|[^\p{L}0-9_]|[α-ωΣΔ∂])(\p{L}|∫)_(\{[^{}]{1,12}\}|[\p{L}0-9]{1,12})(?![\p{L}0-9_])/gu;
+  const RE_NPSH = /\bNPSH_([a-z]{1,3})\b/g;
+  const RE_SUP = /\^(\((?:[^()]|\([^()]*\)){1,26}\)|\{[^{}]{1,12}\}|∫\([^()]{1,14}\)(?:\/\p{L}{1,2})?(?:\s?d[a-z])?|∫[\p{L}0-9]{1,5}(?:\([^()]{1,8}\))?(?:\s?d[a-z](?![\p{L}0-9]))?|[-−+]?∫?[\p{L}0-9∞]{1,5}(?:\([^()]{1,8}\)[a-z]{0,2})?)/gu;
+  const tira = x => (/^\(.*\)$/s.test(x) || /^\{.*\}$/s.test(x)) ? x.slice(1, -1) : x;
+  const escH = t => t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const pode = n => { for (let e = n.parentElement; e; e = e.parentElement) { if (PULA.has(e.tagName) || e.classList.contains('pid') || e.classList.contains('nomath')) return false; } return true; };
+  function texto(n){
+    const t = n.nodeValue; if (!t || (t.indexOf('_') < 0 && t.indexOf('^') < 0) || !pode(n)) return;
+    let h = escH(t);
+    const antes = h;
+    h = h.replace(RE_SUP, (m, e) => `<sup>${tira(e)}</sup>`)
+         .replace(RE_NPSH, (m, i) => `NPSH<sub>${i}</sub>`)
+         .replace(RE_SUB, (m, a, b, i) => `${a}${b}<sub>${tira(i)}</sub>`);
+    if (h === antes) return;
+    const tpl = document.createElement('template'); tpl.innerHTML = h; n.replaceWith(tpl.content);
+  }
+  function passa(raiz){
+    if (raiz.nodeType === 3) return texto(raiz);
+    if (raiz.nodeType !== 1 || PULA.has(raiz.tagName)) return;
+    const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT); const ns = [];
+    while (w.nextNode()) ns.push(w.currentNode);
+    ns.forEach(texto);
+  }
+  passa(document.body);
+  new MutationObserver(rs => rs.forEach(r => r.addedNodes.forEach(passa))).observe(document.body, { childList: true, subtree: true });
 })();
 </script>
 <script>(function(){var b=document.getElementById("tema"),r=document.documentElement;
